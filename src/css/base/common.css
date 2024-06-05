@@ -1,6 +1,39 @@
 body {
   font-family: var(--font-family);
-
   margin: 0;
   padding: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+ul,
+ol {
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  list-style-type: none;
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: #ffff;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  text-align: center;
 }
