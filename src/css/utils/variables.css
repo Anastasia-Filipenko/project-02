@@ -1,0 +1,34 @@
+:root {
+  --font-family: 'Poppins', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --color-label-without: #ffffff80;
+  --color-label-low: #8fa1d0;
+  --color-label-medium: #e09cb5;
+  --color-label-high: #bedbb0;
+
+  --color-dark-primary: #161616;
+  --color-dark-text-primary: #ffffff;
+  --color-dark-text-secondary-50: #ffffff80;
+  --color-dark-text-secondary-80: #ffffffcc;
+  --color-dark-accent: #bedbb0;
+
+  --color-light-primary: #fcfcfc;
+  --color-light-text-primary: #161616;
+  --color-light-text-secondary-50: #16161680;
+  --color-light-text-secondary-70: #161616b3;
+  --color-light-text-secondary-80: #161616cc;
+  --color-light-accent: #bedbb0;
+
+  --color-violet-background-header: #ffffff;
+  --color-violet-background-sidebar: #5255bc;
+  --color-violet-background-screensPage: #ecedfd;
+  --color-violet-text-primary: #ffffff;
+  --color-violet-text-primary-50: #ffffff80;
+  --color-violet-text-secondary: #161616;
+  --color-violet-text-secondary-70: #161616b3;
+  --color-violet-text-secondary-80: #161616cc;
+  --color-violet-accent: #b8bcfd;
+}
