@@ -1,6 +1,7 @@
 import css from './WelcomePage.module.css';
 import user_desktop_2x from '../../images/user_desktop_2x.png';
 import { NavLink } from 'react-router-dom';
+import sprite from '../../assets/sprite.svg';
 
 export default function Welcome() {
   return (
@@ -12,7 +13,7 @@ export default function Welcome() {
             <div className={css.wrapper_logo_name}>
               <div className={css.logo}>
                 <svg className={css.logo_icon} width="18" height="24">
-                  <use xlinkHref="../src/assets/sprite.svg#icon-logo"></use>
+                  <use xlinkHref={`${sprite}#icon-logo`}></use>
                 </svg>
               </div>
               <h1 className={css.name}>Task Pro</h1>
