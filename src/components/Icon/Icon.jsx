@@ -22,7 +22,7 @@
 
 // export default Icon;
 
-import sprite from '../../assets/symbol-defs.svg';
+import sprite from '../../assets/sprite.svg';
 
 const Icon = ({ id, className, width, height }) => {
   return (

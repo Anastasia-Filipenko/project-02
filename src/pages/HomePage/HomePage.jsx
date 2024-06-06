@@ -1,1 +1,5 @@
-export default function Home() {}
+import SideBar from '../../components/SideBar/SideBar';
+
+export default function Home() {
+  return <SideBar />;
+}

@@ -11,9 +11,6 @@ export default function NotFound() {
       <NavLink to="/welcome" className={css.link}>
         Back to home
       </NavLink>
-      <svg className={css.logo_icon} width="20" height="20">
-        <use xlinkHref="/src/assets/sprite.svg#icon-logo"></use>
-      </svg>
     </div>
   );
 }
