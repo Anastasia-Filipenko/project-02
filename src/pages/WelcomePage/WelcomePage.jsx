@@ -12,7 +12,8 @@ export default function Welcome() {
             <div className={css.wrapper_logo_name}>
               <div className={css.logo}>
                 <svg className={css.logo_icon} width="18" height="24">
-                  <use xlinkHref="../../assets/sprite.svg#icon-logo"></use>
+                  {/* <use xlinkHref="../src/assets/sprite.svg#icon-logo"></use> */}
+                  <use xlinkHref="../../../src/assets/sprite.svg#icon-logo"></use>
                 </svg>
               </div>
               <h1 className={css.name}>Task Pro</h1>
