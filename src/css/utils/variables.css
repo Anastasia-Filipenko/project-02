@@ -15,6 +15,15 @@
   --color-dark-text-secondary-80: #ffffffcc;
   --color-dark-accent: #bedbb0;
 
+  --color-dark-btn: #bedbb0;
+  --color-dark-btn-hover: #9dc888;
+  --color-dark-btn-text: #161616;
+
+  --color-dark-input: #616d5b;
+  --color-dark-input-text:: #7b7b7b;
+  --color-dark-input-active: #9dc888;
+  --color-dark-input-active:#ffffff;
+
   --color-light-primary: #fcfcfc;
   --color-light-text-primary: #161616;
   --color-light-text-secondary-50: #16161680;
