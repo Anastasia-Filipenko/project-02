@@ -7,7 +7,7 @@ import LogOut from '../SideBar/LogOut/LogOut';
 
 const SideBar = () => {
   return (
-    <div>
+    <div className={css.cont}>
       <div>
         <div className={css.upperPart}>
           <Logo />
