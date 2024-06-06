@@ -1,10 +1,19 @@
 import { NavLink } from 'react-router-dom';
+import css from './NotFoundPage.module.css';
 
 export default function NotFound() {
   return (
-    <div>
-      <h1>Page not found</h1>
-      <NavLink to="/">Back to home</NavLink>
+    <div className={css.container}>
+      <h1>We are sorry,</h1>
+      <h2 className={css.title}>
+        but the page you were looking for can`t be found.
+      </h2>
+      <NavLink to="/welcome" className={css.link}>
+        Back to home
+      </NavLink>
+      <svg className={css.logo_icon} width="20" height="20">
+        <use xlinkHref="/src/assets/sprite.svg#icon-logo"></use>
+      </svg>
     </div>
   );
 }
