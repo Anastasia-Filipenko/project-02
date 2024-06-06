@@ -6,7 +6,7 @@ export default function Loader() {
     <Bars
       height="80"
       width="80"
-      color="grey"
+      color="black"
       ariaLabel="bars-loading"
       wrapperClass={css.loader}
       visible={true}
