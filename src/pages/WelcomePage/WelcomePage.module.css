@@ -49,6 +49,9 @@
   align-items: center;
 }
 
+.logo_icon {
+  fill: white;
+}
 .name {
   color: var(--color-light-text-primary);
   font-size: 40px;
