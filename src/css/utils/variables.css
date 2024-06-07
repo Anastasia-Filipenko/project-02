@@ -20,9 +20,9 @@
   --color-dark-btn-text: #161616;
 
   --color-dark-input: #616d5b;
-  --color-dark-input-text:: #7b7b7b;
+  --color-dark-input-text: #7b7b7b;
   --color-dark-input-active: #9dc888;
-  --color-dark-input-active:#ffffff;
+  --color-dark-input-active: #ffffff;
 
   --color-light-primary: #fcfcfc;
   --color-light-text-primary: #161616;
@@ -35,10 +35,10 @@
   --color-light-btn-hover: #9dc888;
   --color-light-btn-text: #161616;
 
-   --color-light-input: #e4f0df;
-  --color-light-input-text:: #7b7b7b;
+  --color-light-input: #e4f0df;
+  --color-light-input-text: #7b7b7b;
   --color-light-input-active: #bedbb0;
-  --color-light-input-active:#161616;
+  --color-light-input-active: #161616;
 
   --color-violet-background-header: #ffffff;
   --color-violet-background-sidebar: #5255bc;
@@ -50,15 +50,15 @@
   --color-violet-text-secondary-80: #161616cc;
   --color-violet-accent: #b8bcfd;
 
-  --color-violet-btn-board: #B8BCFD;
-  --color-violet-btn-board-hover: #979CEA;
+  --color-violet-btn-board: #b8bcfd;
+  --color-violet-btn-board-hover: #979cea;
 
-  --color-violet-btn:#5255BC;
-   --color-violet-btn-hover:#7B7EDE;
+  --color-violet-btn: #5255bc;
+  --color-violet-btn-hover: #7b7ede;
   --color-violet-btn-text: #ffffff;
 
   --color-violet-input: #e4f0df;
-  --color-violet-input-text:: #7b7b7b;
+  --color-violet-input-text: #7b7b7b;
   --color-violet-input-active: #bedbb0;
-  --color-violet-input-active:#161616;
+  --color-violet-input-active: #161616;
 }
