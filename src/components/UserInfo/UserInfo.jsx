@@ -98,11 +98,11 @@ export default function UserInfo() {
               />
               <svg
                 className={css.plus_icon_1}
-                width="10"
-                height="10"
+                width="16.5"
+                height="12"
                 onClick={handleClickShowPassword}
               >
-                <use xlinkHref={`${sprite}#icon-plus`}></use>
+                <use xlinkHref={`${sprite}#icon-eye`}></use>
               </svg>
             </div>
             <ErrorMessage name="password" errors={errors} />

@@ -138,12 +138,12 @@
 }
 
 .input {
-  padding-right: 20px;
+  padding-right: 15px;
 }
 
 .plus_icon_1 {
   position: absolute;
   right: 10px;
   cursor: pointer;
-  stroke: white;
+  stroke: var(--color-label-without);
 }
