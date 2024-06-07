@@ -19,7 +19,7 @@
   background: #151515;
   padding: 24px;
   position: relative;
-  min-width: 335px;
+  min-width: 300px;
 }
 
 .logo_icon {
@@ -81,7 +81,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  min-width: 287px;
+  min-width: 257px;
   height: 49px;
   background: #bedbb0;
   font-family: var(--font-family);
@@ -94,7 +94,7 @@
 .input {
   border: 1px solid #bedbb0;
   border-radius: 8px;
-  min-width: 287px;
+  min-width: 257px;
   height: 49px;
   box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
   background: #1f1f1f;
@@ -111,9 +111,21 @@
   color: #fff;
 }
 
-/* .error {
-  color: red;
-  font-size: 8px;
+.error {
+  color: #f14c4c;
+  font-size: 12px;
+}
+
+/* .input_password {
+  border: 1px solid #bedbb0;
+  border-radius: 8px;
+  min-width: 287px;
+  height: 49px;
+  box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
+  background: #1f1f1f;
+  opacity: 0.4;
+  color: #fff;
+  padding: 14px 18px;
 } */
 
 @media (min-width: 768px) {
@@ -129,6 +141,12 @@
     width: 352px;
   }
 }
+
+/* @media (min-width: 375px) {
+  .input_password {
+    width: 352px;
+  }
+} */
 
 /* стилі для div та svg приховування паролю */
 .inputWrapper {

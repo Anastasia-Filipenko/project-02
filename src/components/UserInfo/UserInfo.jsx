@@ -8,7 +8,7 @@ import userAvatar from '../../images/userAvatar.jpg';
 import { useState } from 'react';
 
 const schema = yup.object().shape({
-  name: yup.string().min(2).max(32),
+  name: yup.string().min(2).max(32).required(),
   email: yup
     .string()
     .email()
@@ -27,6 +27,7 @@ export default function UserInfo() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -38,7 +39,10 @@ export default function UserInfo() {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    console.log(data);
+    reset();
+  };
 
   return (
     <section className={css.container}>
@@ -78,7 +82,12 @@ export default function UserInfo() {
               //   value={}
               {...register('name')}
             />
-            <ErrorMessage name="name" errors={errors} />
+            <ErrorMessage
+              name="name"
+              errors={errors}
+              render={({ message }) => <p className={css.error}>{message}</p>}
+            />
+
             <input
               placeholder="email from db"
               className={css.input}
@@ -86,8 +95,11 @@ export default function UserInfo() {
               //   value={}
               {...register('email')}
             />
-            <ErrorMessage name="email" errors={errors} />
-
+            <ErrorMessage
+              name="email"
+              errors={errors}
+              render={({ message }) => <p className={css.error}>{message}</p>}
+            />
             {/* приховування паролю, тільки svg треба буде змінити*/}
             <div className={css.inputWrapper}>
               <input
@@ -105,7 +117,11 @@ export default function UserInfo() {
                 <use xlinkHref={`${sprite}#icon-eye`}></use>
               </svg>
             </div>
-            <ErrorMessage name="password" errors={errors} />
+            <ErrorMessage
+              name="password"
+              errors={errors}
+              render={({ message }) => <p className={css.error}>{message}</p>}
+            />
           </div>
           <button className={css.btn} type="submit">
             Send
