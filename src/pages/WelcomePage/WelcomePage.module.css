@@ -56,7 +56,6 @@
   color: var(--color-light-text-primary);
   font-size: 40px;
   font-weight: var(--font-weight-semibold);
-  line-height: auto;
   letter-spacing: -0.04em;
 }
 

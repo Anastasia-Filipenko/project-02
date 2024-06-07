@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import css from './NotFoundPage.module.css';
-import sprite from '../../assets/sprite.svg';
 
 export default function NotFound() {
   return (
@@ -12,9 +11,6 @@ export default function NotFound() {
       <NavLink to="/welcome" className={css.link}>
         Back to home
       </NavLink>
-      <svg className={css.logo_icon} width="18" height="24">
-        <use xlinkHref={`${sprite}#icon-trash`}></use>
-      </svg>
     </div>
   );
 }

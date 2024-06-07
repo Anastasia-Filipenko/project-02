@@ -14,7 +14,7 @@ import RegisterForm from '../../components/authorization/RegisterForm/RegisterFo
 
 export default function Auth() {
   const { id } = useParams();
-  console.log(id);
+
   return (
     <div>
       {id === 'login' && <LoginForm />}
