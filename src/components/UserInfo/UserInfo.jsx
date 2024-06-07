@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../assets/sprite.svg';
 import userAvatar from '../../images/userAvatar.jpg';
+import { useState } from 'react';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32),
@@ -29,6 +30,13 @@ export default function UserInfo() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  //приховування паролю
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const onSubmit = data => console.log(data);
 
@@ -79,16 +87,25 @@ export default function UserInfo() {
               {...register('email')}
             />
             <ErrorMessage name="email" errors={errors} />
-            <div>
+
+            {/* приховування паролю, тільки svg треба буде змінити*/}
+            <div className={css.inputWrapper}>
               <input
                 placeholder="password from db"
                 className={css.input}
-                type="text"
                 {...register('password')}
-                //   value={}
+                type={showPassword ? 'text' : 'password'}
               />
-              <ErrorMessage name="password" errors={errors} />
+              <svg
+                className={css.plus_icon_1}
+                width="10"
+                height="10"
+                onClick={handleClickShowPassword}
+              >
+                <use xlinkHref={`${sprite}#icon-plus`}></use>
+              </svg>
             </div>
+            <ErrorMessage name="password" errors={errors} />
           </div>
           <button className={css.btn} type="submit">
             Send
