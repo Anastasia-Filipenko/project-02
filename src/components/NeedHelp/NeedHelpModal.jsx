@@ -1,4 +1,4 @@
-import css from './NeedHelp.module.css';
+import css from './NeedHelpModal.module.css';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
   comment: yup.string().min(20).max(200).required(),
 });
 
-export default function UserInfo() {
+export default function NeedHelpModal({ close }) {
   const {
     register,
     handleSubmit,
@@ -30,17 +30,10 @@ export default function UserInfo() {
   };
 
   return (
-    <section className={css.container}>
+    <>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <svg
-            className={css.logo_icon}
-            width="18"
-            height="18"
-            onClick={() => {
-              console.log('close modal');
-            }}
-          >
+          <svg className={css.logo_icon} width="18" height="18" onClick={close}>
             <use xlinkHref={`${sprite}#icon-x-close`}></use>
           </svg>
           <p className={css.title}>Need help</p>
@@ -60,7 +53,7 @@ export default function UserInfo() {
             <textarea
               placeholder="Comment"
               type="comment"
-              className={css.input_password}
+              className={css.textarea_comment}
               rows={4}
               {...register('comment')}
             />
@@ -70,11 +63,11 @@ export default function UserInfo() {
               render={({ message }) => <p className={css.error}>{message}</p>}
             />
           </div>
-          <button className={css.btn} type="submit">
+          <button className={css.btn} type="submit" onClick={close}>
             Send
           </button>
         </div>
       </form>
-    </section>
+    </>
   );
 }
