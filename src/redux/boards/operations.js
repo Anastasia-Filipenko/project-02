@@ -1,17 +1,49 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { allBoards, addTestBoard, getOneBoard } from './tempBackend';
 
 export const fetchCurrentBoard = createAsyncThunk(
-  'currentBoard/fetchCurrentBoard',
-  async (boardId, thunkAPI) => {
+  'boards/fetchCurrentBoard',
+  async (boardTitle, thunkAPI) => {
     try {
       // const response = await axios.get(`/boards?id=${boardId}`);
-      const response = {
-        data: {
-          name: 'TestBoard',
-          columns: [{ name: 'first' }, { name: 'second' }],
-        },
-      };
+      const response = getOneBoard(boardTitle);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const addBoard = createAsyncThunk(
+  'boards/addBoard',
+  async (boardData, thunkAPI) => {
+    try {
+      // const response = await axios.get(`/boards?id=${boardId}`);
+      // const response = {
+      //   data: {
+      //     name: 'TestBoard',
+      //     columns: [
+      //       { name: 'first' },
+      //       { name: 'second' },
+      //       { name: 'third column' },
+      //     ],
+      //   },
+      // };
+      addTestBoard(boardData);
+      return boardData;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const fetchAllBoards = createAsyncThunk(
+  'boards/fetchAllBoards',
+  async (_, thunkAPI) => {
+    try {
+      // const response = await axios.get(`/boards?id=${boardId}`);
+      const response = allBoards();
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

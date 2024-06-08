@@ -10,7 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { currentBoardReducer } from './currentBoard/slice'; 
+import { boardsReducer } from './boards/slice'; 
 // import storage from 'redux-persist/lib/storage';
 // import authSlice from './auth/slice';
 
@@ -24,7 +24,7 @@ import { currentBoardReducer } from './currentBoard/slice';
 
 export const store = configureStore({
   reducer: combineReducers({
-    currentBoard: currentBoardReducer,
+    boards: boardsReducer,
   }),
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -1,6 +1,6 @@
 import Logo from '../SideBar/Logo/Logo';
 import css from './SideBar.module.css';
-import CreateNewBoard from '../SideBar/CreateNewBoard/CreateNewBoard';
+import CreateNewBoard from '../CreateNewBoard/CreateNewBoard';
 import NeedHelp from '../SideBar/NeedHelp/NeedHelp';
 import LogOut from '../SideBar/LogOut/LogOut';
 // dispatch + useRef(?) + loader (?)

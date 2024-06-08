@@ -1,10 +1,12 @@
 // import { createSelector } from "@reduxjs/toolkit";
 
-export const selectIsLoading = (state) => state.contacts.isLoading;
+export const selectIsLoading = (state) => state.boards.isLoading;
 
-export const selectError = (state) => state.contacts.error;
+export const selectError = (state) => state.boards.error;
 
-export const selectCurrentBoard = (state) => state.currentBoard.board;
+export const selectCurrentBoard = (state) => state.boards.currentBoard;
+
+export const selectAllBoards = (state) => state.boards.boards;
 
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],

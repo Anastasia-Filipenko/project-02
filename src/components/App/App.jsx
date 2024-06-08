@@ -18,7 +18,7 @@ function App() {
 
         <Route path="/home" element={<Home />}>
           <Route
-            path=":boardName"
+            path=":boardTitle"
             element={<PrivateRoute component={<Board />} />}
           />
         </Route>

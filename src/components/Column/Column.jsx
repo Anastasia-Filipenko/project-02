@@ -4,8 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 export const Column = props => {
   return (
-    <Grid container alignItems="left">
-      <Grid item>
+      <Grid item width="334px" xs={4}>
         <Card>
           <CardHeader
             title={props.columnName}
@@ -27,6 +26,5 @@ export const Column = props => {
           ></CardHeader>
         </Card>
       </Grid>
-    </Grid>
   );
 };
