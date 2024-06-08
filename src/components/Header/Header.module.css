@@ -1,0 +1,25 @@
+.header {
+    display: 'flex';
+    justify-content: 'space-between';
+    width: '1180px';
+    height: '68px';
+}
+.title{
+    margin-left: 993px;
+    /* color: var(--color-dark-primary); */
+}
+.title-light {
+    /* margin-left: 993px; */
+    color: var(--color-dark-primary);
+    /* Dark color for light theme */
+}
+.title-dark {
+    /* margin-left: 993px; */
+    color: var(--color-light-primary);
+    /* Light color for dark theme */
+}
+.title-violet {
+    /* margin-left: 993px; */
+    color: var(--color-dark-primary);
+    /* Dark color for violet theme */
+}
