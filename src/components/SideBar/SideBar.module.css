@@ -1,10 +1,30 @@
 .myBoardsTitle {
-    font-size: 12px;
-    font-weight: lighter;
-    margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 100;
+  margin-bottom: 10px;
+  margin-top: 62px;
+  /* color: #FFFFFF; */
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .cont {
-    margin-left: 32px;
-    margin-top: 32px;
+  /* margin-left: 32px;
+    margin-top: 32px; */
+  padding-top: 15px;
+  padding-left: 15px;
+  display: flex;
+  /* width: 260px; */
+  width: 225px;
+  height: 100vh;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: #000000;
+}
+
+@media only screen and (min-width: 768px) {
+  .cont {
+    width: 260px;
+    padding-top: 30px;
+    padding-left: 30px;
+  }
 }

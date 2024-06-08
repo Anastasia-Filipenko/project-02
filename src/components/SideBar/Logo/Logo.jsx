@@ -1,4 +1,3 @@
-// import Icon from '../../Icon/Icon';
 import css from '../Logo/Logo.module.css';
 import sprite from '../../../assets/sprite.svg';
 

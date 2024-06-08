@@ -1,13 +1,15 @@
 import css from './LogOut.module.css';
-// import Icon from '../../Icon/Icon';
-// і сюди dispatch
+// import { useDispatch } from 'react-redux';
 import sprite from '../../../assets/sprite.svg';
+// logout додати з auth-oper
 
 const LogOut = () => {
-  //   додати dispatch
+  // const dispatch = useDispatch();
+  // const onLogOut = () => dispatch(logout());
+  // цей момент не точний
   return (
     <>
-      {/* onClick додати */}
+    {/*  onClick={onLogOut} */}
       <button className={css.buttonLogOut} type="button">
         <div className={css.iconLogOut}>
           <svg className={css.logOut} width="32" height="32">
