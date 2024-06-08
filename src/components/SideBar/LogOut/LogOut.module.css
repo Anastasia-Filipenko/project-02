@@ -1,16 +1,16 @@
-
 .logOut {
-    stroke: #BEDBB0;
-    fill: none;
+  stroke: #bedbb0;
+  fill: none;
 }
 
 .buttonLogOut {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-weight: 500;
-    background-color: #fff;
-    margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  margin-top: 10px;
+  background-color: #000000;
+  color: #FFFFFF;
+  margin-bottom: 10px;
 }
-

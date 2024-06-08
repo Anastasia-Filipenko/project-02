@@ -1,3 +1,11 @@
 .infoText {
-    width: 212px;
+    width: 197px;
+    color: #ffffff;
+    font-weight: lighter;
+}
+
+@media only screen and (min-width: 768px) {
+    .infoText {
+        width: 212px;
+    }
 }
