@@ -1,4 +1,3 @@
-
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
 import './Header.module.css';
@@ -32,11 +31,9 @@ const Header = () => {
 
 export default Header;
 
-
 //import UserInfo from '../UserInfo/UserInfo';
 //import { useSelector, useDispatch } from 'react-redux';
 //import css from './Header.module.css';
-
 
 //import { selectTheme, setTheme } from '../../redux/theme/themeSlice'; // Assuming you have a themeSlice
 
@@ -58,18 +55,17 @@ export default Header;
 //     console.log(event.target.value);
 //     themeValue.toggleTheme(event.target.value);
 //   };
-  // const handleThemeChange = event => {
-  //   toggleTheme(event.target.value);
-  // };
-  //const { theme, toggleTheme } = useContext(themeContext);
- 
+// const handleThemeChange = event => {
+//   toggleTheme(event.target.value);
+// };
+//const { theme, toggleTheme } = useContext(themeContext);
 
-  // const handleSelectChange = event => {
-  //   // console.log(event.target.value);
-  //   // dispatch()
-  //   // toggleTheme(event.target.value);
-    
-  // };
+// const handleSelectChange = event => {
+//   // console.log(event.target.value);
+//   // dispatch()
+//   // toggleTheme(event.target.value);
+
+// };
 //     const dispatch = useDispatch();
 
 //     const handleSelectChange = event => {
@@ -96,8 +92,6 @@ export default Header;
 // Header.propTypes = {
 //   handleThemeChange: PropTypes.func.isRequired,
 // };
-
-
 
 // const Header = () => {
 //   const theme = useSelector(selectTheme);

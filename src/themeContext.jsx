@@ -1,4 +1,4 @@
-import { createContext, useState,  useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 //import { ThemeProvider } from 'styled-components';
 
@@ -24,7 +24,7 @@ const themeDark = {
   },
 };
 
- export const getTheme = theme => {
+export const getTheme = theme => {
   switch (theme) {
     case 'dark':
       return themeDark;
@@ -36,23 +36,18 @@ const themeDark = {
   }
 };
 
-
 export const ThemeChangeProvider = ({ children }) => {
-  
-    const [ theme, setTheme ] = useState('dark');
-    
-    const toggleTheme = (newTheme) => {
-      // console.log(theme,newTheme);
-     setTheme(newTheme);
-    
-    };
-    useEffect(() => {
-       // console.log(theme);
-        document.body.className = theme;
-      }, [theme]);
-    
+  const [theme, setTheme] = useState('dark');
+
+  const toggleTheme = newTheme => {
+    setTheme(newTheme);
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
-    <themeContext.Provider value={{ theme,  toggleTheme }}>
+    <themeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </themeContext.Provider>
   );

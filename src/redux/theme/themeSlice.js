@@ -8,7 +8,10 @@ import { createSlice } from '@reduxjs/toolkit';
 // Slice
 const themeSlice = createSlice({
   name: 'theme',
-  theme: 'dark',
+  initialState: {
+    theme: 'dark',
+  },
+
   reducers: {
     setTheme: (state, action) => {
       state.theme = action.payload;
@@ -20,7 +23,7 @@ const themeSlice = createSlice({
 export const { setTheme } = themeSlice.actions;
 
 // Export selector
-export const selectTheme = state => state.theme;
+export const selectTheme = state => state.theme.theme;
 
 // Export reducer
 export default themeSlice.reducer;
