@@ -2,9 +2,16 @@
     font-size: 12px;
     font-weight: lighter;
     margin-bottom: 10px;
+    margin-top: 62px;
 }
 
 .cont {
     margin-left: 32px;
     margin-top: 32px;
+    display: flex;
+    width: 260px;
+    height: 720px;
+    justify-content: space-between;
+    flex-direction: column;
 }
+

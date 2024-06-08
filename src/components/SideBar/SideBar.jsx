@@ -8,7 +8,6 @@ import LogOut from '../SideBar/LogOut/LogOut';
 const SideBar = () => {
   return (
     <div className={css.cont}>
-      <div>
         <div className={css.upperPart}>
           <Logo />
           <h3 className={css.myBoardsTitle}>My boards</h3>
@@ -19,7 +18,6 @@ const SideBar = () => {
           <NeedHelp />
           <LogOut />
         </div>
-      </div>
     </div>
   );
 };
