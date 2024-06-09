@@ -46,7 +46,7 @@
 }
 
 .logoIcon {
-  /* background-image: url('../../../assets/imageNeedHelp.svg'); */
+  background-image: url('../../../assets/imageNeedHelp.svg');
   background-size: contain;
   width: 54px;
   height: 78px;
