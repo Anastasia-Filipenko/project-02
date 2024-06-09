@@ -101,3 +101,21 @@ width: 344px;
         margin-bottom: 45px;
     }
   }
+
+  .blockPassword {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input {
+    padding-right: 15px;
+  }
+  
+  .plus_icon_1 {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    stroke: var(--color-label-without);
+  }
+  

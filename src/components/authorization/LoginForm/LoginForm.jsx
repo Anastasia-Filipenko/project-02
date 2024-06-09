@@ -6,6 +6,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message"
 import clsx from 'clsx';
 import { useState } from "react";
+import sprite from "../../../assets/sprite.svg"
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/auth/operations";
 
 const schema = yup.object().shape({
     name: yup.string().min(2).max(32),
@@ -22,9 +25,20 @@ export default function LoginForm() {
     const { register, handleSubmit, formState: {errors} } = useForm({
         resolver: yupResolver(schema) 
     })
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(false);
+    const dispatch = useDispatch();
 
-    const onSubmit = data => console.log(data)
+    const handleClickShowPassword = () => {
+      setShowPassword(!showPassword);
+    };
+
+    // const onSubmit = data => console.log(data)
+    const onSubmit = data => dispatch(
+        login({
+            email: data.email,
+            password: data.password,
+        })
+    )
     return (
         <section className={css.container}>
             <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -37,12 +51,30 @@ export default function LoginForm() {
                         <input placeholder="Enter your email" className={css.input} type="email" {...register('email')} />
                         <ErrorMessage name="email" errors={errors} />
                         <div>
-                        <input placeholder="Create a password" className={css.input} type={showPassword ? "text" : "password"} defaultValue="" {...register('password')} />
-                        <ErrorMessage name="password" errors={errors} />
-                        <input type="checkbox" checked={showPassword} onChange={() => setShowPassword((prev) => !prev)} />
+                        <div className={css.blockPassword}>
+                        <input
+                placeholder="Create a password"
+                className={css.input}
+                {...register('password')}
+                type={showPassword ? 'text' : 'password'}
+              />
+              <svg
+                className={css.plus_icon_1}
+                width="16.5"
+                height="12"
+                onClick={handleClickShowPassword}
+              >
+                <use href={`${sprite}#icon-eye`}></use>
+              </svg>
+            <ErrorMessage
+              name="password"
+              errors={errors}
+              render={({ message }) => <p className={css.error}>{message}</p>}
+            />
                     </div>
                     </div>
-                    <button className={css.btn} type="submit">Register Now</button>
+                    </div>
+                    <button className={css.btn} type="submit">Login Now</button>
                 </div>
             </form>
         </section>

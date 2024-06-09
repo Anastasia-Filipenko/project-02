@@ -5,6 +5,7 @@ import Auth from '../../pages/AuthPage/AuthPage';
 import Home from '../../pages/HomePage/HomePage';
 import NotFound from '../../pages/NotFoundPage/NotFoundPage';
 import Loader from '../Loader/Loader';
+import RestrictedRoute from '../authorization/RestrictedRoute/RestrictedRoute';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/welcome" />} />
         <Route path="/welcome" element={<Welcome />} />
-        <Route path="/auth/:id" element={<Auth />} />
+        <Route path="/auth/:id" element={<RestrictedRoute redirectTo='/home' component={<Auth />} />} />
         <Route path="/home" element={<Home />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
