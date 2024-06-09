@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 100px;
-  border-top: 0.5px solid #121212;
-  border-bottom: 0.5px solid #121212;
-  width: 212px;
+  border-top: 0.5px solid #ffffff38;
+  border-bottom: 0.5px solid #ffffff38;
+  width: 197px;
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -14,6 +14,7 @@
   font-weight: bolder;
   width: 80px;
   text-align: start;
+  color: #ffffff;
 }
 
 .button {
@@ -31,4 +32,10 @@
   align-items: center;
   justify-content: center;
   display: flex;
+}
+
+@media only screen and (min-width: 768px) {
+  .create {
+    width: 212px;
+  }
 }
