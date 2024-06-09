@@ -1,35 +1,42 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import {
-//   persistStore,
-//   //   persistReducer,
-//   FLUSH,
-//   REHYDRATE,
-//   PAUSE,
-//   PERSIST,
-//   PURGE,
-//   REGISTER,
-// } from 'redux-persist';
-// // import storage from 'redux-persist/lib/storage';
-// // import authSlice from './auth/slice';
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from "redux";
+import {
+  persistStore,
+  //   persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import { boardsReducer } from './boards/slice'; 
+import { commonReducer } from './common/slice';
+import axios from 'axios';
 
-// // const authPersistConfig = {
-// //   key: 'authSlice',
-// //   storage,
-// //   whitelist: ['token'],
-// // };
+axios.defaults.baseURL = 'https://taskpro-final-project.onrender.com/api/';
+// import storage from 'redux-persist/lib/storage';
+// import authSlice from './auth/slice';
 
-// // const persistedAuthReducer = persistReducer(authPersistConfig, authSlice);
+// const authPersistConfig = {
+//   key: 'authSlice',
+//   storage,
+//   whitelist: ['token'],
+// };
 
-// export const store = configureStore({
-//   reducer: {
-//     // auth: persistedAuthReducer,
-//   },
-//   middleware: getDefaultMiddleware =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }),
-// });
+// const persistedAuthReducer = persistReducer(authPersistConfig, authSlice);
 
-// export const persistor = persistStore(store);
+export const store = configureStore({
+  reducer: combineReducers({
+    boards: boardsReducer,
+    common: commonReducer
+  }),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);
