@@ -1,6 +1,4 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
-//import { ThemeProvider } from 'styled-components';
 
 const themeContext = createContext();
 const themeLight = {
@@ -53,8 +51,6 @@ export const ThemeChangeProvider = ({ children }) => {
   );
 };
 
-// ThemeChangeProvider.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
+
 export const useTheme = () => useContext(themeContext);
 export default themeContext;

@@ -1,16 +1,31 @@
 body {
   font-family: var(--font-family);
 }
+
 body.dark {
-  background-color: black;
+  --background-header-dark: var(--color-dark-primary);
+  --background-sidebar-dark: var(--color-dark-primary);
+  --background-body: var(--color-dark-primary);
+  --text-color-dark: var(--color-dark-text-secondary-80);
+  --arrow-color-dark: var(--color-dark-text-secondary-80);
+
 }
 
 body.light {
-  background-color: red;
+  --background-header-light: var(--color-light-primary);
+  --background-sidebar-light: var(--color-light-primary);
+  --background-body-light: var(--color-light-primary);
+  --text-color-light: var(--color-dark-primary);
+  --arrow-color-light: var(--color-light-text-primary);
 }
+
 body.violet {
-  background-color: violet;
+  --background-header-violet: var(--color-violet-background-header);
+  --background-sidebar-violet: var(--color-violet-background-sidebar);
+  --background-body-violet: var(--color-light-primary);
+  --text-color: var(--color-dark-primary);
 }
+
 
 h1,
 h2,
