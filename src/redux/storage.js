@@ -11,6 +11,10 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { boardsReducer } from './boards/slice'; 
+import { commonReducer } from './common/slice';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://taskpro-final-project.onrender.com/api/';
 // import storage from 'redux-persist/lib/storage';
 // import authSlice from './auth/slice';
 
@@ -25,6 +29,7 @@ import { boardsReducer } from './boards/slice';
 export const store = configureStore({
   reducer: combineReducers({
     boards: boardsReducer,
+    common: commonReducer
   }),
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

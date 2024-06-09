@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { allBoards, addTestBoard, getOneBoard } from './tempBackend';
+import { allBoards } from './tempBackend';
+
+axios.defaults.headers.common.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjVjNjQxODZlOWJkMzk1OTdhMTE4OSIsImlhdCI6MTcxNzk0NTkyOCwiZXhwIjoxNzE4MDMyMzI4fQ.OHu8kN5nmzicmlm3S_huW-HjH_Mx0p_8AAorxDjAC1I`;
 
 export const fetchCurrentBoard = createAsyncThunk(
   'boards/fetchCurrentBoard',
-  async (boardTitle, thunkAPI) => {
+  async (boardId, thunkAPI) => {
     try {
-      // const response = await axios.get(`/boards?id=${boardId}`);
-      const response = getOneBoard(boardTitle);
+      const response = await axios.get(`/board/${boardId}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -19,19 +20,9 @@ export const addBoard = createAsyncThunk(
   'boards/addBoard',
   async (boardData, thunkAPI) => {
     try {
-      // const response = await axios.get(`/boards?id=${boardId}`);
-      // const response = {
-      //   data: {
-      //     name: 'TestBoard',
-      //     columns: [
-      //       { name: 'first' },
-      //       { name: 'second' },
-      //       { name: 'third column' },
-      //     ],
-      //   },
-      // };
-      addTestBoard(boardData);
-      return boardData;
+      const response = await axios.post('/board', boardData);
+      // addTestBoard(boardData);
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

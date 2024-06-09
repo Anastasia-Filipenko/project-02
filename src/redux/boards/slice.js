@@ -27,6 +27,11 @@ const boardsSlice = createSlice({
     isLoading: false,
     error: null,
   },
+  reducers: {
+    setCurrentBoard(state, action) {
+      state.currentBoard = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCurrentBoard.pending, handlePending)
@@ -59,3 +64,5 @@ const boardsSlice = createSlice({
 
 export const boardsActions = boardsSlice.actions;
 export const boardsReducer = boardsSlice.reducer;
+export const { setCurrentBoard } = boardsSlice.actions;
+

@@ -1,13 +1,14 @@
 const boardsStorage = [
-    {
-      id: 1,
-      title: 'TestBoard1',
-      columns: [{ name: 'first' }, { name: 'second' }, { name: 'third column' }],
-    },
-  {
-    id: 2,
-    title: 'TestBoard2',
-  },
+  //   {
+  //     id: 1,
+  //     title: 'TestBoard1',
+  //     columns: [{ name: 'first' }, { name: 'second' }, { name: 'third column' }],
+  //     background: 'tree'
+  //   },
+  // {
+  //   id: 2,
+  //   title: 'TestBoard2',
+  // },
 ];
 
 export const addTestBoard = boardData => {

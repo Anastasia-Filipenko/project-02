@@ -47,7 +47,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     }
     (async () => {
       const list = await axios.get(
-        'https://res.cloudinary.com/demo/image/list/logo.json'
+        'https://res.cloudinary.com/duchyrp8f/image/list/bg.json'
       );
       setBackrounds([...list.data.resources]);
     })();
@@ -64,7 +64,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
         Required
       </Box>
     ),
-    bg: Yup.string().required(
+    background: Yup.string().required(
       <Box component="span" color="error">
         Required
       </Box>
@@ -76,11 +76,13 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     initialValues: {
       title: '',
       icon: '',
-      bg: '',
+      background: '',
     },
     validationSchema: schema,
     onSubmit: values => {
-      dispatch(addBoard(values));
+      dispatch(
+        addBoard({ ...values, background: values.background.split('/').pop() })
+      );
       props.closeModal();
     },
   });
@@ -89,8 +91,8 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     formik.setFieldValue('icon', icon);
   };
 
-  const handleBgChange = (event, bg) => {
-    formik.setFieldValue('bg', bg);
+  const handleBgChange = (event, background) => {
+    formik.setFieldValue('background', background);
   };
 
   return (
@@ -147,10 +149,10 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
 
             <Typography>Backgrounds</Typography>
             <ToggleButtonGroup
-              value={formik.values.bg}
+              value={formik.values.background}
               onChange={handleBgChange}
               exclusive={true}
-              id="bg"
+              id="background"
               sx={{
                 gap: 2,
                 '&.Mui-selected': {
@@ -168,8 +170,9 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                     name="click"
                     ref={ref}
                     sx={{
+                      p: 0,
                       borderColor:
-                        formik.values.bg === `${bg.public_id}`
+                        formik.values.background === `${bg.public_id}`
                           ? 'red'
                           : 'black',
                     }}
