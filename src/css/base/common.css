@@ -1,6 +1,16 @@
 body {
   font-family: var(--font-family);
 }
+body.dark {
+  background-color: black;
+}
+
+body.light {
+  background-color: red;
+}
+body.violet {
+  background-color: violet;
+}
 
 body.dark {
   --background-header-dark: var(--color-dark-primary);
