@@ -1,0 +1,1 @@
+export const selectCurrentScreen = (state) => state.common.currentScreen;
