@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import NeedHelpModal from '../../NeedHelp/NeedHelpModal';
 import styles from '../../NeedHelp/NeedHelpModal.module.css';
 import { useState } from 'react';
+import sprite from '../../../assets/sprite.svg';
 
 const customStyles = {
   content: {
@@ -40,14 +41,13 @@ const NeedHelp = () => {
 
   return (
     <div className={css.container}>
-      {/* <svg></svg> */}
+      <svg className={css.logoIcon}></svg>
       <p className={css.infoText}>
         If you need help width <br />
-        <a className={css.perfectTask} onClick={openModal}>
-          Task Pro
-        </a>
-        , check out our support resources or reach out to our customer support
-        team.
+        <a className={css.perfectTask}>Task Pro</a>
+        , check out our support resources or <br />
+        reach out to our <br />
+        customer support team.
       </p>
       <Modal
         isOpen={modalIsOpen}
@@ -58,8 +58,24 @@ const NeedHelp = () => {
       >
         {<NeedHelpModal close={closeModal} />}
       </Modal>
-      {/* відкриття модального вікна link + icon*/}
-      {/* закриття модального вікна */}
+      {/* <div className={css.helpCont} onClick={openModal}>
+        <svg className={css.help} width="15" height="15">
+          <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`}></use>
+        </svg>
+        <p className={css.helpText}>Need help?</p>
+      </div> */}
+      <button type='button' className={css.helpCont} onClick={openModal}>
+      <svg className={css.help} width="15" height="15">
+          <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`}></use>
+        </svg>
+        <p className={css.helpText}>Need help?</p>
+      </button>
+      {/* <a href="" className={css.helpCont} onClick={openModal}>
+        <svg className={css.help} width="15" height="15">
+          <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`}></use>
+        </svg>
+        <p className={css.helpText}>Need help?</p>
+      </a> */}
     </div>
   );
 };
