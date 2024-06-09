@@ -12,17 +12,17 @@ import {
 } from 'redux-persist';
 import { boardsReducer } from './boards/slice';
 import { commonReducer } from './common/slice';
-import axios from 'axios';
+// import axios from 'axios';
 import themeReducer from './theme/themeSlice';
-import userReducer from './user/userSlice';
+// import userReducer from './user/userSlice';
 import storage from 'redux-persist/lib/storage';
 
-axios.defaults.baseURL = 'https://taskpro-final-project.onrender.com/api/';
+// axios.defaults.baseURL = 'https://taskpro-final-project.onrender.com/api/';
 
-const rootReducer = combineReducers({
-  theme: themeReducer,
-  user: userReducer,
-});
+// const rootReducer = combineReducers({
+//   theme: themeReducer,
+//   user: userReducer,
+// });
 
 const persistConfig = {
   key: 'root',
@@ -30,14 +30,14 @@ const persistConfig = {
   whitelist: ['theme'], // you can add 'user' if you want to persist user state as well
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, themeReducer);
 
 export const store = configureStore({
-  reducer: combineReducers({
+  reducer: {
     boards: boardsReducer,
     common: commonReducer,
     reducer: persistedReducer,
-  }),
+  },
 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
