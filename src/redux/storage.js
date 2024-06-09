@@ -15,6 +15,7 @@ import { commonReducer } from './common/slice';
 import axios from 'axios';
 import themeReducer from './theme/themeSlice';
 import userReducer from './user/userSlice';
+import storage from 'redux-persist/lib/storage';
 
 axios.defaults.baseURL = 'https://taskpro-final-project.onrender.com/api/';
 
