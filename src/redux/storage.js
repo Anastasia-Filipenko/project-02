@@ -15,22 +15,32 @@ import { commonReducer } from './common/slice';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://taskpro-final-project.onrender.com/api/';
-// import storage from 'redux-persist/lib/storage';
-// import authSlice from './auth/slice';
 
-// const authPersistConfig = {
-//   key: 'authSlice',
-//   storage,
-//   whitelist: ['token'],
-// };
+import themeReducer from './theme/themeSlice';
+import userReducer from './user/userSlice';
+import { combineReducers } from 'redux';
 
-// const persistedAuthReducer = persistReducer(authPersistConfig, authSlice);
+const rootReducer = combineReducers({
+  theme: themeReducer,
+  user: userReducer,
+});
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['theme'], // you can add 'user' if you want to persist user state as well
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 
 export const store = configureStore({
   reducer: combineReducers({
     boards: boardsReducer,
-    common: commonReducer
+    common: commonReducer,
+  reducer: persistedReducer,
   }),
+
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -39,4 +49,6 @@ export const store = configureStore({
     }),
 });
 
+
 export const persistor = persistStore(store);
+

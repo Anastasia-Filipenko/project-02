@@ -2,6 +2,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import SideBar from '../../components/SideBar/SideBar';
+
+import Header from '../../components/Header/Header';
+
 import {
   selectAllBoards,
   selectCurrentBoard,
@@ -30,6 +33,7 @@ export default function Home() {
   return (
     <Stack direction="row" spacing={2} height="100vh">
       <DetectScreen />
+      <Header/>
       <SideBar />
       <Box sx={{ width: '90%' }}>
         {/* <AppBar width="90%" sx={{ backgroundColor: 'grey' }}>
@@ -43,5 +47,6 @@ export default function Home() {
         <Outlet />
       </Box>
     </Stack>
+
   );
 }
