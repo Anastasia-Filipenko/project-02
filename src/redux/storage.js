@@ -36,7 +36,7 @@ export const store = configureStore({
   reducer: {
     boards: boardsReducer,
     common: commonReducer,
-    reducer: persistedReducer,
+    theme: persistedReducer,
   },
 
   middleware: getDefaultMiddleware =>
