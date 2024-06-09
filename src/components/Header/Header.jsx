@@ -3,17 +3,17 @@ import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
 import css from './Header.module.css';
 import { useState } from 'react';
 import clsx from 'clsx';
-import UserInfo from '../UserInfo/UserInfo';
-import { selectUser } from '../../redux/user/userSlice';
+// import UserInfo from '../UserInfo/UserInfo';
+// import { selectUser } from '../../redux/user/userSlice';
 
 const Header = () => {
   const selectedTheme = useSelector(selectTheme);
-  const user = useSelector(selectUser)
+  // const user = useSelector(selectUser);
   const dispatch = useDispatch();
- const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleSelectChange = event => {
     dispatch(setTheme(event.target.value));
-  setIsDropdownOpen(false);
+    setIsDropdownOpen(false);
   };
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -43,7 +43,7 @@ const Header = () => {
                 </button>
               </div>
             )}
-            <UserInfo user={user} />
+            {/* <UserInfo user={user} /> */}
           </div>
         </div>
       </header>

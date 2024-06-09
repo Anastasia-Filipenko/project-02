@@ -33,8 +33,8 @@ export default function Home() {
   return (
     <Stack direction="row" spacing={2} height="100vh">
       <DetectScreen />
-      <Header/>
       <SideBar />
+      <Header />
       <Box sx={{ width: '90%' }}>
         {/* <AppBar width="90%" sx={{ backgroundColor: 'grey' }}>
             <Toolbar></Toolbar>
@@ -47,6 +47,5 @@ export default function Home() {
         <Outlet />
       </Box>
     </Stack>
-
   );
 }
