@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 // import { combineReducers } from 'redux';
 import {
   persistStore,
@@ -10,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+
 import { boardsReducer } from './boards/slice';
 import { commonReducer } from './common/slice';
 // import axios from 'axios';
@@ -23,7 +25,15 @@ import storage from 'redux-persist/lib/storage';
 //   theme: themeReducer,
 //   user: userReducer,
 // });
+import { authReducer } from './auth/authSlice';
 
+const authPersistConfig = {
+  key: 'authSlice',
+  storage,
+  whitelist: ['token'],
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 const persistConfig = {
   key: 'root',
   storage,
@@ -37,6 +47,7 @@ export const store = configureStore({
     boards: boardsReducer,
     common: commonReducer,
     theme: persistedReducer,
+     auth: persistedAuthReducer,
   },
 
   middleware: getDefaultMiddleware =>
@@ -46,5 +57,6 @@ export const store = configureStore({
       },
     }),
 });
+
 
 export const persistor = persistStore(store);
