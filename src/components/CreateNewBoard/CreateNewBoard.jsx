@@ -2,9 +2,8 @@ import css from './CreateNewBoard.module.css';
 // import Icon from "../../Icon/Icon";
 import sprite from '../../assets/sprite.svg';
 import { Modal } from '@mui/material';
-import { Fragment, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { BoardModal } from '../BoardModal/BoardModal';
-import { FocusTrap } from '@mui/base/FocusTrap';
 
 const CreateNewBoard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
