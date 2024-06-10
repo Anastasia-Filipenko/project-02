@@ -3,14 +3,24 @@
   fill: none;
 }
 
+/* .logOut:hover {
+  stroke: #9DC888;
+} */
+
 .buttonLogOut {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   font-weight: 500;
-  margin-top: 10px;
+  margin-top: 15px;
   background-color: #000000;
   color: #FFFFFF;
   margin-bottom: 10px;
+  padding: 0;
+}
+
+.buttonLogOut:hover .logOut,
+.buttonLogOut:hover .iconLogOut {
+  stroke: #9DC888;
 }

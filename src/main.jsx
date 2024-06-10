@@ -7,17 +7,20 @@ import { Provider } from 'react-redux';
 import { persistor, store } from './redux/storage';
 
 import { PersistGate } from 'redux-persist/integration/react';
-
 import { BrowserRouter } from 'react-router-dom';
+import Loader from './components/Loader/Loader';
+
 import Theme from './components/Theme/Theme';
 import  { ThemeChangeProvider} from './themeContext';
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
 
-      <PersistGate persistor={persistor}>
+ 
+      <PersistGate loading={<Loader />} persistor={persistor}>
         <BrowserRouter>
           <ThemeChangeProvider>
             <Theme>
