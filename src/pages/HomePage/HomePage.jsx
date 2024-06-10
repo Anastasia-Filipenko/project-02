@@ -11,7 +11,7 @@ import {
 } from '../../redux/boards/selectors';
 import { fetchAllBoards } from '../../redux/boards/operations';
 import { Navigate } from 'react-router-dom';
-import { AppBar, Box, Stack, Toolbar, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { DetectScreen } from './DetectScreen';
 import { setCurrentBoard } from '../../redux/boards/slice';
 
@@ -31,14 +31,11 @@ export default function Home() {
   }, [dispatch, boards]);
 
   return (
-    <Stack direction="row" spacing={2} height="100vh">
+    <Stack direction="row" spacing={2} height="100vh" display='flex'>
       <DetectScreen />
       <SideBar />
-      <Header />
-      <Box sx={{ width: '90%' }}>
-        {/* <AppBar width="90%" sx={{ backgroundColor: 'grey' }}>
-            <Toolbar></Toolbar>
-          </AppBar> */}
+      <Box sx={{ flexGrow: 1 }}>
+        <Header />
         {boards.length == 0 ? (
           <Typography>Please create first board</Typography>
         ) : (
