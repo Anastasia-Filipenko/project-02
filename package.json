@@ -10,13 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@cloudinary/react": "^1.13.0",
+    "@cloudinary/url-gen": "^1.19.0",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.6.0",
+    "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
+
+    "clsx": "^2.1.1",
+
+    "formik": "^2.4.6",
+
     "modern-normalize": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,6 +35,7 @@
     "react-router-dom": "^6.23.1",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
+    "styled-components": "^6.1.11",
     "yup": "^1.4.0"
   },
   "devDependencies": {
