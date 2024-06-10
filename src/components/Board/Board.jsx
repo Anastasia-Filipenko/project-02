@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { selectCurrentBoard } from '../../redux/boards/selectors';
+import { selectCurrentBoard, selectIsLoading } from '../../redux/boards/selectors';
 import { fetchCurrentBoard } from '../../redux/boards/operations';
 import {
   Card,
@@ -10,10 +10,14 @@ import {
   Stack,
   Grid,
   CardMedia,
+  Button,
+  Modal,
+  CircularProgress
 } from '@mui/material';
 import { Column } from '../Column/Column';
 import { cld } from '../CloudinaryImages/cloudinaryClient';
 import { selectCurrentScreen } from '../../redux/common/selectors';
+import { ColumnModal } from '../ColumnModal/ColumnModal';
 
 const generateBgUrl = (selectedBg, screen) => {
   let folderName;
@@ -48,18 +52,31 @@ export const Board = () => {
   const board = useSelector(selectCurrentBoard);
   const currentScreen = useSelector(selectCurrentScreen);
   const [imgUrl, setImgUrl] = useState(null);
+  const [openedBoardId, setOpenedBaordId] = useState();
+  const [isColimnModalOpened, setisColumnModalOpened] =
+    useState(false);
+  const isLoading = useSelector(selectIsLoading);
+  const ref = useRef();
 
   useEffect(() => {
     if (board) {
-      dispatch(fetchCurrentBoard(board._id));
       if (board.title === boardTitle && board._id) {
         setImgUrl(generateBgUrl(board.background, currentScreen));
+        setOpenedBaordId(board._id);
       }
     }
-  }, [dispatch, board, boardTitle, currentScreen]);
+  }, [board, boardTitle, currentScreen]);
+
+  useEffect(() => {
+    if (openedBoardId) {
+      dispatch(fetchCurrentBoard(openedBoardId));
+    }
+  }, [dispatch, openedBoardId]);
 
   return (
-    <>
+    <> {
+      isLoading && <CircularProgress />
+    }
       {board && board.background && (
         <Card
           sx={{
@@ -76,10 +93,25 @@ export const Board = () => {
                   direction="row"
                   justifyContent="flex-start"
                   alignItems="flex-start"
+                  wrap='nowrap'
                 >
                   {board.columns?.map((column, index) => (
-                    <Column key={index} columnName={column.name} />
+                    <Column key={index} columnTitle={column.title} columnId={index}/>
                   ))}
+                  <Button onClick={() => setisColumnModalOpened(true)}>
+                    Add column
+                  </Button>
+                  <Modal
+                    open={isColimnModalOpened}
+                    onClose={() => setisColumnModalOpened(false)}
+                    disableAutoFocus={true}
+                  >
+                    <ColumnModal
+                      ref={ref}
+                      closeModal={() => setisColumnModalOpened(false)}
+                      boardId={openedBoardId}
+                    />
+                  </Modal>
                 </Grid>
               </Stack>
             </CardContent>

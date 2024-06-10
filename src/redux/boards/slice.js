@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCurrentBoard, fetchAllBoards, addBoard } from './operations';
+import {
+  fetchCurrentBoard,
+  fetchAllBoards,
+  addBoard,
+  addColumn,
+} from './operations';
 // import {
 //   logOut
 // } from "../auth/operations";
@@ -19,7 +24,11 @@ const boardsSlice = createSlice({
   name: 'boards',
   initialState: {
     boards: [],
-    currentBoard: {},
+    currentBoard: {
+      _id: undefined,
+      title: undefined,
+      columns: [],
+    },
     isLoading: false,
     error: null,
   },
@@ -51,7 +60,19 @@ const boardsSlice = createSlice({
         state.boards = [action.payload, ...state.boards];
         state.currentBoard = action.payload;
       })
-      .addCase(addBoard.rejected, handleRejected);
+      .addCase(addBoard.rejected, handleRejected)
+      .addCase(addColumn.pending, handlePending)
+      .addCase(addColumn.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentBoard.columns && state.currentBoard.columns.length > 0
+          ? (state.currentBoard.columns = [
+              ...state.currentBoard.columns,
+              action.payload,
+            ])
+          : (state.currentBoard.columns = [action.payload]);
+      })
+      .addCase(addColumn.rejected, handleRejected);
     // .addCase(logOut.fulfilled, state => {
     //   state.board = {};
     // })
