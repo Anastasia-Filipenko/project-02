@@ -2,21 +2,59 @@
   width: 197px;
   color: #ffffff;
   font-weight: lighter;
+  font-size: 14px;
 }
 
-@media only screen and (min-width: 768px) {
-  .infoText {
-    width: 212px;
-  }
+.container {
+  background-color: #1f1f1f;
+  width: 197px;
+  height: 272px;
+  padding: 15px;
+  border-radius: 15px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.help {
+  /* fill: #ffffff; */
+  stroke: #ffffff;
+}
+
+.helpCont {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  background-color: #1f1f1f;
+  padding: 0;
+}
+
+.helpCont:hover .helpText,
+.helpCont:hover .help {
+  color: #bedbb0;
+  stroke: #bedbb0;
+}
+
+.helpText {
+  color: #ffffff;
+  font-size: 12px;
 }
 
 .perfectTask {
-  color: green;
+  color: #bedbb0;
 }
 
-/* MyModal.module.css */
+.logoIcon {
+  background-image: url('../../../assets/imageNeedHelp.svg');
+  background-size: contain;
+  width: 54px;
+  height: 78px;
+  margin-bottom: 14px;
+}
+
+/* модалка */
 .ReactModal__Content {
-  /* ваші стилі */
   position: absolute;
   inset: 50% auto auto 50%;
   overflow: auto;
@@ -26,7 +64,6 @@
 }
 
 .ReactModal__Content--after-open {
-  /* ваші стилі */
   position: absolute;
   inset: 50% auto auto 50%;
   /* border: 1px solid rgb(204, 204, 204); */
@@ -37,4 +74,14 @@
   padding: 20px;
   transform: translate(-50%, -50%);
   /* width: 400px; */
+}
+
+@media only screen and (min-width: 768px) {
+  .infoText {
+    width: 212px;
+  }
+  .container {
+    width: 212px;
+    padding: 20px;
+  }
 }
