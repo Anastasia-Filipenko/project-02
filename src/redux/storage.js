@@ -16,8 +16,9 @@ import { boardsReducer } from './boards/slice';
 import { commonReducer } from './common/slice';
 // import axios from 'axios';
 import themeReducer from './theme/themeSlice';
-// import userReducer from './user/userSlice';
+import userReducer from './user/userSlice';
 import storage from 'redux-persist/lib/storage';
+import needHelpReducer from './needHelp/slice';
 
 // axios.defaults.baseURL = 'https://taskpro-final-project.onrender.com/api/';
 
@@ -47,7 +48,9 @@ export const store = configureStore({
     boards: boardsReducer,
     common: commonReducer,
     theme: persistedReducer,
-     auth: persistedAuthReducer,
+    auth: persistedAuthReducer,
+    user: userReducer,
+    needHelp: needHelpReducer,
   },
 
   middleware: getDefaultMiddleware =>
@@ -57,6 +60,5 @@ export const store = configureStore({
       },
     }),
 });
-
 
 export const persistor = persistStore(store);

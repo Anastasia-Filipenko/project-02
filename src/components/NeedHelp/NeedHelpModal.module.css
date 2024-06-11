@@ -4,6 +4,7 @@
   padding: 24px;
   position: relative;
   min-width: 300px;
+  cursor: pointer;
 }
 
 .logo_icon {

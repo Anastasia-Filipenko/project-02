@@ -1,102 +1,98 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    min-width: 1180px;
-    height: 68px;
-    /* margin-left: 993px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 1180px;
+  height: 68px;
+  /* margin-left: 993px;
     margin-top: 24px;
     margin-right: 117px;
     margin-bottom: 24px; */
-
 }
 
 .header.dark {
-    background-color: var(--background-header-dark);
-    /* --text-color: var(--color-dark-text-secondary-80); */
+  background-color: var(--background-header-dark);
+  /* --text-color: var(--color-dark-text-secondary-80); */
 }
 
-.header.light{
-    background-color: var(--background-header-light);
+.header.light {
+  background-color: var(--background-header-light);
 }
-header.violet{
-   background-color: var(--background-header-violet);
+header.violet {
+  background-color: var(--background-header-violet);
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown.dark {
-    /* background-color: var(--color-dark-primary); */
-
+  /* background-color: var(--color-dark-primary); */
 }
 
 .dropbtn {
-    width: 68px;
-    height: 21px;
-    color: var(--text-color-dark);
-background-color: transparent;
-    font-size: 16px;
-    margin-left: 1000px;
-
+  width: 68px;
+  height: 21px;
+  color: var(--text-color-dark);
+  background-color: transparent;
+  font-size: 16px;
+  margin-left: 1000px;
+  margin-right: 14px;
 }
 
 .dropbtn.dark {
-    background-color: var(--color-dark-primary);
-    color:var(--text-color-dark);
+  background-color: var(--color-dark-primary);
+  color: var(--text-color-dark);
 }
 
-.dropbtn.header.light{
-    color: var(--text-color-light);
+.dropbtn.header.light {
+  color: var(--text-color-light);
 }
 .dropbtn .arrow {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .dropbtn .arrow .dark {
-    color: var(--arrow-color-dark);
+  color: var(--arrow-color-dark);
 }
-.dropbtn .arrow .light{
-
-    color: var(--arrow-color-light);
+.dropbtn .arrow .light {
+  color: var(--arrow-color-light);
 }
 .dropdownContent {
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    width: 100px;
-    height: 107px;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 100px;
+  height: 107px;
 }
 
 .dropdownContent.black {
-    background-color: var(--background-header-dark);
-    color: var(--text-color-dark);
+  background-color: var(--background-header-dark);
+  color: var(--text-color-dark);
 }
 
-
-.dropdownContent{
-    width: 100px;
-    height: 107px;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    border: none;
-    text-align: left;
-    width: 100%;
+.dropdownContent {
+  width: 100px;
+  height: 107px;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border: none;
+  text-align: left;
+  width: 100%;
 }
 
 .dropdownContent:hover {
-    background-color: var(--background-sidebar);
+  background-color: var(--background-sidebar);
 }
 
-.dropbtnContent{
-    background-color: var(--background-header-light);
+.dropbtnContent {
+  background-color: var(--background-header-light);
 }
 
-.dropbtnContent .dark{
-    background-color: var( --background-header-dark);
+.dropbtnContent .dark {
+  background-color: var(--background-header-dark);
 }

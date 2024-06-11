@@ -3,7 +3,8 @@ import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
 import css from './Header.module.css';
 import { useState } from 'react';
 import clsx from 'clsx';
-// import UserInfo from '../UserInfo/UserInfo';
+import UserInfoModal from '../UserInfo/UserInfoModal/UserInfoModal';
+import UserInfoPreview from '../UserInfo/UserInfoPreview/UserInfoPreview';
 // import { selectUser } from '../../redux/user/userSlice';
 
 const Header = () => {
@@ -43,8 +44,10 @@ const Header = () => {
                 </button>
               </div>
             )}
-            {/* <UserInfo user={user} /> */}
           </div>
+          <UserInfoPreview />
+          {/* <UserInfoModal /> */}
+          {/* OpenUserInfoModal */}
         </div>
       </header>
     </>

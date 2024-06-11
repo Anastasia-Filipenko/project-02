@@ -1,0 +1,18 @@
+.user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-dark-btn);
+  height: 32px;
+  cursor: pointer;
+}
+
+.user_name {
+  color: var(--color-dark-text-primary);
+}
+
+.user_avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}

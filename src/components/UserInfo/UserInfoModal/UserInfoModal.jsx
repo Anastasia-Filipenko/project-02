@@ -1,11 +1,19 @@
-import css from './UserInfo.module.css';
+import css from './UserInfoModal.module.css';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
-import sprite from '../../assets/sprite.svg';
-import userAvatar from '../../images/userAvatar.jpg';
+import sprite from '../../../assets/sprite.svg';
+import userAvatar from '../../../images/userAvatar.jpg';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  selectUserName,
+  selectUserEmail,
+  selectUserPassword,
+} from '../../../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../redux/user/userSlice';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -22,7 +30,7 @@ const schema = yup.object().shape({
     .required(),
 });
 
-export default function UserInfo() {
+export default function UserInfo({ close }) {
   const {
     register,
     handleSubmit,
@@ -34,6 +42,10 @@ export default function UserInfo() {
 
   //приховування паролю
   const [showPassword, setShowPassword] = useState(false);
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
+  const userPassword = useSelector(selectUserPassword);
+  const dispatch = useDispatch();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -41,21 +53,22 @@ export default function UserInfo() {
 
   const onSubmit = data => {
     console.log(data);
+    dispatch(
+      setUser({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      })
+    );
     reset();
+    close();
   };
 
   return (
-    <section className={css.container}>
+    <>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <svg
-            className={css.logo_icon}
-            width="18"
-            height="18"
-            onClick={() => {
-              console.log('close modal');
-            }}
-          >
+          <svg className={css.logo_icon} width="18" height="18" onClick={close}>
             <use xlinkHref={`${sprite}#icon-x-close`}></use>
           </svg>
           <p className={css.title}>Edit profile</p>
@@ -78,8 +91,8 @@ export default function UserInfo() {
             <input
               placeholder="name from db"
               className={css.input}
-              type="text"
-              //   value={}
+              type="name"
+              defaultValue={userName}
               {...register('name')}
             />
             <ErrorMessage
@@ -92,7 +105,7 @@ export default function UserInfo() {
               placeholder="email from db"
               className={css.input}
               type="email"
-              //   value={}
+              defaultValue={userEmail}
               {...register('email')}
             />
             <ErrorMessage
@@ -105,6 +118,7 @@ export default function UserInfo() {
               <input
                 placeholder="password from db"
                 className={css.input}
+                defaultValue={userPassword}
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
               />
@@ -128,6 +142,6 @@ export default function UserInfo() {
           </button>
         </div>
       </form>
-    </section>
+    </>
   );
 }
