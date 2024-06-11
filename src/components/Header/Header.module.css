@@ -1,12 +1,12 @@
 .header {
     display: flex;
     justify-content: space-between;
-    width: 1180px;
+    min-width: 1180px;
     height: 68px;
-    margin-left: 993px;
+    /* margin-left: 993px;
     margin-top: 24px;
     margin-right: 117px;
-    margin-bottom: 24px;
+    margin-bottom: 24px; */
 
 }
 

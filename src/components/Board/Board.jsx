@@ -53,7 +53,7 @@ export const Board = () => {
   const currentScreen = useSelector(selectCurrentScreen);
   const [imgUrl, setImgUrl] = useState(null);
   const [openedBoardId, setOpenedBaordId] = useState();
-  const [isColimnModalOpened, setisColumnModalOpened] =
+  const [isColumnModalOpened, setisColumnModalOpened] =
     useState(false);
   const isLoading = useSelector(selectIsLoading);
   const ref = useRef();
@@ -77,7 +77,7 @@ export const Board = () => {
     <> {
       isLoading && <CircularProgress />
     }
-      {board && board.background && (
+      {!isLoading && board && board.background && (
         <Card
           sx={{
             height: '100%',
@@ -96,13 +96,13 @@ export const Board = () => {
                   wrap='nowrap'
                 >
                   {board.columns?.map((column, index) => (
-                    <Column key={index} columnTitle={column.title} columnId={index}/>
+                    <Column key={index} column={column}/>
                   ))}
                   <Button onClick={() => setisColumnModalOpened(true)}>
                     Add column
                   </Button>
                   <Modal
-                    open={isColimnModalOpened}
+                    open={isColumnModalOpened}
                     onClose={() => setisColumnModalOpened(false)}
                     disableAutoFocus={true}
                   >

@@ -1,10 +1,9 @@
-
 import css from './CreateNewBoard.module.css';
 // import Icon from "../../Icon/Icon";
-import sprite from '../../assets/sprite.svg';
+import sprite from '../../../assets/sprite.svg';
 import { Modal } from '@mui/material';
 import { useRef, useState } from 'react';
-import { BoardModal } from '../BoardModal/BoardModal';
+import { BoardModal } from '../../BoardModal/BoardModal';
 
 const CreateNewBoard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);

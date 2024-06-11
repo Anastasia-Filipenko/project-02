@@ -26,7 +26,7 @@ const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
           justifyContent: 'space-between',
         }}
       >
-        <CardHeader title={props.columnTitle} />
+        <CardHeader title={props.column.title} />
         <CardActions>
           <IconButton>
             <EditIcon />
@@ -36,6 +36,10 @@ const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
           </IconButton>
         </CardActions>
       </Card>
+
+      {/* {props.column?.tasks.map((task, index) => (
+                    <Task key={index} task={task} columnId={props.column._id}/>
+                  ))} */}
 
       <Button
         fullWidth
