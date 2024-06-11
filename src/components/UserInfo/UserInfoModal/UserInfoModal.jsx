@@ -4,16 +4,20 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../../assets/sprite.svg';
-import userAvatar from '../../../images/userAvatar.jpg';
+// import userAvatar from '../../../images/userAvatar.jpg';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectUserName,
   selectUserEmail,
   selectUserPassword,
+  selectUserId,
+  selectUserAvatar,
 } from '../../../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../../redux/user/userSlice';
+// import { setUser } from '../../../redux/user/userSlice';
+import { updateUserInfo } from '../../../redux/user/userOperations';
+import { changeUserProfileApi } from '../../../api/userApi';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -45,6 +49,8 @@ export default function UserInfo({ close }) {
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
   const userPassword = useSelector(selectUserPassword);
+  const id = useSelector(selectUserId);
+  const userAvatar = useSelector(selectUserAvatar);
   const dispatch = useDispatch();
 
   const handleClickShowPassword = () => {
@@ -52,14 +58,8 @@ export default function UserInfo({ close }) {
   };
 
   const onSubmit = data => {
-    console.log(data);
-    dispatch(
-      setUser({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      })
-    );
+    console.log(id, data);
+    dispatch(updateUserInfo({ id, data }));
     reset();
     close();
   };
