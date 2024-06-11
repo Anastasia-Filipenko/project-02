@@ -1,6 +1,14 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 
 const themeContext = createContext();
+const themeDark = {
+  color: {
+    backgroundBlackHeader: 'var( --background-header-dark)',
+    backgroundBlackSidebar: 'var( --background-sidebar-dark)',
+    backgroundBlackBody: 'var(--background-body)',
+    colorTextBlack: 'var( --text-color-dark)',
+  },
+};
 const themeLight = {
   color: {
     backgroundLight: 'var(--color-light-primary)',
@@ -35,6 +43,8 @@ const themeDark = {
     inputColorActive: 'var(--color-dark-input-active)',
   },
 };
+
+
 
 export const getTheme = theme => {
   switch (theme) {

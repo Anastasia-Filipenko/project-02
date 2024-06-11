@@ -1,0 +1,19 @@
+ .burgerIcon.dark {
+     background-color: var(--background-header-dark);
+     stroke: var(--menu-stroke-dark);
+ }
+
+ .burgerIcon.light {
+     background-color: var(--menu-color-dark);
+     stroke: var(--menu-stroke-light);
+ }
+
+ .burgerIcon.violet {
+     background-color: var(--menu-color-dark);
+     stroke: var(--menu-stroke-violet);
+ }
+
+ .burgerMenu{
+display: flex;
+ }
+ 

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import SideBar from '../../components/SideBar/SideBar';
 
@@ -15,11 +15,16 @@ import { Box, Stack, Typography, Card, CardContent } from '@mui/material';
 import { DetectScreen } from './DetectScreen';
 import { setCurrentBoard } from '../../redux/boards/slice';
 import { EmptyBoard } from '../../components/Board/EmptyBoard';
+import { setTheme } from '../../redux/theme/themeSlice';
+import { useToggle } from '../../hooks/useToggle';
 
 export default function Home() {
   const dispatch = useDispatch();
   const boards = useSelector(selectAllBoards);
   const currentBoard = useSelector(selectCurrentBoard);
+  const { isOpen, open, close } = useToggle();
+    const sidebarRef = useRef(null);
+
 
   useEffect(() => {
     dispatch(fetchAllBoards());
@@ -31,12 +36,26 @@ export default function Home() {
     }
   }, [dispatch, boards]);
 
+   useEffect(() => {
+    dispatch(setTheme('dark'));
+   }, [dispatch]);
+  
+ const handleContainerClick = event => {
+   if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+     close();
+   }
+ };
+
   return (
-    <Stack direction="row" height="100vh" display="flex">
+    <Stack
+      direction="row"
+      height="100vh" display="flex"
+      onClick={handleContainerClick}
+    >
       <DetectScreen />
-      <SideBar />
+      <SideBar ref={sidebarRef} isOpen={isOpen} onClose={close} />
       <Stack justifyContent="flex-start" width="100vw">
-        <Header />
+        <Header toggleSidebar={open} closeSidebar={close} />
         {boards.length === false ? (
           <EmptyBoard />
         ) : (

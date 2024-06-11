@@ -14,6 +14,14 @@ import { fetchAllBoards } from '../../redux/boards/operations';
 
 const SideBar = ({viewPortWidth, isOpen}) => {
   const sideBarRef = useRef();
+// import { forwardRef } from 'react';
+// // import { useEffect } from 'react';
+// // import { useDispatch, useSelector } from 'react-redux';
+// // import { useRef } from 'react';
+// // import Loader from '../Loader/Loader';
+// import clsx from 'clsx';
+// const SideBar = forwardRef( ({ isOpen }, ref) => {
+  
 
   const allBoards = useSelector(selectAllBoards);
   const {items, isLoading, error} = allBoards;
@@ -38,6 +46,10 @@ const SideBar = ({viewPortWidth, isOpen}) => {
       document.removeEventListener('mousedown', handleMouseDown);
     };
   }, [isOpen, viewPortWidth]);
+  // const dispatch = useDispatch();
+    // const handleSidebarClick = event => {
+    //   event.stopPropagation();
+    // };
 
   return (
     <div className={css.cont}>
@@ -49,6 +61,14 @@ const SideBar = ({viewPortWidth, isOpen}) => {
         {isLoading && <Loader/>}
         {items?.lenght === 0 ? '' : <BoardList/>}
         {/* <BoardList/> */}
+        
+
+        {/* <div
+      ref={ref}
+      className={clsx(css.sidebar, { [css.open]: isOpen })}
+      onClick={handleSidebarClick}
+    > */}
+    </div>
       </div>
       <div className={css.bottomPart}>
         <NeedHelp />
@@ -56,6 +76,7 @@ const SideBar = ({viewPortWidth, isOpen}) => {
       </div>
     </div>
   );
-};
+});
+SideBar.displayName = 'SideBar';
 
 export default SideBar;

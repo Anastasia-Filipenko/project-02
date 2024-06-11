@@ -1,15 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
 import css from './Header.module.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import clsx from 'clsx';
 import UserInfoModal from '../UserInfo/UserInfoModal/UserInfoModal';
 import UserInfoPreview from '../UserInfo/UserInfoPreview/UserInfoPreview';
 // import { selectUser } from '../../redux/user/userSlice';
+import BurgerMenuIcon from './BurgerMenuIcon/BurgerMenuIcon';
 
-const Header = () => {
+const Header = ({ toggleSidebar, closeSidebar }) => {
   const selectedTheme = useSelector(selectTheme);
-  // const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleSelectChange = event => {
@@ -19,6 +19,16 @@ const Header = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const handleBurgerMenuClick = event => {
+    event.stopPropagation(); 
+    toggleSidebar();
+  };
+
+  const handleHeaderClick = () => {
+    closeSidebar();
+  };
+
   return (
     <>
       <header>
@@ -49,8 +59,53 @@ const Header = () => {
           {/* <UserInfoModal /> */}
           {/* OpenUserInfoModal */}
         </div>
+    <div className={css.container}>
+    <header
+      className={clsx(css.header, css[selectedTheme])}
+      onClick={handleHeaderClick}
+    >
+      <div className={clsx(css.dropdown, css[selectedTheme])}>
+        <button
+          className={clsx(css.dropbtn, css[selectedTheme])}
+          onClick={toggleDropdown}
+        >
+          Theme
+          <span className={clsx(css.arrow, css[selectedTheme])}>&#9660;</span>
+        </button>
+        {isDropdownOpen && (
+          <div className={clsx(css.dropdownContent, css[selectedTheme])}>
+            <button
+              className={clsx(css.dropdownContentButton, css[selectedTheme])}
+              value="light"
+              onClick={handleSelectChange}
+            >
+              Light
+            </button>
+            <button
+              className={clsx(css.dropdownContentButton, css[selectedTheme])}
+              value="dark"
+              onClick={handleSelectChange}
+            >
+              Dark
+            </button>
+            <button
+              className={clsx(css.dropdownContentButton, css[selectedTheme])}
+              value="violet"
+              onClick={handleSelectChange}
+            >
+              Violet
+            </button>
+          </div>
+        )}
+      </div>
+      <div
+               className={clsx(css.burgerMenu, css[selectedTheme])}
+        onClick={handleBurgerMenuClick}
+      >
+       <BurgerMenuIcon/>
+      </div>
       </header>
-    </>
+      </div>
   );
 };
 

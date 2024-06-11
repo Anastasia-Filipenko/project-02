@@ -1,3 +1,7 @@
+.sidebar {
+  display: none;
+}
+
 .myBoardsTitle {
   font-size: 12px;
   font-weight: 100;
@@ -22,11 +26,42 @@
   background-color: #000000;
 }
 
+
+
 @media only screen and (min-width: 768px) {
   .cont {
     width: 260px;
     padding-top: 25px;
     padding-left: 25px;
     padding-right: 25px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .sidebar.open {
+    display: block;
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    z-index: 2;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 1440px) {
+  .sidebar {
+    display: block;
+    width: 260px;
+    height: 100vh;
+    position: relative;
+    background-color: #000;
   }
 }
