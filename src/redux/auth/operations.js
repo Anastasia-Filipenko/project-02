@@ -30,11 +30,9 @@ export const registered = createAsyncThunk(
 export const login = createAsyncThunk(
   'auth/login',
   async (credential, thunkAPI) => {
-    console.log(credential);
     try {
       const response = await loginApi(credential);
       //   setAuthHeader(response.data.token);
-      console.log(credential);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
