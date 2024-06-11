@@ -1,25 +1,10 @@
-.container {
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(
-    360deg,
-    rgba(188, 218, 174, 1) 25%,
-    rgba(246, 246, 247, 1) 92%
-  );
-  padding-top: 166px;
-  padding-bottom: 166px;
-  padding: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .form {
   border-radius: 8px;
   background: #151515;
   padding: 24px;
   position: relative;
   min-width: 300px;
+  cursor: pointer;
 }
 
 .logo_icon {
@@ -116,18 +101,6 @@
   font-size: 12px;
 }
 
-/* .input_password {
-  border: 1px solid #bedbb0;
-  border-radius: 8px;
-  min-width: 287px;
-  height: 49px;
-  box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
-  background: #1f1f1f;
-  opacity: 0.4;
-  color: #fff;
-  padding: 14px 18px;
-} */
-
 @media (min-width: 768px) {
   .form {
     width: 400px;
@@ -141,12 +114,6 @@
     width: 352px;
   }
 }
-
-/* @media (min-width: 375px) {
-  .input_password {
-    width: 352px;
-  }
-} */
 
 /* стилі для div та svg приховування паролю */
 .inputWrapper {
@@ -164,4 +131,27 @@
   right: 10px;
   cursor: pointer;
   stroke: var(--color-label-without);
+}
+
+.ReactModal__Content {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  overflow: auto;
+  outline: none;
+  transform: translate(-50%, -50%);
+  width: 300px !important;
+}
+
+.ReactModal__Content--after-open {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  overflow: auto;
+  outline: none;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 768px) {
+  .ReactModal__Content {
+    width: 400px !important; /* Ширина для великих екранів */
+  }
 }

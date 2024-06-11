@@ -4,6 +4,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../assets/sprite.svg';
+import { sendComment } from '../../redux/needHelp/slice';
+import { useDispatch } from 'react-redux';
 
 const schema = yup.object().shape({
   email: yup
@@ -24,8 +26,16 @@ export default function NeedHelpModal({ close }) {
     resolver: yupResolver(schema),
   });
 
+  const dispatch = useDispatch();
+
   const onSubmit = data => {
     console.log(data);
+    dispatch(
+      sendComment({
+        email: data.email,
+        comment: data.comment,
+      })
+    );
     reset();
   };
 
@@ -63,7 +73,7 @@ export default function NeedHelpModal({ close }) {
               render={({ message }) => <p className={css.error}>{message}</p>}
             />
           </div>
-          <button className={css.btn} type="submit" onClick={close}>
+          <button className={css.btn} type="submit">
             Send
           </button>
         </div>
