@@ -2,14 +2,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   addBoardApi,
   addColumnApi,
-  currentBoardApi,
+  currentBoardApi
 } from '../../api/boardApi/boardApi';
+import { getAllUserDataApi } from '../../api/authApi/authApi';
 
 export const fetchCurrentBoard = createAsyncThunk(
   'boards/fetchCurrentBoard',
   async (boardId, thunkAPI) => {
     try {
-      const response = await currentBoardApi(`/${boardId}`);
+      const response = await currentBoardApi(boardId);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -48,8 +49,7 @@ export const fetchAllBoards = createAsyncThunk(
   'boards/fetchAllBoards',
   async (_, thunkAPI) => {
     try {
-      // const response = await boardInstance.get('/');
-      const response = { data: [] };
+      const response = await getAllUserDataApi();
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

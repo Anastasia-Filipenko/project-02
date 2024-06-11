@@ -11,10 +11,11 @@ import {
 } from '../../redux/boards/selectors';
 import { fetchAllBoards } from '../../redux/boards/operations';
 import { Navigate } from 'react-router-dom';
-import { Box, Stack, Typography, Card, CardContent } from '@mui/material';
+import { Stack } from '@mui/material';
 import { DetectScreen } from './DetectScreen';
-import { setCurrentBoard } from '../../redux/boards/slice';
+import { setBackgrounds, setCurrentBoard } from '../../redux/boards/slice';
 import { EmptyBoard } from '../../components/Board/EmptyBoard';
+import axios from 'axios';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -23,13 +24,27 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(fetchAllBoards());
+    (async () => {
+      const list = await axios.get(
+        'https://res.cloudinary.com/duchyrp8f/image/list/bg.json'
+      );
+      dispatch(setBackgrounds([...list.data.resources]));
+    })();
   }, [dispatch]);
 
   useEffect(() => {
+    console.log('fetching boards')
     if (boards.length > 0) {
-      dispatch(setCurrentBoard(boards[0]));
+      console.log('setting current board', currentBoard)
+      console.log('board[0]', boards[0])
+      const whichBoard = currentBoard.title ? currentBoard : boards[0];
+      dispatch(setCurrentBoard(whichBoard));
     }
-  }, [dispatch, boards]);
+  }, [dispatch, boards, currentBoard]);
+
+  useEffect(() => {
+    console.log('new current board selected')
+  }, [currentBoard]);
 
   return (
     <Stack direction="row" height="100vh" display="flex">
@@ -37,10 +52,10 @@ export default function Home() {
       <SideBar />
       <Stack justifyContent="flex-start" width="100vw">
         <Header />
-        {boards.length === false ? (
+        {boards.length === 0 ? (
           <EmptyBoard />
         ) : (
-          <Navigate to={'/home/' + currentBoard.title} />
+          currentBoard.title && <Navigate to={'/home/' + currentBoard.title} />
         )}
         <Outlet />
       </Stack>

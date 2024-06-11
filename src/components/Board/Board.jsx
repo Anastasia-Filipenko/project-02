@@ -6,6 +6,7 @@ import {
   selectIsLoading,
 } from '../../redux/boards/selectors';
 import { fetchCurrentBoard } from '../../redux/boards/operations';
+import { useTheme } from '@mui/material/styles';
 import {
   Card,
   CardHeader,
@@ -14,8 +15,7 @@ import {
   Grid,
   CardMedia,
   Button,
-  Modal,
-  CircularProgress,
+  Modal
 } from '@mui/material';
 import { Column } from '../Column/Column';
 import { cld } from '../CloudinaryImages/cloudinaryClient';
@@ -56,10 +56,10 @@ export default function Board ()  {
   const board = useSelector(selectCurrentBoard);
   const currentScreen = useSelector(selectCurrentScreen);
   const [imgUrl, setImgUrl] = useState(null);
-  const [openedBoardId, setOpenedBaordId] = useState();
+  const [openedBoardId, setOpenedBoardId] = useState();
 
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
-
+  const theme = useTheme();
   const isLoading = useSelector(selectIsLoading);
   const ref = useRef();
 
@@ -67,7 +67,7 @@ export default function Board ()  {
     if (board) {
       if (board.title === boardTitle && board._id) {
         setImgUrl(generateBgUrl(board.background, currentScreen));
-        setOpenedBaordId(board._id);
+        setOpenedBoardId(board._id);
       }
     }
   }, [board, boardTitle, currentScreen]);
@@ -78,6 +78,13 @@ export default function Board ()  {
     }
   }, [dispatch, openedBoardId]);
 
+  console.log('curernt Board', board)
+
+  const mediaSx = {
+    height: '100%',
+    backgroundColor: `${theme.color.defaultBoardBackground}`,
+  }
+
   return (
     <>
       {isLoading && <Loader />}
@@ -87,7 +94,7 @@ export default function Board ()  {
             height: '100%',
           }}
         >
-          <CardMedia image={imgUrl} sx={{ height: '100%' }}>
+          <CardMedia image={imgUrl} sx={mediaSx}>
             <CardHeader title={board.title} />
             <CardContent>
               <Stack direction="row" spacing={3}>
@@ -124,4 +131,4 @@ export default function Board ()  {
       )}
     </>
   );
-};
+}

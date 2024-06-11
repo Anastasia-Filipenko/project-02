@@ -8,6 +8,8 @@ export const selectCurrentBoard = (state) => state.boards.currentBoard;
 
 export const selectAllBoards = (state) => state.boards.boards;
 
+export const selectBackgrounds = (state) => state.boards.backgrounds;
+
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],
 //   (contacts, filter) => {

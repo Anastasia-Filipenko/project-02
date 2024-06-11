@@ -22,6 +22,7 @@ const handleRejected = (state, action) => {
 
 const boardsSlice = createSlice({
   name: 'boards',
+  backgrounds: [],
   initialState: {
     boards: [],
     currentBoard: {
@@ -36,6 +37,9 @@ const boardsSlice = createSlice({
     setCurrentBoard(state, action) {
       state.currentBoard = action.payload;
     },
+    setBackgrounds(state, action) {
+      state.backgrounds = action.payload;
+    }
   },
   extraReducers: builder => {
     builder
@@ -82,3 +86,4 @@ const boardsSlice = createSlice({
 export const boardsActions = boardsSlice.actions;
 export const boardsReducer = boardsSlice.reducer;
 export const { setCurrentBoard } = boardsSlice.actions;
+export const { setBackgrounds } = boardsSlice.actions;

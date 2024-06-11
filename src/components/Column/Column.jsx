@@ -16,9 +16,10 @@ import { TaskModal } from '../TaskModal/TaskModal';
 
 export const Column = props => {
 const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+console.log('column', props.column)
 
   return (
-    <Grid item xs={3}>
+    <Grid item xs={4}>
       <Card
         sx={{
           display: 'flex',
@@ -73,7 +74,7 @@ const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
       </Button>
 
       <Modal open={isTaskModalOpened} onClose={() => setIsTaskModalOpened(false)}>
-        <TaskModal closeModal={() => setIsTaskModalOpened(false)}/>
+        <TaskModal closeModal={() => setIsTaskModalOpened(false)} columnId={props.column._id}/>
       </Modal>
     </Grid>
   );

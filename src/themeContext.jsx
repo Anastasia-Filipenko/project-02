@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from 'react';
 
 const themeContext = createContext();
 const themeLight = {
+  name: 'light',
   color: {
     backgroundLight: 'var(--color-light-primary)',
     themeColor: 'var(--color-light-primary)',
@@ -15,6 +16,7 @@ const themeLight = {
 };
 
 const themeViolet = {
+  name: 'violet',
   color: {
     backgroundVioletHeader: 'var(--color-violet-background-header)',
     backgroundVioletSidebar: 'var(--color-violet-background-sidebar)',
@@ -26,10 +28,11 @@ const themeViolet = {
 };
 
 const themeDark = {
+  name: 'dark',
   color: {
     backgroundBlack: 'var(--color-dark-primary)',
     themeColor: 'var(--color-dark-primary)',
-    defaultBoardBackground: 'var(--color-light-primary)',
+    defaultBoardBackground: 'var(--color-dark-primary)',
     fontColor: 'var(--color-light-primary)',
     inputColorDefault: 'var(--color-dark-input)',
     inputColorActive: 'var(--color-dark-input-active)',
