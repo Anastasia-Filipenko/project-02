@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 // import { Board } from '../Board/Board.jsx';
@@ -6,6 +6,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import RestrictedRoute from '../authorization/RestrictedRoute/RestrictedRoute';
 import PrivateRoute from '../authorization/PrivateRoute/PrivateRoute';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshUser } from '../../redux/auth/operations';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
 
 const Welcome = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const Auth = lazy(() => import('../../pages/AuthPage/AuthPage'));
@@ -14,7 +17,14 @@ const Board = lazy(() => import('../Board/Board'));
 const NotFound = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Navigate to="/welcome" />} />
