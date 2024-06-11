@@ -1,11 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { boardInstance, columnInstance } from '../../api/axiosConfig';
+import {
+  addBoardApi,
+  addColumnApi,
+  currentBoardApi,
+} from '../../api/boardApi/boardApi';
 
 export const fetchCurrentBoard = createAsyncThunk(
   'boards/fetchCurrentBoard',
   async (boardId, thunkAPI) => {
     try {
-      const response = await boardInstance.get(`/${boardId}`);
+      const response = await currentBoardApi(`/${boardId}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -17,7 +21,7 @@ export const addBoard = createAsyncThunk(
   'boards/addBoard',
   async (boardData, thunkAPI) => {
     try {
-      const response = await boardInstance.post('/', boardData);
+      const response = await addBoardApi(boardData);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -29,7 +33,10 @@ export const addColumn = createAsyncThunk(
   'boards/addColumn',
   async ({ boardId, columnTitle }, thunkAPI) => {
     try {
-      const response = await columnInstance.post('/', { boardId, title: columnTitle });
+      const response = await addColumnApi({
+        boardId,
+        title: columnTitle,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -42,7 +49,7 @@ export const fetchAllBoards = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       // const response = await boardInstance.get('/');
-      const response = { data: []};
+      const response = { data: [] };
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -37,3 +37,111 @@ cardsInstance.interceptors.request.use(config => {
   config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
   return config;
 });
+
+cardsInstance.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status == 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const { data } = await axios.post('/api/auth/current', {
+          token: refreshToken,
+        });
+        localStorage.setItem('token', data.accessToken);
+        return authInstance.request(originalRequest);
+      } catch (error) {
+        console.log('Not authorized');
+      }
+    }
+    throw error;
+  }
+);
+
+boardInstance.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status == 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const { data } = await axios.post('/api/auth/current', {
+          token: refreshToken,
+        });
+        localStorage.setItem('token', data.accessToken);
+        return authInstance.request(originalRequest);
+      } catch (error) {
+        console.log('Not authorized');
+      }
+    }
+    throw error;
+  }
+);
+
+columnInstance.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status == 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const { data } = await axios.post('/api/auth/current', {
+          token: refreshToken,
+        });
+        localStorage.setItem('token', data.accessToken);
+        return authInstance.request(originalRequest);
+      } catch (error) {
+        console.log('Not authorized');
+      }
+    }
+    throw error;
+  }
+);
+
+boardInstance.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status == 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const { data } = await axios.post('/api/auth/current', {
+          token: refreshToken,
+        });
+        localStorage.setItem('token', data.accessToken);
+        return authInstance.request(originalRequest);
+      } catch (error) {
+        console.log('Not authorized');
+      }
+    }
+    throw error;
+  }
+);

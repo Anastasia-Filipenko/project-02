@@ -1,5 +1,4 @@
 import css from './CreateNewBoard.module.css';
-// import Icon from "../../Icon/Icon";
 import sprite from '../../../assets/sprite.svg';
 import { Modal } from '@mui/material';
 import { useRef, useState } from 'react';

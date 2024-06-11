@@ -58,24 +58,12 @@ const NeedHelp = () => {
       >
         {<NeedHelpModal close={closeModal} />}
       </Modal>
-      {/* <div className={css.helpCont} onClick={openModal}>
+      <button type="button" className={css.helpCont} onClick={openModal}>
         <svg className={css.help} width="15" height="15">
-          <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`}></use>
-        </svg>
-        <p className={css.helpText}>Need help?</p>
-      </div> */}
-      <button type='button' className={css.helpCont} onClick={openModal}>
-      <svg className={css.help} width="15" height="15">
-          <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`}></use>
+          <use xlinkHref={`${sprite}#icon-help-circle`}></use>
         </svg>
         <p className={css.helpText}>Need help?</p>
       </button>
-      {/* <a href="" className={css.helpCont} onClick={openModal}>
-        <svg className={css.help} width="15" height="15">
-          <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`}></use>
-        </svg>
-        <p className={css.helpText}>Need help?</p>
-      </a> */}
     </div>
   );
 };
