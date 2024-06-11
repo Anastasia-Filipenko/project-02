@@ -58,8 +58,7 @@ export const Board = () => {
   const [imgUrl, setImgUrl] = useState(null);
   const [openedBoardId, setOpenedBaordId] = useState();
 
-  const [isColumnModalOpened, setisColumnModalOpened] =
-    useState(false);
+  const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
 
   const isLoading = useSelector(selectIsLoading);
   const ref = useRef();
@@ -80,11 +79,9 @@ export const Board = () => {
   }, [dispatch, openedBoardId]);
 
   return (
-
-
+    <>
       {isLoading && <Loader />}
-      { {!isLoading && board && board.background && (
-
+      {!isLoading && board && board.background && (
         <Card
           sx={{
             height: '100%',
@@ -103,9 +100,7 @@ export const Board = () => {
                   wrap="nowrap"
                 >
                   {board.columns?.map((column, index) => (
-
-                    <Column key={index} column={column}/>
-
+                    <Column key={index} column={column} />
                   ))}
                   <Button onClick={() => setisColumnModalOpened(true)}>
                     Add column
