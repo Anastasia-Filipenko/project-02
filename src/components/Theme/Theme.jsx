@@ -4,7 +4,10 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
 import { getTheme, useTheme } from '../../themeContext';
-import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import {
+  ThemeProvider as MuiThemeProvider,
+  createTheme,
+} from '@mui/material/styles';
 
 const Theme = ({ children }) => {
   const selectedTheme = useSelector(selectTheme);
@@ -22,8 +25,8 @@ const Theme = ({ children }) => {
   const themeForMui = createTheme({
     ...getTheme(theme),
     typography: {
-      fontFamily: 'Poppins'
-    }
+      fontFamily: 'Poppins',
+    },
   });
 
   return (

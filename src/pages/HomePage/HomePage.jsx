@@ -35,13 +35,10 @@ export default function Home() {
     <Stack direction="row" height="100vh" display="flex">
       <DetectScreen />
       <SideBar />
-      <Stack
-        justifyContent="flex-start"
-        width='100vw'
-      >
+      <Stack justifyContent="flex-start" width="100vw">
         <Header />
-        {boards.length == 0 ? (
-          <EmptyBoard/>
+        {boards.length === false ? (
+          <EmptyBoard />
         ) : (
           <Navigate to={'/home/' + currentBoard.title} />
         )}

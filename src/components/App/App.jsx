@@ -1,13 +1,17 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Welcome from '../../pages/WelcomePage/WelcomePage';
-import Auth from '../../pages/AuthPage/AuthPage';
-import Home from '../../pages/HomePage/HomePage';
-import { Board } from '../Board/Board.jsx';
-import NotFound from '../../pages/NotFoundPage/NotFoundPage';
+
+// import { Board } from '../Board/Board.jsx';
+
 import Loader from '../Loader/Loader';
 import RestrictedRoute from '../authorization/RestrictedRoute/RestrictedRoute';
 import PrivateRoute from '../authorization/PrivateRoute/PrivateRoute';
+
+const Welcome = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const Auth = lazy(() => import('../../pages/AuthPage/AuthPage'));
+const Home = lazy(() => import('../../pages/HomePage/HomePage'));
+const Board = lazy(() => import('../Board/Board'));
+const NotFound = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
 
 function App() {
   return (
