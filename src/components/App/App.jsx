@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Loader from '../Loader/Loader';
 import RestrictedRoute from '../authorization/RestrictedRoute/RestrictedRoute';
+
 import PrivateRoute from '../authorization/PrivateRoute/PrivateRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../../redux/auth/operations';
@@ -15,6 +16,9 @@ const Auth = lazy(() => import('../../pages/AuthPage/AuthPage'));
 const Home = lazy(() => import('../../pages/HomePage/HomePage'));
 const Board = lazy(() => import('../Board/Board'));
 const NotFound = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
+
+// import { PrivateRoute } from '../PrivateRoute';
+import EditBtn from '../ControlBtnInCard/EditBtn/EditBtn';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,11 +38,11 @@ function App() {
           path="/auth/:id"
           element={<RestrictedRoute redirectTo="/home" component={<Auth />} />}
         />
-        <Route
-          path="/home"
-          element={<PrivateRoute component={<Home />} redirectTo="/" />}
-        >
-          <Route path=":boardTitle" element={<Board />} />
+        <Route path="/home" element={<Home />}>
+          <Route
+            path=":boardTitle"
+            element={<PrivateRoute component={<Board />} />}
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
