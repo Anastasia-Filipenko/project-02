@@ -1,7 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { selectCurrentBoard, selectIsLoading } from '../../redux/boards/selectors';
+import {
+  selectCurrentBoard,
+  selectIsLoading,
+} from '../../redux/boards/selectors';
 import { fetchCurrentBoard } from '../../redux/boards/operations';
 import {
   Card,
@@ -12,12 +15,13 @@ import {
   CardMedia,
   Button,
   Modal,
-  CircularProgress
+  CircularProgress,
 } from '@mui/material';
 import { Column } from '../Column/Column';
 import { cld } from '../CloudinaryImages/cloudinaryClient';
 import { selectCurrentScreen } from '../../redux/common/selectors';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
+import Loader from '../Loader/Loader';
 
 const generateBgUrl = (selectedBg, screen) => {
   let folderName;
@@ -53,8 +57,7 @@ export const Board = () => {
   const currentScreen = useSelector(selectCurrentScreen);
   const [imgUrl, setImgUrl] = useState(null);
   const [openedBoardId, setOpenedBaordId] = useState();
-  const [isColimnModalOpened, setisColumnModalOpened] =
-    useState(false);
+  const [isColimnModalOpened, setisColumnModalOpened] = useState(false);
   const isLoading = useSelector(selectIsLoading);
   const ref = useRef();
 
@@ -74,9 +77,9 @@ export const Board = () => {
   }, [dispatch, openedBoardId]);
 
   return (
-    <> {
-      isLoading && <CircularProgress />
-    }
+    <>
+      {' '}
+      {isLoading && <Loader />}
       {board && board.background && (
         <Card
           sx={{
@@ -93,10 +96,14 @@ export const Board = () => {
                   direction="row"
                   justifyContent="flex-start"
                   alignItems="flex-start"
-                  wrap='nowrap'
+                  wrap="nowrap"
                 >
                   {board.columns?.map((column, index) => (
-                    <Column key={index} columnTitle={column.title} columnId={index}/>
+                    <Column
+                      key={index}
+                      columnTitle={column.title}
+                      columnId={index}
+                    />
                   ))}
                   <Button onClick={() => setisColumnModalOpened(true)}>
                     Add column

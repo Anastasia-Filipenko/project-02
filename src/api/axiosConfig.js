@@ -18,130 +18,50 @@ export const cardsInstance = axios.create({
   baseURL: `${baseURL}/api/card`,
 });
 
-authInstance.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+const addTokenToRequest = config => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
-});
+};
 
-boardInstance.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-  return config;
-});
+authInstance.interceptors.request.use(addTokenToRequest);
+boardInstance.interceptors.request.use(addTokenToRequest);
+columnInstance.interceptors.request.use(addTokenToRequest);
+cardsInstance.interceptors.request.use(addTokenToRequest);
 
-columnInstance.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-  return config;
-});
-
-cardsInstance.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-  return config;
-});
-
+const handleTokenRefresh = async error => {
+  const originalRequest = error.config;
+  if (error.response.status === 401 && !originalRequest._isRetry) {
+    originalRequest._isRetry = true;
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+      const { data } = await axios.post(`${baseURL}/auth/current`, {
+        token: refreshToken,
+      });
+      localStorage.setItem('token', data.accessToken);
+      originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+      return axios(originalRequest);
+    } catch (error) {
+      console.log('Not authorized');
+    }
+  }
+  throw error;
+};
 cardsInstance.interceptors.response.use(
-  config => {
-    return config;
-  },
-  async error => {
-    const originalRequest = error.config;
-    if (
-      error.response.status == 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
-      originalRequest._isRetry = true;
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const { data } = await axios.post('/api/auth/current', {
-          token: refreshToken,
-        });
-        localStorage.setItem('token', data.accessToken);
-        return authInstance.request(originalRequest);
-      } catch (error) {
-        console.log('Not authorized');
-      }
-    }
-    throw error;
-  }
+  response => response,
+  handleTokenRefresh
 );
-
 boardInstance.interceptors.response.use(
-  config => {
-    return config;
-  },
-  async error => {
-    const originalRequest = error.config;
-    if (
-      error.response.status == 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
-      originalRequest._isRetry = true;
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const { data } = await axios.post('/api/auth/current', {
-          token: refreshToken,
-        });
-        localStorage.setItem('token', data.accessToken);
-        return authInstance.request(originalRequest);
-      } catch (error) {
-        console.log('Not authorized');
-      }
-    }
-    throw error;
-  }
+  response => response,
+  handleTokenRefresh
 );
-
 columnInstance.interceptors.response.use(
-  config => {
-    return config;
-  },
-  async error => {
-    const originalRequest = error.config;
-    if (
-      error.response.status == 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
-      originalRequest._isRetry = true;
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const { data } = await axios.post('/api/auth/current', {
-          token: refreshToken,
-        });
-        localStorage.setItem('token', data.accessToken);
-        return authInstance.request(originalRequest);
-      } catch (error) {
-        console.log('Not authorized');
-      }
-    }
-    throw error;
-  }
+  response => response,
+  handleTokenRefresh
 );
-
-boardInstance.interceptors.response.use(
-  config => {
-    return config;
-  },
-  async error => {
-    const originalRequest = error.config;
-    if (
-      error.response.status == 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
-      originalRequest._isRetry = true;
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const { data } = await axios.post('/api/auth/current', {
-          token: refreshToken,
-        });
-        localStorage.setItem('token', data.accessToken);
-        return authInstance.request(originalRequest);
-      } catch (error) {
-        console.log('Not authorized');
-      }
-    }
-    throw error;
-  }
+authInstance.interceptors.response.use(
+  response => response,
+  handleTokenRefresh
 );
