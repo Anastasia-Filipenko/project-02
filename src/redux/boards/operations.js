@@ -1,9 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  addBoardApi,
-  addColumnApi,
-  currentBoardApi,
-} from '../../api/boardApi/boardApi';
+import { addBoardApi, currentBoardApi } from '../../api/boardApi/boardApi';
+import { addColumnApi } from '../../api/columnsApi/columnsApi';
 
 export const fetchCurrentBoard = createAsyncThunk(
   'boards/fetchCurrentBoard',
