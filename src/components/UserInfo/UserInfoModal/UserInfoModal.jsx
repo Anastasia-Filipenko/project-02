@@ -4,7 +4,6 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../../assets/sprite.svg';
-// import userAvatar from '../../../images/userAvatar.jpg';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -13,11 +12,9 @@ import {
   selectUserPassword,
   selectUserId,
   selectUserAvatar,
-} from '../../../redux/user/userSlice';
+} from '../../../redux/user/slice';
 import { useDispatch } from 'react-redux';
-// import { setUser } from '../../../redux/user/userSlice';
-import { updateUserInfo } from '../../../redux/user/userOperations';
-import { changeUserProfileApi } from '../../../api/userApi';
+import { updateUserInfo } from '../../../redux/user/operations';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
