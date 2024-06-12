@@ -7,15 +7,26 @@ import {
   Button,
   Box,
   CardActions,
-  Modal,
+  // Modal,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import sprite from '../../assets/sprite.svg';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { TaskModal } from '../TaskModal/TaskModal';
+// import { TaskModal } from '../TaskModal/TaskModal';
+
+import CreateCardModalWindow from '../CreateCardModalWindow/CreateCardModalWindow.jsx';
 
 export const Column = props => {
-const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+// const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+const [IsOpen, setIsOpen] = useState(false); 
+
+function handleOpenModal() {
+  setIsOpen(true);
+}
+
+function handleModalClose() {
+  setIsOpen(false);
+}
 
   return (
     <Grid item xs={3}>
@@ -43,7 +54,8 @@ const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
 
       <Button
         fullWidth
-        onClick={() => setIsTaskModalOpened(true)}
+        // onClick={() => setIsTaskModalOpened(true)}
+        onClick={() => handleOpenModal()}
         type="button"
         variant="contained"
         sx={{
@@ -72,9 +84,19 @@ const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
         Add Task
       </Button>
 
-      <Modal open={isTaskModalOpened} onClose={() => setIsTaskModalOpened(false)}>
+      {IsOpen && 
+        <CreateCardModalWindow
+          isOpen={IsOpen}
+          handleModalClose={handleModalClose}
+          columnId={props.column._id}
+        />
+      }
+
+      {/* <Modal open={isTaskModalOpened} onClose={() => setIsTaskModalOpened(false)}>
         <TaskModal closeModal={() => setIsTaskModalOpened(false)}/>
-      </Modal>
+      </Modal> */}
+
+
     </Grid>
   );
 };
