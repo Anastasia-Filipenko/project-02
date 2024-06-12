@@ -35,25 +35,8 @@ export const logOutApi = async () => {
 export const refreshApi = async () => {
   try {
     const response = await authInstance.get('/current');
-    return response;
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
-};
 
-export const changeUserThemeApi = async (id, theme) => {
-  try {
-    const response = await authInstance.patch(`/${id}`, theme);
     return response;
-  } catch (error) {
-    throw new Error(error.response.data.message);
-  }
-};
-
-export const getUserInfo = async () => {
-  try {
-    const response = await authInstance.get('/data');
-    return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
   }

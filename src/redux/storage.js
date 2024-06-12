@@ -14,6 +14,7 @@ import {
 
 import { boardsReducer } from './boards/slice';
 import { commonReducer } from './common/slice';
+import { cardsReducer } from './ControlBtnInCard/slice';
 // import axios from 'axios';
 import themeReducer from './theme/themeSlice';
 import userReducer from './user/userSlice';
@@ -47,8 +48,12 @@ export const store = configureStore({
   reducer: {
     boards: boardsReducer,
     common: commonReducer,
+
+    controlCards: cardsReducer,
+
     theme: persistedReducer,
     auth: persistedAuthReducer,
+
     user: userReducer,
     needHelp: needHelpReducer,
   },
