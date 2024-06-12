@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { changeUserProfileApi } from '../../api/userApi';
+import { changeUserProfileApi } from '../../api/userApi/userApi';
 
 export const updateUserInfo = createAsyncThunk(
   'user/updateUserInfo',
