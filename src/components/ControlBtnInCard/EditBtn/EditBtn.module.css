@@ -1,0 +1,78 @@
+.card {
+  position: relative;
+  background-color: rgb(18, 18, 18);
+  width: 354px;
+  height: 154px;
+  border-radius: 8px;
+}
+
+.icon {
+  stroke: rgba(255, 255, 255, 50%);
+}
+
+.container {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  display: flex;
+  gap: 8px;
+}
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #2e2e2e;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.dropdownContent a {
+  color: rgba(255, 255, 255, 50%);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownContent a:hover {
+  /* background-color: #3bbb41; */
+  color: #bedbb0;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.icon {
+  fill: currentColor;
+}
+
+.deadline {
+  color: red;
+}
+
+.dateItem {
+  font-weight: bold;
+  margin-right: 10px;
+  color: aliceblue;
+  font-size: 10px;
+}
+.priority {
+  color: azure;
+  font-size: 10px;
+}
