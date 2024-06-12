@@ -1,0 +1,18 @@
+.icon {
+  stroke: #ffffff;
+  background-color: black;
+}
+
+.cont {
+  display: flex;
+}
+
+.pen {
+  stroke: #ffffff;
+  background-color: black;
+}
+
+.delete {
+  stroke: #ffffff;
+  background-color: black;
+}
