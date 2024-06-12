@@ -1,4 +1,4 @@
-import { boardInstance, columnInstance } from '../axiosConfig';
+import { boardInstance } from '../axiosConfig';
 
 export const currentBoardApi = async id => {
   try {
@@ -17,14 +17,17 @@ export const addBoardApi = async data => {
   }
 };
 
-export const addColumnApi = async data => {
+export const editBoardApi = async (id, data) => {
   try {
-    const response = await columnInstance.post('/', data);
-
+    const response = await boardInstance.put(`/${id}`, data);
     return response;
   } catch (error) {
     throw new Error(error.response.data.message);
   }
 };
 
+export const deleteBoardApi = async id => {
+  const response = await boardInstance.delete(`/${id}`);
+  return response;
+};
 export const allBoardsApi = async () => {};
