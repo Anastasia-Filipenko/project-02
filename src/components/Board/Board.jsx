@@ -15,13 +15,17 @@ import {
   Grid,
   CardMedia,
   Button,
-  Modal
+  Modal,
+  Box,
+  Typography,
+  List,
 } from '@mui/material';
 import { Column } from '../Column/Column';
 import { cld } from '../CloudinaryImages/cloudinaryClient';
 import { selectCurrentScreen } from '../../redux/common/selectors';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
 import Loader from '../Loader/Loader';
+import sprite from '../../assets/sprite.svg';
 
 const generateBgUrl = (selectedBg, screen) => {
   let folderName;
@@ -50,7 +54,7 @@ const generateBgUrl = (selectedBg, screen) => {
   return cld.image(`${folderName}/${selectedBg}`).toURL();
 };
 
-export default function Board ()  {
+export default function Board() {
   const dispatch = useDispatch();
   const { boardTitle } = useParams();
   const board = useSelector(selectCurrentBoard);
@@ -78,12 +82,12 @@ export default function Board ()  {
     }
   }, [dispatch, openedBoardId]);
 
-  console.log('curernt Board', board)
+  console.log('curernt Board', board);
 
   const mediaSx = {
     height: '100%',
     backgroundColor: `${theme.color.defaultBoardBackground}`,
-  }
+  };
 
   return (
     <>
@@ -92,39 +96,96 @@ export default function Board ()  {
         <Card
           sx={{
             height: '100%',
+            borderRadius: '0px',
           }}
         >
           <CardMedia image={imgUrl} sx={mediaSx}>
-            <CardHeader title={board.title} />
-            <CardContent>
-              <Stack direction="row" spacing={3}>
-                <Grid
-                  container
-                  spacing={2}
-                  direction="row"
-                  justifyContent="flex-start"
-                  alignItems="flex-start"
-                  wrap="nowrap"
-                >
-                  {board.columns?.map((column, index) => (
-                    <Column key={index} column={column} />
-                  ))}
-                  <Button onClick={() => setisColumnModalOpened(true)}>
-                    Add column
-                  </Button>
-                  <Modal
-                    open={isColumnModalOpened}
-                    onClose={() => setisColumnModalOpened(false)}
-                    disableAutoFocus={true}
+            <CardHeader
+              title={board.title}
+              titleTypographyProps={{
+                color: theme.color.fontColor,
+              }}
+            />
+            <CardContent
+              sx={{
+                overflowX: 'auto',
+                flexWrap: 'nowrap',
+                maxWidth: {
+                  // xs: '360px',
+                  // md: '768px',
+                  // lg: '1340px'
+                },
+                '&.MuiCardContent-root': {
+                  '&::-webkit-scrollbar': {
+                    width: '10px'
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: theme.color.defaultBoardBackground,
+                    outline: `1px solid slategrey`,
+                  },
+                }
+              }}
+            >
+              <Stack direction="row" gap={2}>
+                {board.columns?.map((column, index) => (
+                  <Column key={index} column={column} boardId={openedBoardId}/>
+                ))}
+                <Stack>
+                  <Button
+                    onClick={() => setisColumnModalOpened(true)}
+                    variant="contained"
+                    sx={{
+                      backgroundColor: '#bedbb0',
+                      textTransform: 'none',
+                      padding: '10px',
+                      width: '334px',
+                      height: '56px',
+                      display: 'flex',
+                    }}
+                    fullWidth
+                    startIcon={
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          borderRadius: '8px',
+                          backgroundColor: 'black',
+                          width: 28,
+                          height: 28,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <svg
+                          fill="white"
+                          stroke="white"
+                          width="14px"
+                          height="14px"
+                        >
+                          <use xlinkHref={`${sprite}#icon-plus`}></use>
+                        </svg>
+                      </Box>
+                    }
                   >
-                    <ColumnModal
-                      ref={ref}
-                      closeModal={() => setisColumnModalOpened(false)}
-                      boardId={openedBoardId}
-                    />
-                  </Modal>
-                </Grid>
+                    <Typography color={theme.color.themeColor}>
+                      Add another column
+                    </Typography>
+                  </Button>
+                </Stack>
               </Stack>
+              <Modal
+                open={isColumnModalOpened}
+                onClose={() => setisColumnModalOpened(false)}
+                disableAutoFocus={true}
+              >
+                <ColumnModal
+                  ref={ref}
+                  closeModal={() => setisColumnModalOpened(false)}
+                  boardId={openedBoardId}
+                />
+              </Modal>
             </CardContent>
           </CardMedia>
         </Card>

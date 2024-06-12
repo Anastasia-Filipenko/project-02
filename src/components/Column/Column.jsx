@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
   Card,
   CardHeader,
@@ -8,28 +8,34 @@ import {
   Box,
   CardActions,
   Modal,
+  Stack
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import sprite from '../../assets/sprite.svg';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TaskModal } from '../TaskModal/TaskModal';
+import { ColumnModal } from '../ColumnModal/ColumnModal';
 
 export const Column = props => {
 const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
+const ref = useRef();
 console.log('column', props.column)
 
   return (
-    <Grid item xs={4}>
+    <Stack sx={{ height: '75vh' }} justifyContent="space-between">
       <Card
         sx={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
+          width: '334px',
+          height: '56px'
         }}
       >
-        <CardHeader title={props.column.title} />
+        <CardHeader title={props.column.title}/>
         <CardActions>
-          <IconButton>
+          <IconButton onClick={() => setisColumnModalOpened(true)}>
             <EditIcon />
           </IconButton>
           <IconButton>
@@ -43,14 +49,14 @@ console.log('column', props.column)
                   ))} */}
 
       <Button
-        fullWidth
         onClick={() => setIsTaskModalOpened(true)}
         type="button"
         variant="contained"
         sx={{
           backgroundColor: '#bedbb0',
           textTransform: 'none',
-          "&:hover": { backgroundColor: "#bedbb0" }
+          "&:hover": { backgroundColor: "#bedbb0" },
+          height: '56px',
         }}
         startIcon={
           <Box
@@ -70,12 +76,27 @@ console.log('column', props.column)
           </Box>
         }
       >
-        Add Task
+        Add another card
       </Button>
 
       <Modal open={isTaskModalOpened} onClose={() => setIsTaskModalOpened(false)}>
         <TaskModal closeModal={() => setIsTaskModalOpened(false)} columnId={props.column._id}/>
       </Modal>
-    </Grid>
+
+      <Modal
+                open={isColumnModalOpened}
+                onClose={() => setisColumnModalOpened(false)}
+                disableAutoFocus={true}
+              >
+                <ColumnModal
+                  ref={ref}
+                  closeModal={() => setisColumnModalOpened(false)}
+                  boardId={props.boardId}
+                  title={props.column.title}
+                  columnId={props.column._id}
+                  editColumn={true}
+                />
+              </Modal>
+    </Stack>
   );
 };

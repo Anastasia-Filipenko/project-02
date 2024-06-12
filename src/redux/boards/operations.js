@@ -2,7 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   addBoardApi,
   addColumnApi,
-  currentBoardApi
+  currentBoardApi,
+  editColumnApi
 } from '../../api/boardApi/boardApi';
 import { getAllUserDataApi } from '../../api/authApi/authApi';
 
@@ -37,6 +38,23 @@ export const addColumn = createAsyncThunk(
       const response = await addColumnApi({
         boardId,
         title: columnTitle,
+      });
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editColumn = createAsyncThunk(
+  'boards/editColumn',
+  async ({ boardId, columnTitle, columnId }, thunkAPI) => {
+    try {
+      console.log('ops', { boardId, columnTitle, columnId })
+      const response = await editColumnApi({
+        boardId,
+        title: columnTitle,
+        columnId
       });
       return response.data;
     } catch (e) {
