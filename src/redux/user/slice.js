@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { updateUserInfo } from './operations';
-import { registered } from '../auth/operations';
+import { login, refreshUser, registered } from '../auth/operations';
 
 const userSlice = createSlice({
   name: 'user',
@@ -34,6 +34,20 @@ const userSlice = createSlice({
         console.log('updateUserInfo.fulfilled payload:', action.payload);
         state.name = action.payload.name;
         state.email = action.payload.email;
+        state.avatar = action.payload.avatarURL;
+        state.password = action.payload.password;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.name = action.payload.name;
+        state.email = action.payload.email;
+        state.userId = action.payload.id;
+        state.avatar = action.payload.avatarURL;
+        state.password = action.payload.password;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.name = action.payload.name;
+        state.email = action.payload.email;
+        state.userId = action.payload.id;
         state.avatar = action.payload.avatarURL;
         state.password = action.payload.password;
       }),
