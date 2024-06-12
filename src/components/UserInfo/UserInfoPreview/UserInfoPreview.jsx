@@ -1,11 +1,11 @@
 import Modal from 'react-modal';
-import userAvatar from '../../../images/userAvatar.jpg';
+// import userAvatar from '../../../images/userAvatar.jpg';
 import css from './UserInfoPreview.module.css';
 import UserInfoModal from '../UserInfoModal/UserInfoModal';
 import styles from '../UserInfoModal/UserInfoModal.module.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserName } from '../../../redux/user/userSlice';
+import { selectUserName, selectUserAvatar } from '../../../redux/user/slice';
 
 const customStyles = {
   content: {
@@ -31,11 +31,9 @@ const customStyles = {
 Modal.setAppElement('#modal');
 
 const UserInfoPreview = () => {
-  //const userName = useSelector();
-  //const userAvatar=useSelector();
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const userName = useSelector(selectUserName);
+  const userAvatar = useSelector(selectUserAvatar);
 
   const openModal = () => {
     setModalIsOpen(true);
