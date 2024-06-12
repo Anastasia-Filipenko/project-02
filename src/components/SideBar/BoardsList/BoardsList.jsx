@@ -22,19 +22,20 @@ const BoardsList = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <div>
-      {Boolean(boards.lenght) && (
+      {boards.length > 0 && (
         <ul>
           {boards.map(({ title, icon, _id: id }) => (
             <BoardListItem
-              key={title}
+              key={id}
               id={id}
               title={title}
               icon={icon}
-              handleBoardClick={handleBoardClick}
-              handleOpenModal={handleOpenModal}
-              handleCloseModal={handleCloseModal}
+              onBoardClick={() => handleBoardClick({ title, icon, id })} // Обертывание handleBoardClick в функцию
+              onOpenModal={handleOpenModal}
+              onCloseModal={handleCloseModal}
               isModalOpen={isModalOpen}
             />
           ))}

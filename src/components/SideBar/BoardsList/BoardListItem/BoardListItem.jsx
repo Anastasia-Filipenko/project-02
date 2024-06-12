@@ -1,44 +1,55 @@
 import { useDispatch } from 'react-redux';
 import sprite from '../../../../assets/sprite.svg';
 import { BoardModal } from '../../../BoardModal/BoardModal';
-// import deleteBoard з redux/board/operation
+// import { deleteBoard } from 'redux/board/operation';
+import css from './BoardListItem.module.css';
 
 const BoardListItem = ({
   id,
   title,
   icon,
-  handleBoardClick,
-  handleOpenModal,
-  handleCloseModal,
+  onBoardClick,
+  onOpenModal,
+  onCloseModal,
   isModalOpen,
 }) => {
   const dispatch = useDispatch();
 
   const board = { id, title };
 
+  const handleDeleteBoard = () => {
+    // dispatch(deleteBoard(id)); 
+    console.log(`Delete board with id: ${id}`); 
+    // тимчасово
+  };
+
   return (
-    <div>
-      <button onClick={() => handleBoardClick(board)}>
+    <div className={css.cont}>
+      <button onClick={() => onBoardClick(board)} className={css.icon}>
         <svg width="18" height="18">
-          <use xlinkHref={`${sprite}`} id={icon}></use>
+          <use xlinkHref={`${sprite}#${icon}`}></use>
         </svg>
       </button>
       <div>
-        <button type="button" onClick={handleOpenModal}>
+        <button type="button" onClick={onOpenModal} className={css.pen}>
           <svg width="16" height="16">
             <use xlinkHref={`${sprite}#icon-pen`}></use>
           </svg>
         </button>
-        {/* delete board */}
-        {/* <button type="button" onClick={() => dispatch()}></button> */}
+        {/* видалення дошки */}
+        <button type="button" onClick={handleDeleteBoard} className={css.delete}>
+          <svg width="16" height="16">
+            <use xlinkHref={`${sprite}#icon-trash`}></use>
+          </svg>
+        </button>
       </div>
       {isModalOpen && (
         <BoardModal
           isOpen={isModalOpen}
-          onClose={handleCloseModal}
+          onClose={onCloseModal}
           title="Edit board"
         >
-          {/*updateBoard  */}
+          {/* апдейт */}
         </BoardModal>
       )}
     </div>
