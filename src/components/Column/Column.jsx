@@ -26,14 +26,15 @@ export const Column = props => {
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
   const ref = useRef();
   const column = useSelector(state => selectColumn(state, props.columnId));
-const [IsOpen, setIsOpen] = useState(false); 
+  const [IsOpen, setIsOpen] = useState(false);
 
-function handleOpenModal() {
-  setIsOpen(true);
-}
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
 
-function handleModalClose() {
-  setIsOpen(false);
+  function handleModalClose() {
+    setIsOpen(false);
+  }
 
   const handledelete = () => {
     dispatch(deleteColumn({ boardId: props.boardId, columnId: column._id }));
@@ -55,8 +56,8 @@ function handleModalClose() {
           <IconButton onClick={() => setisColumnModalOpened(true)}>
             <EditIcon />
           </IconButton>
-          <IconButton onClick={handledelete} >
-            <DeleteIcon/>
+          <IconButton onClick={handledelete}>
+            <DeleteIcon />
           </IconButton>
         </CardActions>
       </Card>
@@ -97,13 +98,13 @@ function handleModalClose() {
         Add another card
       </Button>
 
-      {IsOpen && 
+      {IsOpen && (
         <CreateCardModalWindow
           isOpen={IsOpen}
           handleModalClose={handleModalClose}
           columnId={props.column._id}
         />
-      }
+      )}
 
       {/* <Modal
         open={isTaskModalOpened}
