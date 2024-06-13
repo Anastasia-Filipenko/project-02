@@ -75,6 +75,30 @@ const SideBar = ({viewPortWidth, isOpen}) => {
         <LogOut />
       </div>
     </div>
+    <>
+      <div
+        className={clsx(css.overlay, { [css.open]: isOpen })}
+        onClick={onClose}
+      ></div>
+      <div
+        ref={ref}
+        className={clsx(css.sidebar, { [css.open]: isOpen })}
+        onClick={handleSidebarClick}
+      >
+        <div className={css.cont}>
+          <div className={css.upperPart}>
+            <Logo />
+            <h3 className={css.myBoardsTitle}>My boards</h3>
+            <CreateNewBoard />
+            {/* error, isLoading */}
+          </div>
+          <div className={css.bottomPart}>
+            <NeedHelp />
+            <LogOut />
+          </div>
+        </div>
+      </div>
+    </>
   );
 });
 SideBar.displayName = 'SideBar';
