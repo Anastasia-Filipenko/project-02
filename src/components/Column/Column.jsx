@@ -1,26 +1,34 @@
 import { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Card,
   CardHeader,
   IconButton,
-  Grid,
   Button,
   Box,
   CardActions,
   Modal,
-  Stack
+  Stack,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import sprite from '../../assets/sprite.svg';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { TaskModal } from '../TaskModal/TaskModal';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
+import { useSelector } from 'react-redux';
+import { selectColumn } from '../../redux/columns/selectors';
+import { deleteColumn } from '../../redux/columns/operations';
 
 export const Column = props => {
-const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
-const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
-const ref = useRef();
-console.log('column', props.column)
+  const dispatch = useDispatch();
+  const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+  const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
+  const ref = useRef();
+  const column = useSelector(state => selectColumn(state, props.columnId));
+
+  const handledelete = () => {
+    dispatch(deleteColumn({ boardId: props.boardId, columnId: column._id }));
+  };
 
   return (
     <Stack sx={{ height: '75vh' }} justifyContent="space-between">
@@ -30,16 +38,16 @@ console.log('column', props.column)
           flexDirection: 'row',
           justifyContent: 'space-between',
           width: '334px',
-          height: '56px'
+          height: '56px',
         }}
       >
-        <CardHeader title={props.column.title}/>
+        <CardHeader title={column.title} />
         <CardActions>
           <IconButton onClick={() => setisColumnModalOpened(true)}>
             <EditIcon />
           </IconButton>
-          <IconButton>
-            <DeleteIcon />
+          <IconButton onClick={handledelete} >
+            <DeleteIcon/>
           </IconButton>
         </CardActions>
       </Card>
@@ -55,7 +63,7 @@ console.log('column', props.column)
         sx={{
           backgroundColor: '#bedbb0',
           textTransform: 'none',
-          "&:hover": { backgroundColor: "#bedbb0" },
+          '&:hover': { backgroundColor: '#bedbb0' },
           height: '56px',
         }}
         startIcon={
@@ -79,24 +87,30 @@ console.log('column', props.column)
         Add another card
       </Button>
 
-      <Modal open={isTaskModalOpened} onClose={() => setIsTaskModalOpened(false)}>
-        <TaskModal closeModal={() => setIsTaskModalOpened(false)} columnId={props.column._id}/>
+      <Modal
+        open={isTaskModalOpened}
+        onClose={() => setIsTaskModalOpened(false)}
+      >
+        <TaskModal
+          closeModal={() => setIsTaskModalOpened(false)}
+          columnId={column._id}
+        />
       </Modal>
 
       <Modal
-                open={isColumnModalOpened}
-                onClose={() => setisColumnModalOpened(false)}
-                disableAutoFocus={true}
-              >
-                <ColumnModal
-                  ref={ref}
-                  closeModal={() => setisColumnModalOpened(false)}
-                  boardId={props.boardId}
-                  title={props.column.title}
-                  columnId={props.column._id}
-                  editColumn={true}
-                />
-              </Modal>
+        open={isColumnModalOpened}
+        onClose={() => setisColumnModalOpened(false)}
+        disableAutoFocus={true}
+      >
+        <ColumnModal
+          ref={ref}
+          closeModal={() => setisColumnModalOpened(false)}
+          boardId={props.boardId}
+          title={column.title}
+          columnId={column._id}
+          editColumn={true}
+        />
+      </Modal>
     </Stack>
   );
 };

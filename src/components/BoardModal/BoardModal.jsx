@@ -86,7 +86,6 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
   };
 
   const handleBgChange = (event, background) => {
-    console.log('clickin on', event.target)
     formik.setFieldValue('background', background);
   };
 

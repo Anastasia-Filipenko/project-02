@@ -33,18 +33,11 @@ export default function Home() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('fetching boards')
     if (boards.length > 0) {
-      console.log('setting current board', currentBoard)
-      console.log('board[0]', boards[0])
       const whichBoard = currentBoard.title ? currentBoard : boards[0];
       dispatch(setCurrentBoard(whichBoard));
     }
   }, [dispatch, boards, currentBoard]);
-
-  useEffect(() => {
-    console.log('new current board selected')
-  }, [currentBoard]);
 
   return (
     <Stack direction="row" height="100vh" display="flex">

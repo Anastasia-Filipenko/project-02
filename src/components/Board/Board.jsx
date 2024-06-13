@@ -12,13 +12,11 @@ import {
   CardHeader,
   CardContent,
   Stack,
-  Grid,
   CardMedia,
   Button,
   Modal,
   Box,
   Typography,
-  List,
 } from '@mui/material';
 import { Column } from '../Column/Column';
 import { cld } from '../CloudinaryImages/cloudinaryClient';
@@ -82,8 +80,6 @@ export default function Board() {
     }
   }, [dispatch, openedBoardId]);
 
-  console.log('curernt Board', board);
-
   const mediaSx = {
     height: '100%',
     backgroundColor: `${theme.color.defaultBoardBackground}`,
@@ -131,7 +127,7 @@ export default function Board() {
             >
               <Stack direction="row" gap={2}>
                 {board.columns?.map((column, index) => (
-                  <Column key={index} column={column} boardId={openedBoardId}/>
+                  <Column key={index} columnId={column._id} boardId={openedBoardId}/>
                 ))}
                 <Stack>
                   <Button

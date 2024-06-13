@@ -14,6 +14,7 @@ import {
 
 import { boardsReducer } from './boards/slice';
 import { commonReducer } from './common/slice';
+import { columnsReducer } from './columns/slice';
 // import axios from 'axios';
 import themeReducer from './theme/themeSlice';
 import userReducer from './user/userSlice';
@@ -46,6 +47,7 @@ const persistedReducer = persistReducer(persistConfig, themeReducer);
 export const store = configureStore({
   reducer: {
     boards: boardsReducer,
+    columns: columnsReducer,
     common: commonReducer,
     theme: persistedReducer,
     auth: persistedAuthReducer,

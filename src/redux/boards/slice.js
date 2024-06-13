@@ -3,8 +3,6 @@ import {
   fetchCurrentBoard,
   fetchAllBoards,
   addBoard,
-  addColumn,
-  editColumn
 } from './operations';
 // import {
 //   logOut
@@ -66,28 +64,6 @@ const boardsSlice = createSlice({
         state.currentBoard = action.payload;
       })
       .addCase(addBoard.rejected, handleRejected)
-      .addCase(addColumn.pending, handlePending)
-      .addCase(addColumn.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.currentBoard.columns && state.currentBoard.columns.length > 0
-          ? (state.currentBoard.columns = [
-              ...state.currentBoard.columns,
-              action.payload,
-            ])
-          : (state.currentBoard.columns = [action.payload]);
-      })
-      .addCase(addColumn.rejected, handleRejected)
-      .addCase(editColumn.pending, handlePending)
-      .addCase(editColumn.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        const columnIndex = state.currentBoard?.columns?.findIndex(c => c._id === action.payload.columnId);
-        if (columnIndex > -1) {
-          state.currentBoard.columns = state.currentBoard?.columns.splice(columnIndex, 1, action.payload);
-        }
-      })
-      .addCase(editColumn.rejected, handleRejected);
     // .addCase(logOut.fulfilled, state => {
     //   state.board = {};
     // })

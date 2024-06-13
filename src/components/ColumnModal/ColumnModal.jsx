@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { forwardRef, useEffect, useRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { addColumn, editColumn } from '../../redux/boards/operations';
+import { addColumn, editColumn } from '../../redux/columns/operations';
 
 export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
   const dispatch = useDispatch();
