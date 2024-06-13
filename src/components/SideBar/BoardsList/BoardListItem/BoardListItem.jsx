@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import sprite from '../../../../assets/sprite.svg';
 import { BoardModal } from '../../../BoardModal/BoardModal';
 // import { deleteBoard } from 'redux/board/operation';
@@ -13,23 +13,26 @@ const BoardListItem = ({
   onCloseModal,
   isModalOpen,
 }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const board = { id, title };
 
   const handleDeleteBoard = () => {
-    // dispatch(deleteBoard(id)); 
-    console.log(`Delete board with id: ${id}`); 
+    // dispatch(deleteBoard(id));
+    console.log(`Delete board with id: ${id}`);
     // тимчасово
   };
 
   return (
     <div className={css.cont}>
-      <button onClick={() => onBoardClick(board)} className={css.icon}>
-        <svg width="18" height="18">
-          <use xlinkHref={`${sprite}#${icon}`}></use>
-        </svg>
-      </button>
+      <div className={css.iconTitle}>
+        <button onClick={() => onBoardClick(board)} className={css.icon}>
+          <svg width="18" height="18">
+            <use xlinkHref={`${sprite}#${icon}`}></use>
+          </svg>
+        </button>
+        <p className={css.title}>{title}</p>
+      </div>
       <div>
         <button type="button" onClick={onOpenModal} className={css.pen}>
           <svg width="16" height="16">
@@ -37,7 +40,11 @@ const BoardListItem = ({
           </svg>
         </button>
         {/* видалення дошки */}
-        <button type="button" onClick={handleDeleteBoard} className={css.delete}>
+        <button
+          type="button"
+          onClick={handleDeleteBoard}
+          className={css.delete}
+        >
           <svg width="16" height="16">
             <use xlinkHref={`${sprite}#icon-trash`}></use>
           </svg>
