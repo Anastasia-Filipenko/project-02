@@ -17,7 +17,7 @@ import { commonReducer } from './common/slice';
 import { cardsReducer } from './ControlBtnInCard/slice';
 // import axios from 'axios';
 import themeReducer from './theme/themeSlice';
-import userReducer from './user/slice';
+
 import storage from 'redux-persist/lib/storage';
 import needHelpReducer from './needHelp/slice';
 
@@ -54,7 +54,6 @@ export const store = configureStore({
     theme: persistedReducer,
     auth: persistedAuthReducer,
 
-    user: userReducer,
     needHelp: needHelpReducer,
   },
 

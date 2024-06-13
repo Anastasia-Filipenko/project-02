@@ -5,7 +5,10 @@ import UserInfoModal from '../UserInfoModal/UserInfoModal';
 import styles from '../UserInfoModal/UserInfoModal.module.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUserName, selectUserAvatar } from '../../../redux/user/slice';
+import {
+  selectUserName,
+  selectUserAvatar,
+} from '../../../redux/auth/authSlice';
 
 const customStyles = {
   content: {
