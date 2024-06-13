@@ -9,12 +9,11 @@ import { useSelector } from 'react-redux';
 import {
   selectUserName,
   selectUserEmail,
-  selectUserPassword,
   selectUserId,
   selectUserAvatar,
-} from '../../../redux/user/slice';
+} from '../../../redux/auth/authSlice';
 import { useDispatch } from 'react-redux';
-import { updateUserInfo } from '../../../redux/user/operations';
+import { updateUserInfo } from '../../../redux/auth/operations';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -45,7 +44,6 @@ export default function UserInfo({ close }) {
   const [showPassword, setShowPassword] = useState(false);
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
-  const userPassword = useSelector(selectUserPassword);
   const id = useSelector(selectUserId);
   const userAvatar = useSelector(selectUserAvatar);
   const dispatch = useDispatch();
@@ -55,7 +53,6 @@ export default function UserInfo({ close }) {
   };
 
   const onSubmit = data => {
-    console.log(id, data);
     dispatch(updateUserInfo({ id, data }));
     reset();
     close();
@@ -115,7 +112,7 @@ export default function UserInfo({ close }) {
               <input
                 placeholder="password from db"
                 className={css.input}
-                defaultValue={userPassword}
+                // defaultValue={userPassword}
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
               />
