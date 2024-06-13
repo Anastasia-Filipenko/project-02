@@ -17,4 +17,16 @@ export const addBoardApi = async data => {
   }
 };
 
-export const allBoardsApi = async () => {};
+export const editBoardApi = async (id, data) => {
+  try {
+    const response = await boardInstance.put(`/${id}`, data);
+    return response;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+
+export const deleteBoardApi = async id => {
+  const response = await boardInstance.delete(`/${id}`);
+  return response;
+};

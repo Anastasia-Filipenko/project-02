@@ -6,6 +6,7 @@ import {
   refreshApi,
   registerApi,
 } from '../../api/authApi/authApi';
+import { changeUserProfileApi } from '../../api/userApi/userApi';
 
 // const setAuthHeader = token => {
 //   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -65,6 +66,18 @@ export const refreshUser = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUserInfo = createAsyncThunk(
+  'auth/updateUserInfo',
+  async ({ id, data }, thunkAPI) => {
+    try {
+      const response = await changeUserProfileApi(id, data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );

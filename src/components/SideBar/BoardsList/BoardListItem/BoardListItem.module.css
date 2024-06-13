@@ -1,0 +1,29 @@
+.iconTitle {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  stroke: #ffffff;
+  background-color: black;
+}
+
+.cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pen {
+  stroke: #ffffff;
+  background-color: black;
+}
+
+.delete {
+  stroke: #ffffff;
+  background-color: black;
+}
+
+.title {
+  color: #ffffff;
+}

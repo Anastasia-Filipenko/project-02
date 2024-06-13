@@ -15,9 +15,10 @@ import {
 import { boardsReducer } from './boards/slice';
 import { commonReducer } from './common/slice';
 import { columnsReducer } from './columns/slice';
+import { cardsReducer } from './ControlBtnInCard/slice';
 // import axios from 'axios';
 import themeReducer from './theme/themeSlice';
-import userReducer from './user/userSlice';
+import taskReducer from './task/taskSlice';
 import storage from 'redux-persist/lib/storage';
 import needHelpReducer from './needHelp/slice';
 
@@ -49,9 +50,10 @@ export const store = configureStore({
     boards: boardsReducer,
     columns: columnsReducer,
     common: commonReducer,
+    tasks: taskReducer,
+    controlCards: cardsReducer,
     theme: persistedReducer,
     auth: persistedAuthReducer,
-    user: userReducer,
     needHelp: needHelpReducer,
   },
 

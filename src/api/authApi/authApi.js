@@ -35,6 +35,7 @@ export const logOutApi = async () => {
 export const refreshApi = async () => {
   try {
     const response = await authInstance.get('/current');
+
     return response;
   } catch (error) {
     throw new Error(error.response.data.message);

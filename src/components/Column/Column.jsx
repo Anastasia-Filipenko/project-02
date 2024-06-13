@@ -18,13 +18,22 @@ import { ColumnModal } from '../ColumnModal/ColumnModal';
 import { useSelector } from 'react-redux';
 import { selectColumn } from '../../redux/columns/selectors';
 import { deleteColumn } from '../../redux/columns/operations';
+import CreateCardModalWindow from '../CreateCardModalWindow/CreateCardModalWindow.jsx';
 
 export const Column = props => {
   const dispatch = useDispatch();
-  const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+  // const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
   const ref = useRef();
   const column = useSelector(state => selectColumn(state, props.columnId));
+const [IsOpen, setIsOpen] = useState(false); 
+
+function handleOpenModal() {
+  setIsOpen(true);
+}
+
+function handleModalClose() {
+  setIsOpen(false);
 
   const handledelete = () => {
     dispatch(deleteColumn({ boardId: props.boardId, columnId: column._id }));
@@ -57,7 +66,8 @@ export const Column = props => {
                   ))} */}
 
       <Button
-        onClick={() => setIsTaskModalOpened(true)}
+        // onClick={() => setIsTaskModalOpened(true)}
+        onClick={() => handleOpenModal()}
         type="button"
         variant="contained"
         sx={{
@@ -87,7 +97,15 @@ export const Column = props => {
         Add another card
       </Button>
 
-      <Modal
+      {IsOpen && 
+        <CreateCardModalWindow
+          isOpen={IsOpen}
+          handleModalClose={handleModalClose}
+          columnId={props.column._id}
+        />
+      }
+
+      {/* <Modal
         open={isTaskModalOpened}
         onClose={() => setIsTaskModalOpened(false)}
       >
@@ -95,7 +113,7 @@ export const Column = props => {
           closeModal={() => setIsTaskModalOpened(false)}
           columnId={column._id}
         />
-      </Modal>
+      </Modal> */}
 
       <Modal
         open={isColumnModalOpened}
