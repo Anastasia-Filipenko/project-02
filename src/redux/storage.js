@@ -17,7 +17,7 @@ import { commonReducer } from './common/slice';
 import { cardsReducer } from './ControlBtnInCard/slice';
 // import axios from 'axios';
 import themeReducer from './theme/themeSlice';
-
+import taskReducer from './task/taskSlice';
 import storage from 'redux-persist/lib/storage';
 import needHelpReducer from './needHelp/slice';
 
@@ -48,12 +48,10 @@ export const store = configureStore({
   reducer: {
     boards: boardsReducer,
     common: commonReducer,
-
+    tasks: taskReducer,
     controlCards: cardsReducer,
-
     theme: persistedReducer,
     auth: persistedAuthReducer,
-
     needHelp: needHelpReducer,
   },
 

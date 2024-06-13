@@ -26,3 +26,12 @@ export const changeUserProfileApi = async (id, data) => {
     throw new Error(error.response.data.message);
   }
 };
+
+export const changeUserAvatar = async avatar => {
+  try {
+    const response = await authInstance.put('/avatar', avatar);
+    return response;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
