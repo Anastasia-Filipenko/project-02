@@ -3,7 +3,8 @@ import css from './SideBar.module.css';
 import CreateNewBoard from './CreateNewBoard/CreateNewBoard';
 import NeedHelp from '../SideBar/NeedHelp/NeedHelp';
 import LogOut from '../SideBar/LogOut/LogOut';
-import BoardsList from './BoardsList/BoardsList';
+// import BoardsList from './BoardsList/BoardsList';
+import BoardList from './BoardsList/BoardList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef } from 'react';
@@ -39,7 +40,6 @@ const SideBar = ({viewPortWidth, isOpen}) => {
   }, [isOpen, viewPortWidth]);
 
   return (
-    // <div className={`${!viewPortWidth ? css.cont : css.noCont}`}>
     <div className={css.cont}>
       <div className={css.upperPart}>
         <Logo />
@@ -47,7 +47,8 @@ const SideBar = ({viewPortWidth, isOpen}) => {
         <CreateNewBoard />
         {error && <p>{error}</p>}
         {isLoading && <Loader/>}
-        {items?.lenght === 0 ? '' : <BoardsList/>}
+        {items?.lenght === 0 ? '' : <BoardList/>}
+        {/* <BoardList/> */}
       </div>
       <div className={css.bottomPart}>
         <NeedHelp />
