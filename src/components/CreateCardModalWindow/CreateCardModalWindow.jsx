@@ -51,7 +51,7 @@ export default function CreateCardModalWindow({
       createCard({
         title: data.title,
         description: data.description,
-        priority,
+        priority: 'Without priority',
         columnId,
         deadline: startDate,
       })
