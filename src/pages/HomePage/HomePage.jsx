@@ -18,17 +18,14 @@ import { EmptyBoard } from '../../components/Board/EmptyBoard';
 
 import axios from 'axios';
 
-import { setTheme } from '../../redux/theme/themeSlice';
 import { useToggle } from '../../hooks/useToggle';
-
 
 export default function Home() {
   const dispatch = useDispatch();
   const boards = useSelector(selectAllBoards);
   const currentBoard = useSelector(selectCurrentBoard);
   const { isOpen, open, close } = useToggle();
-    const sidebarRef = useRef(null);
-
+  const sidebarRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchAllBoards());
@@ -47,29 +44,24 @@ export default function Home() {
     }
   }, [dispatch, boards, currentBoard]);
 
-   useEffect(() => {
-    dispatch(setTheme('dark'));
-   }, [dispatch]);
-  
- const handleContainerClick = event => {
-   if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-     close();
-   }
- };
+  const handleContainerClick = event => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      close();
+    }
+  };
 
   return (
     <Stack
       direction="row"
-      height="100vh" display="flex"
+      height="100vh"
+      display="flex"
       onClick={handleContainerClick}
     >
       <DetectScreen />
       <SideBar ref={sidebarRef} isOpen={isOpen} onClose={close} />
       <Stack justifyContent="flex-start" width="100vw">
-
         <Header toggleSidebar={open} closeSidebar={close} />
         {boards.length === false ? (
-
           <EmptyBoard />
         ) : (
           currentBoard.title && <Navigate to={'/home/' + currentBoard.title} />

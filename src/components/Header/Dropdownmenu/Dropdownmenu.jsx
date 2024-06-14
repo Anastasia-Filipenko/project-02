@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { Menu, MenuItem, Button} from '@mui/material';
+import { Menu, MenuItem, Button } from '@mui/material';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTheme, setTheme } from '../../../redux/theme/themeSlice';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import css from './Dropdownmenu.module.css';
-  
+import { changeTheme } from '../../../redux/theme/operations';
+import { selectUserId } from '../../../redux/auth/authSlice';
+
 const DropdownMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const selectedTheme = useSelector(selectTheme);
+  const userId = useSelector(selectUserId);
   const dispatch = useDispatch();
 
   const handleClick = event => {
@@ -16,9 +19,7 @@ const DropdownMenu = () => {
   };
 
   const handleClose = theme => {
-    if (theme) {
-      dispatch(setTheme(theme));
-    }
+    dispatch(changeTheme({ _id: userId, theme }));
     setAnchorEl(null);
   };
 

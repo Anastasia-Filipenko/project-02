@@ -56,7 +56,7 @@ export const deleteBoards = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await deleteBoardApi(id);
-      return response.data;
+      return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

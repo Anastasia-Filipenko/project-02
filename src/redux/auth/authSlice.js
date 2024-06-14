@@ -59,7 +59,7 @@ export const authSlice = createSlice({
       .addCase(updateUserInfo.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
-        state.user.userId = action.payload.id;
+        state.user.userId = action.payload._id;
         state.user.avatar = action.payload.avatarURL;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {

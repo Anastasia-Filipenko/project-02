@@ -6,11 +6,6 @@ const themeSlice = createSlice({
   initialState: {
     theme: 'dark',
   },
-  reducers: {
-    setTheme: (state, action) => {
-      state.theme = action.payload;
-    },
-  },
   extraReducers: builder =>
     builder.addCase(changeTheme.fulfilled, (state, action) => {
       state.theme = action.payload.theme;
