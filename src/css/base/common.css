@@ -8,6 +8,9 @@ body.dark {
   --background-body: var(--color-dark-primary);
   --text-color-dark: var(--color-dark-text-secondary-80);
   --arrow-color-dark: var(--color-dark-text-secondary-80);
+  --menu-color-dark: var(--color-dark-text-primary);
+  --menu-stroke-dark: var(--color-dark-stroke);
+  
 
 }
 
@@ -17,13 +20,15 @@ body.light {
   --background-body-light: var(--color-light-primary);
   --text-color-light: var(--color-dark-primary);
   --arrow-color-light: var(--color-light-text-primary);
+  --menu-stroke-light: var(--color-dark-btn-text);
 }
 
 body.violet {
   --background-header-violet: var(--color-violet-background-header);
   --background-sidebar-violet: var(--color-violet-background-sidebar);
   --background-body-violet: var(--color-light-primary);
-  --text-color: var(--color-dark-primary);
+  --text-color-violet: var(--color-dark-primary);
+  --menu-stroke-violet: var(--color-dark-btn-text);
 }
 
 

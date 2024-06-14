@@ -7,8 +7,28 @@
   cursor: pointer;
 }
 
+.user.dark {
+  background-color: var(--color-dark-primary);
+}
+
+
 .user_name {
-  color: var(--color-dark-text-primary);
+  /* color: var(--color-dark-text-primary); */
+}
+
+.user_name.dark {
+  color: (var(--text-color-light));
+  background-color: var(--color-dark-primary);
+}
+
+.user_name.light {
+  color: var(--text-color-light);
+  background-color: var(--color-light-primary);
+}
+
+.user_name.violet {
+  color: var(--text-color-light);
+  background-color: var(--color-light-primary);
 }
 
 .user_avatar {
