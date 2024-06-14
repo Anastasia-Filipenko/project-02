@@ -41,3 +41,12 @@ export const refreshApi = async () => {
     throw new Error(error.response.data.message);
   }
 };
+
+export const getAllUserDataApi = async () => {
+  try {
+    const response = await authInstance.get('/data');
+    return response;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};

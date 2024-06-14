@@ -1,14 +1,18 @@
 // import { createSelector } from "@reduxjs/toolkit";
 
-export const selectIsLoading = (state) => state.boards.isLoading;
+export const selectIsLoading = (state) => state.columns.isLoading;
 
-export const selectError = (state) => state.boards.error;
+export const selectError = (state) => state.columns.error;
 
-export const selectCurrentBoard = (state) => state.boards.currentBoard;
+export const selectColumn = (state, columnId) => state.columns.items.find(c => c._id === columnId);
 
-export const selectAllBoards = (state) => state.boards.boards;
+export const selectAllColumns = (state, boardId) => { 
+    console.log('borad Ids select column', state.columns.boardId, boardId)
+    if (boardId && state.columns.boardId && boardId === state.columns.boardId) {
+        return state.columns.items;
+    }
+}
 
-export const selectBackgrounds = (state) => state.boards.backgrounds;
 
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],

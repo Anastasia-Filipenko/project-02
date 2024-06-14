@@ -13,20 +13,20 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-
-import { useDispatch } from 'react-redux';
+import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { forwardRef, useEffect, useState, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import { icons } from './iconsList';
 import { CloudinaryImages } from '../CloudinaryImages/CloudinaryImages';
 import CloseIcon from '@mui/icons-material/Close';
-import axios from 'axios';
 import { addBoard } from '../../redux/boards/operations';
 import { useTheme, styled } from '@mui/material/styles';
+import { selectBackgrounds } from '../../redux/boards/selectors';
 
 export const BoardModal = forwardRef(function BoardModal(props, ref) {
   const dispatch = useDispatch();
-  const [backrounds, setBackrounds] = useState(null);
+  const backgrounds = useSelector(selectBackgrounds);
   const titleInputRef = useRef(null);
   const theme = useTheme();
 
@@ -35,7 +35,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    // disableAutoFocus: true,
+    disableAutoFocus: true,
     padding: '24px',
   };
 
@@ -43,12 +43,6 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     if (titleInputRef.current) {
       titleInputRef.current.focus();
     }
-    (async () => {
-      const list = await axios.get(
-        'https://res.cloudinary.com/duchyrp8f/image/list/bg.json'
-      );
-      setBackrounds([...list.data.resources]);
-    })();
   }, []);
 
   const schema = Yup.object().shape({
@@ -59,12 +53,12 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     ),
     icon: Yup.string().required(
       <Box component="span" color="error">
-        Required
+        Icon required
       </Box>
     ),
     background: Yup.string().required(
       <Box component="span" color="error">
-        Required
+        Background required
       </Box>
     ),
   });
@@ -73,10 +67,12 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     enableReinitialize: true,
     initialValues: {
       title: '',
-      icon: '',
-      background: '',
+      icon: props.selectedIcon ?? icons[0],
+      background: props.selectedBackground ?? theme.name,
     },
     validationSchema: schema,
+    validateOnChange: false,
+    validateOnBlur :false,
     onSubmit: values => {
       dispatch(
         addBoard({ ...values, background: values.background.split('/').pop() })
@@ -109,7 +105,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
         },
       },
     },
-    paddingBottom: '24px'
+    paddingBottom: '24px',
   });
 
   return (
@@ -162,9 +158,6 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                   display: 'flex',
                   flexWrap: 'wrap',
                   gap: '8px',
-                  '&.Mui-selected': {
-                    border: '5px solid',
-                  },
                   width: '100%',
                   paddingBottom: '24px',
                 }}
@@ -191,6 +184,11 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                     </svg>
                   </ToggleButton>
                 ))}
+                {formik.errors && formik.errors.icon && (
+                  <Typography color="error" variant="caption" ml='14px'>
+                    {formik.errors.icon}
+                  </Typography>
+                )}
               </ToggleButtonGroup>
 
               <Typography color={theme.color.fontColor} pb="14px">
@@ -203,9 +201,6 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                 id="background"
                 sx={{
                   gap: '4px',
-                  '&.Mui-selected': {
-                    border: '5px solid',
-                  },
                   width: '100%',
                   mb: 2,
                   flexWrap: 'wrap',
@@ -213,8 +208,39 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                   marginBottom: '40px',
                 }}
               >
-                {backrounds &&
-                  backrounds.map(bg => (
+                <ToggleButton
+                  key='0'
+                  value={theme.name}
+                  type='button'
+                  name="click"
+                  sx={{
+                    borderRadius: '6px',
+                    borderTopRightRadius: '6px',
+                    // backgroundColor: `${theme.color.themeColor}`,
+                    backgroundColor: 'white',
+                    p: 0,
+                    border: 'none',
+                    width: '28px',
+                    height: '28px',
+                    '&.MuiToggleButton-root': {
+                      '&.MuiToggleButtonGroup-firstButton': {
+                        borderRadius: '6px',
+                        backgroundColor: `${theme.color.defaultBoardBackground}`,
+                        '&.Mui-selected': {
+                          transform: 'scale(1.15)',
+                        },
+                        '&:hover': {
+                          transform: 'scale(1.15)',
+                          backgroundColor: `${theme.color.defaultBoardBackground}`,
+                        },
+                      },
+                    },
+                  }}
+                >
+                  <LandscapeOutlinedIcon />
+                </ToggleButton>
+                {backgrounds &&
+                  backgrounds.map(bg => (
                     <ToggleButton
                       key={bg.version}
                       value={bg.public_id}
@@ -223,6 +249,14 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                       sx={{
                         p: 0,
                         border: 'none',
+                        '&.MuiToggleButtonGroup-grouped': {
+                          '&.Mui-selected': {
+                            transform: 'scale(1.15)',
+                          },
+                          '&:hover': {
+                            transform: 'scale(1.15)',
+                          },
+                        },
                         borderColor:
                           formik.values.background === `${bg.public_id}`
                             ? 'red'
@@ -235,6 +269,11 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                       />
                     </ToggleButton>
                   ))}
+                {formik.errors && formik.errors.background && (
+                  <Typography color="error" variant="caption" ml='14px'>
+                    {formik.errors.background}
+                  </Typography>
+                )}
               </ToggleButtonGroup>
               <Button
                 type="submit"

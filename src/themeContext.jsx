@@ -10,6 +10,7 @@ const themeDark = {
   },
 };
 const themeLight = {
+  name: 'light',
   color: {
     backgroundLight: 'var(--color-light-primary)',
     themeColor: 'var(--color-light-primary)',
@@ -23,6 +24,7 @@ const themeLight = {
 };
 
 const themeViolet = {
+  name: 'violet',
   color: {
     backgroundVioletHeader: 'var(--color-violet-background-header)',
     backgroundVioletSidebar: 'var(--color-violet-background-sidebar)',
@@ -32,6 +34,7 @@ const themeViolet = {
     inputColorActive: 'var(--color-violet-input-active)',
   },
 };
+
 
 // const themeDark = {
 //   color: {

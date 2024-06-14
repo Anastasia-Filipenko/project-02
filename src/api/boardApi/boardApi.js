@@ -30,5 +30,3 @@ export const deleteBoardApi = async id => {
   const response = await boardInstance.delete(`/${id}`);
   return response;
 };
-
-// export const allBoardsApi = async () => {};

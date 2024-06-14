@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { forwardRef, useEffect, useRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { addColumn } from '../../redux/boards/operations';
+import { addColumn, editColumn } from '../../redux/columns/operations';
 
 export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
   const dispatch = useDispatch();
@@ -40,23 +40,28 @@ export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
       <Box component="span" color="error">
         Required
       </Box>
-    )
+    ),
   });
 
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      title: '',
+      title: props.title ?? '',
     },
     validationSchema: schema,
     onSubmit: values => {
       dispatch(
-        addColumn({ boardId: props.boardId, columnTitle: values.title })
+        props.editColumn
+          ? editColumn({
+              boardId: props.boardId,
+              columnTitle: values.title,
+              columnId: props.columnId,
+            })
+          : addColumn({ boardId: props.boardId, columnTitle: values.title })
       );
       props.closeModal();
     },
   });
-
 
   return (
     <Box sx={modalStyle}>
@@ -75,7 +80,7 @@ export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
               <CloseIcon />
             </IconButton>
           }
-          title="Add column"
+          title={props.editColumn ? "Edit column" : "Add column"} 
         />
         <CardContent>
           <form onSubmit={formik.handleSubmit} id="column-form" ref={ref}>
@@ -95,7 +100,7 @@ export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
                 variant="contained"
                 sx={{
                   backgroundColor: '#bedbb0',
-                  textTransform: 'none'
+                  textTransform: 'none',
                 }}
                 startIcon={
                   <Box
@@ -115,7 +120,7 @@ export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
                   </Box>
                 }
               >
-                Add
+                {props.editColumn ? 'Edit' : 'Add'}
               </Button>
             </FormControl>
           </form>

@@ -3,7 +3,6 @@ import {
   fetchCurrentBoard,
   fetchAllBoards,
   addBoard,
-  addColumn,
 } from './operations';
 // import {
 //   logOut
@@ -22,6 +21,7 @@ const handleRejected = (state, action) => {
 
 const boardsSlice = createSlice({
   name: 'boards',
+  backgrounds: [],
   initialState: {
     boards: [],
     currentBoard: {
@@ -36,6 +36,9 @@ const boardsSlice = createSlice({
     setCurrentBoard(state, action) {
       state.currentBoard = action.payload;
     },
+    setBackgrounds(state, action) {
+      state.backgrounds = action.payload;
+    }
   },
   extraReducers: builder => {
     builder
@@ -61,18 +64,6 @@ const boardsSlice = createSlice({
         state.currentBoard = action.payload;
       })
       .addCase(addBoard.rejected, handleRejected)
-      .addCase(addColumn.pending, handlePending)
-      .addCase(addColumn.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.currentBoard.columns && state.currentBoard.columns.length > 0
-          ? (state.currentBoard.columns = [
-              ...state.currentBoard.columns,
-              action.payload,
-            ])
-          : (state.currentBoard.columns = [action.payload]);
-      })
-      .addCase(addColumn.rejected, handleRejected);
     // .addCase(logOut.fulfilled, state => {
     //   state.board = {};
     // })
@@ -82,3 +73,4 @@ const boardsSlice = createSlice({
 export const boardsActions = boardsSlice.actions;
 export const boardsReducer = boardsSlice.reducer;
 export const { setCurrentBoard } = boardsSlice.actions;
+export const { setBackgrounds } = boardsSlice.actions;

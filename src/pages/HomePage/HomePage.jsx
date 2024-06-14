@@ -11,12 +11,16 @@ import {
 } from '../../redux/boards/selectors';
 import { fetchAllBoards } from '../../redux/boards/operations';
 import { Navigate } from 'react-router-dom';
-import { Box, Stack, Typography, Card, CardContent } from '@mui/material';
+import { Stack } from '@mui/material';
 import { DetectScreen } from './DetectScreen';
-import { setCurrentBoard } from '../../redux/boards/slice';
+import { setBackgrounds, setCurrentBoard } from '../../redux/boards/slice';
 import { EmptyBoard } from '../../components/Board/EmptyBoard';
+
+import axios from 'axios';
+
 import { setTheme } from '../../redux/theme/themeSlice';
 import { useToggle } from '../../hooks/useToggle';
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -28,13 +32,20 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(fetchAllBoards());
+    (async () => {
+      const list = await axios.get(
+        'https://res.cloudinary.com/duchyrp8f/image/list/bg.json'
+      );
+      dispatch(setBackgrounds([...list.data.resources]));
+    })();
   }, [dispatch]);
 
   useEffect(() => {
     if (boards.length > 0) {
-      dispatch(setCurrentBoard(boards[0]));
+      const whichBoard = currentBoard.title ? currentBoard : boards[0];
+      dispatch(setCurrentBoard(whichBoard));
     }
-  }, [dispatch, boards]);
+  }, [dispatch, boards, currentBoard]);
 
    useEffect(() => {
     dispatch(setTheme('dark'));
@@ -55,11 +66,13 @@ export default function Home() {
       <DetectScreen />
       <SideBar ref={sidebarRef} isOpen={isOpen} onClose={close} />
       <Stack justifyContent="flex-start" width="100vw">
+
         <Header toggleSidebar={open} closeSidebar={close} />
         {boards.length === false ? (
+
           <EmptyBoard />
         ) : (
-          <Navigate to={'/home/' + currentBoard.title} />
+          currentBoard.title && <Navigate to={'/home/' + currentBoard.title} />
         )}
         <Outlet />
       </Stack>

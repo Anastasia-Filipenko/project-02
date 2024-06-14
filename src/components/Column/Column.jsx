@@ -1,48 +1,62 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Card,
   CardHeader,
   IconButton,
-  Grid,
   Button,
   Box,
   CardActions,
-  // Modal,
+  Modal,
+  Stack,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import sprite from '../../assets/sprite.svg';
 import DeleteIcon from '@mui/icons-material/Delete';
-// import { TaskModal } from '../TaskModal/TaskModal';
-
+import { TaskModal } from '../TaskModal/TaskModal';
+import { ColumnModal } from '../ColumnModal/ColumnModal';
+import { useSelector } from 'react-redux';
+import { selectColumn } from '../../redux/columns/selectors';
+import { deleteColumn } from '../../redux/columns/operations';
 import CreateCardModalWindow from '../CreateCardModalWindow/CreateCardModalWindow.jsx';
 
 export const Column = props => {
-// const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
-const [IsOpen, setIsOpen] = useState(false); 
+  const dispatch = useDispatch();
+  // const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+  const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
+  const ref = useRef();
+  const column = useSelector(state => selectColumn(state, props.columnId));
+  const [IsOpen, setIsOpen] = useState(false);
 
-function handleOpenModal() {
-  setIsOpen(true);
-}
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
 
-function handleModalClose() {
-  setIsOpen(false);
-}
+  function handleModalClose() {
+    setIsOpen(false);
+  }
+
+  const handledelete = () => {
+    dispatch(deleteColumn({ boardId: props.boardId, columnId: column._id }));
+  };
 
   return (
-    <Grid item xs={3}>
+    <Stack sx={{ height: '75vh' }} justifyContent="space-between">
       <Card
         sx={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
+          width: '334px',
+          height: '56px',
         }}
       >
-        <CardHeader title={props.column.title} />
+        <CardHeader title={column.title} />
         <CardActions>
-          <IconButton>
+          <IconButton onClick={() => setisColumnModalOpened(true)}>
             <EditIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handledelete}>
             <DeleteIcon />
           </IconButton>
         </CardActions>
@@ -53,7 +67,6 @@ function handleModalClose() {
                   ))} */}
 
       <Button
-        fullWidth
         // onClick={() => setIsTaskModalOpened(true)}
         onClick={() => handleOpenModal()}
         type="button"
@@ -61,7 +74,8 @@ function handleModalClose() {
         sx={{
           backgroundColor: '#bedbb0',
           textTransform: 'none',
-          "&:hover": { backgroundColor: "#bedbb0" }
+          '&:hover': { backgroundColor: '#bedbb0' },
+          height: '56px',
         }}
         startIcon={
           <Box
@@ -81,22 +95,41 @@ function handleModalClose() {
           </Box>
         }
       >
-        Add Task
+        Add another card
       </Button>
 
-      {IsOpen && 
+      {IsOpen && (
         <CreateCardModalWindow
           isOpen={IsOpen}
           handleModalClose={handleModalClose}
           columnId={props.column._id}
         />
-      }
+      )}
 
-      {/* <Modal open={isTaskModalOpened} onClose={() => setIsTaskModalOpened(false)}>
-        <TaskModal closeModal={() => setIsTaskModalOpened(false)}/>
+      {/* <Modal
+        open={isTaskModalOpened}
+        onClose={() => setIsTaskModalOpened(false)}
+      >
+        <TaskModal
+          closeModal={() => setIsTaskModalOpened(false)}
+          columnId={column._id}
+        />
       </Modal> */}
 
-
-    </Grid>
+      <Modal
+        open={isColumnModalOpened}
+        onClose={() => setisColumnModalOpened(false)}
+        disableAutoFocus={true}
+      >
+        <ColumnModal
+          ref={ref}
+          closeModal={() => setisColumnModalOpened(false)}
+          boardId={props.boardId}
+          title={column.title}
+          columnId={column._id}
+          editColumn={true}
+        />
+      </Modal>
+    </Stack>
   );
 };
