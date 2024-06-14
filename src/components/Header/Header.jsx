@@ -1,29 +1,42 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
+import { useSelector} from 'react-redux';
+import { selectTheme} from '../../redux/theme/themeSlice';
 import css from './Header.module.css';
-import { useState } from 'react';
+//import { useState } from 'react';
 import clsx from 'clsx';
-import UserInfoModal from '../UserInfo/UserInfoModal/UserInfoModal';
+//import UserInfoModal from '../UserInfo/UserInfoModal/UserInfoModal';
 import UserInfoPreview from '../UserInfo/UserInfoPreview/UserInfoPreview';
 // import { selectUser } from '../../redux/user/userSlice';
+import BurgerMenuIcon from './BurgerMenuIcon/BurgerMenuIcon';
+import DropdownMenu from './Dropdownmenu/Dropdownmenu';
 
-const Header = () => {
+const Header = ({ toggleSidebar, closeSidebar }) => {
   const selectedTheme = useSelector(selectTheme);
-  // const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const handleSelectChange = event => {
-    dispatch(setTheme(event.target.value));
-    setIsDropdownOpen(false);
+  //const dispatch = useDispatch();
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const handleSelectChange = event => {
+  //   dispatch(setTheme(event.target.value));
+  //   setIsDropdownOpen(false);
+  // };
+  // const toggleDropdown = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
+
+  const handleBurgerMenuClick = event => {
+    event.stopPropagation(); 
+    toggleSidebar();
   };
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+
+  const handleHeaderClick = () => {
+    closeSidebar();
   };
+
   return (
-    <>
-      <header>
-        <div className={clsx(css.header, css[selectedTheme])}>
-          <div className={clsx(css.dropdown, css[selectedTheme])}>
+    <div className={css.container}>
+      <header
+        className={clsx(css.header, css[selectedTheme])}
+        onClick={handleHeaderClick}
+      >
+        {/* <div className={clsx(css.dropdown, css[selectedTheme])}>
             <button
               className={clsx(css.dropbtn, css[selectTheme])}
               onClick={toggleDropdown}
@@ -44,13 +57,26 @@ const Header = () => {
                 </button>
               </div>
             )}
-          </div>
-          <UserInfoPreview />
-          {/* <UserInfoModal /> */}
-          {/* OpenUserInfoModal */}
+          </div> */}
+        <div
+          className={clsx(css.burgerMenu, css[selectedTheme])}
+          onClick={handleBurgerMenuClick}
+        >
+          <BurgerMenuIcon />
         </div>
+
+        <div className={clsx(css.themeSection, css[selectedTheme])}>
+          <DropdownMenu />
+        </div>
+
+        <div className={clsx(css.userSection, css[selectedTheme])}>
+          <UserInfoPreview className={clsx(css.userInfo, css[selectedTheme])} />
+        </div>
+
+        {/* <UserInfoModal /> */}
+        {/* OpenUserInfoModal */}
       </header>
-    </>
+    </div>
   );
 };
 
