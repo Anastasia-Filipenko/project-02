@@ -17,10 +17,10 @@
 }
 
 .dropdown {
-    margin-left: auto;
+    /* margin-left: auto; */
     display: flex;
     align-items: center;
-    margin-right: 120px;
+    margin-right: 14px;
 }
 
 .dropbtn {
@@ -35,9 +35,11 @@
     justify-content: center;
     color: inherit;
 }
- .dropdownContentButton {
-     font-size: 14px;
- }
+
+.dropdownContentButton {
+    font-size: 14px;
+}
+
 @media (min-width: 600px) {
     .dropbtn {
         font-size: 14px;
@@ -63,54 +65,55 @@
 .dropbtn.violet {
     color: var(--text-color-violet);
 }
- .dropdownContent {
-     /* text-decoration: none;
+
+.dropdownContent {
+    /* text-decoration: none;
      border: none; */
-     /* position: absolute;
+    /* position: absolute;
      top: 100%;
      left: 50%;
      transform: translateX(-100%)translateY(20%);
      z-index: 1; */
-     /* display: flex;
+    /* display: flex;
      flex-wrap: wrap;
      justify-content: center; */
-     /* gap: 10px;
+    /* gap: 10px;
      row-gap: 7px; */
-     /* width: 100px;
+    /* width: 100px;
      height: 107px; */
- }
+}
 
 
- /* .dropdownContent.dark {
+/* .dropdownContent.dark {
      background-color: var(--background-header-dark);
      color: var(--text-color-dark);
  } */
 
- .dropdownContent.light {
-     background-color: var(--background-header-light);
-     color: var(--text-color-light);
- }
+.dropdownContent.light {
+    background-color: var(--background-header-light);
+    color: var(--text-color-light);
+}
 
- .dropdownContent.violet {
-     background-color: var(--background-header-violet);
-     color: var(--text-color-violet);
- }
+.dropdownContent.violet {
+    background-color: var(--background-header-violet);
+    color: var(--text-color-violet);
+}
 
- .dropdownContentButton {
-     background-color: transparent;
- }
+.dropdownContentButton {
+    background-color: transparent;
+}
 
- .dropdownContentButton.dark {
-     background-color: var(--background-header-dark);
-     color: var(--text-color-dark);
- }
+.dropdownContentButton.dark {
+    background-color: var(--background-header-dark);
+    color: var(--text-color-dark);
+}
 
- .dropdownContentButton.light {
-     background-color: var(--background-header-light);
-     color: var(--text-color-light);
- }
+.dropdownContentButton.light {
+    background-color: var(--background-header-light);
+    color: var(--text-color-light);
+}
 
- .dropdownContentButton.violet {
-     background-color: var(--background-header-violet);
-     color: var(--text-color-violet);
- }
+.dropdownContentButton.violet {
+    background-color: var(--background-header-violet);
+    color: var(--text-color-violet);
+}

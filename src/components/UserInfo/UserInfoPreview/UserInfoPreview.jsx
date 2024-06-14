@@ -9,6 +9,8 @@ import {
   selectUserName,
   selectUserAvatar,
 } from '../../../redux/auth/authSlice';
+import clsx from 'clsx';
+import { selectTheme } from '../../../redux/theme/themeSlice';
 
 const customStyles = {
   content: {
@@ -37,6 +39,7 @@ const UserInfoPreview = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const userName = useSelector(selectUserName);
   const userAvatar = useSelector(selectUserAvatar);
+    const selectedTheme = useSelector(selectTheme);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -48,8 +51,8 @@ const UserInfoPreview = () => {
 
   return (
     <>
-      <div className={css.user} onClick={openModal}>
-        <p className={css.user_name}>{userName}</p>
+      <div className={clsx(css.user, css[selectedTheme])} onClick={openModal}>
+        <p className={clsx(css.user_name, css[selectedTheme])}>{userName}</p>
         <img className={css.user_avatar} src={userAvatar} alt="" />
       </div>
       <Modal

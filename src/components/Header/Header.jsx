@@ -1,9 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
+import { useSelector} from 'react-redux';
+import { selectTheme} from '../../redux/theme/themeSlice';
 import css from './Header.module.css';
 //import { useState } from 'react';
 import clsx from 'clsx';
-import UserInfoModal from '../UserInfo/UserInfoModal/UserInfoModal';
+//import UserInfoModal from '../UserInfo/UserInfoModal/UserInfoModal';
 import UserInfoPreview from '../UserInfo/UserInfoPreview/UserInfoPreview';
 // import { selectUser } from '../../redux/user/userSlice';
 import BurgerMenuIcon from './BurgerMenuIcon/BurgerMenuIcon';
@@ -31,10 +31,12 @@ const Header = ({ toggleSidebar, closeSidebar }) => {
   };
 
   return (
-    <>
-      <header>
-        <div className={clsx(css.header, css[selectedTheme])}>
-          <div className={clsx(css.dropdown, css[selectedTheme])}>
+    <div className={css.container}>
+      <header
+        className={clsx(css.header, css[selectedTheme])}
+        onClick={handleHeaderClick}
+      >
+        {/* <div className={clsx(css.dropdown, css[selectedTheme])}>
             <button
               className={clsx(css.dropbtn, css[selectTheme])}
               onClick={toggleDropdown}
@@ -55,59 +57,26 @@ const Header = ({ toggleSidebar, closeSidebar }) => {
                 </button>
               </div>
             )}
-          </div>
-          <UserInfoPreview />
-          {/* <UserInfoModal /> */}
-          {/* OpenUserInfoModal */}
-        </div>
-    <div className={css.container}>
-    <header
-      className={clsx(css.header, css[selectedTheme])}
-      onClick={handleHeaderClick}
-    >
-      {/* <div className={clsx(css.dropdown, css[selectedTheme])}>
-        <button
-          className={clsx(css.dropbtn, css[selectedTheme])}
-          onClick={toggleDropdown}
+          </div> */}
+        <div
+          className={clsx(css.burgerMenu, css[selectedTheme])}
+          onClick={handleBurgerMenuClick}
         >
-          Theme
-          <span className={clsx(css.arrow, css[selectedTheme])}>&#9660;</span>
-        </button>
-        {isDropdownOpen && (
-          <div className={clsx(css.dropdownContent, css[selectedTheme])}>
-            <button
-              className={clsx(css.dropdownContentButton, css[selectedTheme])}
-              value="light"
-              onClick={handleSelectChange}
-            >
-              Light
-            </button>
-            <button
-              className={clsx(css.dropdownContentButton, css[selectedTheme])}
-              value="dark"
-              onClick={handleSelectChange}
-            >
-              Dark
-            </button>
-            <button
-              className={clsx(css.dropdownContentButton, css[selectedTheme])}
-              value="violet"
-              onClick={handleSelectChange}
-            >
-              Violet
-            </button>
-          </div>
-        )}
-      </div> */}
-        <DropdownMenu/>
-      <div
-               className={clsx(css.burgerMenu, css[selectedTheme])}
-        onClick={handleBurgerMenuClick}
-      >
-       <BurgerMenuIcon/>
-      </div>
+          <BurgerMenuIcon />
+        </div>
+
+        <div className={clsx(css.themeSection, css[selectedTheme])}>
+          <DropdownMenu />
+        </div>
+
+        <div className={clsx(css.userSection, css[selectedTheme])}>
+          <UserInfoPreview className={clsx(css.userInfo, css[selectedTheme])} />
+        </div>
+
+        {/* <UserInfoModal /> */}
+        {/* OpenUserInfoModal */}
       </header>
-      </div>
+    </div>
   );
 };
 

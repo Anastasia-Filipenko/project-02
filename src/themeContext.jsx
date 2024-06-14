@@ -33,16 +33,16 @@ const themeViolet = {
   },
 };
 
-const themeDark = {
-  color: {
-    backgroundBlack: 'var(--color-dark-primary)',
-    themeColor: 'var(--color-dark-primary)',
-    defaultBoardBackground: 'var(--color-light-primary)',
-    fontColor: 'var(--color-light-primary)',
-    inputColorDefault: 'var(--color-dark-input)',
-    inputColorActive: 'var(--color-dark-input-active)',
-  },
-};
+// const themeDark = {
+//   color: {
+//     backgroundBlack: 'var(--color-dark-primary)',
+//     themeColor: 'var(--color-dark-primary)',
+//     defaultBoardBackground: 'var(--color-light-primary)',
+//     fontColor: 'var(--color-light-primary)',
+//     inputColorDefault: 'var(--color-dark-input)',
+//     inputColorActive: 'var(--color-dark-input-active)',
+//   },
+// };
 
 
 
