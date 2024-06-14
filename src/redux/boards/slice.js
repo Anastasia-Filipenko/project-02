@@ -3,6 +3,7 @@ import {
   fetchCurrentBoard,
   fetchAllBoards,
   addBoard,
+  deleteBoards,
 } from './operations';
 // import {
 //   logOut
@@ -38,7 +39,7 @@ const boardsSlice = createSlice({
     },
     setBackgrounds(state, action) {
       state.backgrounds = action.payload;
-    }
+    },
   },
   extraReducers: builder => {
     builder
@@ -64,6 +65,18 @@ const boardsSlice = createSlice({
         state.currentBoard = action.payload;
       })
       .addCase(addBoard.rejected, handleRejected)
+      .addCase(deleteBoards.pending, handlePending)
+      .addCase(deleteBoards.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const boardIndex = state.items?.findIndex(
+          board => board._id === action.payload._id
+        );
+        if (boardIndex > -1) {
+          state.items.splice(boardIndex, 1);
+        }
+      })
+      .addCase(deleteBoards.rejected, handleRejected);
     // .addCase(logOut.fulfilled, state => {
     //   state.board = {};
     // })
