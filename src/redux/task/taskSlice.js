@@ -16,8 +16,7 @@ const slice = createSlice({
       })
       .addCase(createCard.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
-        // state.cards.items.push(action.payload);
+        state.items.push(action.payload);
       })
       .addCase(createCard.rejected, state => {
         state.loading = false;
