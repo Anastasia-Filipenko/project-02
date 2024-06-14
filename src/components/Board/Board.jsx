@@ -23,6 +23,7 @@ import { cld } from '../CloudinaryImages/cloudinaryClient';
 import { selectCurrentScreen } from '../../redux/common/selectors';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
 import Loader from '../Loader/Loader';
+
 import sprite from '../../assets/sprite.svg';
 
 const generateBgUrl = (selectedBg, screen) => {
@@ -113,21 +114,25 @@ export default function Board() {
                 },
                 '&.MuiCardContent-root': {
                   '&::-webkit-scrollbar': {
-                    width: '10px'
+                    width: '10px',
                   },
-                  "&::-webkit-scrollbar-track": {
+                  '&::-webkit-scrollbar-track': {
                     boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
                   },
-                  "&::-webkit-scrollbar-thumb": {
+                  '&::-webkit-scrollbar-thumb': {
                     backgroundColor: theme.color.defaultBoardBackground,
                     outline: `1px solid slategrey`,
                   },
-                }
+                },
               }}
             >
               <Stack direction="row" gap={2}>
                 {board.columns?.map((column, index) => (
-                  <Column key={index} columnId={column._id} boardId={openedBoardId}/>
+                  <Column
+                    key={index}
+                    columnId={column._id}
+                    boardId={openedBoardId}
+                  />
                 ))}
                 <Stack>
                   <Button
