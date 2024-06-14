@@ -102,7 +102,7 @@ export const Column = props => {
         <CreateCardModalWindow
           isOpen={IsOpen}
           handleModalClose={handleModalClose}
-          columnId={props.column._id}
+          columnId={column._id}
         />
       )}
 
