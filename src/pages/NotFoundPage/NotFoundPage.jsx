@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import css from './NotFoundPage.module.css';
+import Loader from '../../components/Loader/Loader';
 
 export default function NotFound() {
   return (

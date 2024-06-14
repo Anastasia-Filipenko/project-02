@@ -1,15 +1,9 @@
-import { Bars } from 'react-loader-spinner';
 import css from '../Loader/Loader.module.css';
-
+import loaderGif from '../../assets/kitty.gif';
 export default function Loader() {
   return (
-    <Bars
-      height="80"
-      width="80"
-      color="white"
-      ariaLabel="bars-loading"
-      wrapperClass={css.loader}
-      visible={true}
-    />
+    <div className={css.loader}>
+      <img className={css.loaderGif} src={loaderGif} alt="Loading..." />
+    </div>
   );
 }
