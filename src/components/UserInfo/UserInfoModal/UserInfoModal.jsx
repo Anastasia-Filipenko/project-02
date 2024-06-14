@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../../assets/sprite.svg';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectUserName,
@@ -13,7 +13,10 @@ import {
   selectUserAvatar,
 } from '../../../redux/auth/authSlice';
 import { useDispatch } from 'react-redux';
-import { updateUserInfo } from '../../../redux/auth/operations';
+import {
+  updateUserInfo,
+  updateUserAvatar,
+} from '../../../redux/auth/operations';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -48,6 +51,24 @@ export default function UserInfo({ close }) {
   const userAvatar = useSelector(selectUserAvatar);
   const dispatch = useDispatch();
 
+  const [avatarFile, setAvatarFile] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = e => {
+    const file = e.target.files[0];
+    if (file) {
+      setAvatarFile(file);
+      const data = new FormData();
+      data.append('avatar', file);
+
+      dispatch(updateUserAvatar(data));
+    }
+  };
+
+  const handleAvatarClick = () => {
+    fileInputRef.current.click();
+  };
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -58,6 +79,8 @@ export default function UserInfo({ close }) {
     close();
   };
 
+  const avatarSrc = avatarFile ? URL.createObjectURL(avatarFile) : userAvatar;
+
   return (
     <>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -67,20 +90,25 @@ export default function UserInfo({ close }) {
           </svg>
           <p className={css.title}>Edit profile</p>
           <div className={css.avatar}>
-            <img src={userAvatar} className={css.user_avatar} alt="" />
-            <div className={css.icon}>
+            <img src={avatarSrc} className={css.user_avatar} alt="" />
+            <div className={css.icon} onClick={handleAvatarClick}>
               <svg
                 className={css.plus_icon}
                 width="10"
                 height="10"
-                onClick={() => {
-                  console.log('choose avatar');
-                }}
+                // onClick={e => console.log('avatar', e.target)}
               >
                 <use xlinkHref={`${sprite}#icon-plus`}></use>
               </svg>
             </div>
           </div>
+          <input
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            ref={fileInputRef}
+            onChange={handleFileChange}
+          />
           <div className={css.blockinfo}>
             <input
               placeholder="name from db"
