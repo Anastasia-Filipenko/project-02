@@ -9,6 +9,9 @@ import { useState } from 'react';
 import sprite from '../../../assets/sprite.svg';
 import { useDispatch } from 'react-redux';
 import { registered } from '../../../redux/auth/operations';
+import Layout from '../../Layout/Layout';
+import toast, { Toaster } from 'react-hot-toast';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32),
@@ -46,14 +49,22 @@ export default function RegisterForm() {
 
   // const onSubmit = data => console.log(data)
 
-  const onSubmit = data =>
-    dispatch(
-      registered({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      })
-    );
+  const onSubmit = async data => {
+    try {
+      const resultAction = await dispatch(
+        registered({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        })
+      );
+    unwrapResult(resultAction)
+    toast.success('Registration successful!');
+  } catch (error) {
+    toast.error(error.message || 'email in use');
+  }
+}
+    
   return (
     <section className={css.container}>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -73,14 +84,13 @@ export default function RegisterForm() {
               type="text"
               {...register('name')}
             />
-            <input
-              placeholder="Enter your email"
-              className={css.input}
-              type="email"
-              {...register('email')}
+                        <input placeholder="Enter your email" className={css.input} type="email" {...register('email')} />
+                        <ErrorMessage
+              name="email"
+              errors={errors}
+              render={({ message }) => <p className={css.error}>{message}</p>}
             />
-            <ErrorMessage name="email" errors={errors} />
-            <div className={css.blockPassword}>
+                    <div className={css.inputWrapper}>
               <input
                 placeholder="Create a password"
                 className={css.input}
@@ -93,18 +103,19 @@ export default function RegisterForm() {
                 height="12"
                 onClick={handleClickShowPassword}
               >
-                <use href={`${sprite}#icon-eye`}></use>
+                <use xlinkHref={`${sprite}#icon-eye`}></use>
               </svg>
-              <ErrorMessage
-                name="password"
-                errors={errors}
-                render={({ message }) => <p className={css.error}>{message}</p>}
-              />
             </div>
+            <ErrorMessage
+              name="password"
+              errors={errors}
+              render={({ message }) => <p className={css.error}>{message}</p>}
+            />
           </div>
           <button className={css.btn} type="submit">
             Register Now
           </button>
+           <Toaster position='top-center' reverseOrder={false} />
         </div>
       </form>
     </section>

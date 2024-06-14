@@ -85,6 +85,11 @@
   color: #fff;
 }
 
+.error {
+  color: #f14c4c;
+  font-size: 12px;
+}
+
 @media (min-width: 768px) {
   .form {
     width: 424px;
@@ -102,7 +107,7 @@
   }
 }
 
-.blockPassword {
+.inputWrapper {
   position: relative;
   display: flex;
   align-items: center;
