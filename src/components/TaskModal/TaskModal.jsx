@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { forwardRef, useEffect, useRef } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { addColumn } from '../../redux/boards/operations';
+import { addColumn } from '../../redux/columns/operations';
 
 export const TaskModal = forwardRef(function TaskModal(props, ref) {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export const TaskModal = forwardRef(function TaskModal(props, ref) {
       <Box component="span" color="error">
         Required
       </Box>
-    )
+    ),
   });
 
   const formik = useFormik({
@@ -56,7 +56,6 @@ export const TaskModal = forwardRef(function TaskModal(props, ref) {
       props.closeModal();
     },
   });
-
 
   return (
     <Box sx={modalStyle}>
@@ -95,7 +94,7 @@ export const TaskModal = forwardRef(function TaskModal(props, ref) {
                 variant="contained"
                 sx={{
                   backgroundColor: '#bedbb0',
-                  textTransform: 'none'
+                  textTransform: 'none',
                 }}
                 startIcon={
                   <Box
