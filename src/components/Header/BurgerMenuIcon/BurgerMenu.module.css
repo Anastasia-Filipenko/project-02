@@ -1,19 +1,26 @@
- .burgerIcon.dark {
-     background-color: var(--background-header-dark);
-     stroke: var(--menu-stroke-dark);
+ @media screen and (min-width: 320px) {
+     .burgerIcon.dark {
+         background-color: var(--background-header-dark);
+         stroke: var(--menu-stroke-dark);
+     }
+
+     .burgerIcon.light {
+         background-color: var(--menu-color-dark);
+         stroke: var(--menu-stroke-light);
+     }
+
+     .burgerIcon.violet {
+         background-color: var(--menu-color-dark);
+         stroke: var(--menu-stroke-violet);
+     }
+
+     .burgerMenuComponent {
+         margin-left: 20px;
+     }
  }
 
- .burgerIcon.light {
-     background-color: var(--menu-color-dark);
-     stroke: var(--menu-stroke-light);
+ @media (min-width: 760px) {
+     .burgerMenuComponent {
+         margin-left: 32px;
+     }
  }
-
- .burgerIcon.violet {
-     background-color: var(--menu-color-dark);
-     stroke: var(--menu-stroke-violet);
- }
-
- .burgerMenu{
-display: flex;
- }
- 

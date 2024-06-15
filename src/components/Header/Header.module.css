@@ -1,27 +1,26 @@
 @media screen and (min-width: 320px) {
   .container {
     min-width: 375px;
-    padding-right: 20px;
   }
 
   .header {
     height: 68px;
     width: 100%;
-    margin-left: 0%;
+    /* margin-left: 0%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    /* position: relative; */
 
   }
 
   .burgerMenu {
     display: none;
     cursor: pointer;
-    top: 100%;
-    left: 20%;
+    /* top: 100%;
+    left: 10%;
     transform: translateX(-150%)translateY(-150%);
-    position: absolute;
+    position: absolute; */
   }
 
   .header.dark {
@@ -167,16 +166,20 @@
 
 @media (min-width: 760px) {
   .container {
-    padding-right: 32px;
     min-width: 760px;
   }
 
-  .burgerMenu {
+  .container {
+    /* margin-left: 32px; */
+  }
+
+  /* .burgerMenu {
     display: block;
     top: 100%;
     left: 13%;
     transform: translateX(-250%)translateY(-150%);
-  }
+    
+  } */
 
   .dropbtn {
     font-size: 16px;
@@ -191,8 +194,7 @@
 
 @media (min-width: 1440px) {
   .container {
-    padding-right: 24px;
-    min-width: 1440px
+    min-width: 1180px
   }
 
   .burgerMenu {
@@ -203,8 +205,4 @@
 .userInfo {
   margin-right: auto;
 
-}
-
-.userSection {
-  margin-right: 24px;
 }
