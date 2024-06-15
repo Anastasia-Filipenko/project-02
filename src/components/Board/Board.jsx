@@ -3,8 +3,9 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   selectCurrentBoard,
-  selectIsLoading,
+  selectBoardIsLoading,
 } from '../../redux/boards/selectors';
+import { selectColumnIsLoading } from '../../redux/columns/selectors';
 import { fetchCurrentBoard } from '../../redux/boards/operations';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -39,7 +40,8 @@ export default function Board() {
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
   const [isFiltersModalOpened, setisFiltersModalOpened] = useState(false);
   const theme = useTheme();
-  const isLoading = useSelector(selectIsLoading);
+  const isBoardLoading = useSelector(selectBoardIsLoading);
+  const isColumnLoading = useSelector(selectColumnIsLoading);
   const ref = useRef();
 
   useEffect(() => {
@@ -52,6 +54,7 @@ export default function Board() {
   }, [board, boardTitle, currentScreen]);
 
   useEffect(() => {
+    console.log('fetching board inside board')
     if (openedBoardId) {
       dispatch(fetchCurrentBoard(openedBoardId.split('.')[0]));
     }
@@ -64,8 +67,8 @@ export default function Board() {
 
   return (
     <>
-      {isLoading && <Loader />}
-      {!isLoading && board && board.background && (
+      {(isBoardLoading || isColumnLoading) && <Loader />}
+      {!isBoardLoading && !isColumnLoading && board && board.background && (
         <Card
           sx={{
             height: '100%',

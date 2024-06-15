@@ -26,7 +26,7 @@ export default function Home() {
   const currentBoard = useSelector(selectCurrentBoard);
   const { isOpen, open, close } = useToggle();
   const sidebarRef = useRef(null);
-
+  
   useEffect(() => {
     dispatch(fetchAllBoards());
     (async () => {
