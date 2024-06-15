@@ -11,7 +11,11 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+// import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../redux/theme/selectors.js';
 import css from './CreateCardModalWindow.module.css';
+import clsx from 'clsx';
 
 import { createCard } from '../../redux/task/operations.js';
 
@@ -28,6 +32,8 @@ export default function CreateCardModalWindow({
   const [priority, setPiority] = useState('Without priority');
   const [startDate, setStartDate] = useState(new Date());
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
+  const selectedTheme = useSelector(selectTheme);
+  console.log(selectedTheme);
   const handleChange = e => {
     setDatePickerIsOpen(!isDatePickerOpen);
     setStartDate(e);
@@ -39,10 +45,6 @@ export default function CreateCardModalWindow({
   const dispatch = useDispatch();
 
   const newDate = new Date();
-
-  console.log('startDate: ', startDate.toDateString());
-  console.log('new Date: ', newDate.toDateString());
-  console.log('compare: ', startDate.toDateString() == newDate.toDateString());
 
   const onPriorityChange = event => {
     setPiority(event.target.value);
@@ -57,14 +59,6 @@ export default function CreateCardModalWindow({
   });
 
   const onSubmit = data => {
-    const createdCard = {
-      title: data.title,
-      description: data.description,
-      priority,
-      columnId,
-      deadline: startDate,
-    };
-    console.log(createdCard);
     dispatch(
       createCard({
         title: data.title,
@@ -74,40 +68,41 @@ export default function CreateCardModalWindow({
         deadline: startDate,
       })
     );
+    handleModalClose();
   };
 
   return (
     <ReactModal
       isOpen={isOpen}
-      className={css.modalWindowWrp}
+      className={clsx(css.modalWindowWrp, css[selectedTheme])}
       overlayClassName={css.modalOverlay}
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       onRequestClose={handleModalClose}
       ariaHideApp={false}
     >
-      <form className={css.modalWindow} onSubmit={handleSubmit(onSubmit)}>
-        <button className={css.modalWindowCloseBtn}>
-          <svg stroke="black" width="18" height="18" aria-label="close-btn">
+      <form className={clsx(css.modalWindow, css[selectedTheme])} onSubmit={handleSubmit(onSubmit)}>
+        <button className={clsx(css.modalWindowCloseBtn, css[selectedTheme])} onClick={handleModalClose}>
+          <svg width="18" height="18" aria-label="close-btn">
             <use href={`${sprite}#icon-x-close`}></use>
           </svg>
         </button>
-        <p className={css.modalWindowHeader}>Add card</p>
+        <p className={clsx(css.modalWindowHeader, css[selectedTheme])}>Add card</p>
         <input
-          className={css.taskTitleInput}
+          className={clsx(css.taskTitleInput, css[selectedTheme])}
           {...register('title')}
           name="title"
           placeholder="Title"
         />
         <ErrorMessage name="title" errors={errors} />
         <textarea
-          className={css.taskDescriptionInput}
+          className={clsx(css.taskDescriptionInput, css[selectedTheme])}
           {...register('description')}
           name="description"
           placeholder="Description"
         />
         <ErrorMessage name="description" errors={errors} />
-        <p className={css.taskPriorityHeader}>Label color</p>
+        <p className={clsx(css.taskPriorityHeader, css[selectedTheme])}>Label color</p>
         <div className={css.taskPriorityInputsWrp}>
           <div className={css.prorityWrp}>
             <input
@@ -160,17 +155,16 @@ export default function CreateCardModalWindow({
             ></div>
           </div>
         </div>
-        <p className={css.deadlineHeader}>Deadline</p>
-        <button className={css.pickerBtn} onClick={handleClick}>
+        <p className={clsx(css.deadlineHeader, css[selectedTheme])}>Deadline</p>
+        <button className={clsx(css.pickerBtn, css[selectedTheme])} onClick={handleClick}>
           {startDate.toDateString() == newDate.toDateString() ? (
             <p>Today, </p>
           ) : null}
           {format(startDate, 'dd/MM/yyyy')}
-          <svg stroke="black" width="9" height="9" aria-label="close-btn">
+          <svg className={clsx(css.pickerSvg, css[selectedTheme])} width="18" height="18" aria-label="close-btn">
             <use href={`${sprite}#icon-down`}></use>
           </svg>
         </button>
-
         {isDatePickerOpen && (
           <DatePicker
             dateFormat="dd/MM/yyyy"
@@ -180,8 +174,14 @@ export default function CreateCardModalWindow({
             minDate={new Date()}
           />
         )}
-
-        <button type="submit">Add</button>
+        <button className={clsx(css.submitBtn, css[selectedTheme])} type="submit">
+          <span className={clsx(css.submitBtnSpan, css[selectedTheme])}>
+            <svg className={clsx(css.submitBtnSvg, css[selectedTheme])} stroke="white" width="14" height="14" aria-label="close-btn">
+              <use href={`${sprite}#icon-plus`}></use>
+            </svg>
+          </span>
+          <p className={clsx(css.submitBtnText, css[selectedTheme])}>Add</p>
+        </button>
       </form>
     </ReactModal>
   );
