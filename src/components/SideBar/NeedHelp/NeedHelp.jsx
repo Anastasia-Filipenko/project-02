@@ -13,7 +13,7 @@ const customStyles = {
     bottom: 'auto',
     transform: 'translate(-50%, -50%)',
     width: '400px',
-    heigth: '400px',
+    // height: '420px',
     borderRadius: '15px',
   },
   overlay: {

@@ -2,33 +2,28 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--color-dark-btn);
   height: 32px;
   cursor: pointer;
+  background-color: trasparent;
+  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.user.dark {
-  background-color: var(--color-dark-primary);
-}
-
-
-.user_name {
-  /* color: var(--color-dark-text-primary); */
+.user:hover {
+  transform: scale(1.1);
 }
 
 .user_name.dark {
-  color: (var(--text-color-light));
-  background-color: var(--color-dark-primary);
+  color: var(--color-user-name-dark);
+  background-color: var(--color-user-preview-dark);
 }
 
 .user_name.light {
-  color: var(--text-color-light);
-  background-color: var(--color-light-primary);
+  color: var(--color-user-name-light);
+  background-color: var(--color-user-preview-light);
 }
 
 .user_name.violet {
   color: var(--text-color-light);
-  background-color: var(--color-light-primary);
+  background-color: var(--color-user-preview-violet);
 }
 
 .user_avatar {

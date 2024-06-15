@@ -81,9 +81,4 @@ export const authSlice = createSlice({
       }),
 });
 
-export const selectUserName = state => state.auth.user.name;
-export const selectUserEmail = state => state.auth.user.email;
-export const selectUserId = state => state.auth.user.userId;
-export const selectUserAvatar = state => state.auth.user.avatar;
-
 export const authReducer = authSlice.reducer;

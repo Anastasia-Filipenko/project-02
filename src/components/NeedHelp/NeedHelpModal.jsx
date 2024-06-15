@@ -5,7 +5,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../assets/sprite.svg';
 import { sendComment } from '../../redux/needHelp/slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import clsx from 'clsx';
+import { selectTheme } from '../../redux/theme/themeSlice';
 
 const schema = yup.object().shape({
   email: yup
@@ -26,10 +28,10 @@ export default function NeedHelpModal({ close }) {
     resolver: yupResolver(schema),
   });
 
+  const selectedTheme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
   const onSubmit = data => {
-    console.log(data);
     dispatch(
       sendComment({
         email: data.email,
@@ -41,16 +43,24 @@ export default function NeedHelpModal({ close }) {
 
   return (
     <>
-      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={clsx(css.form, css[selectedTheme])}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div>
-          <svg className={css.logo_icon} width="18" height="18" onClick={close}>
+          <svg
+            className={clsx(css.logo_icon, css[selectedTheme])}
+            width="18"
+            height="18"
+            onClick={close}
+          >
             <use xlinkHref={`${sprite}#icon-x-close`}></use>
           </svg>
-          <p className={css.title}>Need help</p>
+          <p className={clsx(css.title, css[selectedTheme])}>Need help</p>
           <div className={css.blockinfo}>
             <input
               placeholder="Email address"
-              className={css.input_email}
+              className={clsx(css.input_email, css[selectedTheme])}
               type="email"
               {...register('email')}
             />
@@ -63,7 +73,7 @@ export default function NeedHelpModal({ close }) {
             <textarea
               placeholder="Comment"
               type="comment"
-              className={css.textarea_comment}
+              className={clsx(css.textarea_comment, css[selectedTheme])}
               rows={4}
               {...register('comment')}
             />
@@ -73,7 +83,7 @@ export default function NeedHelpModal({ close }) {
               render={({ message }) => <p className={css.error}>{message}</p>}
             />
           </div>
-          <button className={css.btn} type="submit">
+          <button className={clsx(css.btn, css[selectedTheme])} type="submit">
             Send
           </button>
         </div>

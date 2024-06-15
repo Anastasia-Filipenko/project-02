@@ -10,8 +10,23 @@ body.dark {
   --arrow-color-dark: var(--color-dark-text-secondary-80);
   --menu-color-dark: var(--color-dark-text-primary);
   --menu-stroke-dark: var(--color-dark-stroke);
-  
 
+  --color-user-preview-dark: var(--color-dark-primary);
+  --color-user-name-dark: var(--color-dark-text-primary);
+
+  /* стилі для форми */
+  --background-form-dark: var(--color-dark-primary);
+  --color-icon-close-dark: var(--color-dark-text-primary);
+  --color-title-form-dark: var(--color-dark-text-primary);
+  --color-icon-plus-dark: var(--color-dark-primary);
+  --color-btn-dark: var(--color-dark-btn);
+  --color-btn-hover-dark: var(--color-dark-btn-hover);
+  --color-btn-text-dark: var(--color-dark-btn-text);
+  --bg-color-input-dark: #1f1f1f;
+  --color-input-accent-dark: var(--color-dark-accent);
+  --color-input-placeholder-dark: var(--color-dark-text-primary);
+  --color-icon-password-dark: var(--color-label-without);
+  --color-input-text-dark: var(--color-dark-input-active);
 }
 
 body.light {
@@ -21,6 +36,24 @@ body.light {
   --text-color-light: var(--color-dark-primary);
   --arrow-color-light: var(--color-light-text-primary);
   --menu-stroke-light: var(--color-dark-btn-text);
+
+  --color-user-preview-light: var(--color-light-primary);
+  --color-user-name-light: var(--text-color-light);
+
+  /* стилі для форми */
+  --background-form-light: var(--color-light-primary);
+  --color-icon-close-light: var(--color-light-text-primary);
+  --color-title-form-light: var(--color-light-text-primary);
+  --color-icon-plus-light: var(--color-light-text-primary);
+  --bg-color-input-light: var(--color-dark-input-active);
+  --color-btn-light: var(--color-light-btn);
+  --color-btn-hover-light: var(--color-dark-btn-hover);
+  --color-btn-text-light: var(--color-light-btn-text);
+  --color-input-accent-light: var(--color-light-accent);
+  --color-input-text-light: var(--color-light-input-active);
+  --color-input-placeholder-light: var(--color-light-input-active);
+  --color-icon-password-light: var(--color-light-input-text);
+  --fill-password-light: var(--color-label-without);
 }
 
 body.violet {
@@ -29,8 +62,29 @@ body.violet {
   --background-body-violet: var(--color-light-primary);
   --text-color-violet: var(--color-dark-primary);
   --menu-stroke-violet: var(--color-dark-btn-text);
-}
 
+  --color-user-preview-violet: var(--color-light-primary);
+  --color-user-name-violet: var(--color-violet-text-secondary);
+
+  /* стилі для форми */
+  --background-form-violet: var(--color-light-primary);
+  --color-icon-close-violet: var(--color-violet-text-secondary);
+  --color-title-form-violet: var(--color-light-text-secondary);
+  --background-color-user-plus-light: var(
+    --color-violet-background-screensPage
+  );
+  --background-color-user-plus-violet: var(--color-violet-btn-board-hover);
+  --color-icon-plus-violet: var(--color-violet-text-secondary);
+  --color-btn-violet: var(--color-violet-btn);
+  --color-btn-hover-violet: var(--color-violet-btn-hover);
+  --color-btn-text-violet: var(--color-violet-btn-text);
+  --bg-color-input-violet: var(--color-dark-input-active);
+  --color-inpur-accent-violet: var(--color-violet-btn);
+  --color-input-text-violet: var(--color-violet-text-secondary);
+  --color-input-placeholder-violet: var(--color-violet-text-secondary);
+  --color-icon-password-violet: var(--color-violet-btn-hover);
+  --fill-password-violet: var(--color-label-without);
+}
 
 h1,
 h2,
