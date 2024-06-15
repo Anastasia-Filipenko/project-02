@@ -8,7 +8,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 // import { forwardRef } from 'react';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
+import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import css from './CreateCardModalWindow.module.css';
 
@@ -26,13 +27,22 @@ export default function CreateCardModalWindow({
 }) {
   const [priority, setPiority] = useState('Without priority');
   const [startDate, setStartDate] = useState(new Date());
+  const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
+  const handleChange = e => {
+    setDatePickerIsOpen(!isDatePickerOpen);
+    setStartDate(e);
+  };
+  const handleClick = e => {
+    e.preventDefault();
+    setDatePickerIsOpen(!isDatePickerOpen);
+  };
   const dispatch = useDispatch();
 
   const newDate = new Date();
 
-  console.log("startDate: ", startDate.toDateString());
-  console.log("new Date: ", newDate.toDateString());
-  console.log("compare: ", startDate.toDateString() == newDate.toDateString());
+  console.log('startDate: ', startDate.toDateString());
+  console.log('new Date: ', newDate.toDateString());
+  console.log('compare: ', startDate.toDateString() == newDate.toDateString());
 
   const onPriorityChange = event => {
     setPiority(event.target.value);
@@ -78,7 +88,7 @@ export default function CreateCardModalWindow({
     >
       <form className={css.modalWindow} onSubmit={handleSubmit(onSubmit)}>
         <button className={css.modalWindowCloseBtn}>
-          <svg stroke="black" width="9" height="9" aria-label="close-btn">
+          <svg stroke="black" width="18" height="18" aria-label="close-btn">
             <use href={`${sprite}#icon-x-close`}></use>
           </svg>
         </button>
@@ -119,7 +129,9 @@ export default function CreateCardModalWindow({
               id="medium"
               onChange={onPriorityChange}
             />
-            <div className={`${css.styledRadio} ${css.mediumPriorityColor}`}></div>
+            <div
+              className={`${css.styledRadio} ${css.mediumPriorityColor}`}
+            ></div>
           </div>
           <div className={css.prorityWrp}>
             <input
@@ -130,7 +142,9 @@ export default function CreateCardModalWindow({
               id="high"
               onChange={onPriorityChange}
             />
-            <div className={`${css.styledRadio} ${css.highPriorityColor}`}></div>
+            <div
+              className={`${css.styledRadio} ${css.highPriorityColor}`}
+            ></div>
           </div>
           <div className={css.prorityWrp}>
             <input
@@ -141,20 +155,32 @@ export default function CreateCardModalWindow({
               id="without"
               onChange={onPriorityChange}
             />
-            <div className={`${css.styledRadio} ${css.withoutPriorityColor}`}></div>
+            <div
+              className={`${css.styledRadio} ${css.withoutPriorityColor}`}
+            ></div>
           </div>
         </div>
         <p className={css.deadlineHeader}>Deadline</p>
-        <DatePicker
-          dateFormat="yyyy/MM/dd"
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-          minDate={new Date()}
-        />
-        {startDate.toDateString() == newDate.toDateString() 
-        ? <p>Today</p>
-        : null 
-        }
+        <button className={css.pickerBtn} onClick={handleClick}>
+          {startDate.toDateString() == newDate.toDateString() ? (
+            <p>Today, </p>
+          ) : null}
+          {format(startDate, 'dd/MM/yyyy')}
+          <svg stroke="black" width="9" height="9" aria-label="close-btn">
+            <use href={`${sprite}#icon-x-close`}></use>
+          </svg>
+        </button>
+
+        {isDatePickerOpen && (
+          <DatePicker
+            dateFormat="dd/MM/yyyy"
+            selected={startDate}
+            onChange={handleChange}
+            inline
+            minDate={new Date()}
+          />
+        )}
+
         <button type="submit">Add</button>
       </form>
     </ReactModal>
