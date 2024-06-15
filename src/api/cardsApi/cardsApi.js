@@ -2,9 +2,10 @@ import { cardsInstance } from '../axiosConfig';
 
 export const createCardApi = async data => {
   try {
-    console.log(data);
+    // console.log(data);
     const response = await cardsInstance.post('/', data);
-    console.log(response);
+    // console.log(response);
+
     return response;
   } catch (error) {
     throw new Error(error.response.data.message);

@@ -11,20 +11,6 @@ const controlBtnInCardSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      // .addCase(fetchCards.pending, state => {
-      //   state.isCardsLoading = true;
-      //   state.cardsError = null;
-      // })
-      // .addCase(fetchCards.fulfilled, (state, { payload }) => {
-      //   state.cards = payload;
-      //   state.isCardsLoading = false;
-      //   state.cardsError = null;
-      // })
-      // .addCase(fetchCards.rejected, (state, { payload }) => {
-      //   state.cardsError = payload;
-      //   state.isCardsLoading = false;
-      // })
-
       .addCase(moveCard.pending, state => {
         state.isCardsLoading = true;
         state.cardsError = null;
@@ -75,9 +61,16 @@ const controlBtnInCardSlice = createSlice({
         state.cardsError = null;
       })
       .addCase(deleteCard.fulfilled, (state, { payload }) => {
-        state.cards = state.cards.filter(card => card._id !== payload._id);
+        const column = state.cards.find(
+          col => col.columnId === payload.columnId
+        );
+        column.cards = payload.cards;
         state.isCardsLoading = false;
         state.cardsError = null;
+
+        // state.cards = state.cards.filter(card => card._id !== payload._id);
+        // state.isCardsLoading = false;
+        // state.cardsError = null;
       })
       .addCase(deleteCard.rejected, (state, { payload }) => {
         state.cardsError = payload;

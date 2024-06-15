@@ -1,4 +1,5 @@
 .card {
+  display: flex;
   position: relative;
   background-color: rgb(18, 18, 18);
   width: 354px;
@@ -58,9 +59,9 @@ button {
   display: block;
 }
 
-.icon {
+/* .icon {
   fill: currentColor;
-}
+} */
 
 .deadline {
   color: red;
@@ -75,4 +76,17 @@ button {
 .priority {
   color: azure;
   font-size: 10px;
+}
+
+.priorityAndDeadline {
+  display: flex;
+  align-content: flex-end;
+}
+
+.icon {
+  stroke: gray;
+}
+
+.buttonActive .icon {
+  stroke: green;
 }
