@@ -11,7 +11,7 @@ import {
 } from '../../redux/boards/selectors';
 import { fetchAllBoards } from '../../redux/boards/operations';
 import { Navigate } from 'react-router-dom';
-import { Stack } from '@mui/material';
+import { Stack, Container } from '@mui/material';
 import { DetectScreen } from './DetectScreen';
 import { setBackgrounds, setCurrentBoard } from '../../redux/boards/slice';
 import { EmptyBoard } from '../../components/Board/EmptyBoard';
@@ -51,30 +51,35 @@ export default function Home() {
   };
 
   return (
-    <Stack
-      direction="row"
-      height="100vh"
-      display="flex"
-      onClick={handleContainerClick}
-    >
+    <Container maxWidth={false} disableGutters>
       <DetectScreen />
-      <SideBar ref={sidebarRef} isOpen={isOpen} onClose={close} />
-      <Stack
-        justifyContent="flex-start"
-        maxWidth={{
-          xs: '368px',
-          sm: '768px',
-          xl: '1180px',
-        }}
-      >
-        <Header toggleSidebar={open} closeSidebar={close} />
-        {boards.length === 0 ? (
-          <EmptyBoard />
-        ) : (
-          currentBoard.title && <Navigate to={'/home/' + currentBoard.title} />
-        )}
-        <Outlet />
+      <Stack direction="row" height="100vh" onClick={handleContainerClick}>
+        <SideBar ref={sidebarRef} isOpen={isOpen} onClose={close} />
+        <Stack
+          justifyContent="flex-start"
+          flexGrow={1}
+          minWidth={{
+            xs: '368px',
+            sm: '768px',
+            lg: '1180px',
+          }}
+          maxWidth={{
+            xs: '767px',
+            sm: '1179px',
+            lg: '2080px',
+          }}
+        >
+          <Header toggleSidebar={open} closeSidebar={close} />
+          {boards.length === 0 ? (
+            <EmptyBoard />
+          ) : (
+            currentBoard.title && (
+              <Navigate to={'/home/' + currentBoard.title} />
+            )
+          )}
+          <Outlet />
+        </Stack>
       </Stack>
-    </Stack>
+    </Container>
   );
 }
