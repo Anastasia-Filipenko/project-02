@@ -7,11 +7,16 @@ import {
   selectAllBoards,
   selectCurrentBoard,
 } from '../../../redux/boards/selectors';
-import { fetchCurrentBoard } from '../../../redux/boards/operations';
+import {
+  fetchCurrentBoard,
+  deleteBoards,
+} from '../../../redux/boards/operations';
 import css from './BoardList.module.css';
+// import { deleteBoards } from '../../../redux/boards/operations';
+import { BoardModal } from '../../BoardModal/BoardModal';
 
 const BoardList = () => {
-//   const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [boardId, setBoardId] = useState(false);
   const boards = useSelector(selectAllBoards);
   const currentBoard = useSelector(selectCurrentBoard);
@@ -26,36 +31,53 @@ const BoardList = () => {
     navigate(normTitle);
   };
 
-//   const openModal = () => {
-//     setModalOpen(true);
-//   };
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-//   const closeModal = () => {
-//     setModalOpen(false);
-//   };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-  // edit and delete
+  const handleEditBoard = boardId => {
+    setBoardId(boardId);
+    openModal();
+  };
+
+  const handleDeleteBoard = (boardId) => {
+    dispatch(deleteBoards(boardId)).then(() => {
+      navigate('/home');
+    });
+  };
 
   return (
-    <div>
-      <ul>
+    <div className={css.cont}>
+      <ul className={css.list}>
         {boards.map(board => {
           if (board._id === currentBoard?._id) {
             return (
-              <div key={board._id}>
-                <svg width="18" height="18" className={css.icon}>
-                  <use xlinkHref={`${sprite}#${board.icon}`}></use>
-                </svg>
-                <p className={css.title}>{board.title}</p>
+              <div key={board._id} className={css.itemActive}>
+                <div className={css.iconTitle}>
+                  <svg width="18" height="18" className={css.iconActive}>
+                    <use xlinkHref={`${sprite}#${board.icon}`}></use>
+                  </svg>
+                  <p className={css.titleActive}>{board.title}</p>
+                </div>
                 <div>
-                  {/* edit */}
-                  <button type="button" className={css.icon}>
+                  <button
+                    type="button"
+                    className={css.iconBtn}
+                    onClick={() => handleEditBoard(board._id)}
+                  >
                     <svg width="16" height="16">
                       <use xlinkHref={`${sprite}#icon-pen`}></use>
                     </svg>
                   </button>
-                  {/* delete */}
-                  <button type="button" className={css.icon}>
+                  <button
+                    type="button"
+                    className={css.iconBtn}
+                    onClick={() => handleDeleteBoard(board._id)}
+                  >
                     <svg width="18" height="18">
                       <use xlinkHref={`${sprite}#icon-trash`}></use>
                     </svg>
@@ -67,6 +89,7 @@ const BoardList = () => {
 
           return (
             <div
+              className={css.item}
               key={board._id}
               onClick={() => {
                 handleOpenBoard(board._id, board.title);
@@ -80,6 +103,7 @@ const BoardList = () => {
           );
         })}
       </ul>
+      {isModalOpen && <BoardModal boardId={boardId} onClose={closeModal} />}
     </div>
   );
 };
