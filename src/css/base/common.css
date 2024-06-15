@@ -24,9 +24,9 @@ body.dark {
   --color-btn-text-dark: var(--color-dark-btn-text);
   --bg-color-input-dark: #1f1f1f;
   --color-input-accent-dark: var(--color-dark-accent);
-  --color-input-placeholder-dark: var(--color-dark-text-primary);
+  --color-input-placeholder-dark: var(--color-dark-input-text);
   --color-icon-password-dark: var(--color-label-without);
-  --color-input-text-dark: var(--color-dark-input-active);
+  --color-input-text-dark: var(--color-dark-text-primary);
 }
 
 body.light {
@@ -45,7 +45,7 @@ body.light {
   --color-icon-close-light: var(--color-light-text-primary);
   --color-title-form-light: var(--color-light-text-primary);
   --color-icon-plus-light: var(--color-light-text-primary);
-  --bg-color-input-light: var(--color-dark-input-active);
+  --bg-color-input-light: var(--color-light-primary);
   --color-btn-light: var(--color-light-btn);
   --color-btn-hover-light: var(--color-dark-btn-hover);
   --color-btn-text-light: var(--color-light-btn-text);
@@ -78,7 +78,7 @@ body.violet {
   --color-btn-violet: var(--color-violet-btn);
   --color-btn-hover-violet: var(--color-violet-btn-hover);
   --color-btn-text-violet: var(--color-violet-btn-text);
-  --bg-color-input-violet: var(--color-dark-input-active);
+  --bg-color-input-violet: var(--color-light-primary);
   --color-inpur-accent-violet: var(--color-violet-btn);
   --color-input-text-violet: var(--color-violet-text-secondary);
   --color-input-placeholder-violet: var(--color-violet-text-secondary);
