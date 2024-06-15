@@ -5,11 +5,10 @@ import NeedHelp from '../SideBar/NeedHelp/NeedHelp';
 import LogOut from '../SideBar/LogOut/LogOut';
 // import BoardsList from './BoardsList/BoardsList';
 import BoardList from './BoardsList/BoardList';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRef, forwardRef, useEffect } from 'react';
 import Loader from '../Loader/Loader';
 import { selectAllBoards } from '../../redux/boards/selectors';
-import { fetchAllBoards } from '../../redux/boards/operations';
 import clsx from 'clsx';
 import { selectTheme } from '../../redux/theme/selectors';
 
@@ -18,11 +17,6 @@ const SideBar = forwardRef(({ viewPortWidth, isOpen, onClose }, ref) => {
   const allBoards = useSelector(selectAllBoards);
   const { items, isLoading, error } = allBoards;
   const selectedTheme = useSelector(selectTheme);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchAllBoards());
-  }, [dispatch]);
 
   useEffect(() => {
     const handleMouseDown = e => {

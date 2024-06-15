@@ -26,7 +26,16 @@ export const editBoardApi = async (id, data) => {
   }
 };
 
+// export const deleteBoardApi = async id => {
+//   const response = await boardInstance.delete(`/${id}`);
+//   return response;
+// };
+
 export const deleteBoardApi = async id => {
-  const response = await boardInstance.delete(`/${id}`);
-  return response;
+  try {
+    const response = await boardInstance.delete(`/${id}`);
+    return response;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
 };

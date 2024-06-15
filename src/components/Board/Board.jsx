@@ -3,8 +3,9 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   selectCurrentBoard,
-  selectIsLoading,
+  selectBoardIsLoading,
 } from '../../redux/boards/selectors';
+import { selectColumnIsLoading } from '../../redux/columns/selectors';
 import { fetchCurrentBoard } from '../../redux/boards/operations';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -39,21 +40,23 @@ export default function Board() {
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
   const [isFiltersModalOpened, setisFiltersModalOpened] = useState(false);
   const theme = useTheme();
-  const isLoading = useSelector(selectIsLoading);
+  const isBoardLoading = useSelector(selectBoardIsLoading);
+  const isColumnLoading = useSelector(selectColumnIsLoading);
   const ref = useRef();
 
   useEffect(() => {
     if (board) {
       if (board.title === boardTitle && board._id) {
         setImgUrl(generateBgUrl(board.background, currentScreen));
-        setOpenedBoardId(board._id);
+        setOpenedBoardId(`${board._id}.${boardTitle}`);
       }
     }
   }, [board, boardTitle, currentScreen]);
 
   useEffect(() => {
+    console.log('fetching board inside board')
     if (openedBoardId) {
-      dispatch(fetchCurrentBoard(openedBoardId));
+      dispatch(fetchCurrentBoard(openedBoardId.split('.')[0]));
     }
   }, [dispatch, openedBoardId]);
 
@@ -64,8 +67,8 @@ export default function Board() {
 
   return (
     <>
-      {isLoading && <Loader />}
-      {!isLoading && board && board.background && (
+      {(isBoardLoading || isColumnLoading) && <Loader />}
+      {!isBoardLoading && !isColumnLoading && board && board.background && (
         <Card
           sx={{
             height: '100%',
@@ -123,7 +126,7 @@ export default function Board() {
                   <Column
                     key={index}
                     columnId={column._id}
-                    boardId={openedBoardId}
+                    boardId={board._id}
                   />
                 ))}
                 <Stack>
@@ -155,7 +158,7 @@ export default function Board() {
                 <ColumnModal
                   ref={ref}
                   closeModal={() => setisColumnModalOpened(false)}
-                  boardId={openedBoardId}
+                  boardId={board._id}
                 />
               </Modal>
               <Modal

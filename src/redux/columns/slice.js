@@ -29,7 +29,6 @@ const columnsSlice = createSlice({
   },
   reducers: {
     setColumns(state, action) {
-      console.log('set boardId 1', action.payload.boardId)
       state.boardId = action.payload.boardId;
       state.items = action.payload.columns;
     }

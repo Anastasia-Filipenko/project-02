@@ -1,6 +1,6 @@
 // import { createSelector } from "@reduxjs/toolkit";
 
-export const selectIsLoading = (state) => state.boards.isLoading;
+export const selectBoardIsLoading = (state) => state.boards.isLoading;
 
 export const selectError = (state) => state.boards.error;
 

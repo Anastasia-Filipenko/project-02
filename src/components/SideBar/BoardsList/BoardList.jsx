@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { Modal } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../../assets/sprite.svg';
@@ -14,6 +15,7 @@ import {
 import css from './BoardList.module.css';
 // import { deleteBoards } from '../../../redux/boards/operations';
 import { BoardModal } from '../../BoardModal/BoardModal';
+import { setCurrentBoard } from '../../../redux/boards/slice';
 
 const BoardList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -22,13 +24,11 @@ const BoardList = () => {
   const currentBoard = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const ref = useRef();
 
-  const handleOpenBoard = async (boardId, boardTitle) => {
-    await dispatch(fetchCurrentBoard(boardId));
-    // update
-    const normTitle = boardTitle.toLowerCase().replace(/[\s/]+/g, '-');
-    console.log('Navigating to:', normTitle);
-    navigate(normTitle);
+  const handleOpenBoard = (boardId, boardTitle) => {
+    dispatch(setCurrentBoard({ _id: boardId, title: boardTitle}))
+    navigate(boardTitle);
   };
 
   const openModal = () => {
@@ -44,10 +44,9 @@ const BoardList = () => {
     openModal();
   };
 
-  const handleDeleteBoard = (boardId) => {
-    dispatch(deleteBoards(boardId)).then(() => {
-      navigate('/home');
-    });
+  const handleDeleteBoard = boardId => {
+    dispatch(deleteBoards(boardId));
+    navigate('/home');
   };
 
   return (
@@ -103,7 +102,21 @@ const BoardList = () => {
           );
         })}
       </ul>
-      {isModalOpen && <BoardModal boardId={boardId} onClose={closeModal} />}
+      <Modal
+        open={isModalOpen}
+        onClose={closeModal}
+        disableAutoFocus={true}
+      >
+        <BoardModal
+          ref={ref}
+          title={currentBoard.title}
+          boardId={currentBoard._id}
+          selectedIcon={currentBoard.icon}
+          selectedBackground={currentBoard.background}
+          closeModal={closeModal}
+          editMode={true}        
+          />
+      </Modal>
     </div>
   );
 };

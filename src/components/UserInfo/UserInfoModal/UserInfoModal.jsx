@@ -102,6 +102,7 @@ export default function UserInfo({ close }) {
           <p className={clsx(css.title, css[selectedTheme])}>Edit profile</p>
           <div className={clsx(css.avatar, css[selectedTheme])}>
             <img src={avatarSrc} className={css.user_avatar} alt="" />
+
             <div
               className={clsx(css.icon, css[selectedTheme])}
               onClick={handleAvatarClick}
