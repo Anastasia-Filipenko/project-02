@@ -2,10 +2,7 @@ import sprite from '../../assets/sprite.svg';
 import * as Yup from 'yup';
 import {
   FormControl,
-  TextField,
   Box,
-  Button,
-  Card,
   CardHeader,
   CardContent,
   IconButton,
@@ -14,20 +11,21 @@ import {
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { forwardRef, useEffect, useRef } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 import { addColumn, editColumn } from '../../redux/columns/operations';
+import {
+  StyleBoxModal,
+  StyledCardModal,
+  StyledSvgIcon,
+  StyledTextField,
+  StyledTypography,
+} from '../MUIstyled/styledComponent';
+import { StyledSubmitButtonWithPlusicon } from '../MUIstyled/commonComponent';
+import { useTheme } from '@mui/material/styles';
 
 export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
   const dispatch = useDispatch();
   const titleInputRef = useRef(null);
-
-  const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    disableAutoFocus: true,
-  };
+  const theme = useTheme();
 
   useEffect(() => {
     if (titleInputRef.current) {
@@ -64,68 +62,40 @@ export const ColumnModal = forwardRef(function ColumnModal(props, ref) {
   });
 
   return (
-    <Box sx={modalStyle}>
-      <Card
-        sx={{
-          maxWidth: 350,
-          heigth: 433,
-          bgcolor: 'white',
-          border: '0px solid #000',
-          borderRadius: '8px',
-        }}
-      >
+    <StyleBoxModal>
+      <StyledCardModal>
         <CardHeader
           action={
             <IconButton onClick={props.closeModal}>
-              <CloseIcon />
+              <StyledSvgIcon>
+                <use xlinkHref={`${sprite}#icon-x-close`}></use>
+              </StyledSvgIcon>
             </IconButton>
           }
-          title={props.editColumn ? "Edit column" : "Add column"} 
+          titleTypographyProps={{ color: `${theme.color.fontColor}` }}
+          title={props.editColumn ? 'Edit column' : 'Add column'}
         />
         <CardContent>
           <form onSubmit={formik.handleSubmit} id="column-form" ref={ref}>
-            <FormControl>
-              <TextField
+            <FormControl sx={{ display: 'flex' }}>
+              <StyledTextField
                 name="title"
-                variant="outlined"
                 size="medium"
                 value={formik.values.title}
                 onChange={formik.handleChange}
                 error={formik.touched.title && Boolean(formik.errors.title)}
                 helperText={formik.touched.title && formik.errors.title}
                 inputRef={titleInputRef}
-              ></TextField>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  backgroundColor: '#bedbb0',
-                  textTransform: 'none',
-                }}
-                startIcon={
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      borderRadius: '8px',
-                      backgroundColor: 'black',
-                      width: 28,
-                      height: 28,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <svg fill="white" stroke="white" width="14px" height="14px">
-                      <use xlinkHref={`${sprite}#icon-plus`}></use>
-                    </svg>
-                  </Box>
-                }
-              >
-                {props.editColumn ? 'Edit' : 'Add'}
-              </Button>
+              ></StyledTextField>
+              <StyledSubmitButtonWithPlusicon>
+                <StyledTypography>
+                  {props.editColumn ? 'Edit' : 'Add'}
+                </StyledTypography>
+              </StyledSubmitButtonWithPlusicon>
             </FormControl>
           </form>
         </CardContent>
-      </Card>
-    </Box>
+      </StyledCardModal>
+    </StyleBoxModal>
   );
 });

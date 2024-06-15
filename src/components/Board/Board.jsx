@@ -17,40 +17,17 @@ import {
   Modal,
   Box,
   Typography,
+  IconButton,
 } from '@mui/material';
 import { Column } from '../Column/Column';
-import { cld } from '../CloudinaryImages/cloudinaryClient';
+import { generateBgUrl } from './utils';
+
 import { selectCurrentScreen } from '../../redux/common/selectors';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
 import Loader from '../Loader/Loader';
 import sprite from '../../assets/sprite.svg';
-
-const generateBgUrl = (selectedBg, screen) => {
-  let folderName;
-  switch (screen) {
-    case 'desktop':
-      folderName = 'bg/desktop';
-      break;
-    case 'desktop2x':
-      folderName = 'bg/desktop2x';
-      break;
-    case 'tablet':
-      folderName = 'bg/tablet';
-      break;
-    case 'tablet2x':
-      folderName = 'bg/tablet2x';
-      break;
-    case 'mobile':
-      folderName = 'bg/mobile';
-      break;
-    case 'mobile2x':
-      folderName = 'bg/mobile2x';
-      break;
-    default:
-      folderName = 'bg/desktop';
-  }
-  return cld.image(`${folderName}/${selectedBg}`).toURL();
-};
+import { StyledButton, StyledSvgIcon, StyledTypography } from '../MUIstyled/styledComponent';
+import { StyledPlusIconColumn } from '../MUIstyled/commonComponent';
 
 export default function Board() {
   const dispatch = useDispatch();
@@ -61,6 +38,7 @@ export default function Board() {
   const [openedBoardId, setOpenedBoardId] = useState();
 
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
+  const [isFiltersModalOpened, setisFiltersModalOpened] = useState(false);
   const theme = useTheme();
   const isLoading = useSelector(selectIsLoading);
   const ref = useRef();
@@ -101,74 +79,73 @@ export default function Board() {
               titleTypographyProps={{
                 color: theme.color.fontColor,
               }}
+              action={
+                <IconButton onClick={() => setisFiltersModalOpened(true)}>
+                  <StyledSvgIcon>
+                    <use xlinkHref={`${sprite}#icon-filter`}></use>
+                  </StyledSvgIcon>
+                  <Typography
+                    pr="24px"
+                    color={theme.color.fontColor}
+                    fontSize={14}
+                    ml="4px"
+                  >
+                    Filters
+                  </Typography>
+                </IconButton>
+              }
             />
+
             <CardContent
               sx={{
                 overflowX: 'auto',
-                flexWrap: 'nowrap',
-                maxWidth: {
-                  // xs: '360px',
-                  // md: '768px',
-                  // lg: '1340px'
+                p: 0,
+                mx: {
+                  xs: '16px',
+                  sm: '32px',
                 },
+                flexWrap: 'nowrap',
                 '&.MuiCardContent-root': {
                   '&::-webkit-scrollbar': {
-                    width: '10px'
+                    width: '20px',
                   },
-                  "&::-webkit-scrollbar-track": {
+                  '&::-webkit-scrollbar-track': {
                     boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
                   },
-                  "&::-webkit-scrollbar-thumb": {
+                  '&::-webkit-scrollbar-thumb': {
                     backgroundColor: theme.color.defaultBoardBackground,
                     outline: `1px solid slategrey`,
                   },
-                }
+                },
               }}
             >
-              <Stack direction="row" gap={2}>
+              <Stack direction="row" gap="32px">
                 {board.columns?.map((column, index) => (
-                  <Column key={index} columnId={column._id} boardId={openedBoardId}/>
+                  <Column
+                    key={index}
+                    columnId={column._id}
+                    boardId={openedBoardId}
+                  />
                 ))}
                 <Stack>
-                  <Button
+                  <StyledButton
                     onClick={() => setisColumnModalOpened(true)}
-                    variant="contained"
                     sx={{
-                      backgroundColor: '#bedbb0',
+                      backgroundColor: theme.color.defaultBoardBackground,
                       textTransform: 'none',
                       padding: '10px',
                       width: '334px',
                       height: '56px',
-                      display: 'flex',
                     }}
                     fullWidth
                     startIcon={
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          borderRadius: '8px',
-                          backgroundColor: 'black',
-                          width: 28,
-                          height: 28,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <svg
-                          fill="white"
-                          stroke="white"
-                          width="14px"
-                          height="14px"
-                        >
-                          <use xlinkHref={`${sprite}#icon-plus`}></use>
-                        </svg>
-                      </Box>
+                      <StyledPlusIconColumn />
                     }
                   >
-                    <Typography color={theme.color.themeColor}>
+                    <StyledTypography>
                       Add another column
-                    </Typography>
-                  </Button>
+                    </StyledTypography>
+                  </StyledButton>
                 </Stack>
               </Stack>
               <Modal
@@ -179,6 +156,16 @@ export default function Board() {
                 <ColumnModal
                   ref={ref}
                   closeModal={() => setisColumnModalOpened(false)}
+                  boardId={openedBoardId}
+                />
+              </Modal>
+              <Modal
+                open={isFiltersModalOpened}
+                onClose={() => setisFiltersModalOpened(false)}
+                disableAutoFocus={true}
+              >
+                <ColumnModal
+                  closeModal={() => setisFiltersModalOpened(false)}
                   boardId={openedBoardId}
                 />
               </Modal>

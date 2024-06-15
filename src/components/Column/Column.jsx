@@ -1,28 +1,26 @@
 import { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   CardHeader,
   IconButton,
-  Button,
-  Box,
   CardActions,
   Modal,
   Stack,
+  useTheme,
+  styled,
 } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 import sprite from '../../assets/sprite.svg';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { TaskModal } from '../TaskModal/TaskModal';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
-import { useSelector } from 'react-redux';
 import { selectColumn } from '../../redux/columns/selectors';
 import { deleteColumn } from '../../redux/columns/operations';
 import CreateCardModalWindow from '../CreateCardModalWindow/CreateCardModalWindow.jsx';
+import { StyledButton, StyledSvgIcon, StyledTypography } from '../MUIstyled/styledComponent.js';
+import { StyledPlusIcon } from '../MUIstyled/commonComponent.jsx';
 
 export const Column = props => {
   const dispatch = useDispatch();
-  // const [isTaskModalOpened, setIsTaskModalOpened] = useState(false);
+  const theme = useTheme();
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
   const ref = useRef();
   const column = useSelector(state => selectColumn(state, props.columnId));
@@ -40,8 +38,12 @@ export const Column = props => {
     dispatch(deleteColumn({ boardId: props.boardId, columnId: column._id }));
   };
 
+  const StyledIconButton = styled(IconButton)({
+    padding: 0,
+  });
+
   return (
-    <Stack sx={{ height: '75vh' }} justifyContent="space-between">
+    <Stack sx={{ height: '75vh' }} gap={2} justifyContent="space-between">
       <Card
         sx={{
           display: 'flex',
@@ -49,16 +51,26 @@ export const Column = props => {
           justifyContent: 'space-between',
           width: '334px',
           height: '56px',
+          backgroundColor: theme.color.themeColor,
         }}
       >
-        <CardHeader title={column.title} />
+        <CardHeader
+          title={column.title}
+          titleTypographyProps={{
+            color: theme.color.fontColor,
+          }}
+        />
         <CardActions>
-          <IconButton onClick={() => setisColumnModalOpened(true)}>
-            <EditIcon />
-          </IconButton>
-          <IconButton onClick={handledelete}>
-            <DeleteIcon />
-          </IconButton>
+          <StyledIconButton onClick={() => setisColumnModalOpened(true)}>
+            <StyledSvgIcon>
+              <use xlinkHref={`${sprite}#icon-pen`}></use>
+            </StyledSvgIcon>
+          </StyledIconButton>
+          <StyledIconButton onClick={handledelete}>
+            <StyledSvgIcon>
+              <use xlinkHref={`${sprite}#icon-trash`}></use>
+            </StyledSvgIcon>
+          </StyledIconButton>
         </CardActions>
       </Card>
 
@@ -66,55 +78,22 @@ export const Column = props => {
                     <Task key={index} task={task} columnId={props.column._id}/>
                   ))} */}
 
-      <Button
-        // onClick={() => setIsTaskModalOpened(true)}
+      <StyledButton
         onClick={() => handleOpenModal()}
-        type="button"
-        variant="contained"
-        sx={{
-          backgroundColor: '#bedbb0',
-          textTransform: 'none',
-          '&:hover': { backgroundColor: '#bedbb0' },
-          height: '56px',
-        }}
         startIcon={
-          <Box
-            sx={{
-              display: 'flex',
-              borderRadius: '8px',
-              backgroundColor: 'black',
-              width: 28,
-              height: 28,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <svg fill="white" stroke="white" width="14px" height="14px">
-              <use xlinkHref={`${sprite}#icon-plus`}></use>
-            </svg>
-          </Box>
+          <StyledPlusIcon backgroundColor='white'/>
         }
       >
-        Add another card
-      </Button>
+        <StyledTypography>Add another card</StyledTypography>
+      </StyledButton>
 
       {IsOpen && (
         <CreateCardModalWindow
           isOpen={IsOpen}
           handleModalClose={handleModalClose}
-          columnId={props.column._id}
-        />
-      )}
-
-      {/* <Modal
-        open={isTaskModalOpened}
-        onClose={() => setIsTaskModalOpened(false)}
-      >
-        <TaskModal
-          closeModal={() => setIsTaskModalOpened(false)}
           columnId={column._id}
         />
-      </Modal> */}
+      )}
 
       <Modal
         open={isColumnModalOpened}
