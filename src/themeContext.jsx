@@ -2,11 +2,21 @@ import { createContext, useState, useEffect, useContext } from 'react';
 
 const themeContext = createContext();
 const themeDark = {
+  name: 'dark',
   color: {
     backgroundBlackHeader: 'var( --background-header-dark)',
     backgroundBlackSidebar: 'var( --background-sidebar-dark)',
     backgroundBlackBody: 'var(--background-body)',
     colorTextBlack: 'var( --text-color-dark)',
+    themeColor: 'var(--color-dark-primary)',
+    defaultBoardBackground: 'var(--color-dark-primary)',
+    fontColor: 'var(--color-light-primary)',
+    inputColorDefault: 'var(--color-dark-input)',
+    inputColorActive: 'var(--color-dark-input-active)',
+    iconBackgroundColor: 'var(--color-dark-primary)',
+    iconStroke: 'var(--color-light-primary)',
+    iconColumnBackgroundColor: 'var(--color-light-primary)',
+    iconColumnStroke: 'var(--color-dark-primary)',
   },
 };
 const themeLight = {
@@ -20,18 +30,27 @@ const themeLight = {
     fontColor: 'var(--color-dark-primary)',
     inputColorDefault: 'var(--color-light-input)',
     inputColorActive: 'var(--color-light-input-active)',
+    iconBackgroundColor: 'var(--color-dark-primary)',
+    iconStroke: 'var(--color-light-primary)',
+    iconColumnBackgroundColor: 'var(--color-dark-primary)',
+    iconColumnStroke: 'var(--color-light-primary)'
   },
 };
 
 const themeViolet = {
   name: 'violet',
   color: {
+    themeColor: 'var(--color-light-primary)',
     backgroundVioletHeader: 'var(--color-violet-background-header)',
     backgroundVioletSidebar: 'var(--color-violet-background-sidebar)',
     defaultBoardBackground: 'var(--color-light-primary)',
     fontColor: 'var(--color-light-primary)',
     inputColorDefault: 'var(--color-violet-input)',
     inputColorActive: 'var(--color-violet-input-active)',
+    iconBackgroundColor: 'var(--color-light-primary)',
+    iconStroke: 'var(--color-dark-primary)',
+    iconColumnBackgroundColor: 'var(--color-violet-primary)',
+    iconColumnStroke: 'var(--color-light-primary)'
   },
 };
 

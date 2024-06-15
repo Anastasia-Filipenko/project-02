@@ -12,10 +12,12 @@
   "dependencies": {
     "@cloudinary/react": "^1.13.0",
     "@cloudinary/url-gen": "^1.19.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.6.0",
     "@mui/icons-material": "^5.15.19",
-    "@mui/material": "^5.15.19",
+    "@mui/material": "^5.15.20",
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
