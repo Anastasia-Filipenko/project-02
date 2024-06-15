@@ -46,14 +46,14 @@ export default function Board() {
     if (board) {
       if (board.title === boardTitle && board._id) {
         setImgUrl(generateBgUrl(board.background, currentScreen));
-        setOpenedBoardId(board._id);
+        setOpenedBoardId(`${board._id}.${boardTitle}`);
       }
     }
   }, [board, boardTitle, currentScreen]);
 
   useEffect(() => {
     if (openedBoardId) {
-      dispatch(fetchCurrentBoard(openedBoardId));
+      dispatch(fetchCurrentBoard(openedBoardId.split('.')[0]));
     }
   }, [dispatch, openedBoardId]);
 
@@ -123,7 +123,7 @@ export default function Board() {
                   <Column
                     key={index}
                     columnId={column._id}
-                    boardId={openedBoardId}
+                    boardId={board._id}
                   />
                 ))}
                 <Stack>
@@ -155,7 +155,7 @@ export default function Board() {
                 <ColumnModal
                   ref={ref}
                   closeModal={() => setisColumnModalOpened(false)}
-                  boardId={openedBoardId}
+                  boardId={board._id}
                 />
               </Modal>
               <Modal

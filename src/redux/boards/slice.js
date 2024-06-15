@@ -4,6 +4,7 @@ import {
   fetchAllBoards,
   addBoard,
   deleteBoards,
+  editBoard
 } from './operations';
 // import {
 //   logOut
@@ -28,6 +29,8 @@ const boardsSlice = createSlice({
     currentBoard: {
       _id: undefined,
       title: undefined,
+      icon: undefined,
+      background: undefined,
       columns: [],
     },
     isLoading: false,
@@ -65,6 +68,17 @@ const boardsSlice = createSlice({
         state.currentBoard = action.payload;
       })
       .addCase(addBoard.rejected, handleRejected)
+      .addCase(editBoard.pending, handlePending)
+      .addCase(editBoard.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const boardIndex = state.boards?.findIndex(b => b._id === action.payload._id);
+        if (boardIndex > -1) {
+          state.boards[boardIndex] = action.payload;
+          state.currentBoard = action.payload;
+        }
+      })
+      .addCase(editBoard.rejected, handleRejected)
       .addCase(deleteBoards.pending, handlePending)
       .addCase(deleteBoards.fulfilled, (state, action) => {
         state.isLoading = false;
