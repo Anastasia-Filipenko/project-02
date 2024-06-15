@@ -15,6 +15,7 @@ import {
 import css from './BoardList.module.css';
 // import { deleteBoards } from '../../../redux/boards/operations';
 import { BoardModal } from '../../BoardModal/BoardModal';
+import { setCurrentBoard } from '../../../redux/boards/slice';
 
 const BoardList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -25,12 +26,9 @@ const BoardList = () => {
   const navigate = useNavigate();
   const ref = useRef();
 
-  const handleOpenBoard = async (boardId, boardTitle) => {
-    await dispatch(fetchCurrentBoard(boardId));
-    // update
-    const normTitle = boardTitle.toLowerCase().replace(/[\s/]+/g, '-');
-    console.log('Navigating to:', normTitle);
-    navigate(normTitle);
+  const handleOpenBoard = (boardId, boardTitle) => {
+    dispatch(setCurrentBoard({ _id: boardId, title: boardTitle}))
+    navigate(boardTitle);
   };
 
   const openModal = () => {

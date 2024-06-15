@@ -1,6 +1,6 @@
 // import { createSelector } from "@reduxjs/toolkit";
 
-export const selectIsLoading = (state) => state.columns.isLoading;
+export const selectColumnIsLoading = (state) => state.columns.isLoading;
 
 export const selectError = (state) => state.columns.error;
 
