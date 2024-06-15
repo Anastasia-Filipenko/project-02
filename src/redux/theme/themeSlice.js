@@ -12,11 +12,8 @@ const themeSlice = createSlice({
     }),
 });
 
-// Export actions
 export const { setTheme } = themeSlice.actions;
 
-// Export selector
-export const selectTheme = state => state.theme.theme;
+// export const selectTheme = state => state.theme.theme;
 
-// Export reducer
 export default themeSlice.reducer;

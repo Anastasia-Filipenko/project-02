@@ -10,7 +10,7 @@ import {
   selectUserAvatar,
 } from '../../../redux/auth/selectors';
 import clsx from 'clsx';
-import { selectTheme } from '../../../redux/theme/themeSlice';
+ import { selectTheme } from '../../../redux/theme/selectors';
 
 const customStyles = {
   content: {

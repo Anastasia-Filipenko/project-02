@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu, MenuItem, Button } from '@mui/material';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTheme, setTheme } from '../../../redux/theme/themeSlice';
+import { selectTheme} from '../../../redux/theme/selectors';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import css from './Dropdownmenu.module.css';
 import { changeTheme } from '../../../redux/theme/operations';
