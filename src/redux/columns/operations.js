@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addColumnApi, editColumnApi, deleteColumnApi } from '../../api/columnApi/columnApi';
+import {
+  addColumnApi,
+  editColumnApi,
+  deleteColumnApi,
+} from '../../api/columnApi/columnApi';
 import { fetchCurrentBoard } from '../boards/operations';
 
 export const addColumn = createAsyncThunk(
@@ -10,7 +14,7 @@ export const addColumn = createAsyncThunk(
         boardId,
         title: columnTitle,
       });
-      thunkAPI.dispatch(fetchCurrentBoard(boardId));
+      // thunkAPI.dispatch(fetchCurrentBoard(boardId));
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -38,10 +42,9 @@ export const deleteColumn = createAsyncThunk(
   'boards/deleteColumn',
   async ({ boardId, columnId }, thunkAPI) => {
     try {
-      console.log('boardid', boardId)
-      const response = await deleteColumnApi({ columnId });
-      thunkAPI.dispatch(fetchCurrentBoard(boardId));
-      return response.data;
+      await deleteColumnApi({ columnId });
+      // thunkAPI.dispatch(fetchCurrentBoard(boardId));
+      return { _id: columnId };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

@@ -8,6 +8,14 @@ const slice = createSlice({
     loading: false,
     error: false,
   },
+  reducers: {
+    setCards(state, action) {
+      state.columnId = action.payload.columnId;
+      state.items = action.payload?.columns.map(c => {
+        return { columnId: c._id, cards: c.cards || [] };
+      });
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(createCard.pending, state => {
@@ -16,7 +24,10 @@ const slice = createSlice({
       })
       .addCase(createCard.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(action.payload);
+        const columnIndex = state.items?.findIndex(c => c.columnId === action.payload.column);
+        if (columnIndex > -1) {
+          state.items[columnIndex].cards.push(action.payload);
+        }
       })
       .addCase(createCard.rejected, state => {
         state.loading = false;
@@ -24,4 +35,7 @@ const slice = createSlice({
       }),
 });
 
-export default slice.reducer;
+export const cardsActions = slice.actions;
+export const cardsReducer = slice.reducer;
+// export default slice.reducer;
+export const { setCards } = slice.actions;

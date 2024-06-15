@@ -9,14 +9,21 @@ import {
   Stack,
   useTheme,
   styled,
+  List, ListItem
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
 import { selectColumn } from '../../redux/columns/selectors';
+import { selectCardsForColumn } from '../../redux/task/selectors.js';
 import { deleteColumn } from '../../redux/columns/operations';
 import CreateCardModalWindow from '../CreateCardModalWindow/CreateCardModalWindow.jsx';
-import { StyledButton, StyledSvgIcon, StyledTypography } from '../MUIstyled/styledComponent.js';
+import {
+  StyledButton,
+  StyledSvgIcon,
+  StyledTypography,
+} from '../MUIstyled/styledComponent.js';
 import { StyledPlusIcon } from '../MUIstyled/commonComponent.jsx';
+import TaskCard from './TaskCard/taskCard.jsx';
 
 export const Column = props => {
   const dispatch = useDispatch();
@@ -25,6 +32,7 @@ export const Column = props => {
   const ref = useRef();
   const column = useSelector(state => selectColumn(state, props.columnId));
   const [IsOpen, setIsOpen] = useState(false);
+  const cards = useSelector(state => selectCardsForColumn(state, column._id));
 
   function handleOpenModal() {
     setIsOpen(true);
@@ -74,15 +82,31 @@ export const Column = props => {
         </CardActions>
       </Card>
 
-      {/* {props.column?.tasks.map((task, index) => (
-                    <Task key={index} task={task} columnId={props.column._id}/>
-                  ))} */}
+      <Stack
+        // minHeight={{
+        //   xs: '368px',
+        //   sm: '768px',
+        //   lg: '1180px',
+        // }}
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        spacing={2}
+        maxHeight="500px"
+        overflowY="scroll"
+      >
+        <List>
+          {cards?.map((task, index) => (
+            <ListItem key={index}>
+              <TaskCard key={index} cardInfo={task} />
+            </ListItem>
+          ))}
+        </List>
+      </Stack>
 
       <StyledButton
         onClick={() => handleOpenModal()}
-        startIcon={
-          <StyledPlusIcon backgroundColor='white'/>
-        }
+        startIcon={<StyledPlusIcon backgroundColor="white" />}
       >
         <StyledTypography>Add another card</StyledTypography>
       </StyledButton>

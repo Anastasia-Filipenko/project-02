@@ -7,7 +7,6 @@ export const selectError = (state) => state.columns.error;
 export const selectColumn = (state, columnId) => state.columns.items.find(c => c._id === columnId);
 
 export const selectAllColumns = (state, boardId) => { 
-    console.log('borad Ids select column', state.columns.boardId, boardId)
     if (boardId && state.columns.boardId && boardId === state.columns.boardId) {
         return state.columns.items;
     }

@@ -5,7 +5,7 @@ import {
   selectCurrentBoard,
   selectBoardIsLoading,
 } from '../../redux/boards/selectors';
-import { selectColumnIsLoading } from '../../redux/columns/selectors';
+import { selectColumnIsLoading, selectAllColumns } from '../../redux/columns/selectors';
 import { fetchCurrentBoard } from '../../redux/boards/operations';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -33,17 +33,17 @@ export default function Board() {
   const dispatch = useDispatch();
   const { boardTitle } = useParams();
   const board = useSelector(selectCurrentBoard);
+  const columns = useSelector(state => selectAllColumns(state, board._id));
   const currentScreen = useSelector(selectCurrentScreen);
   const [imgUrl, setImgUrl] = useState(null);
   const [openedBoardId, setOpenedBoardId] = useState();
-
   const [isColumnModalOpened, setisColumnModalOpened] = useState(false);
   const [isFiltersModalOpened, setisFiltersModalOpened] = useState(false);
   const theme = useTheme();
   const isBoardLoading = useSelector(selectBoardIsLoading);
   const isColumnLoading = useSelector(selectColumnIsLoading);
   const ref = useRef();
-
+  
   useEffect(() => {
     if (board) {
       if (board.title === boardTitle && board._id) {
@@ -54,7 +54,6 @@ export default function Board() {
   }, [board, boardTitle, currentScreen]);
 
   useEffect(() => {
-    console.log('fetching board inside board')
     if (openedBoardId) {
       dispatch(fetchCurrentBoard(openedBoardId.split('.')[0]));
     }
@@ -122,7 +121,7 @@ export default function Board() {
               }}
             >
               <Stack direction="row" gap="32px">
-                {board.columns?.map((column, index) => (
+                {columns?.map((column, index) => (
                   <Column
                     key={index}
                     columnId={column._id}

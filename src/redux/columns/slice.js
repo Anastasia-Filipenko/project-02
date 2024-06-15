@@ -29,8 +29,10 @@ const columnsSlice = createSlice({
   },
   reducers: {
     setColumns(state, action) {
+      console.log('first time addiing column after fetching board from backend', action.payload.boardId)
       state.boardId = action.payload.boardId;
       state.items = action.payload.columns;
+      console.log('setting columns', state.items)
     }
   },
   extraReducers: builder => {
@@ -39,12 +41,14 @@ const columnsSlice = createSlice({
       .addCase(addColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        console.log('adding columns', action.payload)
         state.items && state.items.length > 0
           ? (state.items = [
               ...state.items,
               action.payload,
             ])
           : (state.items = [action.payload]);
+          console.log('added column', state.items)
       })
       .addCase(addColumn.rejected, handleRejected)
       .addCase(editColumn.pending, handlePending)
