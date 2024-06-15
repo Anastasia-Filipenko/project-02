@@ -20,9 +20,13 @@ export const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false,
   },
   extraReducers: builder =>
     builder
+      .addCase(registered.pending, (state, action) => {
+        state.isLoading = true;
+      })
       .addCase(registered.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
@@ -30,12 +34,22 @@ export const authSlice = createSlice({
         state.user.avatar = action.payload.avatarURL;
         state.isLoggedIn = true;
       })
+      .addCase(registered.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(login.pending, (state, action) => {
+        state.isLoading = true;
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.userId = action.payload.id;
         state.user.avatar = action.payload.avatarURL;
         (state.token = action.payload.token), (state.isLoggedIn = true);
+        state.isLoading = false;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
       })
       .addCase(logOut.fulfilled, (state, action) => {
         state.user = { name: null, email: null };
@@ -59,17 +73,12 @@ export const authSlice = createSlice({
       .addCase(updateUserInfo.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
-        state.user.userId = action.payload.id;
+        state.user.userId = action.payload._id;
         state.user.avatar = action.payload.avatarURL;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.user.avatar = action.payload.avatarURL;
       }),
 });
-
-export const selectUserName = state => state.auth.user.name;
-export const selectUserEmail = state => state.auth.user.email;
-export const selectUserId = state => state.auth.user.userId;
-export const selectUserAvatar = state => state.auth.user.avatar;
 
 export const authReducer = authSlice.reducer;

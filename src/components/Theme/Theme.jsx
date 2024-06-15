@@ -1,8 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { selectTheme, setTheme } from '../../redux/theme/themeSlice';
+import { selectTheme } from '../../redux//theme/selectors';
 import { getTheme, useTheme } from '../../themeContext';
 import {
   ThemeProvider as MuiThemeProvider,
@@ -11,16 +11,12 @@ import {
 
 const Theme = ({ children }) => {
   const selectedTheme = useSelector(selectTheme);
-  const dispatch = useDispatch();
+
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     toggleTheme(selectedTheme);
   }, [selectedTheme, toggleTheme]);
-
-  const handleThemeChange = newTheme => {
-    dispatch(setTheme(newTheme));
-  };
 
   const themeForMui = createTheme({
     ...getTheme(theme),

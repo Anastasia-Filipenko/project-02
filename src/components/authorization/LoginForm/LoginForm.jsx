@@ -9,6 +9,8 @@ import { useState } from "react";
 import sprite from "../../../assets/sprite.svg"
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/auth/operations";
+import { unwrapResult } from "@reduxjs/toolkit";
+import toast, { Toaster } from "react-hot-toast";
 
 const schema = yup.object().shape({
     name: yup.string().min(2).max(32),
@@ -33,12 +35,20 @@ export default function LoginForm() {
     };
 
     // const onSubmit = data => console.log(data)
-    const onSubmit = data => dispatch(
-        login({
+    const onSubmit = async data => {
+      try {
+        const resultAction = await dispatch(
+          login({
             email: data.email,
             password: data.password,
-        })
-    )
+          })
+        );
+      unwrapResult(resultAction)
+      toast.success('Login successful!');
+    } catch (error) {
+      toast.error(error.message || 'password or email wrong');
+    }
+  }
     return (
         <section className={css.container}>
             <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -49,10 +59,13 @@ export default function LoginForm() {
                     </div>
                     <div className={css.blockinfo}>
                         <input placeholder="Enter your email" className={css.input} type="email" {...register('email')} />
-                        <ErrorMessage name="email" errors={errors} />
-                        <div>
-                        <div className={css.blockPassword}>
-                        <input
+                        <ErrorMessage
+              name="email"
+              errors={errors}
+              render={({ message }) => <p className={css.error}>{message}</p>}
+            />
+                    <div className={css.inputWrapper}>
+              <input
                 placeholder="Create a password"
                 className={css.input}
                 {...register('password')}
@@ -64,17 +77,17 @@ export default function LoginForm() {
                 height="12"
                 onClick={handleClickShowPassword}
               >
-                <use href={`${sprite}#icon-eye`}></use>
+                <use xlinkHref={`${sprite}#icon-eye`}></use>
               </svg>
+            </div>
             <ErrorMessage
               name="password"
               errors={errors}
               render={({ message }) => <p className={css.error}>{message}</p>}
             />
                     </div>
-                    </div>
-                    </div>
                     <button className={css.btn} type="submit">Login Now</button>
+                    <Toaster position='top-center' reverseOrder={false} />
                 </div>
             </form>
         </section>

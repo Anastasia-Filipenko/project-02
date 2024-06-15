@@ -22,7 +22,7 @@ export default function CreateCardModalWindow({
   handleModalClose,
   columnId,
 }) {
-  const [priority, setPiority] = useState('without');
+  const [priority, setPiority] = useState('Without priority');
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
 

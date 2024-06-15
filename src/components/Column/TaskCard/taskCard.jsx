@@ -1,3 +1,5 @@
+import EditBtn from '../../ControlBtnInCard/EditBtn/EditBtn';
+
 export default function TaskCard({ cardInfo }) {
   return (
     <li>
@@ -17,6 +19,7 @@ export default function TaskCard({ cardInfo }) {
               <p>{cardInfo.deadline}</p>
             </div>
           </div>
+          <EditBtn cardInfo={cardInfo} />
           {/* <div>PLACE FOR BUTTONS</div> */}
         </div>
       </div>

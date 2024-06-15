@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux';
 import {
   selectUserName,
   selectUserAvatar,
-} from '../../../redux/auth/authSlice';
+} from '../../../redux/auth/selectors';
 import clsx from 'clsx';
-import { selectTheme } from '../../../redux/theme/themeSlice';
+ import { selectTheme } from '../../../redux/theme/selectors';
 
 const customStyles = {
   content: {
@@ -20,7 +20,7 @@ const customStyles = {
     bottom: 'auto',
     transform: 'translate(-50%, -50%)',
     width: '400px',
-    heigth: '400px',
+    // height: '420px',
     borderRadius: '15px',
   },
   overlay: {
@@ -39,7 +39,7 @@ const UserInfoPreview = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const userName = useSelector(selectUserName);
   const userAvatar = useSelector(selectUserAvatar);
-    const selectedTheme = useSelector(selectTheme);
+  const selectedTheme = useSelector(selectTheme);
 
   const openModal = () => {
     setModalIsOpen(true);

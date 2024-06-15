@@ -18,7 +18,6 @@ import { EmptyBoard } from '../../components/Board/EmptyBoard';
 
 import axios from 'axios';
 
-import { setTheme } from '../../redux/theme/themeSlice';
 import { useToggle } from '../../hooks/useToggle';
 
 export default function Home() {
@@ -44,10 +43,6 @@ export default function Home() {
       dispatch(setCurrentBoard(whichBoard));
     }
   }, [dispatch, boards, currentBoard]);
-
-  useEffect(() => {
-    dispatch(setTheme('dark'));
-  }, [dispatch]);
 
   const handleContainerClick = event => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {

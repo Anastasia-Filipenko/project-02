@@ -11,7 +11,7 @@ import Loader from '../Loader/Loader';
 import { selectAllBoards } from '../../redux/boards/selectors';
 import { fetchAllBoards } from '../../redux/boards/operations';
 import clsx from 'clsx';
-import { selectTheme } from '../../redux/theme/themeSlice';
+import { selectTheme } from '../../redux/theme/selectors';
 
 const SideBar = forwardRef(({ viewPortWidth, isOpen, onClose }, ref) => {
   const sideBarRef = useRef();

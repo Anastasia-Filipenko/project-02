@@ -19,18 +19,15 @@
 
 .overlay.light {
   background-color: rgba(255, 255, 255, 0.5);
-
 }
 
 .overlay.violet {
   background-color: rgba(91, 0, 255, 0.5);
 }
 
-
 .overlay.open {
   display: block;
 }
-
 
 .myBoardsTitle {
   font-size: 12px;
@@ -55,8 +52,6 @@
   flex-direction: column;
   background-color: #000000;
 }
-
-
 
 @media only screen and (min-width: 768px) {
   .cont {
@@ -84,7 +79,6 @@
   .sidebar.open {
     transform: translateX(0);
   }
-
 }
 
 @media (min-width: 1441px) {

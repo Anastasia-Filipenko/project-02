@@ -1,5 +1,5 @@
-import { useSelector} from 'react-redux';
-import { selectTheme} from '../../redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../redux/theme/selectors';
 import css from './Header.module.css';
 //import { useState } from 'react';
 import clsx from 'clsx';
@@ -22,7 +22,7 @@ const Header = ({ toggleSidebar, closeSidebar }) => {
   // };
 
   const handleBurgerMenuClick = event => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     toggleSidebar();
   };
 
@@ -66,7 +66,9 @@ const Header = ({ toggleSidebar, closeSidebar }) => {
         </div>
 
         <div className={clsx(css.themeSection, css[selectedTheme])}>
-          <DropdownMenu />
+          <DropdownMenu
+            className={clsx(css.themeSection, css[selectedTheme])}
+          />
         </div>
 
         <div className={clsx(css.userSection, css[selectedTheme])}>

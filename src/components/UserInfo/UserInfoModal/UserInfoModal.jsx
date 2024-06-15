@@ -6,17 +6,19 @@ import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../../assets/sprite.svg';
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import clsx from 'clsx';
 import {
   selectUserName,
   selectUserEmail,
   selectUserId,
   selectUserAvatar,
-} from '../../../redux/auth/authSlice';
+} from '../../../redux/auth/selectors';
 import { useDispatch } from 'react-redux';
 import {
   updateUserInfo,
   updateUserAvatar,
 } from '../../../redux/auth/operations';
+import { selectTheme } from '../../../redux/theme/selectors';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -49,6 +51,7 @@ export default function UserInfo({ close }) {
   const userEmail = useSelector(selectUserEmail);
   const id = useSelector(selectUserId);
   const userAvatar = useSelector(selectUserAvatar);
+  const selectedTheme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
   const [avatarFile, setAvatarFile] = useState(null);
@@ -83,17 +86,28 @@ export default function UserInfo({ close }) {
 
   return (
     <>
-      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={clsx(css.form, css[selectedTheme])}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div>
-          <svg className={css.logo_icon} width="18" height="18" onClick={close}>
+          <svg
+            className={clsx(css.logo_icon, css[selectedTheme])}
+            width="18"
+            height="18"
+            onClick={close}
+          >
             <use xlinkHref={`${sprite}#icon-x-close`}></use>
           </svg>
-          <p className={css.title}>Edit profile</p>
-          <div className={css.avatar}>
+          <p className={clsx(css.title, css[selectedTheme])}>Edit profile</p>
+          <div className={clsx(css.avatar, css[selectedTheme])}>
             <img src={avatarSrc} className={css.user_avatar} alt="" />
-            <div className={css.icon} onClick={handleAvatarClick}>
+            <div
+              className={clsx(css.icon, css[selectedTheme])}
+              onClick={handleAvatarClick}
+            >
               <svg
-                className={css.plus_icon}
+                className={clsx(css.plus_icon, css[selectedTheme])}
                 width="10"
                 height="10"
                 // onClick={e => console.log('avatar', e.target)}
@@ -112,7 +126,7 @@ export default function UserInfo({ close }) {
           <div className={css.blockinfo}>
             <input
               placeholder="name from db"
-              className={css.input}
+              className={clsx(css.input, css[selectedTheme])}
               type="name"
               defaultValue={userName}
               {...register('name')}
@@ -125,7 +139,7 @@ export default function UserInfo({ close }) {
 
             <input
               placeholder="email from db"
-              className={css.input}
+              className={clsx(css.input, css[selectedTheme])}
               type="email"
               defaultValue={userEmail}
               {...register('email')}
@@ -139,13 +153,13 @@ export default function UserInfo({ close }) {
             <div className={css.inputWrapper}>
               <input
                 placeholder="password from db"
-                className={css.input}
+                className={clsx(css.input, css[selectedTheme])}
                 // defaultValue={userPassword}
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
               />
               <svg
-                className={css.plus_icon_1}
+                className={clsx(css.plus_icon_1, css[selectedTheme])}
                 width="16.5"
                 height="12"
                 onClick={handleClickShowPassword}
@@ -159,7 +173,7 @@ export default function UserInfo({ close }) {
               render={({ message }) => <p className={css.error}>{message}</p>}
             />
           </div>
-          <button className={css.btn} type="submit">
+          <button className={clsx(css.btn, css[selectedTheme])} type="submit">
             Send
           </button>
         </div>

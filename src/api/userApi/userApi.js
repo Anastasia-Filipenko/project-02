@@ -35,3 +35,12 @@ export const changeUserAvatar = async avatar => {
     throw new Error(error.response.data.message);
   }
 };
+
+export const needHelpApi = async data => {
+  try {
+    const response = await authInstance.post('/help', data);
+    return response;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};

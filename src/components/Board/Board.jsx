@@ -25,6 +25,7 @@ import { generateBgUrl } from './utils';
 import { selectCurrentScreen } from '../../redux/common/selectors';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
 import Loader from '../Loader/Loader';
+
 import sprite from '../../assets/sprite.svg';
 import { StyledButton, StyledSvgIcon, StyledTypography } from '../MUIstyled/styledComponent';
 import { StyledPlusIconColumn } from '../MUIstyled/commonComponent';
@@ -107,7 +108,7 @@ export default function Board() {
                 flexWrap: 'nowrap',
                 '&.MuiCardContent-root': {
                   '&::-webkit-scrollbar': {
-                    width: '20px',
+                    width: '20px'
                   },
                   '&::-webkit-scrollbar-track': {
                     boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,

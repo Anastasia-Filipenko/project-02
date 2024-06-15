@@ -15,8 +15,7 @@ const Home = lazy(() => import('../../pages/HomePage/HomePage'));
 const Board = lazy(() => import('../Board/Board'));
 const NotFound = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
 
-// import { PrivateRoute } from '../PrivateRoute';
-import EditBtn from '../ControlBtnInCard/EditBtn/EditBtn';
+
 
 function App() {
   const dispatch = useDispatch();
