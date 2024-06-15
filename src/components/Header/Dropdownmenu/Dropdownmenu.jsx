@@ -6,7 +6,7 @@ import { selectTheme, setTheme } from '../../../redux/theme/themeSlice';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import css from './Dropdownmenu.module.css';
 import { changeTheme } from '../../../redux/theme/operations';
-import { selectUserId } from '../../../redux/auth/authSlice';
+import { selectUserId } from '../../../redux/auth/selectors';
 
 const DropdownMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);

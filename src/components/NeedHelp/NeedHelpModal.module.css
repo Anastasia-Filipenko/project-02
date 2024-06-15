@@ -1,17 +1,39 @@
 .form {
   border-radius: 8px;
-  background: #151515;
   padding: 24px;
   position: relative;
   min-width: 300px;
   cursor: pointer;
 }
 
+.form.dark {
+  background: var(--background-form-dark);
+}
+
+.form.light {
+  background: var(--background-form-light);
+}
+
+.form.violet {
+  background: var(--background-form-violet);
+}
+
 .logo_icon {
-  stroke: white;
   position: absolute;
   top: 18px;
   right: 18px;
+}
+
+.logo_icon.dark {
+  stroke: var(--color-icon-close-dark);
+}
+
+.logo_icon.light {
+  stroke: var(--color-icon-close-light);
+}
+
+.logo_icon.violet {
+  stroke: var(--color-icon-close-violet);
 }
 
 .title {
@@ -19,8 +41,19 @@
   font-weight: 500;
   font-size: 18px;
   letter-spacing: -0.02em;
-  color: var(--color-dark-text-primary);
   margin-bottom: 24px;
+}
+
+.title.dark {
+  color: var(--color-title-form-dark);
+}
+
+.title.light {
+  color: var(--color-title-form-light);
+}
+
+.title.violet {
+  color: var(--color-title-form-violet);
 }
 
 .blockinfo {
@@ -38,36 +71,98 @@
   border-radius: 8px;
   min-width: 257px;
   height: 49px;
-  background: #bedbb0;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: #161616;
+  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn.dark {
+  background: var(--color-btn-dark);
+  color: var(--color-btn-text-dark);
+}
+
+.btn.dark:hover {
+  background: var(--color-btn-hover-dark);
+  color: var(--color-btn-text-dark);
+}
+
+.btn.light {
+  background: var(--color-btn-light);
+  color: var(--color-btn-text-light);
+}
+
+.btn.light:hover {
+  background: var(--color-btn-hover-light);
+  color: var(--color-btn-text-light);
+}
+
+.btn.violet {
+  background: var(--color-violet-btn);
+  color: var(--color-btn-text-violet);
+}
+
+.btn.violet:hover {
+  transform: background;
+  background: var(--color-violet-btn-hover);
+  color: var(--color-btn-text-violet);
 }
 
 .input_email {
-  border: 1px solid #bedbb0;
   border-radius: 8px;
   min-width: 257px;
   height: 49px;
   box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
   background: #1f1f1f;
   opacity: 0.4;
-  color: #fff;
   padding: 14px 18px;
 }
 
+.input_email.dark {
+  color: var(--color-input-text-dark);
+  background-color: #1f1f1f;
+  border: 1px solid var(--color-input-accent-dark);
+}
+
+.input_email.light {
+  color: var(--color-input-text-light);
+  background-color: #fff;
+  border: 1px solid var(--color-input-accent-light);
+}
+
+.input_email.violet {
+  color: var(--color-input-text-violet);
+  background-color: #fff;
+  border: 1px solid var(--color-inpur-accent-violet);
+}
+
 .textarea_comment {
-  border: 1px solid #bedbb0;
   border-radius: 8px;
   min-width: 257px;
   height: 120px;
   box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
   background: #1f1f1f;
   opacity: 0.4;
-  color: #fff;
   padding: 14px 18px;
+}
+
+.textarea_comment.dark {
+  color: var(--color-input-text-dark);
+  background-color: #1f1f1f;
+  border: 1px solid var(--color-input-accent-dark);
+}
+
+.textarea_comment.light {
+  color: var(--color-input-text-light);
+  background-color: #fff;
+  border: 1px solid var(--color-input-accent-light);
+}
+
+.textarea_comment.violet {
+  color: var(--color-input-text-violet);
+  background-color: #fff;
+  border: 1px solid var(--color-inpur-accent-violet);
 }
 
 .input::placeholder {
@@ -116,6 +211,6 @@
 
 @media (min-width: 768px) {
   .ReactModal__Content {
-    width: 400px !important; /* Ширина для великих екранів */
+    width: 400px !important;
   }
 }
