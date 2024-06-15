@@ -50,3 +50,12 @@ export const getAllUserDataApi = async () => {
     throw new Error(error.response.data.message);
   }
 };
+
+export const updateCurrentBoardId = async (boardId) => {
+  try {
+    const { data } = await authInstance.patch('/board', boardId);
+    return data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Modal } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../../assets/sprite.svg';
@@ -13,7 +14,8 @@ import {
 } from '../../../redux/boards/operations';
 import css from './BoardList.module.css';
 // import { deleteBoards } from '../../../redux/boards/operations';
-import { BoardModal } from '../../BoardModal/BoardModal';
+// import { BoardModal } from '../../BoardModal/BoardModal';
+import UpdateBoard from '../UpdateBoard/UpdateBoard';
 
 const BoardList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -44,9 +46,9 @@ const BoardList = () => {
     openModal();
   };
 
-  const handleDeleteBoard = (boardId) => {
+  const handleDeleteBoard = boardId => {
     dispatch(deleteBoards(boardId));
-      navigate('/home');
+    navigate('/home');
   };
 
   return (
@@ -102,7 +104,16 @@ const BoardList = () => {
           );
         })}
       </ul>
-      {isModalOpen && <BoardModal boardId={boardId} onClose={closeModal} />}
+      <Modal
+        open={openModal}
+        onClose={closeModal}
+        disableAutoFocus={true}
+      >
+        <UpdateBoard
+          closeModal={() => setModalOpen(false)}
+          UpdateBoard={true}
+        />
+      </Modal>
     </div>
   );
 };
