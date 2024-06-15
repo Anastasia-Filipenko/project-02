@@ -13,9 +13,7 @@ import {
   CardContent,
   Stack,
   CardMedia,
-  Button,
   Modal,
-  Box,
   Typography,
   IconButton,
 } from '@mui/material';
