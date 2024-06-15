@@ -2,42 +2,35 @@ import sprite from '../../assets/sprite.svg';
 import * as Yup from 'yup';
 import {
   FormControl,
-  TextField,
   Box,
-  Button,
   ToggleButtonGroup,
   ToggleButton,
-  Card,
   CardHeader,
   CardContent,
   IconButton,
   Typography,
 } from '@mui/material';
-import LandscapeOutlinedIcon from '@mui/icons-material/LandscapeOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { forwardRef, useEffect, useRef } from 'react';
 import { icons } from './iconsList';
 import { CloudinaryImages } from '../CloudinaryImages/CloudinaryImages';
-import CloseIcon from '@mui/icons-material/Close';
 import { addBoard } from '../../redux/boards/operations';
-import { useTheme, styled } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
+import {
+  StyledSvgIcon,
+  StyledTextField,
+  StyledTypography,
+} from '../MUIstyled/styledComponent';
 import { selectBackgrounds } from '../../redux/boards/selectors';
+import { StyleBoxModal, StyledCardModal } from '../MUIstyled/styledComponent';
+import { StyledSubmitButtonWithPlusicon } from '../MUIstyled/commonComponent';
 
 export const BoardModal = forwardRef(function BoardModal(props, ref) {
   const dispatch = useDispatch();
   const backgrounds = useSelector(selectBackgrounds);
   const titleInputRef = useRef(null);
   const theme = useTheme();
-
-  const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    disableAutoFocus: true,
-    padding: '24px',
-  };
 
   useEffect(() => {
     if (titleInputRef.current) {
@@ -72,7 +65,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     },
     validationSchema: schema,
     validateOnChange: false,
-    validateOnBlur :false,
+    validateOnBlur: false,
     onSubmit: values => {
       dispatch(
         addBoard({ ...values, background: values.background.split('/').pop() })
@@ -89,54 +82,25 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     formik.setFieldValue('background', background);
   };
 
-  const StyledTextField = styled(TextField)({
-    '& .MuiInputBase-root': {
-      color: `${theme.color.fontColor}`,
-    },
-    '& .MuiInputBase-root.MuiOutlinedInput-root': {
-      '&.Mui-focused': {
-        '.MuiOutlinedInput-notchedOutline': {
-          borderColor: `${theme.color.inputColorDefault}`,
-        },
-      },
-      '&:hover': {
-        '.MuiOutlinedInput-notchedOutline': {
-          borderColor: `${theme.color.inputColorActive}`,
-        },
-      },
-    },
-    paddingBottom: '24px',
-  });
-
   return (
-    <Box sx={modalStyle}>
-      <Card
-        sx={{
-          maxWidth: 350,
-          heigth: 433,
-          bgcolor: 'white',
-          border: '0px solid #000',
-          borderRadius: '8px',
-          backgroundColor: `${theme.color.themeColor}`,
-        }}
-      >
+    <StyleBoxModal>
+      <StyledCardModal>
         <CardHeader
           action={
             <IconButton onClick={props.closeModal}>
-              <CloseIcon sx={{ color: `${theme.color.fontColor}` }} />
+              <StyledSvgIcon>
+                <use xlinkHref={`${sprite}#icon-x-close`}></use>
+              </StyledSvgIcon>
             </IconButton>
           }
           titleTypographyProps={{ color: `${theme.color.fontColor}` }}
           title="New board"
         />
-        <CardContent sx={{ display: 'flex' }}>
+        <CardContent>
           <form onSubmit={formik.handleSubmit} id="board-form" ref={ref}>
-            <FormControl>
+            <FormControl sx={{ display: 'flex' }}>
               <StyledTextField
-                autoFocus
-                fullWidth
                 name="title"
-                variant="outlined"
                 size="medium"
                 value={formik.values.title}
                 onChange={formik.handleChange}
@@ -185,7 +149,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                   </ToggleButton>
                 ))}
                 {formik.errors && formik.errors.icon && (
-                  <Typography color="error" variant="caption" ml='14px'>
+                  <Typography color="error" variant="caption" ml="14px">
                     {formik.errors.icon}
                   </Typography>
                 )}
@@ -209,14 +173,13 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                 }}
               >
                 <ToggleButton
-                  key='0'
+                  key="0"
                   value={theme.name}
-                  type='button'
+                  type="button"
                   name="click"
                   sx={{
                     borderRadius: '6px',
                     borderTopRightRadius: '6px',
-                    // backgroundColor: `${theme.color.themeColor}`,
                     backgroundColor: 'white',
                     p: 0,
                     border: 'none',
@@ -237,7 +200,9 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                     },
                   }}
                 >
-                  <LandscapeOutlinedIcon />
+                  <StyledSvgIcon>
+                    <use xlinkHref={`${sprite}#icon-pyramid`}></use>
+                  </StyledSvgIcon>
                 </ToggleButton>
                 {backgrounds &&
                   backgrounds.map(bg => (
@@ -270,43 +235,18 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                     </ToggleButton>
                   ))}
                 {formik.errors && formik.errors.background && (
-                  <Typography color="error" variant="caption" ml='14px'>
+                  <Typography color="error" variant="caption" ml="14px">
                     {formik.errors.background}
                   </Typography>
                 )}
               </ToggleButtonGroup>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  backgroundColor: '#bedbb0',
-                  textTransform: 'none',
-                  paddingY: '10px',
-                }}
-                startIcon={
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      borderRadius: '8px',
-                      backgroundColor: 'black',
-                      width: 28,
-                      height: 28,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <svg fill="white" stroke="white" width="14px" height="14px">
-                      <use xlinkHref={`${sprite}#icon-plus`}></use>
-                    </svg>
-                  </Box>
-                }
-              >
-                <Typography color={theme.color.themeColor}>Create</Typography>
-              </Button>
+              <StyledSubmitButtonWithPlusicon>
+                <StyledTypography>Create</StyledTypography>
+              </StyledSubmitButtonWithPlusicon>
             </FormControl>
           </form>
         </CardContent>
-      </Card>
-    </Box>
+      </StyledCardModal>
+    </StyleBoxModal>
   );
 });
