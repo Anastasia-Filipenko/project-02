@@ -8,7 +8,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 // import { forwardRef } from 'react';
 import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from 'react-redux';
+import css from './CreateCardModalWindow.module.css';
 
 import { createCard } from '../../redux/task/operations.js';
 
@@ -25,6 +27,12 @@ export default function CreateCardModalWindow({
   const [priority, setPiority] = useState('Without priority');
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
+
+  const newDate = new Date();
+
+  console.log("startDate: ", startDate.toDateString());
+  console.log("new Date: ", newDate.toDateString());
+  console.log("compare: ", startDate.toDateString() == newDate.toDateString());
 
   const onPriorityChange = event => {
     setPiority(event.target.value);
@@ -61,67 +69,92 @@ export default function CreateCardModalWindow({
   return (
     <ReactModal
       isOpen={isOpen}
-      //   className={css.modalWindowWrp}
-      //   overlayClassName={css.modalOverlay}
+      className={css.modalWindowWrp}
+      overlayClassName={css.modalOverlay}
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       onRequestClose={handleModalClose}
       ariaHideApp={false}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* <button>
-          <svg>
+      <form className={css.modalWindow} onSubmit={handleSubmit(onSubmit)}>
+        <button className={css.modalWindowCloseBtn}>
+          <svg stroke="black" width="9" height="9" aria-label="close-btn">
             <use href={`${sprite}#icon-x-close`}></use>
           </svg>
-        </button> */}
-        <p>Add card</p>
-        <input {...register('title')} name="title" placeholder="Title" />
+        </button>
+        <p className={css.modalWindowHeader}>Add card</p>
+        <input
+          className={css.taskTitleInput}
+          {...register('title')}
+          name="title"
+          placeholder="Title"
+        />
         <ErrorMessage name="title" errors={errors} />
         <textarea
+          className={css.taskDescriptionInput}
           {...register('description')}
           name="description"
           placeholder="Description"
         />
         <ErrorMessage name="description" errors={errors} />
-        <p>Label color</p>
-        <input
-          type="radio"
-          name="priority"
-          value="Low"
-          id="low"
-          checked={priority === 'low'}
-          onChange={onPriorityChange}
-        />
-        <input
-          type="radio"
-          name="priority"
-          value="Medium"
-          id="medium"
-          checked={priority === 'medium'}
-          onChange={onPriorityChange}
-        />
-        <input
-          type="radio"
-          name="priority"
-          value="High"
-          id="high"
-          checked={priority === 'high'}
-          onChange={onPriorityChange}
-        />
-        <input
-          type="radio"
-          name="priority"
-          value="Without priority"
-          id="without"
-          checked={priority === 'without'}
-          onChange={onPriorityChange}
-        />
-        <p>Deadline</p>
+        <p className={css.taskPriorityHeader}>Label color</p>
+        <div className={css.taskPriorityInputsWrp}>
+          <div className={css.prorityWrp}>
+            <input
+              className={css.radioInput}
+              type="radio"
+              name="priority"
+              value="Low"
+              id="low"
+              onChange={onPriorityChange}
+            />
+            <div className={`${css.styledRadio} ${css.lowPriorityColor}`}></div>
+          </div>
+          <div className={css.prorityWrp}>
+            <input
+              className={css.radioInput}
+              type="radio"
+              name="priority"
+              value="Medium"
+              id="medium"
+              onChange={onPriorityChange}
+            />
+            <div className={`${css.styledRadio} ${css.mediumPriorityColor}`}></div>
+          </div>
+          <div className={css.prorityWrp}>
+            <input
+              className={css.radioInput}
+              type="radio"
+              name="priority"
+              value="High"
+              id="high"
+              onChange={onPriorityChange}
+            />
+            <div className={`${css.styledRadio} ${css.highPriorityColor}`}></div>
+          </div>
+          <div className={css.prorityWrp}>
+            <input
+              className={css.radioInput}
+              type="radio"
+              name="priority"
+              value="Without priority"
+              id="without"
+              onChange={onPriorityChange}
+            />
+            <div className={`${css.styledRadio} ${css.withoutPriorityColor}`}></div>
+          </div>
+        </div>
+        <p className={css.deadlineHeader}>Deadline</p>
         <DatePicker
           dateFormat="yyyy/MM/dd"
           selected={startDate}
           onChange={date => setStartDate(date)}
+          minDate={new Date()}
         />
+        {startDate.toDateString() == newDate.toDateString() 
+        ? <p>Today</p>
+        : null 
+        }
         <button type="submit">Add</button>
       </form>
     </ReactModal>
