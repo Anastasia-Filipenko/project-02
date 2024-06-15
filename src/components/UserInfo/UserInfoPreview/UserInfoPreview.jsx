@@ -10,7 +10,7 @@ import {
   selectUserAvatar,
 } from '../../../redux/auth/selectors';
 import clsx from 'clsx';
- import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/theme/selectors';
 
 const customStyles = {
   content: {
@@ -20,7 +20,6 @@ const customStyles = {
     bottom: 'auto',
     transform: 'translate(-50%, -50%)',
     width: '400px',
-    // height: '420px',
     borderRadius: '15px',
   },
   overlay: {
