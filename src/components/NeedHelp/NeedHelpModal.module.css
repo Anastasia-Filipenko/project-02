@@ -193,6 +193,7 @@
   overflow: auto;
   outline: none;
   transform: translate(-50%, -50%);
+  zindex: 2;
 }
 
 @media (min-width: 768px) {
