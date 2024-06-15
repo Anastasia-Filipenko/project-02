@@ -51,12 +51,44 @@ export const fetchAllBoards = createAsyncThunk(
   }
 );
 
+export const updateBoardById = createAsyncThunk(
+  'boards/updateBoardById',
+  async ({ boardId, body }, { rejectWithValue, dispatch }) => {
+    try {
+      const data = await updateBoardById(boardId, body);
+      await dispatch(fetchAllBoards());
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// export const deleteBoards = createAsyncThunk(
+//   'boards/deleteBoards',
+//   async ({boardId, thunkAPI}) => {
+//     try {
+//       console.log('boardId', boardId)
+//       const response = await deleteBoardApi({boardId});
+//       // thunkAPI.dispatch(fetchCurrentBoard(boardId));
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// )
+
 export const deleteBoards = createAsyncThunk(
   'boards/deleteBoards',
   async (id, thunkAPI) => {
     try {
       const response = await deleteBoardApi(id);
-      return response;
+      // return response;
+      return {
+        data: response.data,
+        status: response.status,
+        statusText: response.statusText,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
