@@ -1,21 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { sendEmail } from './operations';
 
-const slice = createSlice({
-  name: 'comment',
+const needHelpSlice = createSlice({
+  name: 'help',
   initialState: {
-    email: '',
+    userEmail: '',
     comment: '',
   },
 
-  reducers: {
-    sendComment(state, action) {
-      state.email = action.payload.email;
+  extraReducers: builder =>
+    builder.addCase(sendEmail.fulfilled, (state, action) => {
+      state.userEmail = action.payload.userEmail;
       state.comment = action.payload.comment;
-    },
-  },
+    }),
 });
 
-export const { sendComment } = slice.actions;
-export default slice.reducer;
-export const selectEmail = state => state.comment.email;
-export const selectComment = state => state.comment.comment;
+export default needHelpSlice.reducer;

@@ -4,10 +4,10 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../assets/sprite.svg';
-import { sendComment } from '../../redux/needHelp/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { selectTheme } from '../../redux/theme/themeSlice';
+import { sendEmail } from '../../redux/needHelp/operations';
 
 const schema = yup.object().shape({
   email: yup
@@ -33,8 +33,8 @@ export default function NeedHelpModal({ close }) {
 
   const onSubmit = data => {
     dispatch(
-      sendComment({
-        email: data.email,
+      sendEmail({
+        userEmail: data.email,
         comment: data.comment,
       })
     );
