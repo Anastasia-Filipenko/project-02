@@ -167,7 +167,7 @@ export default function CreateCardModalWindow({
           ) : null}
           {format(startDate, 'dd/MM/yyyy')}
           <svg stroke="black" width="9" height="9" aria-label="close-btn">
-            <use href={`${sprite}#icon-x-close`}></use>
+            <use href={`${sprite}#icon-down`}></use>
           </svg>
         </button>
 
