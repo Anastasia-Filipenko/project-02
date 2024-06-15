@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Modal } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -14,8 +14,7 @@ import {
 } from '../../../redux/boards/operations';
 import css from './BoardList.module.css';
 // import { deleteBoards } from '../../../redux/boards/operations';
-// import { BoardModal } from '../../BoardModal/BoardModal';
-import UpdateBoard from '../UpdateBoard/UpdateBoard';
+import { BoardModal } from '../../BoardModal/BoardModal';
 
 const BoardList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -24,6 +23,7 @@ const BoardList = () => {
   const currentBoard = useSelector(selectCurrentBoard);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const ref = useRef();
 
   const handleOpenBoard = async (boardId, boardTitle) => {
     await dispatch(fetchCurrentBoard(boardId));
@@ -105,14 +105,19 @@ const BoardList = () => {
         })}
       </ul>
       <Modal
-        open={openModal}
+        open={isModalOpen}
         onClose={closeModal}
         disableAutoFocus={true}
       >
-        <UpdateBoard
-          closeModal={() => setModalOpen(false)}
-          UpdateBoard={true}
-        />
+        <BoardModal
+          ref={ref}
+          title={currentBoard.title}
+          boardId={currentBoard._id}
+          selectedIcon={currentBoard.icon}
+          selectedBackground={currentBoard.background}
+          closeModal={closeModal}
+          editMode={true}        
+          />
       </Modal>
     </div>
   );

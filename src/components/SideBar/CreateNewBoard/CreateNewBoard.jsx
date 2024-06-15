@@ -6,7 +6,6 @@ import { BoardModal } from '../../BoardModal/BoardModal';
 
 const CreateNewBoard = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedIcon, setSelectedIcon] = useState(null);
   const ref = useRef();
 
   return (
@@ -31,8 +30,6 @@ const CreateNewBoard = () => {
       >
         <BoardModal
           ref={ref}
-          selectedIcon={selectedIcon}
-          setSelectedIcon={val => setSelectedIcon(val)}
           closeModal={() => setModalIsOpen(false)}
         />
       </Modal>

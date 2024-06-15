@@ -15,7 +15,7 @@ import { useFormik } from 'formik';
 import { forwardRef, useEffect, useRef } from 'react';
 import { icons } from './iconsList';
 import { CloudinaryImages } from '../CloudinaryImages/CloudinaryImages';
-import { addBoard } from '../../redux/boards/operations';
+import { addBoard, editBoard } from '../../redux/boards/operations';
 import { useTheme } from '@mui/material/styles';
 import {
   StyledSvgIcon,
@@ -59,7 +59,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      title: '',
+      title: props.title ?? '',
       icon: props.selectedIcon ?? icons[0],
       background: props.selectedBackground ?? theme.name,
     },
@@ -67,18 +67,22 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: values => {
-      dispatch(
-        addBoard({ ...values, background: values.background.split('/').pop() })
-      );
+      const boardData = {
+        ...values,
+        background: values.background.split('/').pop(),
+      };
+      props.editMode
+        ? dispatch(editBoard({ boardId: props.boardId, body: boardData }))
+        : dispatch(addBoard(boardData));
       props.closeModal();
     },
   });
 
-  const handleIconChange = (event, icon) => {
+  const handleIconChange = (_, icon) => {
     formik.setFieldValue('icon', icon);
   };
 
-  const handleBgChange = (event, background) => {
+  const handleBgChange = (_, background) => {
     formik.setFieldValue('background', background);
   };
 
@@ -94,7 +98,7 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
             </IconButton>
           }
           titleTypographyProps={{ color: `${theme.color.fontColor}` }}
-          title="New board"
+          title={props.editMode ? 'Edit board' : 'New board'}
         />
         <CardContent>
           <form onSubmit={formik.handleSubmit} id="board-form" ref={ref}>
@@ -241,7 +245,9 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                 )}
               </ToggleButtonGroup>
               <StyledSubmitButtonWithPlusicon>
-                <StyledTypography>Create</StyledTypography>
+                <StyledTypography>
+                  {props.editMode ? 'Edit' : 'Create'}
+                </StyledTypography>
               </StyledSubmitButtonWithPlusicon>
             </FormControl>
           </form>

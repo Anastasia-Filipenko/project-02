@@ -3,6 +3,7 @@ import {
   addBoardApi,
   currentBoardApi,
   deleteBoardApi,
+  editBoardApi
 } from '../../api/boardApi/boardApi';
 import { setColumns } from '../columns/slice';
 import { getAllUserDataApi } from '../../api/authApi/authApi';
@@ -51,15 +52,15 @@ export const fetchAllBoards = createAsyncThunk(
   }
 );
 
-export const updateBoardById = createAsyncThunk(
-  'boards/updateBoardById',
-  async ({ boardId, body }, { rejectWithValue, dispatch }) => {
+export const editBoard = createAsyncThunk(
+  'boards/editBoard',
+  async ({ boardId, body }, thunkAPI) => {
     try {
-      const data = await updateBoardById(boardId, body);
-      await dispatch(fetchAllBoards());
-      return data;
+      const response = await editBoardApi(boardId, body);
+      // await dispatch(fetchAllBoards());
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
