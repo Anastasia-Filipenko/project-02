@@ -29,6 +29,11 @@
   right: 18px;
   width: 18px;
   height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
 }
 
 .modalWindowHeader {
@@ -129,6 +134,16 @@
     line-height: 18px;
     letter-spacing: -0.02em;
     margin-bottom: 4px;
+}
+
+.pickerBtn {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    gap: 8px;
+    padding: 0;
 }
 
 @media screen and (min-width: 320px) {
