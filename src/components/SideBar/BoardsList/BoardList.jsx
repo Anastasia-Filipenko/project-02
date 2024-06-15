@@ -45,9 +45,8 @@ const BoardList = () => {
   };
 
   const handleDeleteBoard = (boardId) => {
-    dispatch(deleteBoards(boardId)).then(() => {
+    dispatch(deleteBoards(boardId));
       navigate('/home');
-    });
   };
 
   return (
