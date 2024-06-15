@@ -68,7 +68,7 @@ export default function Home() {
         }}
       >
         <Header toggleSidebar={open} closeSidebar={close} />
-        {boards.length === false ? (
+        {boards.length === 0 ? (
           <EmptyBoard />
         ) : (
           currentBoard.title && <Navigate to={'/home/' + currentBoard.title} />
