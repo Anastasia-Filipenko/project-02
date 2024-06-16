@@ -4,6 +4,7 @@ import {
   editColumnApi,
   deleteColumnApi,
 } from '../../api/columnApi/columnApi';
+import { addEmptyColumn } from '../task/taskSlice';
 
 export const addColumn = createAsyncThunk(
   'boards/addColumn',
@@ -13,6 +14,9 @@ export const addColumn = createAsyncThunk(
         boardId,
         title: columnTitle,
       });
+      thunkAPI.dispatch(
+        addEmptyColumn({ columnId: response.data?._id })
+      );
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

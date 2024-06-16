@@ -10,10 +10,12 @@ const slice = createSlice({
   },
   reducers: {
     setCards(state, action) {
-      state.columnId = action.payload.columnId;
       state.items = action.payload?.columns.map(c => {
         return { columnId: c._id, cards: c.cards || [] };
       });
+    },
+    addEmptyColumn(state, action) {
+      state.items.push({ columnId: action.payload.columnId , cards: []});
     },
   },
   extraReducers: builder =>
@@ -39,3 +41,4 @@ export const cardsActions = slice.actions;
 export const cardsReducer = slice.reducer;
 // export default slice.reducer;
 export const { setCards } = slice.actions;
+export const { addEmptyColumn } = slice.actions;
