@@ -5,7 +5,7 @@ import {
   loginApi,
   refreshApi,
   registerApi,
-  updateCurrentBoardId
+  updateCurrentBoardId,
 } from '../../api/authApi/authApi';
 import {
   changeUserProfileApi,
@@ -79,7 +79,6 @@ export const updateUserInfo = createAsyncThunk(
   async ({ id, data }, thunkAPI) => {
     try {
       const response = await changeUserProfileApi(id, data);
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -92,7 +91,6 @@ export const updateUserAvatar = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const response = await changeUserAvatar(data);
-
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
