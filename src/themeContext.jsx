@@ -47,7 +47,7 @@ const themeViolet = {
     themeColor: 'var(--color-light-primary)',
     backgroundVioletHeader: 'var(--color-violet-background-header)',
     backgroundVioletSidebar: 'var(--color-violet-background-sidebar)',
-    defaultBoardBackground: 'var(--color-violet-background-screensPage)',
+    defaultBoardBackground: 'var(--color-light-background)',
     fontColor: 'var(--color-violet-text-secondary)',
     fontColorSecondary: 'var(--color-violet-text-primary)',
     inputColorDefault: 'var(--color-violet-btn)',

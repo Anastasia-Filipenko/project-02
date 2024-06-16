@@ -60,9 +60,11 @@ export const Column = props => {
 
   return (
     <Stack
-      sx={{ maxHeight: '80vh', width: '340px' }}
+      sx={{ height: '80vh', width: '340px' }}
       gap={2}
+      direction="column"
       justifyContent="space-between"
+      alignItems="stretch"
     >
       <Card
         sx={{
@@ -123,12 +125,14 @@ export const Column = props => {
       </Box>
       <StyledButton
         sx={{
-          maxWidth: '334px'
+          maxWidth: '334px',
         }}
         onClick={() => handleOpenModal()}
         startIcon={<StyledPlusIcon backgroundColor="white" />}
       >
-        <StyledTypography sx={{ fontSize: '14px ', color: theme.color.fontColorSecondary }}>
+        <StyledTypography
+          sx={{ fontSize: '14px ', color: theme.color.fontColorSecondary }}
+        >
           Add another card
         </StyledTypography>
       </StyledButton>
