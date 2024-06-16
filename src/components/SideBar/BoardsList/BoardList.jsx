@@ -27,7 +27,7 @@ const BoardList = () => {
   const ref = useRef();
 
   const handleOpenBoard = (boardId, boardTitle) => {
-    dispatch(setCurrentBoard({ _id: boardId, title: boardTitle}))
+    dispatch(setCurrentBoard({ _id: boardId, title: boardTitle }));
     navigate(boardTitle);
   };
 
@@ -45,8 +45,9 @@ const BoardList = () => {
   };
 
   const handleDeleteBoard = boardId => {
-    dispatch(deleteBoards(boardId));
-    navigate('/home');
+    dispatch(deleteBoards(boardId)).then(() => {
+      navigate('/home');
+    });
   };
 
   return (
@@ -102,11 +103,7 @@ const BoardList = () => {
           );
         })}
       </ul>
-      <Modal
-        open={isModalOpen}
-        onClose={closeModal}
-        disableAutoFocus={true}
-      >
+      <Modal open={isModalOpen} onClose={closeModal} disableAutoFocus={true}>
         <BoardModal
           ref={ref}
           title={currentBoard.title}
@@ -114,8 +111,8 @@ const BoardList = () => {
           selectedIcon={currentBoard.icon}
           selectedBackground={currentBoard.background}
           closeModal={closeModal}
-          editMode={true}        
-          />
+          editMode={true}
+        />
       </Modal>
     </div>
   );

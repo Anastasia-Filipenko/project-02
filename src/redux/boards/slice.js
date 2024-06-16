@@ -4,7 +4,7 @@ import {
   fetchAllBoards,
   addBoard,
   deleteBoards,
-  editBoard
+  editBoard,
 } from './operations';
 // import {
 //   logOut
@@ -72,7 +72,9 @@ const boardsSlice = createSlice({
       .addCase(editBoard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const boardIndex = state.boards?.findIndex(b => b._id === action.payload._id);
+        const boardIndex = state.boards?.findIndex(
+          b => b._id === action.payload._id
+        );
         if (boardIndex > -1) {
           state.boards[boardIndex] = action.payload;
           state.currentBoard = action.payload;
@@ -83,12 +85,9 @@ const boardsSlice = createSlice({
       .addCase(deleteBoards.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const boardIndex = state.items?.findIndex(
-          board => board._id === action.payload._id
+        state.boards = state.boards.filter(
+          board => board._id !== action.meta.arg
         );
-        if (boardIndex > -1) {
-          state.items.splice(boardIndex, 1);
-        }
       })
       .addCase(deleteBoards.rejected, handleRejected);
     // .addCase(logOut.fulfilled, state => {
