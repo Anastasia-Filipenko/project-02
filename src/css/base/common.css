@@ -27,6 +27,14 @@ body.dark {
   --color-input-placeholder-dark: var(--color-dark-input-text);
   --color-icon-password-dark: var(--color-label-without);
   --color-input-text-dark: var(--color-dark-text-primary);
+
+  /* стилі для needHelp-кактус */
+  --color-info-text-dark: var(--color-dark-text-primary);
+  /* --bg-color-container-dark: var(); */
+  --color-icon-help-dark: var(--color-dark-text-primary);
+  --color-text-help-dark: var(--color-dark-text-primary);
+  --stroke-icon-help-dark: var(--color-dark-text-primary);
+  --color-perfect-task-dark: var(--color-dark-accent);
 }
 
 body.light {
@@ -54,6 +62,14 @@ body.light {
   --color-input-placeholder-light: var(--color-light-input-active);
   --color-icon-password-light: var(--color-light-input-text);
   --fill-password-light: var(--color-label-without);
+
+  /* стилі для needHelp-кактус */
+  --color-info-text-light: var(--color-light-text-primary);
+  /* --bg-color-container-light */
+  --color-icon-help-light: var(--color-light-text-primary);
+  --color-text-help-light: var(--color-light-text-primary);
+  --stroke-icon-help-light: var(--color-light-text-primary);
+  --color-perfect-task-light: var(--color-light-btn);
 }
 
 body.violet {
@@ -84,6 +100,14 @@ body.violet {
   --color-input-placeholder-violet: var(--color-violet-text-secondary);
   --color-icon-password-violet: var(--color-violet-btn-hover);
   --fill-password-violet: var(--color-label-without);
+
+  /* стилі для needHelp-кактус */
+  --color-info-text-violet: var(--color-violet-text-primary);
+  --bg-color-container-violet: var(--color-violet-background-screensPage);
+  --color-icon-help-violet: var(--color-dark-text-primary);
+  --color-text-help-violet: var(--color-violet-text-primary);
+  --stroke-icon-help-violet: var(--color-violet-text-primary);
+  --color-perfect-task-violet: var(--color-violet-btn);
 }
 
 h1,
@@ -96,8 +120,7 @@ p {
   margin-top: 0px;
   margin-bottom: 0px;
 }
-
-ul,
+5255bc ul,
 ol {
   padding-left: 0px;
   margin-top: 0px;

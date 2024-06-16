@@ -20,7 +20,7 @@
   gap: 8px;
   font-weight: 500;
   margin-top: 15px;
-
+  margin-left: 14px;
   margin-bottom: 10px;
   padding: 0;
 }
@@ -47,4 +47,10 @@
 .buttonLogOut.violet:hover .logOut,
 .buttonLogOut.violet:hover .iconLogOut {
   stroke: var(--color-violet-accent);
+}
+
+@media only screen and (min-width: 768px) {
+  .buttonLogOut {
+    margin-left: 24px;
+  }
 }

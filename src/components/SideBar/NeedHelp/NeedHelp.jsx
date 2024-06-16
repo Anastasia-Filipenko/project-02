@@ -3,7 +3,10 @@ import Modal from 'react-modal';
 import NeedHelpModal from '../../NeedHelp/NeedHelpModal';
 import styles from '../../NeedHelp/NeedHelpModal.module.css';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import sprite from '../../../assets/sprite.svg';
+import clsx from 'clsx';
+import { selectTheme } from '../../../redux/theme/selectors';
 
 const customStyles = {
   content: {
@@ -31,6 +34,7 @@ Modal.setAppElement('#modal');
 
 const NeedHelp = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const selectedTheme = useSelector(selectTheme);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -41,11 +45,11 @@ const NeedHelp = () => {
   };
 
   return (
-    <div className={css.container}>
-      <svg className={css.logoIcon}></svg>
-      <p className={css.infoText}>
+    <div className={clsx(css.container, css[selectedTheme])}>
+      <svg className={clsx(css.logoIcon, css[selectedTheme])}></svg>
+      <p className={clsx(css.infoText, css[selectedTheme])}>
         If you need help width <br />
-        <a className={css.perfectTask}>Task Pro</a>
+        <a className={clsx(css.perfectTask, css[selectedTheme])}>Task Pro</a>
         , check out our support resources or <br />
         reach out to our <br />
         customer support team.
@@ -59,11 +63,19 @@ const NeedHelp = () => {
       >
         {<NeedHelpModal close={closeModal} />}
       </Modal>
-      <button type="button" className={css.helpCont} onClick={openModal}>
-        <svg className={css.help} width="15" height="15">
+      <button
+        type="button"
+        className={clsx(css.helpCont, css[selectedTheme])}
+        onClick={openModal}
+      >
+        <svg
+          className={clsx(css.help, css[selectedTheme])}
+          width="15"
+          height="15"
+        >
           <use xlinkHref={`${sprite}#icon-help-circle`}></use>
         </svg>
-        <p className={css.helpText}>Need help?</p>
+        <p className={clsx(css.helpText, css[selectedTheme])}>Need help?</p>
       </button>
     </div>
   );
