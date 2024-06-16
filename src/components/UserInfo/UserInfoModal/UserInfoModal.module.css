@@ -68,6 +68,7 @@
   width: 68px;
   height: 68px;
   border-radius: 8px;
+  border: 0.5px solid silver;
 }
 
 .icon {
@@ -101,7 +102,7 @@
 }
 
 .icon.violet {
-  background-color: var(--color-light-background);
+  background-color: #ecedfd;
 }
 
 .icon.violet:hover {
@@ -183,8 +184,13 @@
   box-shadow: 0 4px 16px 0 rgba(22, 22, 22, 0.08);
   opacity: 0.4;
   padding: 14px 18px;
+  border: none;
+  outline: none;
 }
 
+.input:focus {
+  opacity: 1;
+}
 .input.dark {
   color: var(--color-input-text-dark);
   background-color: var(--bg-color-input-dark);
@@ -206,7 +212,7 @@
 .input::placeholder {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: -0.02em;
 }
 

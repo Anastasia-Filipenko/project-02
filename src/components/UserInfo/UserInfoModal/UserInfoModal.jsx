@@ -44,7 +44,6 @@ export default function UserInfo({ close, imgAvatar }) {
     resolver: yupResolver(schema),
   });
 
-  //приховування паролю
   const [showPassword, setShowPassword] = useState(false);
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
@@ -100,7 +99,11 @@ export default function UserInfo({ close, imgAvatar }) {
           </svg>
           <p className={clsx(css.title, css[selectedTheme])}>Edit profile</p>
           <div className={clsx(css.avatar, css[selectedTheme])}>
-            <img src={avatarSrc} className={css.user_avatar} alt="" />
+            <img
+              src={avatarSrc}
+              className={clsx(css.user_avatar, css[selectedTheme])}
+              alt=""
+            />
 
             <div
               className={clsx(css.icon, css[selectedTheme])}
@@ -110,7 +113,6 @@ export default function UserInfo({ close, imgAvatar }) {
                 className={clsx(css.plus_icon, css[selectedTheme])}
                 width="10"
                 height="10"
-                // onClick={e => console.log('avatar', e.target)}
               >
                 <use xlinkHref={`${sprite}#icon-plus`}></use>
               </svg>
@@ -125,7 +127,7 @@ export default function UserInfo({ close, imgAvatar }) {
           />
           <div className={css.blockinfo}>
             <input
-              placeholder="name from db"
+              placeholder="Enter your name"
               className={clsx(css.input, css[selectedTheme])}
               type="name"
               defaultValue={userName}
@@ -138,7 +140,7 @@ export default function UserInfo({ close, imgAvatar }) {
             />
 
             <input
-              placeholder="email from db"
+              placeholder="Enter your email"
               className={clsx(css.input, css[selectedTheme])}
               type="email"
               defaultValue={userEmail}
@@ -149,12 +151,11 @@ export default function UserInfo({ close, imgAvatar }) {
               errors={errors}
               render={({ message }) => <p className={css.error}>{message}</p>}
             />
-            {/* приховування паролю, тільки svg треба буде змінити*/}
+
             <div className={css.inputWrapper}>
               <input
-                placeholder="password from db"
+                placeholder="Please, enter your old password or new password"
                 className={clsx(css.input, css[selectedTheme])}
-                // defaultValue={userPassword}
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
               />

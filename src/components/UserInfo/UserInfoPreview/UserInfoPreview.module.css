@@ -5,25 +5,27 @@
   height: 32px;
   cursor: pointer;
   background-color: trasparent;
+  /* padding: 4px; */
   transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.user:hover {
-  transform: scale(1.1);
-}
+/* .user:hover {
+  transform: background-color;
+  background-color: red;
+} */
 
 .user_name.dark {
   color: var(--color-user-name-dark);
-  background-color: var(--color-user-preview-dark);
+  /* background-color: var(--color-user-preview-dark); */
 }
 
 .user_name.light {
   color: var(--color-user-name-light);
-  background-color: var(--color-user-preview-light);
+  /* background-color: var(--color-user-preview-light); */
 }
 
 .user_name.violet {
   color: var(--text-color-light);
-  background-color: var(--color-user-preview-violet);
+  /* background-color: var(--color-user-preview-violet); */
 }
 
 .user_avatar {

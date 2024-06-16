@@ -117,12 +117,18 @@
   background: #1f1f1f;
   opacity: 0.4;
   padding: 14px 18px;
+  border: none;
+  outline: none;
 }
 
 .input_email.dark {
   color: var(--color-input-text-dark);
   background-color: #1f1f1f;
   border: 1px solid var(--color-input-accent-dark);
+}
+
+.input_email:focus {
+  opacity: 1;
 }
 
 .input_email.light {
@@ -145,6 +151,8 @@
   background: #1f1f1f;
   opacity: 0.4;
   padding: 14px 18px;
+  border: none;
+  outline: none;
 }
 
 .textarea_comment.dark {
@@ -163,6 +171,10 @@
   color: var(--color-input-text-violet);
   background-color: #fff;
   border: 1px solid var(--color-inpur-accent-violet);
+}
+
+.textarea_comment:focus {
+  opacity: 1;
 }
 
 .input::placeholder {
