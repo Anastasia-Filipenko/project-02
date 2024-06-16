@@ -10,6 +10,7 @@ import {
   useTheme,
   styled,
   List,
+  ListItem,
   Box,
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
@@ -70,7 +71,6 @@ export const Column = props => {
         sx={{
           display: 'flex',
           flexDirection: 'row',
-          overflow: 'visible',
           justifyContent: 'space-between',
           width: '334px',
           height: '56px',
@@ -81,7 +81,6 @@ export const Column = props => {
           title={column.title}
           titleTypographyProps={{
             color: theme.color.fontColor,
-            fontSize: '14px',
           }}
         />
         <CardActions>
@@ -119,24 +118,18 @@ export const Column = props => {
           },
         }}
       >
-        <List sx={{ width: '334px' }}>
+        <List>
           {filteredCards?.map((task, index) => (
             <TaskCard key={index} cardInfo={task} />
           ))}
         </List>
       </Box>
+
       <StyledButton
-        sx={{
-          maxWidth: '334px',
-        }}
         onClick={() => handleOpenModal()}
         startIcon={<StyledPlusIcon backgroundColor="white" />}
       >
-        <StyledTypography
-          sx={{ fontSize: '14px ', color: theme.color.fontColorSecondary }}
-        >
-          Add another card
-        </StyledTypography>
+        <StyledTypography>Add another card</StyledTypography>
       </StyledButton>
 
       {IsOpen && (
