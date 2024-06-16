@@ -110,7 +110,6 @@ export default function UserInfo({ close, imgAvatar }) {
                 className={clsx(css.plus_icon, css[selectedTheme])}
                 width="10"
                 height="10"
-                // onClick={e => console.log('avatar', e.target)}
               >
                 <use xlinkHref={`${sprite}#icon-plus`}></use>
               </svg>
@@ -125,7 +124,7 @@ export default function UserInfo({ close, imgAvatar }) {
           />
           <div className={css.blockinfo}>
             <input
-              placeholder="name from db"
+              placeholder="Enter your name"
               className={clsx(css.input, css[selectedTheme])}
               type="name"
               defaultValue={userName}
@@ -138,7 +137,7 @@ export default function UserInfo({ close, imgAvatar }) {
             />
 
             <input
-              placeholder="email from db"
+              placeholder="Enter your email"
               className={clsx(css.input, css[selectedTheme])}
               type="email"
               defaultValue={userEmail}
@@ -152,7 +151,7 @@ export default function UserInfo({ close, imgAvatar }) {
             {/* приховування паролю, тільки svg треба буде змінити*/}
             <div className={css.inputWrapper}>
               <input
-                placeholder="password from db"
+                placeholder="Please, enter your old password or new password"
                 className={clsx(css.input, css[selectedTheme])}
                 // defaultValue={userPassword}
                 {...register('password')}
