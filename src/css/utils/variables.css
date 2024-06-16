@@ -45,7 +45,7 @@
 
   --color-violet-background-header: #ffffff;
   --color-violet-background-sidebar: #5255bc;
-  --color-violet-background-screensPage: #ecedfd;
+  --color-violet-background-screensPage: rgba(236, 237, 253, 0.4);
   --color-violet-text-primary: #ffffff;
   --color-violet-text-primary-50: #ffffff80;
   --color-violet-text-secondary: #161616;
