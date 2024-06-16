@@ -36,7 +36,7 @@ export const EmptyBoard = () => {
               setModalIsOpen(true);
             }}
           >
-            <Typography color={theme.color.fontColor} whiteSpace="pre-wrap">
+            <Typography color={theme.color.inputColorActive} whiteSpace="pre-wrap">
                 {' '}create a board{' '}
             </Typography>
           </Link>

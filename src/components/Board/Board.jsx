@@ -87,6 +87,7 @@ export default function Board() {
               title={board.title}
               titleTypographyProps={{
                 color: theme.color.fontColor,
+                fontSize: '18px',
               }}
               action={
                 <IconButton onClick={() => setisFiltersModalOpened(true)}>
@@ -140,16 +141,23 @@ export default function Board() {
                   <StyledButton
                     onClick={() => setisColumnModalOpened(true)}
                     sx={{
-                      backgroundColor: theme.color.defaultBoardBackground,
+                      backgroundColor: theme.color.themeColor,
                       textTransform: 'none',
                       padding: '10px',
                       width: '334px',
                       height: '56px',
+                      '&.MuiButtonBase-root': {
+                        '&:hover': {
+                          backgroundColor: theme.color.themeColor,
+                        },
+                      },
                     }}
                     fullWidth
                     startIcon={<StyledPlusIconColumn />}
                   >
-                    <StyledTypography>Add another column</StyledTypography>
+                    <StyledTypography sx={{ fontSize: '14px' }}>
+                      Add another column
+                    </StyledTypography>
                   </StyledButton>
                 </Stack>
               </Stack>

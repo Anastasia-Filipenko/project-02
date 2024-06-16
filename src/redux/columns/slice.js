@@ -29,10 +29,8 @@ const columnsSlice = createSlice({
   },
   reducers: {
     setColumns(state, action) {
-      console.log('first time addiing column after fetching board from backend', action.payload.boardId)
       state.boardId = action.payload.boardId;
       state.items = action.payload.columns;
-      console.log('setting columns', state.items)
     }
   },
   extraReducers: builder => {
