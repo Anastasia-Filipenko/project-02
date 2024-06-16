@@ -11,7 +11,6 @@ import {
   selectUserName,
   selectUserEmail,
   selectUserId,
-  selectUserAvatar,
 } from '../../../redux/auth/selectors';
 import { useDispatch } from 'react-redux';
 import {
