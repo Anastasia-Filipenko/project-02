@@ -1,10 +1,10 @@
-// import EditBtn from '../../ControlBtnInCard/EditBtn/EditBtn';
 import css from './taskCard.module.css';
 import clsx from 'clsx';
 import sprite from '../../../assets/sprite.svg';
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../../../redux/theme/selectors';
+import EditBtn from '../../ControlBtnInCard/EditBtn/EditBtn';
 
 
 export default function TaskCard({ cardInfo }) {
@@ -46,12 +46,13 @@ export default function TaskCard({ cardInfo }) {
         </div>
         <div className={css.taskCardFooter}>
           <div className={css.priorityWrp}>
-            <p className={clsx(css.priorityHeader, css[selectedTheme], css[selectedTheme])}>Priority</p>
+            <p className={clsx(css.priorityHeader, css[selectedTheme])}>Priority</p>
             <div className={css.priorityItems}>
               <div
                 className={clsx(
                   css.prioritySign,
-                  css[formatPriority(cardInfo.priority)]
+                  css[formatPriority(cardInfo.priority)],
+                  css[selectedTheme]
                 )}
               ></div>
               <p className={clsx(css.priorityText, css[selectedTheme])}>
@@ -68,7 +69,7 @@ export default function TaskCard({ cardInfo }) {
               <use href={`${sprite}#icon-bell`}></use>
             </svg>
           </div>
-          {/* <div><EditBtn cardInfo={cardInfo}</div> */}
+          <EditBtn cardInfo={cardInfo}/>
         </div>
       </div>
     </li>

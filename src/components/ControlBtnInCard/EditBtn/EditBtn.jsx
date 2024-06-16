@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './EditBtn.module.css';
 import sprite from '../../../assets/sprite.svg';
@@ -12,13 +12,24 @@ import { selectCurrentColumn } from '../../../redux/ControlBtnInCard/selectors.j
 import { selectColumn } from '../../../redux/columns/selectors';
 import { SelectColumn } from '../SelectColumn/SelectColumn';
 
-export default function EditBtn() {
+import EditCardModalWindow from "./EditCardModalWindow/EditCardModalWindow.jsx";
+
+export default function EditBtn({ cardInfo }) {
   const dispatch = useDispatch();
 
   const moveCardBtn = useRef(null);
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isCustomOptionListOpen, setCustomOptionListOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+
+  ///// edit modal window made by Max
+  const [isOpen, setIsOpen] = useState(false);
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
+  function handleModalClose() {
+    setIsOpen(false);
+  }
+  ///// edit modal window made by Max
 
   const boardColumns = useSelector(state => state.columns.items);
   const cards = useSelector(selectCards);
@@ -67,13 +78,13 @@ export default function EditBtn() {
     toggleCustomOptionList();
   };
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
+  // const handleOpenModal = () => {
+  //   setShowModal(true);
+  // };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  // const handleCloseModal = () => {
+  //   setShowModal(false);
+  // };
 
   return (
     <div className={css.card}>
@@ -117,11 +128,18 @@ export default function EditBtn() {
           )}
         </li>
         <li>
-          <button>
+          <button onClick={() => handleOpenModal()}>
             <svg className={css.icon} width="16" height="16">
               <use xlinkHref={`${sprite}#icon-pen`} />
             </svg>
           </button>
+          {isOpen && (
+            <EditCardModalWindow
+              isOpen={isOpen}
+              handleModalClose={handleModalClose}
+              cardInfo={cardInfo}
+            />
+          )}
         </li>
         <li>
           <button
