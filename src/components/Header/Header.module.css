@@ -11,7 +11,6 @@
     justify-content: space-between;
     align-items: center;
     /* position: relative; */
-
   }
 
   .burgerMenu {
@@ -38,7 +37,6 @@
   .dropdown {
     position: relative;
     display: inline-block;
-
   }
 
   .dropdown {
@@ -91,7 +89,7 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-100%)translateY(20%);
+    transform: translateX(-100%) translateY(20%);
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
@@ -101,7 +99,6 @@
     width: 100px;
     height: 107px;
     border: none;
-
   }
 
   .dropdownContent.dark {
@@ -145,13 +142,29 @@
 
 .themeSection {
   margin-left: auto;
-
-
 }
 
 .userSection {
   margin-right: 20px;
   font-size: 14px;
+  transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.userSection.dark:hover {
+  transform: background-color;
+  background-color: #303030;
+}
+
+.userSection.violet:hover {
+  transform: background-color;
+  background-color: #ecdff6;
+}
+
+.userSection.light:hover {
+  transform: background-color;
+  background-color: #dcdbdb;
 }
 
 .userSection.dark {
@@ -164,7 +177,7 @@
   background-color: var(--color-light-primary);
 }
 
-@media (min-width: 760px){
+@media (min-width: 760px) {
   .container {
     min-width: 760px;
   }
@@ -185,7 +198,8 @@
     font-size: 16px;
   }
 
-  .themeSection {}
+  .themeSection {
+  }
 
   .userSection {
     margin-right: 32px;
@@ -194,7 +208,7 @@
 
 @media (min-width: 1440px) {
   .container {
-    min-width: 1180px
+    min-width: 1180px;
   }
 
   .burgerMenu {
@@ -204,5 +218,4 @@
 
 .userInfo {
   margin-right: auto;
-
 }

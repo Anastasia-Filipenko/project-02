@@ -68,6 +68,7 @@
   width: 68px;
   height: 68px;
   border-radius: 8px;
+  border: 0.5px solid silver;
 }
 
 .icon {
@@ -101,7 +102,7 @@
 }
 
 .icon.violet {
-  background-color: var(--color-light-background);
+  background-color: #ecedfd;
 }
 
 .icon.violet:hover {

@@ -44,7 +44,6 @@ export default function UserInfo({ close, imgAvatar }) {
     resolver: yupResolver(schema),
   });
 
-  //приховування паролю
   const [showPassword, setShowPassword] = useState(false);
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
@@ -100,7 +99,11 @@ export default function UserInfo({ close, imgAvatar }) {
           </svg>
           <p className={clsx(css.title, css[selectedTheme])}>Edit profile</p>
           <div className={clsx(css.avatar, css[selectedTheme])}>
-            <img src={avatarSrc} className={css.user_avatar} alt="" />
+            <img
+              src={avatarSrc}
+              className={clsx(css.user_avatar, css[selectedTheme])}
+              alt=""
+            />
 
             <div
               className={clsx(css.icon, css[selectedTheme])}
@@ -148,12 +151,11 @@ export default function UserInfo({ close, imgAvatar }) {
               errors={errors}
               render={({ message }) => <p className={css.error}>{message}</p>}
             />
-            {/* приховування паролю, тільки svg треба буде змінити*/}
+
             <div className={css.inputWrapper}>
               <input
                 placeholder="Please, enter your old password or new password"
                 className={clsx(css.input, css[selectedTheme])}
-                // defaultValue={userPassword}
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}
               />
