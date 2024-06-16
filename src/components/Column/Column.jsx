@@ -10,7 +10,6 @@ import {
   useTheme,
   styled,
   List,
-  ListItem,
   Box,
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
@@ -98,7 +97,8 @@ export const Column = props => {
       </Card>
       <Box
         sx={{
-          maxHeight: '65vh',
+          maxHeight: '60vh',
+          height: '100%',
           overflowY: 'auto',
           overflowX: 'hidden',
           paddingRight: '14px',
@@ -127,6 +127,7 @@ export const Column = props => {
 
       <StyledButton
         onClick={() => handleOpenModal()}
+        sx={{ width: '334px' }}
         startIcon={<StyledPlusIcon backgroundColor="white" />}
       >
         <StyledTypography>Add another card</StyledTypography>
