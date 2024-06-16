@@ -63,7 +63,7 @@ const BoardList = () => {
                   </svg>
                   <p className={css.titleActive}>{board.title}</p>
                 </div>
-                <div>
+                <div className={css.buttons}>
                   <button
                     type="button"
                     className={css.iconBtn}

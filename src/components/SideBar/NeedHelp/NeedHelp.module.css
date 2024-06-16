@@ -14,6 +14,7 @@
   justify-content: space-between;
   display: flex;
   flex-direction: column;
+  margin-left: 14px;
 }
 
 .help {
@@ -83,5 +84,6 @@
   .container {
     width: 212px;
     padding: 20px;
+    margin-left: 24px;
   }
 }

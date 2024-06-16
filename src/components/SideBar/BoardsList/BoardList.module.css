@@ -26,6 +26,7 @@
 
 .icon {
   stroke: rgba(255, 255, 255, 0.5);
+  margin-left: 14px;
 }
 
 .title {
@@ -35,11 +36,18 @@
 
 .iconActive {
   stroke: #ffffff;
+  margin-left: 14px;
 }
 
 .titleActive {
   color: #ffffff;
   font-size: 14px;
+}
+
+.buttons {
+  margin-right: 14px;
+  display: flex;
+  gap: 8px;
 }
 
 .itemActive {
@@ -63,4 +71,16 @@
     stroke: rgba(255, 255, 255, 0.5);;
     background-color: #1F1F1F;
     fill: #1F1F1F;
+}
+
+@media only screen and (min-width: 768px) {
+  .icon {
+    margin-left: 24px;
+  }
+  .iconActive {
+    margin-left: 24px;
+  }
+  .buttons {
+    margin-left: 24px;
+  }
 }

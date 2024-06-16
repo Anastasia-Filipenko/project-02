@@ -34,18 +34,12 @@
   font-weight: 100;
   margin-bottom: 10px;
   margin-top: 62px;
-  /* color: #FFFFFF; */
+  padding-left: 24px;
   color: rgba(255, 255, 255, 0.5);
 }
 
 .cont {
-  /* margin-left: 32px;
-    margin-top: 32px; */
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
   display: flex;
-  /* width: 260px; */
   width: 225px;
   height: 100vh;
   justify-content: space-between;
@@ -56,9 +50,6 @@
 @media only screen and (min-width: 768px) {
   .cont {
     width: 260px;
-    padding-top: 25px;
-    padding-left: 25px;
-    padding-right: 25px;
   }
 }
 
@@ -66,7 +57,8 @@
   .sidebar.open {
     display: block;
     position: fixed;
-    width: 250px;
+    width: 225px;
+    /* justify-content: space-between; */
     height: 100%;
     top: 0;
     left: 0;
