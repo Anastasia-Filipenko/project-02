@@ -58,7 +58,7 @@ body.light {
   --color-btn-hover-light: var(--color-dark-btn-hover);
   --color-btn-text-light: var(--color-light-btn-text);
   --color-input-accent-light: var(--color-light-accent);
-  --color-input-text-light: var(--color-light-input-active);
+  --color-input-text-light: var(--color-light-text-primary);
   --color-input-placeholder-light: var(--color-light-input-active);
   --color-icon-password-light: var(--color-light-input-text);
   --fill-password-light: var(--color-label-without);
@@ -86,9 +86,7 @@ body.violet {
   --background-form-violet: var(--color-light-primary);
   --color-icon-close-violet: var(--color-violet-text-secondary);
   --color-title-form-violet: var(--color-light-text-secondary);
-  --background-color-user-plus-light: var(
-    --color-violet-background-screensPage
-  );
+  --background-color-user-plus-violet: var(--color-light-background);
   --background-color-user-plus-violet: var(--color-violet-btn-board-hover);
   --color-icon-plus-violet: var(--color-violet-text-secondary);
   --color-btn-violet: var(--color-violet-btn);
@@ -107,7 +105,6 @@ body.violet {
   --color-icon-help-violet: var(--color-dark-text-primary);
   --color-text-help-violet: var(--color-violet-text-primary);
   --stroke-icon-help-violet: var(--color-violet-text-primary);
-  --color-perfect-task-violet: var(--color-violet-btn);
 }
 
 h1,

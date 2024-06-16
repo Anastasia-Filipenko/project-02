@@ -101,7 +101,7 @@
 }
 
 .icon.violet {
-  background-color: var(--background-color-user-plus-light);
+  background-color: var(--color-light-background);
 }
 
 .icon.violet:hover {
@@ -192,7 +192,7 @@
 }
 
 .input.light {
-  color: var(--color-input-text-light);
+  color: var(--color-light-text-primary);
   background-color: var(--bg-color-input-light);
   border: 1px solid var(--color-input-accent-light);
 }
