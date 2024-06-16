@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import css from './NotFoundPage.module.css';
-import Loader from '../../components/Loader/Loader';
+import { useState } from 'react';
+import FilterModal from '../../components/FilterModal/FilterModal';
 
 export default function NotFound() {
+  const [isFiltersModalOpened, setIsFiltersModalOpened] = useState(false);
   return (
     <div className={css.container}>
       <h1>We are sorry,</h1>
@@ -21,6 +23,11 @@ export default function NotFound() {
       <NavLink to="/welcome" className={css.link}>
         Back to home
       </NavLink>
+      <button onClick={() => setIsFiltersModalOpened(true)}>OpenModal</button>
+      <FilterModal
+        isOpen={isFiltersModalOpened}
+        onClose={() => setIsFiltersModalOpened(false)}
+      />
     </div>
   );
 }

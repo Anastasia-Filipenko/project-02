@@ -29,6 +29,7 @@ import needHelpReducer from './needHelp/slice';
 //   user: userReducer,
 // });
 import { authReducer } from './auth/authSlice';
+import { filterReducer } from './filter/filterSlice';
 
 const authPersistConfig = {
   key: 'authSlice',
@@ -55,6 +56,7 @@ export const store = configureStore({
     theme: persistedReducer,
     auth: persistedAuthReducer,
     needHelp: needHelpReducer,
+    filter: filterReducer,
   },
 
   middleware: getDefaultMiddleware =>

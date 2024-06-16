@@ -5,7 +5,10 @@ import {
   selectCurrentBoard,
   selectBoardIsLoading,
 } from '../../redux/boards/selectors';
-import { selectColumnIsLoading, selectAllColumns } from '../../redux/columns/selectors';
+import {
+  selectColumnIsLoading,
+  selectAllColumns,
+} from '../../redux/columns/selectors';
 import { fetchCurrentBoard } from '../../redux/boards/operations';
 import { useTheme } from '@mui/material/styles';
 import {
@@ -26,8 +29,13 @@ import { ColumnModal } from '../ColumnModal/ColumnModal';
 import Loader from '../Loader/Loader';
 
 import sprite from '../../assets/sprite.svg';
-import { StyledButton, StyledSvgIcon, StyledTypography } from '../MUIstyled/styledComponent';
+import {
+  StyledButton,
+  StyledSvgIcon,
+  StyledTypography,
+} from '../MUIstyled/styledComponent';
 import { StyledPlusIconColumn } from '../MUIstyled/commonComponent';
+import FilterModal from '../FilterModal/FilterModal';
 
 export default function Board() {
   const dispatch = useDispatch();
@@ -43,7 +51,7 @@ export default function Board() {
   const isBoardLoading = useSelector(selectBoardIsLoading);
   const isColumnLoading = useSelector(selectColumnIsLoading);
   const ref = useRef();
-  
+
   useEffect(() => {
     if (board) {
       if (board.title === boardTitle && board._id) {
@@ -108,7 +116,7 @@ export default function Board() {
                 flexWrap: 'nowrap',
                 '&.MuiCardContent-root': {
                   '&::-webkit-scrollbar': {
-                    width: '20px'
+                    width: '20px',
                   },
                   '&::-webkit-scrollbar-track': {
                     boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
@@ -139,13 +147,9 @@ export default function Board() {
                       height: '56px',
                     }}
                     fullWidth
-                    startIcon={
-                      <StyledPlusIconColumn />
-                    }
+                    startIcon={<StyledPlusIconColumn />}
                   >
-                    <StyledTypography>
-                      Add another column
-                    </StyledTypography>
+                    <StyledTypography>Add another column</StyledTypography>
                   </StyledButton>
                 </Stack>
               </Stack>
@@ -160,20 +164,21 @@ export default function Board() {
                   boardId={board._id}
                 />
               </Modal>
-              <Modal
-                open={isFiltersModalOpened}
+              {/* <Modal
                 onClose={() => setisFiltersModalOpened(false)}
                 disableAutoFocus={true}
-              >
-                <ColumnModal
-                  closeModal={() => setisFiltersModalOpened(false)}
-                  boardId={openedBoardId}
-                />
-              </Modal>
+              > */}
+
+              {/* </Modal> */}
             </CardContent>
           </CardMedia>
         </Card>
       )}
+      <FilterModal
+        isOpen={isFiltersModalOpened}
+        onClose={() => setisFiltersModalOpened(false)}
+        boardId={openedBoardId}
+      />
     </>
   );
 }

@@ -9,7 +9,8 @@ import {
   Stack,
   useTheme,
   styled,
-  List, ListItem
+  List,
+  ListItem,
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
@@ -24,6 +25,7 @@ import {
 } from '../MUIstyled/styledComponent.js';
 import { StyledPlusIcon } from '../MUIstyled/commonComponent.jsx';
 import TaskCard from './TaskCard/taskCard.jsx';
+import { selectFilter } from '../../redux/filter/selector.js';
 
 export const Column = props => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ export const Column = props => {
   const column = useSelector(state => selectColumn(state, props.columnId));
   const [IsOpen, setIsOpen] = useState(false);
   const cards = useSelector(state => selectCardsForColumn(state, column._id));
+  const selectedFilter = useSelector(selectFilter);
 
   function handleOpenModal() {
     setIsOpen(true);
@@ -49,6 +52,11 @@ export const Column = props => {
   const StyledIconButton = styled(IconButton)({
     padding: 0,
   });
+
+  const filteredCards =
+    selectedFilter === 'show-all'
+      ? cards
+      : cards.filter(card => card.priority === selectedFilter);
 
   return (
     <Stack sx={{ height: '75vh' }} gap={2} justifyContent="space-between">
@@ -96,7 +104,7 @@ export const Column = props => {
         overflowY="scroll"
       >
         <List>
-          {cards?.map((task, index) => (
+          {filteredCards?.map((task, index) => (
             <ListItem key={index}>
               <TaskCard key={index} cardInfo={task} />
             </ListItem>
