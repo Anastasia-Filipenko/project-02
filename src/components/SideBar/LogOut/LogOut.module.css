@@ -1,11 +1,17 @@
-.logOut {
+.logOut.dark {
   stroke: #bedbb0;
   fill: none;
 }
 
-/* .logOut:hover {
-  stroke: #9DC888;
-} */
+.logOut.light {
+  stroke: #bedbb0;
+  fill: none;
+}
+
+.logOut.violet {
+  stroke: var(--background-header-violet);
+  fill: none;
+}
 
 .buttonLogOut {
   display: flex;
@@ -14,13 +20,31 @@
   gap: 8px;
   font-weight: 500;
   margin-top: 15px;
-  background-color: #000000;
-  color: #FFFFFF;
+
   margin-bottom: 10px;
   padding: 0;
 }
-
-.buttonLogOut:hover .logOut,
-.buttonLogOut:hover .iconLogOut {
-  stroke: #9DC888;
+.buttonLogOut.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+.buttonLogOut.light {
+  background-color: var(--background-sidebar-light);
+  color: var(--arrow-color-light);
+}
+.buttonLogOut.violet {
+  background-color: var(--background-sidebar-violet);
+  color: var(--background-body-violet);
+}
+.buttonLogOut.dark:hover .logOut,
+.buttonLogOut.dark:hover .iconLogOut {
+  stroke: #9dc888;
+}
+.buttonLogOut.light:hover .logOut,
+.buttonLogOut.light:hover .iconLogOut {
+  stroke: #9dc888;
+}
+.buttonLogOut.violet:hover .logOut,
+.buttonLogOut.violet:hover .iconLogOut {
+  stroke: var(--color-violet-accent);
 }

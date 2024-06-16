@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import css from './FilterModal.module.css';
 import clsx from 'clsx';
 import sprite from '../../assets/sprite.svg';

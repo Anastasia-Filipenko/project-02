@@ -50,13 +50,17 @@ const SideBar = forwardRef(({ viewPortWidth, isOpen, onClose }, ref) => {
       ></div>
       <div
         ref={ref}
-        className={clsx(css.sidebar, { [css.open]: isOpen })}
+        className={clsx(css.sidebar, {
+          [css.open]: isOpen,
+        })}
         onClick={handleSidebarClick}
       >
-        <div className={css.cont} ref={sideBarRef}>
+        <div className={clsx(css.cont, css[selectedTheme])} ref={sideBarRef}>
           <div className={css.upperPart}>
             <Logo />
-            <h3 className={css.myBoardsTitle}>My boards</h3>
+            <h3 className={clsx(css.myBoardsTitle, css[selectedTheme])}>
+              My boards
+            </h3>
             <CreateNewBoard />
             {error && <p>{error}</p>}
             {isLoading && <Loader />}

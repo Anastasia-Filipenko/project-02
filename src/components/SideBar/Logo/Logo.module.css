@@ -1,27 +1,50 @@
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .logoCont {
-    width: 32px;
-    height: 32px;
-    background-color: #1F1F1F;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 8px;
 }
 
-.logoIcon {
-    background-color: #1F1F1F;
-    stroke: #FFFFFF;
-    fill: #FFFFFF;
+.logoCont.dark {
+  background-color: var(--color-dark-primary);
+}
+.logoCont.light {
+  background-color: var(--color-dark-primary);
+}
+.logoCont.violet {
+  background-color: #ecedfd;
+}
+
+.logoIcon.dark {
+  background-color: #1f1f1f;
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+.logoIcon.light {
+  background-color: #1f1f1f;
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+.logoIcon.violet {
+  background-color: var(--background-header-viole);
+  stroke: var(--background-sidebar-violet);
+  fill: var(--background-sidebar-violet);
 }
 
 .logoTitle {
-    font-weight: bold;
-    font-size: 16px;
-    color: #FFFFFF;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.logoTitle.light {
+  color: var(--color-dark-primary);
 }

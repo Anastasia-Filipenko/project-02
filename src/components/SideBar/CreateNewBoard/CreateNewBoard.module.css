@@ -9,6 +9,11 @@
   padding-bottom: 8px;
 }
 
+.create.light {
+  border-top: 0.5px solid rgba(22, 22, 22, 0.1);
+  border-bottom: 0.5px solid rgba(22, 22, 22, 0.1);
+}
+
 .buttonTitle {
   font-size: 14px;
   font-weight: bolder;
@@ -17,12 +22,20 @@
   color: #ffffff;
 }
 
+.buttonTitle.light {
+  color: var(--color-title-form-light);
+}
+
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #bedbb0;
   border-radius: 8px;
+}
+
+.button.violet {
+  background-color: var(--color-violet-accent);
 }
 
 .iconPlus {
@@ -34,6 +47,11 @@
   display: flex;
 }
 
+.iconPlus.violet {
+  stroke: var(--background-form-violet);
+  background-color: var(--color-violet-accent);
+  fill: var(--background-form-violet);
+}
 @media only screen and (min-width: 768px) {
   .create {
     width: 212px;
