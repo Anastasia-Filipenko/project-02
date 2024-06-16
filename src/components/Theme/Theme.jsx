@@ -21,7 +21,7 @@ const Theme = ({ children }) => {
   const themeForMui = createTheme({
     ...getTheme(theme),
     typography: {
-      fontFamily: 'Poppins',
+      fontFamily: ['Poppins', 'sans-serif'],
     },
   });
 

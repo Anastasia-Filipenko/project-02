@@ -11,6 +11,7 @@ import {
   styled,
   List,
   ListItem,
+  Box,
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
@@ -59,7 +60,13 @@ export const Column = props => {
       : cards.filter(card => card.priority === selectedFilter);
 
   return (
-    <Stack sx={{ height: '75vh' }} gap={2} justifyContent="space-between">
+    <Stack
+      sx={{ height: '80vh', width: '350px' }}
+      gap={2}
+      direction="column"
+      justifyContent="space-between"
+      alignItems="stretch"
+    >
       <Card
         sx={{
           display: 'flex',
@@ -89,28 +96,34 @@ export const Column = props => {
           </StyledIconButton>
         </CardActions>
       </Card>
-
-      <Stack
-        // minHeight={{
-        //   xs: '368px',
-        //   sm: '768px',
-        //   lg: '1180px',
-        // }}
-        direction="column"
-        justifyContent="flex-start"
-        alignItems="center"
-        spacing={2}
-        maxHeight="500px"
-        overflowY="scroll"
+      <Box
+        sx={{
+          maxHeight: '65vh',
+          overflowY: 'auto',
+          overflowX: 'hidden',
+          paddingRight: '14px',
+          '&.MuiBox-root': {
+            '&::-webkit-scrollbar': {
+              width: '8px',
+            },
+            '&::-webkit-scrollbar-track': {
+              boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+              borderRadius: '8px',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: theme.color.defaultBoardBackground,
+              outline: `1px solid slategrey`,
+              borderRadius: '8px',
+            },
+          },
+        }}
       >
         <List>
           {filteredCards?.map((task, index) => (
-            <ListItem key={index}>
-              <TaskCard key={index} cardInfo={task} />
-            </ListItem>
+            <TaskCard key={index} cardInfo={task} />
           ))}
         </List>
-      </Stack>
+      </Box>
 
       <StyledButton
         onClick={() => handleOpenModal()}
