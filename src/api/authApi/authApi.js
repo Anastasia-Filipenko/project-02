@@ -1,3 +1,4 @@
+import { Try } from '@mui/icons-material';
 import { authInstance } from '../axiosConfig';
 
 export const registerApi = async body => {
@@ -51,9 +52,18 @@ export const getAllUserDataApi = async () => {
   }
 };
 
-export const updateCurrentBoardId = async (boardId) => {
+export const updateCurrentBoardId = async boardId => {
   try {
     const { data } = await authInstance.patch('/board', boardId);
+    return data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+
+export const authGoogleApi = async () => {
+  try {
+    const { data } = await authInstance.get('/google');
     return data;
   } catch (error) {
     throw new Error(error.response.data.message);
