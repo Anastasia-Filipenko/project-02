@@ -10,7 +10,7 @@ import {
   useTheme,
   styled,
   List,
-  Box,
+  ListItem,
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
@@ -25,10 +25,7 @@ import {
 } from '../MUIstyled/styledComponent.js';
 import { StyledPlusIcon } from '../MUIstyled/commonComponent.jsx';
 import TaskCard from './TaskCard/taskCard.jsx';
-<<<<<<< Updated upstream
 import { selectFilter } from '../../redux/filter/selector.js';
-=======
->>>>>>> Stashed changes
 
 export const Column = props => {
   const dispatch = useDispatch();
@@ -56,37 +53,17 @@ export const Column = props => {
     padding: 0,
   });
 
-<<<<<<< Updated upstream
   const filteredCards =
     selectedFilter === 'show-all'
       ? cards
       : cards.filter(card => card.priority === selectedFilter);
-=======
-  const cardItem = {
-    column: "666dfc948c1e9a831ca158d9",
-    createdAt: "2024-06-15T22:48:28.937Z",
-    deadline: "2024-06-15T22:48:13.206Z",
-    description: "На Олімпіаштадіон у Берліні збірні Іспанії та Хорватії зустрілися в рамках другого ігрового дня першого туру групового етапу Євро-2024 у Німеччині. У стартовому складі колективу Луїса де ла Фуенте у віці 16 років і 338 днів опинився правий вінгер Ламін Ямал. Так, іспанець став наймолодшим гравцем в історії чемпіонатів Європи.",
-    priority: "Medium",
-    title: "qwerty",
-    updatedAt: "2024-06-15T22:48:28.937Z",
-    _id: "666e1a3c8c1e9a831ca17346"
-  }
->>>>>>> Stashed changes
 
   return (
-    <Stack
-      sx={{ height: '80vh', width: '340px' }}
-      gap={2}
-      direction="column"
-      justifyContent="space-between"
-      alignItems="stretch"
-    >
+    <Stack sx={{ height: '75vh' }} gap={2} justifyContent="space-between">
       <Card
         sx={{
           display: 'flex',
           flexDirection: 'row',
-          overflow: 'visible',
           justifyContent: 'space-between',
           width: '334px',
           height: '56px',
@@ -97,7 +74,6 @@ export const Column = props => {
           title={column.title}
           titleTypographyProps={{
             color: theme.color.fontColor,
-            fontSize: '14px',
           }}
         />
         <CardActions>
@@ -113,58 +89,34 @@ export const Column = props => {
           </StyledIconButton>
         </CardActions>
       </Card>
-<<<<<<< Updated upstream
-      <Box
-        sx={{
-          maxHeight: '65vh',
-          overflowY: 'auto',
-          overflowX: 'hidden',
-          paddingRight: '10px',
-          '&.MuiBox-root': {
-            '&::-webkit-scrollbar': {
-              width: '10px',
-            },
-            '&::-webkit-scrollbar-track': {
-              boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-            },
-            '&::-webkit-scrollbar-thumb': {
-              backgroundColor: theme.color.defaultBoardBackground,
-              outline: `1px solid slategrey`,
-            },
-          },
-        }}
-=======
-      <TaskCard cardInfo={cardItem} />
 
-      {/* {props.column?.tasks.map((task, index) => (
-                    <Task key={index} task={task} columnId={props.column._id}/>
-                  ))} */}
-
-      <StyledButton
-        onClick={() => handleOpenModal()}
-        startIcon={
-          <StyledPlusIcon backgroundColor='white'/>
-        }
->>>>>>> Stashed changes
+      <Stack
+        // minHeight={{
+        //   xs: '368px',
+        //   sm: '768px',
+        //   lg: '1180px',
+        // }}
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        spacing={2}
+        maxHeight="500px"
+        overflowY="scroll"
       >
-        <List sx={{ width: '334px' }}>
+        <List>
           {filteredCards?.map((task, index) => (
-            <TaskCard key={index} cardInfo={task} />
+            <ListItem key={index}>
+              <TaskCard key={index} cardInfo={task} />
+            </ListItem>
           ))}
         </List>
-      </Box>
+      </Stack>
+
       <StyledButton
-        sx={{
-          maxWidth: '334px',
-        }}
         onClick={() => handleOpenModal()}
         startIcon={<StyledPlusIcon backgroundColor="white" />}
       >
-        <StyledTypography
-          sx={{ fontSize: '14px ', color: theme.color.fontColorSecondary }}
-        >
-          Add another card
-        </StyledTypography>
+        <StyledTypography>Add another card</StyledTypography>
       </StyledButton>
 
       {IsOpen && (
