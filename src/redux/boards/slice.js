@@ -6,6 +6,7 @@ import {
   deleteBoards,
   editBoard,
 } from './operations';
+import { logOut } from '../auth/operations';
 // import {
 //   logOut
 // } from "../auth/operations";
@@ -46,6 +47,9 @@ const boardsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(logOut.fulfilled, state => {
+        state.boards = [];
+      })
       .addCase(fetchCurrentBoard.pending, handlePending)
       .addCase(fetchCurrentBoard.fulfilled, (state, action) => {
         state.isLoading = false;
