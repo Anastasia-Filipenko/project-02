@@ -35,7 +35,7 @@ const schema = yup.object().shape({
     .required(),
 });
 
-export default function UserInfo({ close }) {
+export default function UserInfo({ close, imgAvatar }) {
   const {
     register,
     handleSubmit,
@@ -50,7 +50,7 @@ export default function UserInfo({ close }) {
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
   const id = useSelector(selectUserId);
-  const userAvatar = useSelector(selectUserAvatar);
+  // const userAvatar = useSelector(selectUserAvatar);
   const selectedTheme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
@@ -82,7 +82,7 @@ export default function UserInfo({ close }) {
     close();
   };
 
-  const avatarSrc = avatarFile ? URL.createObjectURL(avatarFile) : userAvatar;
+  const avatarSrc = avatarFile ? URL.createObjectURL(avatarFile) : imgAvatar;
 
   return (
     <>

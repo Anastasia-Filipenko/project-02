@@ -31,7 +31,7 @@ export const authSlice = createSlice({
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.userId = action.payload.id;
-        state.user.avatar = action.payload.avatarURL;
+        // state.user.avatar = action.payload.avatarURL;
         state.isLoggedIn = true;
       })
       .addCase(registered.rejected, (state, action) => {
