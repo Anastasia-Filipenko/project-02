@@ -60,7 +60,7 @@ export const Column = props => {
 
   return (
     <Stack
-      sx={{ height: '80vh', width: '340px' }}
+      sx={{ height: '80vh', width: '350px' }}
       gap={2}
       direction="column"
       justifyContent="space-between"
@@ -102,17 +102,19 @@ export const Column = props => {
           maxHeight: '65vh',
           overflowY: 'auto',
           overflowX: 'hidden',
-          paddingRight: '10px',
+          paddingRight: '14px',
           '&.MuiBox-root': {
             '&::-webkit-scrollbar': {
-              width: '10px',
+              width: '8px',
             },
             '&::-webkit-scrollbar-track': {
               boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+              borderRadius: '8px',
             },
             '&::-webkit-scrollbar-thumb': {
               backgroundColor: theme.color.defaultBoardBackground,
               outline: `1px solid slategrey`,
+              borderRadius: '8px',
             },
           },
         }}

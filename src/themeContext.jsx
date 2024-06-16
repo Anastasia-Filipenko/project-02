@@ -18,6 +18,7 @@ const themeDark = {
     iconStroke: 'var(--color-light-primary)',
     iconColumnBackgroundColor: 'var(--color-light-primary)',
     iconColumnStroke: 'var(--color-dark-primary)',
+    btnColumnBackround: 'var(--color-dark-btn-secondary)'
   },
 };
 const themeLight = {
@@ -37,7 +38,8 @@ const themeLight = {
     iconColumnBackgroundColor: 'var(--color-dark-primary)',
     iconColumnStroke: 'var(--color-light-primary)',
     activeItem: 'var(--color-light-active-item)',
-    btnActive: 'var(--color-btn-active-item)'
+    btnActive: 'var(--color-btn-active-item)',
+    btnColumnBackround: 'var(--color-light-btn-secondary)'
   },
 };
 
@@ -55,7 +57,8 @@ const themeViolet = {
     iconBackgroundColor: 'var(--color-light-primary)',
     iconStroke: 'var(--color-dark-primary)',
     iconColumnBackgroundColor: 'var(--color-violet-btn)',
-    iconColumnStroke: 'var(--color-light-primary)'
+    iconColumnStroke: 'var(--color-light-primary)',
+    btnColumnBackround: 'var(--color-violet-btn-secondary)'
   },
 };
 
