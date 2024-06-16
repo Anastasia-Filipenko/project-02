@@ -15,12 +15,10 @@ const Home = lazy(() => import('../../pages/HomePage/HomePage'));
 const Board = lazy(() => import('../Board/Board'));
 const NotFound = lazy(() => import('../../pages/NotFoundPage/NotFoundPage'));
 
-
-
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
+  
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);

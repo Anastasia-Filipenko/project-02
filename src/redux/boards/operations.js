@@ -6,6 +6,7 @@ import {
   editBoardApi
 } from '../../api/boardApi/boardApi';
 import { setColumns } from '../columns/slice';
+import { setCards } from '../task/taskSlice';
 import { getAllUserDataApi } from '../../api/authApi/authApi';
 
 export const fetchCurrentBoard = createAsyncThunk(
@@ -16,7 +17,11 @@ export const fetchCurrentBoard = createAsyncThunk(
       thunkAPI.dispatch(
         setColumns({ boardId, columns: response.data?.columns })
       );
-      return response.data;
+      thunkAPI.dispatch(
+        setCards({ columns: response.data?.columns })
+      );
+      const { columns: _, ...simpleBoard } = response.data;
+      return simpleBoard;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
