@@ -1,12 +1,13 @@
 .create {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
   border-top: 0.5px solid #ffffff38;
   border-bottom: 0.5px solid #ffffff38;
   width: 197px;
   padding-top: 8px;
   padding-bottom: 8px;
+  margin-left: 14px;
 }
 
 .create.light {
@@ -34,26 +35,35 @@
   border-radius: 8px;
 }
 
+.button:hover  {
+  background-color: #9DC888;
+}
+
 .button.violet {
   background-color: var(--color-violet-accent);
 }
 
+.button.violet:hover {
+  background-color: var(--color-violet-btn-board-hover);
+}
+
 .iconPlus {
-  background-color: #bedbb0;
   stroke: #121212;
   fill: #121212;
   align-items: center;
   justify-content: center;
   display: flex;
+  width: 40px;
 }
 
 .iconPlus.violet {
   stroke: var(--background-form-violet);
-  background-color: var(--color-violet-accent);
   fill: var(--background-form-violet);
 }
+
 @media only screen and (min-width: 768px) {
   .create {
     width: 212px;
+    margin-left: 24px;
   }
 }
