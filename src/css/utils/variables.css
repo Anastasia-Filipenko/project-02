@@ -40,6 +40,9 @@
   --color-light-input-active: #bedbb0;
   --color-light-input-active: #161616;
 
+  --color-light-active-item: #F6F6F7;
+  --color-btn-active-item: #161616;
+
   --color-violet-background-header: #ffffff;
   --color-violet-background-sidebar: #5255bc;
   --color-violet-background-screensPage: #ecedfd;
@@ -61,4 +64,5 @@
   --color-violet-input-text: #7b7b7b;
   --color-violet-input-active: #bedbb0;
   --color-violet-input-active: #161616;
+
 }

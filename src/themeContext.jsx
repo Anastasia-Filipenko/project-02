@@ -33,7 +33,9 @@ const themeLight = {
     iconBackgroundColor: 'var(--color-dark-primary)',
     iconStroke: 'var(--color-light-primary)',
     iconColumnBackgroundColor: 'var(--color-dark-primary)',
-    iconColumnStroke: 'var(--color-light-primary)'
+    iconColumnStroke: 'var(--color-light-primary)',
+    activeItem: 'var(--color-light-active-item)',
+    btnActive: 'var(--color-btn-active-item)'
   },
 };
 
