@@ -43,8 +43,9 @@
 
   --color-light-active-item: #F6F6F7;
   --color-btn-active-item: #161616;
-
+  
   --color-violet-background-header: #ffffff;
+  --color-light-background: #ECEDFD;
   --color-violet-background-sidebar: #5255bc;
   --color-violet-background-screensPage: rgba(236, 237, 253, 0.4);
   --color-violet-text-primary: #ffffff;
