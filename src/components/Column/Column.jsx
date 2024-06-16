@@ -25,7 +25,10 @@ import {
 } from '../MUIstyled/styledComponent.js';
 import { StyledPlusIcon } from '../MUIstyled/commonComponent.jsx';
 import TaskCard from './TaskCard/taskCard.jsx';
+<<<<<<< Updated upstream
 import { selectFilter } from '../../redux/filter/selector.js';
+=======
+>>>>>>> Stashed changes
 
 export const Column = props => {
   const dispatch = useDispatch();
@@ -53,10 +56,23 @@ export const Column = props => {
     padding: 0,
   });
 
+<<<<<<< Updated upstream
   const filteredCards =
     selectedFilter === 'show-all'
       ? cards
       : cards.filter(card => card.priority === selectedFilter);
+=======
+  const cardItem = {
+    column: "666dfc948c1e9a831ca158d9",
+    createdAt: "2024-06-15T22:48:28.937Z",
+    deadline: "2024-06-15T22:48:13.206Z",
+    description: "На Олімпіаштадіон у Берліні збірні Іспанії та Хорватії зустрілися в рамках другого ігрового дня першого туру групового етапу Євро-2024 у Німеччині. У стартовому складі колективу Луїса де ла Фуенте у віці 16 років і 338 днів опинився правий вінгер Ламін Ямал. Так, іспанець став наймолодшим гравцем в історії чемпіонатів Європи.",
+    priority: "Medium",
+    title: "qwerty",
+    updatedAt: "2024-06-15T22:48:28.937Z",
+    _id: "666e1a3c8c1e9a831ca17346"
+  }
+>>>>>>> Stashed changes
 
   return (
     <Stack
@@ -97,6 +113,7 @@ export const Column = props => {
           </StyledIconButton>
         </CardActions>
       </Card>
+<<<<<<< Updated upstream
       <Box
         sx={{
           maxHeight: '65vh',
@@ -116,6 +133,19 @@ export const Column = props => {
             },
           },
         }}
+=======
+      <TaskCard cardInfo={cardItem} />
+
+      {/* {props.column?.tasks.map((task, index) => (
+                    <Task key={index} task={task} columnId={props.column._id}/>
+                  ))} */}
+
+      <StyledButton
+        onClick={() => handleOpenModal()}
+        startIcon={
+          <StyledPlusIcon backgroundColor='white'/>
+        }
+>>>>>>> Stashed changes
       >
         <List sx={{ width: '334px' }}>
           {filteredCards?.map((task, index) => (
