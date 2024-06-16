@@ -19,9 +19,16 @@
 .taskCard.High {
     border-left: 4px solid var(--color-label-high);
 }
-.taskCard.Without {
-    border-left: 4px solid var(--color-label-without);
+.taskCard.Without.dark {
+    border-left: 4px solid rgba(255, 255, 255, 0.3);
 }
+.taskCard.Without.light {
+    border-left: 4px solid rgba(22, 22, 22, 0.3);
+}
+.taskCard.Without.violet {
+    border-left: 4px solid rgba(22, 22, 22, 0.3);
+}
+
 .taskCard.dark {
     background-color: #121212;
 }
@@ -138,6 +145,15 @@
     height: 12px;
     border-radius: 50%;
 }
+.prioritySign.Without.dark {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.prioritySign.Without.light {
+    background-color: rgba(22, 22, 22, 0.3);
+}
+.prioritySign.Without.violet {
+    background-color: rgba(22, 22, 22, 0.3);
+}
 .prioritySign.Low {
     background-color: var(--color-label-low);
 }
@@ -148,7 +164,7 @@
     background-color: var(--color-label-high);
 }
 .prioritySign.Without {
-    background-color: var(--color-label-without);
+    background-color: rgba(22, 22, 22, 0.3);
 }
 
 .priorityText {

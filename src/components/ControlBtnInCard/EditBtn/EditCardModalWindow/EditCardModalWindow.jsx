@@ -2,7 +2,8 @@ import { useForm } from 'react-hook-form';
 import ReactModal from 'react-modal';
 import { useState } from 'react';
 // import sprite from '../../../assets/sprite.svg';
-import sprite from '../../assets/sprite.svg';
+// import sprite from '../../assets/sprite.svg';
+import sprite from '../../../../assets/sprite.svg';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
@@ -12,23 +13,27 @@ import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 // import { selectTheme } from '../../../redux/theme/selectors';
-import { selectTheme } from '../../redux/theme/selectors.js';
-import css from './CreateCardModalWindow.module.css';
+// import { selectTheme } from '../../redux/theme/selectors.js';
+import { selectTheme } from '../../../../redux/theme/selectors.js';
+// import css from './CreateCardModalWindow.module.css';
+import css from './EditCardModalWindow.module.css';
 import clsx from 'clsx';
 
-import { createCard } from '../../redux/task/operations.js';
+// import { createCard } from '../../redux/task/operations.js';
+import { createCard } from '../../../../redux/task/operations.js';
 
 const schema = yup.object().shape({
   title: yup.string().min(2).required(),
   description: yup.string().min(2).required(),
 });
 
-export default function CreateCardModalWindow({
+export default function EditCardModalWindow({
   isOpen,
   handleModalClose,
-  columnId,
+  cardInfo,
 }) {
-  const [priority, setPiority] = useState('Without priority');
+  console.log("cardInfoInModal: ", cardInfo);
+  const [priority, setPiority] = useState(cardInfo.priority);
   const [startDate, setStartDate] = useState(new Date());
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
@@ -59,13 +64,13 @@ export default function CreateCardModalWindow({
 
   const onSubmit = data => {
     dispatch(
-      createCard({
-        title: data.title,
-        description: data.description,
-        priority,
-        columnId,
-        deadline: startDate,
-      })
+      // createCard({
+      //   title: data.title,
+      //   description: data.description,
+      //   priority,
+      //   columnId,
+      //   deadline: startDate,
+      // })
     );
     handleModalClose();
   };
@@ -86,13 +91,13 @@ export default function CreateCardModalWindow({
             <use href={`${sprite}#icon-x-close`}></use>
           </svg>
         </button>
-        <p className={clsx(css.modalWindowHeader, css[selectedTheme])}>Add card</p>
+        <p className={clsx(css.modalWindowHeader, css[selectedTheme])}>Edit card</p>
         <input
           className={clsx(css.taskTitleInput, css[selectedTheme])}
           {...register('title')}
           name="title"
           placeholder="Title"
-          
+          // value={cardInfo.title}
         />
         <ErrorMessage 
           name="title" 
@@ -104,7 +109,8 @@ export default function CreateCardModalWindow({
           {...register('description')}
           name="description"
           placeholder="Description"
-        />
+          // value={cardInfo.description}
+        >{cardInfo.description}</textarea>
         <ErrorMessage 
           name="description" 
           errors={errors}
@@ -188,7 +194,7 @@ export default function CreateCardModalWindow({
               <use href={`${sprite}#icon-plus`}></use>
             </svg>
           </span>
-          <p className={clsx(css.submitBtnText, css[selectedTheme])}>Add</p>
+          <p className={clsx(css.submitBtnText, css[selectedTheme])}>Edit</p>
         </button>
       </form>
     </ReactModal>
