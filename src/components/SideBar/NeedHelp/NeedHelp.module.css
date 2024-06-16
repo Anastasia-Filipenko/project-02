@@ -24,6 +24,7 @@
   justify-content: space-between;
   display: flex;
   flex-direction: column;
+  margin-left: 14px;
 }
 
 .container.dark {
@@ -39,6 +40,7 @@
 }
 
 .help {
+
   fill: transparent;
 }
 
@@ -147,5 +149,6 @@
   .container {
     width: 212px;
     padding: 20px;
+    margin-left: 24px;
   }
 }
