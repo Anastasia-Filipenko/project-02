@@ -97,7 +97,10 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
               </StyledSvgIcon>
             </IconButton>
           }
-          titleTypographyProps={{ color: `${theme.color.fontColor}` }}
+          titleTypographyProps={{
+            color: `${theme.color.fontColor}`,
+            fontSize: '18px',
+          }}
           title={props.editMode ? 'Edit board' : 'New board'}
         />
         <CardContent>
@@ -245,7 +248,9 @@ export const BoardModal = forwardRef(function BoardModal(props, ref) {
                 )}
               </ToggleButtonGroup>
               <StyledSubmitButtonWithPlusicon>
-                <StyledTypography>
+                <StyledTypography
+                  sx={{ color: theme.color.fontColorSecondary }}
+                >
                   {props.editMode ? 'Edit' : 'Create'}
                 </StyledTypography>
               </StyledSubmitButtonWithPlusicon>

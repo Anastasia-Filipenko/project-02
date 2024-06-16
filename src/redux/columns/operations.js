@@ -4,7 +4,6 @@ import {
   editColumnApi,
   deleteColumnApi,
 } from '../../api/columnApi/columnApi';
-import { fetchCurrentBoard } from '../boards/operations';
 
 export const addColumn = createAsyncThunk(
   'boards/addColumn',
@@ -14,7 +13,6 @@ export const addColumn = createAsyncThunk(
         boardId,
         title: columnTitle,
       });
-      // thunkAPI.dispatch(fetchCurrentBoard(boardId));
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -43,7 +41,6 @@ export const deleteColumn = createAsyncThunk(
   async ({ boardId, columnId }, thunkAPI) => {
     try {
       await deleteColumnApi({ columnId });
-      // thunkAPI.dispatch(fetchCurrentBoard(boardId));
       return { _id: columnId };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

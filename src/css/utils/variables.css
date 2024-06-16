@@ -10,6 +10,7 @@
   --color-label-high: #bedbb0;
 
   --color-dark-primary: #161616;
+  --color-dark-background: #1f1f1f;
   --color-dark-text-primary: #ffffff;
   --color-dark-text-secondary-50: #ffffff80;
   --color-dark-text-secondary-80: #ffffffcc;
@@ -25,6 +26,7 @@
   --color-dark-input-active: #9dc888;
 
   --color-light-primary: #fcfcfc;
+  --color-light-background: #e5e5e5;
   --color-light-text-primary: #161616;
   --color-light-text-secondary-50: #16161680;
   --color-light-text-secondary-70: #161616b3;
@@ -38,7 +40,6 @@
   --color-light-input: #e4f0df;
   --color-light-input-text: #7b7b7b;
   --color-light-input-active: #bedbb0;
-  --color-light-input-active: #161616;
 
   --color-violet-background-header: #ffffff;
   --color-violet-background-sidebar: #5255bc;
@@ -60,5 +61,4 @@
   --color-violet-input: #e4f0df;
   --color-violet-input-text: #7b7b7b;
   --color-violet-input-active: #bedbb0;
-  --color-violet-input-active: #161616;
 }

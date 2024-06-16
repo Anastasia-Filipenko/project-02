@@ -10,7 +10,7 @@ import {
   useTheme,
   styled,
   List,
-  ListItem,
+  Box,
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
 import { ColumnModal } from '../ColumnModal/ColumnModal';
@@ -59,11 +59,16 @@ export const Column = props => {
       : cards.filter(card => card.priority === selectedFilter);
 
   return (
-    <Stack sx={{ height: '75vh' }} gap={2} justifyContent="space-between">
+    <Stack
+      sx={{ maxHeight: '80vh', width: '340px' }}
+      gap={2}
+      justifyContent="space-between"
+    >
       <Card
         sx={{
           display: 'flex',
           flexDirection: 'row',
+          overflow: 'visible',
           justifyContent: 'space-between',
           width: '334px',
           height: '56px',
@@ -74,6 +79,7 @@ export const Column = props => {
           title={column.title}
           titleTypographyProps={{
             color: theme.color.fontColor,
+            fontSize: '14px',
           }}
         />
         <CardActions>
@@ -89,34 +95,42 @@ export const Column = props => {
           </StyledIconButton>
         </CardActions>
       </Card>
-
-      <Stack
-        // minHeight={{
-        //   xs: '368px',
-        //   sm: '768px',
-        //   lg: '1180px',
-        // }}
-        direction="column"
-        justifyContent="flex-start"
-        alignItems="center"
-        spacing={2}
-        maxHeight="500px"
-        overflowY="scroll"
+      <Box
+        sx={{
+          maxHeight: '65vh',
+          overflowY: 'auto',
+          overflowX: 'hidden',
+          paddingRight: '10px',
+          '&.MuiBox-root': {
+            '&::-webkit-scrollbar': {
+              width: '10px',
+            },
+            '&::-webkit-scrollbar-track': {
+              boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: theme.color.defaultBoardBackground,
+              outline: `1px solid slategrey`,
+            },
+          },
+        }}
       >
-        <List>
+        <List sx={{ width: '334px' }}>
           {filteredCards?.map((task, index) => (
-            <ListItem key={index}>
-              <TaskCard key={index} cardInfo={task} />
-            </ListItem>
+            <TaskCard key={index} cardInfo={task} />
           ))}
         </List>
-      </Stack>
-
+      </Box>
       <StyledButton
+        sx={{
+          maxWidth: '334px'
+        }}
         onClick={() => handleOpenModal()}
         startIcon={<StyledPlusIcon backgroundColor="white" />}
       >
-        <StyledTypography>Add another card</StyledTypography>
+        <StyledTypography sx={{ fontSize: '14px ', color: theme.color.fontColorSecondary }}>
+          Add another card
+        </StyledTypography>
       </StyledButton>
 
       {IsOpen && (
