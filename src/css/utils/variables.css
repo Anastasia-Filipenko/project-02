@@ -18,6 +18,7 @@
   --color-dark-stroke: #d9d9d9;
 
   --color-dark-btn: #bedbb0;
+  --color-dark-btn-secondary: #161616;
   --color-dark-btn-hover: #9dc888;
   --color-dark-btn-text: #161616;
 
@@ -34,6 +35,7 @@
   --color-light-accent: #bedbb0;
 
   --color-light-btn: #bedbb0;
+  --color-light-btn-secondary: #ffffff;
   --color-light-btn-hover: #9dc888;
   --color-light-btn-text: #161616;
 
@@ -45,7 +47,7 @@
   --color-btn-active-item: #161616;
   
   --color-violet-background-header: #ffffff;
-  --color-light-background: #ECEDFD;
+  --color-violet-background: #d6d8ff;
   --color-violet-background-sidebar: #5255bc;
   --color-violet-background-screensPage: rgba(236, 237, 253, 0.4);
   --color-violet-text-primary: #ffffff;
@@ -59,6 +61,7 @@
   --color-violet-btn-board-hover: #979cea;
 
   --color-violet-btn: #5255bc;
+  --color-violet-btn-secondary: #ffffff;
   --color-violet-btn-hover: #7b7ede;
   --color-violet-btn-text: #ffffff;
 

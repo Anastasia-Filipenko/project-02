@@ -57,14 +57,14 @@ const FilterModal = ({ isOpen, onClose }) => {
           <div className={css.filterOption}>
             <input
               type="radio"
-              id="without-priority"
+              id="without"
               name="priority"
-              value="Without-priority"
+              value="Without priority"
               className={css.input}
               onChange={handleFilterChange}
             />
             <label
-              htmlFor="without-priority"
+              htmlFor="without"
               className={clsx(
                 css.checkboxLabelWithout,
                 css.checkboxLabel,

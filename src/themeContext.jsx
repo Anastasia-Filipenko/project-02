@@ -12,12 +12,13 @@ const themeDark = {
     defaultBoardBackground: 'var(--color-dark-background)',
     fontColor: 'var(--color-light-primary)',
     fontColorSecondary: 'var(--color-violet-text-secondary)',
-    inputColorDefault: 'var(--color-dark-input)',
+    inputColorDefault: 'var(--color-dark-btn)',
     inputColorActive: 'var(--color-dark-input-active)',
     iconBackgroundColor: 'var(--color-dark-primary)',
     iconStroke: 'var(--color-light-primary)',
     iconColumnBackgroundColor: 'var(--color-light-primary)',
     iconColumnStroke: 'var(--color-dark-primary)',
+    btnColumnBackround: 'var(--color-dark-btn-secondary)'
   },
 };
 const themeLight = {
@@ -30,14 +31,15 @@ const themeLight = {
     backgroundVioletSidebar: 'var(--color-violet-background-sidebar)',
     fontColor: 'var(--color-dark-primary)',
     fontColorSecondary: 'var(--color-violet-text-secondary)',
-    inputColorDefault: 'var(--color-light-input)',
-    inputColorActive: 'var(--color-light-input-active)',
+    inputColorDefault: 'var(--color-light-btn)',
+    inputColorActive: 'var(--color-light-btn-hover)',
     iconBackgroundColor: 'var(--color-dark-primary)',
     iconStroke: 'var(--color-light-primary)',
     iconColumnBackgroundColor: 'var(--color-dark-primary)',
     iconColumnStroke: 'var(--color-light-primary)',
     activeItem: 'var(--color-light-active-item)',
-    btnActive: 'var(--color-btn-active-item)'
+    btnActive: 'var(--color-btn-active-item)',
+    btnColumnBackround: 'var(--color-light-btn-secondary)'
   },
 };
 
@@ -47,7 +49,7 @@ const themeViolet = {
     themeColor: 'var(--color-light-primary)',
     backgroundVioletHeader: 'var(--color-violet-background-header)',
     backgroundVioletSidebar: 'var(--color-violet-background-sidebar)',
-    defaultBoardBackground: 'var(--color-light-background)',
+    defaultBoardBackground: 'var(--color-violet-background)',
     fontColor: 'var(--color-violet-text-secondary)',
     fontColorSecondary: 'var(--color-violet-text-primary)',
     inputColorDefault: 'var(--color-violet-btn)',
@@ -55,7 +57,8 @@ const themeViolet = {
     iconBackgroundColor: 'var(--color-light-primary)',
     iconStroke: 'var(--color-dark-primary)',
     iconColumnBackgroundColor: 'var(--color-violet-btn)',
-    iconColumnStroke: 'var(--color-light-primary)'
+    iconColumnStroke: 'var(--color-light-primary)',
+    btnColumnBackround: 'var(--color-violet-btn-secondary)'
   },
 };
 

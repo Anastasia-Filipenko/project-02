@@ -10,6 +10,7 @@ import {
   useTheme,
   styled,
   List,
+  ListItem,
   Box,
 } from '@mui/material';
 import sprite from '../../assets/sprite.svg';
@@ -60,7 +61,7 @@ export const Column = props => {
 
   return (
     <Stack
-      sx={{ height: '80vh', width: '340px' }}
+      sx={{ height: '80vh', width: '350px' }}
       gap={2}
       direction="column"
       justifyContent="space-between"
@@ -70,7 +71,6 @@ export const Column = props => {
         sx={{
           display: 'flex',
           flexDirection: 'row',
-          overflow: 'visible',
           justifyContent: 'space-between',
           width: '334px',
           height: '56px',
@@ -81,7 +81,6 @@ export const Column = props => {
           title={column.title}
           titleTypographyProps={{
             color: theme.color.fontColor,
-            fontSize: '14px',
           }}
         />
         <CardActions>
@@ -102,39 +101,35 @@ export const Column = props => {
           maxHeight: '65vh',
           overflowY: 'auto',
           overflowX: 'hidden',
-          paddingRight: '10px',
+          paddingRight: '14px',
           '&.MuiBox-root': {
             '&::-webkit-scrollbar': {
-              width: '10px',
+              width: '8px',
             },
             '&::-webkit-scrollbar-track': {
               boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+              borderRadius: '8px',
             },
             '&::-webkit-scrollbar-thumb': {
               backgroundColor: theme.color.defaultBoardBackground,
               outline: `1px solid slategrey`,
+              borderRadius: '8px',
             },
           },
         }}
       >
-        <List sx={{ width: '334px' }}>
+        <List>
           {filteredCards?.map((task, index) => (
             <TaskCard key={index} cardInfo={task} />
           ))}
         </List>
       </Box>
+
       <StyledButton
-        sx={{
-          maxWidth: '334px',
-        }}
         onClick={() => handleOpenModal()}
         startIcon={<StyledPlusIcon backgroundColor="white" />}
       >
-        <StyledTypography
-          sx={{ fontSize: '14px ', color: theme.color.fontColorSecondary }}
-        >
-          Add another card
-        </StyledTypography>
+        <StyledTypography>Add another card</StyledTypography>
       </StyledButton>
 
       {IsOpen && (

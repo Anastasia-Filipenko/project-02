@@ -117,14 +117,16 @@ export default function Board() {
                 flexWrap: 'nowrap',
                 '&.MuiCardContent-root': {
                   '&::-webkit-scrollbar': {
-                    width: '20px',
+                    width: '12px',
                   },
                   '&::-webkit-scrollbar-track': {
                     boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+                    borderRadius: '12px',
                   },
                   '&::-webkit-scrollbar-thumb': {
                     backgroundColor: theme.color.defaultBoardBackground,
                     outline: `1px solid slategrey`,
+                    borderRadius: '12px',
                   },
                 },
               }}
@@ -141,14 +143,14 @@ export default function Board() {
                   <StyledButton
                     onClick={() => setisColumnModalOpened(true)}
                     sx={{
-                      backgroundColor: theme.color.themeColor,
+                      backgroundColor: theme.color.btnColumnBackround,
                       textTransform: 'none',
                       padding: '10px',
                       width: '334px',
                       height: '56px',
                       '&.MuiButtonBase-root': {
                         '&:hover': {
-                          backgroundColor: theme.color.themeColor,
+                          backgroundColor: theme.color.btnColumnBackround,
                         },
                       },
                     }}
