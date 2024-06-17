@@ -34,10 +34,20 @@ export default function EditCardModalWindow({
 }) {
   console.log("cardInfoInModal: ", cardInfo);
   const [priority, setPiority] = useState(cardInfo.priority);
-  const [startDate, setStartDate] = useState(new Date());
+  const [titleValue, setTitleChanges] = useState(cardInfo.title);
+  const [descriptionValue, setDescriptionChanges] = useState(cardInfo.title);
+  const [startDate, setStartDate] = useState(new Date(cardInfo.deadline));
+  // console.log("startDate: ", startDate);
+  // console.log("cardDeadline: ", new Date(cardInfo.deadline));
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
   console.log(selectedTheme);
+  const handleTitleChange = (event) => {
+    setTitleChanges(event.target.value);
+  };
+  const handleDescriptionChange = (event) => {
+    setDescriptionChanges(event.target.value);
+  };
   const handleChange = e => {
     setDatePickerIsOpen(!isDatePickerOpen);
     setStartDate(e);
@@ -97,7 +107,8 @@ export default function EditCardModalWindow({
           {...register('title')}
           name="title"
           placeholder="Title"
-          // value={cardInfo.title}
+          value={titleValue} 
+          onChange={handleTitleChange}
         />
         <ErrorMessage 
           name="title" 
@@ -109,8 +120,9 @@ export default function EditCardModalWindow({
           {...register('description')}
           name="description"
           placeholder="Description"
-          // value={cardInfo.description}
-        >{cardInfo.description}</textarea>
+          value={descriptionValue}
+          onChange={handleDescriptionChange}
+        />
         <ErrorMessage 
           name="description" 
           errors={errors}
@@ -126,6 +138,7 @@ export default function EditCardModalWindow({
               value="Low"
               id="low"
               onChange={onPriorityChange}
+              checked={priority === "Low"}
             />
             <div className={`${css.styledRadio} ${css.lowPriorityColor}`}></div>
           </div>
@@ -137,6 +150,7 @@ export default function EditCardModalWindow({
               value="Medium"
               id="medium"
               onChange={onPriorityChange}
+              checked={priority === "Medium"}
             />
             <div
               className={`${css.styledRadio} ${css.mediumPriorityColor}`}
@@ -150,6 +164,7 @@ export default function EditCardModalWindow({
               value="High"
               id="high"
               onChange={onPriorityChange}
+              checked={priority === "High"}
             />
             <div
               className={`${css.styledRadio} ${css.highPriorityColor}`}
@@ -163,6 +178,7 @@ export default function EditCardModalWindow({
               value="Without priority"
               id="without"
               onChange={onPriorityChange}
+              checked={priority === "Without priority"}
             />
             <div
               className={clsx(css.styledRadio, css.withoutPriorityColor, css[selectedTheme])}
