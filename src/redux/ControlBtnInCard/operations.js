@@ -8,7 +8,6 @@ export const deleteCard = createAsyncThunk(
   async (cardId, thunkAPI) => {
     try {
       const response = await deleteCardApi(cardId);
-      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -18,9 +17,9 @@ export const deleteCard = createAsyncThunk(
 
 export const moveCard = createAsyncThunk(
   'controlCards/moveCard',
-  async ({ cardId, body }, thunkAPI) => {
+  async ({ cardId, newColumnId }, thunkAPI) => {
     try {
-      const response = await moveCardApi(cardId, body);
+      const response = await moveCardApi(cardId, newColumnId);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

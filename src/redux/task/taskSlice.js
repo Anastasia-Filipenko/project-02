@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createCard } from './operations.js';
+import { moveCard } from '../ControlBtnInCard/operations.js';
 
 const slice = createSlice({
   name: 'cards',
@@ -15,7 +16,7 @@ const slice = createSlice({
       });
     },
     addEmptyColumn(state, action) {
-      state.items.push({ columnId: action.payload.columnId , cards: []});
+      state.items.push({ columnId: action.payload.columnId, cards: [] });
     },
   },
   extraReducers: builder =>
@@ -26,7 +27,9 @@ const slice = createSlice({
       })
       .addCase(createCard.fulfilled, (state, action) => {
         state.loading = false;
-        const columnIndex = state.items?.findIndex(c => c.columnId === action.payload.column);
+        const columnIndex = state.items?.findIndex(
+          c => c.columnId === action.payload.column
+        );
         if (columnIndex > -1) {
           state.items[columnIndex].cards.push(action.payload);
         }

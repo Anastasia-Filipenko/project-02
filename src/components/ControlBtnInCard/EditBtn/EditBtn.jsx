@@ -54,22 +54,26 @@ export default function EditBtn({ cardInfo }) {
   const columnsAmount = columnOptionsList.length;
 
   const handleMoveCard = selectedColumnTitle => {
-    if (selectedColumnTitle === title) {
+    if (selectedColumnTitle === columnOptionsList) {
       return;
     }
+
     const newColumnId = boardColumns.find(
       column => column.title === selectedColumnTitle
     )._id;
+
     const body = {
       newColumnId,
       newOrderInColumn: 'last',
     };
-    dispatch(moveCard({ _id, body }));
+    const cardId = cardInfo._id;
+    dispatch(moveCard({ cardId, newColumnId }));
     toggleCustomOptionList();
   };
 
   const handleDeleteCard = () => {
-    dispatch(deleteCard(_id));
+    const cardId = cardInfo._id;
+    dispatch(deleteCard(cardId));
   };
 
   const toggleCustomOptionList = () => {

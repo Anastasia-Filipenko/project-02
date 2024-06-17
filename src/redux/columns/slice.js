@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  addColumn,
-  editColumn,
-  deleteColumn
-} from './operations';
+import { addColumn, editColumn, deleteColumn } from './operations';
 // import {
 //   logOut
 // } from "../auth/operations";
@@ -31,7 +27,7 @@ const columnsSlice = createSlice({
     setColumns(state, action) {
       state.boardId = action.payload.boardId;
       state.items = action.payload.columns;
-    }
+    },
   },
   extraReducers: builder => {
     builder
@@ -39,21 +35,18 @@ const columnsSlice = createSlice({
       .addCase(addColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log('adding columns', action.payload)
         state.items && state.items.length > 0
-          ? (state.items = [
-              ...state.items,
-              action.payload,
-            ])
+          ? (state.items = [...state.items, action.payload])
           : (state.items = [action.payload]);
-          console.log('added column', state.items)
       })
       .addCase(addColumn.rejected, handleRejected)
       .addCase(editColumn.pending, handlePending)
       .addCase(editColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const columnIndex = state.items?.findIndex(c => c._id === action.payload._id);
+        const columnIndex = state.items?.findIndex(
+          c => c._id === action.payload._id
+        );
         if (columnIndex > -1) {
           state.items[columnIndex] = action.payload;
         }
@@ -63,7 +56,9 @@ const columnsSlice = createSlice({
       .addCase(deleteColumn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const columnIndex = state.items?.findIndex(c => c._id === action.payload._id);
+        const columnIndex = state.items?.findIndex(
+          c => c._id === action.payload._id
+        );
         if (columnIndex > -1) {
           state.items.splice(columnIndex, 1);
         }

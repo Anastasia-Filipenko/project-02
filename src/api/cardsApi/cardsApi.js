@@ -30,10 +30,13 @@ export const deleteCardApi = async id => {
   }
 };
 
-export const moveCardApi = async id => {
+export const moveCardApi = async (cardId, newColumnId) => {
   try {
-    const response = await cardsInstance.patch(`/${id}/move`);
-    return response.data;
+    const columnId = {
+      columnId: newColumnId,
+    };
+    const response = await cardsInstance.patch(`/${cardId}/move`, columnId);
+    return response;
   } catch (error) {
     throw new Error(error.response.data.message);
   }

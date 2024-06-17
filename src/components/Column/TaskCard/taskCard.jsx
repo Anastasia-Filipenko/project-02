@@ -9,20 +9,15 @@ import EditBtn from '../../ControlBtnInCard/EditBtn/EditBtn';
 export default function TaskCard({ cardInfo }) {
   const date = cardInfo.deadline;
   const deadlineDate = format(date, 'dd/MM/yyyy');
-  console.log('deadlineDate: ', deadlineDate);
 
   const dateNow = new Date();
   const dateToday = format(dateNow, 'dd/MM/yyyy');
-  console.log('dateToday: ', dateToday);
 
   const isDeadlineToday = deadlineDate === dateToday;
-  console.log('isDeadlineToday: ', isDeadlineToday);
 
   const isDeadlineTodayToString = isDeadlineToday.toString();
-  console.log('isDeadlineTodayToString: ', isDeadlineTodayToString);
 
   const selectedTheme = useSelector(selectTheme);
-  console.log(selectedTheme);
 
   function formatPriority(priority) {
     if (priority === 'Without priority') {
