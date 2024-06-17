@@ -33,6 +33,7 @@ export default function EditBtn({ cardInfo }) {
   const boardColumns = useSelector(state => state.columns.items);
   const cards = useSelector(selectCards);
   const { column, deadline, _id, title } = useSelector(selectCards);
+  
 
   useEffect(() => {
     const backendDate = new Date(deadline);
@@ -46,7 +47,7 @@ export default function EditBtn({ cardInfo }) {
     setIsButtonActive(isActive);
   }, [deadline]);
 
-  const columnOptionsList = boardColumns.map(column => column.title);
+  const columnOptionsList = boardColumns.map(column => column.title).filter(c => c !== cardInfo.columnTitle);
   const columnsAmount = columnOptionsList.length;
 
   const handleMoveCard = selectedColumnTitle => {
