@@ -44,7 +44,7 @@
 }
 
 .title.violet {
-  color: rgba(255, 255, 255, 0.5);;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .iconActive {
@@ -59,7 +59,7 @@
 
 .iconActive.violet {
   stroke: var(--color-light-primary);
-  fill:rgba(255, 255, 255, 0);
+  fill: rgba(255, 255, 255, 0);
 }
 
 .titleActive {
@@ -114,6 +114,19 @@
   margin-right: 14px;
 }
 
+.iconBtn:hover.violet {
+  stroke: var(--color-light-active-item);
+  fill: var(--color-light-active-item);
+}
+.iconBtn:hover.dark {
+  stroke: var(--color-light-accent);
+  fill: var(--color-light-accent);
+}
+
+.iconBtn:hover.light {
+  stroke: var(--color-dark-btn-hover);
+  fill: var(--color-dark-btn-hover);
+}
 .iconBtn.light {
   stroke: rgba(22, 22, 22, 0.5);
   background-color: var(--color-light-active-item);
@@ -123,7 +136,7 @@
 .iconBtn.violet {
   stroke: rgba(255, 255, 255, 0.5);
   background-color: rgba(255, 255, 255, 0);
-  fill: rgba(255, 255, 255, 0);;
+  fill: rgba(255, 255, 255, 0);
 }
 
 @media only screen and (min-width: 768px) {
