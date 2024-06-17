@@ -24,7 +24,7 @@ export const editCardByIdApi = async id => {
 export const deleteCardApi = async id => {
   try {
     const response = await cardsInstance.delete(`${id}`);
-    return response.data;
+    return response;
   } catch (error) {
     throw new Error(error.response.data.message);
   }

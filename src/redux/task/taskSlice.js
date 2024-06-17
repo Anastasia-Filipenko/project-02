@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createCard } from './operations.js';
-import { moveCard } from '../ControlBtnInCard/operations.js';
+import { createCard, deleteCard, moveCard } from './operations.js';
 
 const slice = createSlice({
   name: 'cards',
@@ -35,6 +34,60 @@ const slice = createSlice({
         }
       })
       .addCase(createCard.rejected, state => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(moveCard.pending, state => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(moveCard.fulfilled, (state, action) => {
+        const columnIndex = state.items.findIndex(column =>
+          column.cards.some(card => card._id === action.payload._id)
+        );
+
+        if (columnIndex !== -1) {
+          const cardIndex = state.items[columnIndex].cards.findIndex(
+            card => card._id === action.payload._id
+          );
+          if (cardIndex !== -1) {
+            state.items[columnIndex].cards.splice(cardIndex, 1);
+          }
+        }
+
+        const newColumnIndex = state.items.findIndex(
+          c => c.columnId === action.payload.column
+        );
+
+        if (newColumnIndex !== -1) {
+          state.items[newColumnIndex].cards.push(action.payload);
+        }
+      })
+      .addCase(moveCard.rejected, state => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(deleteCard.pending, state => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        const cardId = action.meta.arg;
+
+        const columnIndex = state.items.findIndex(column =>
+          column.cards.some(card => card._id === cardId)
+        );
+
+        if (columnIndex !== -1) {
+          const cardIndex = state.items[columnIndex].cards.findIndex(
+            card => card._id === cardId
+          );
+          if (cardIndex !== -1) {
+            state.items[columnIndex].cards.splice(cardIndex, 1);
+          }
+        }
+      })
+      .addCase(deleteCard.rejected, state => {
         state.loading = false;
         state.error = true;
       }),

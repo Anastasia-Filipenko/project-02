@@ -2,19 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './EditBtn.module.css';
 import sprite from '../../../assets/sprite.svg';
-import {
-  deleteCard,
-  moveCard,
-} from '../../../redux/ControlBtnInCard/operations';
 
 import { selectCards } from '../../../redux/task/selectors';
-import { selectCurrentColumn } from '../../../redux/ControlBtnInCard/selectors.js';
-import { selectColumn } from '../../../redux/columns/selectors';
 import { SelectColumn } from '../SelectColumn/SelectColumn';
 
 import EditCardModalWindow from './EditCardModalWindow/EditCardModalWindow.jsx';
 import { selectTheme } from '../../../redux/theme/selectors.js';
 import clsx from 'clsx';
+
+import { deleteCard, moveCard } from '../../../redux/task/operations.js';
 
 export default function EditBtn({ cardInfo }) {
   const dispatch = useDispatch();
@@ -54,18 +50,10 @@ export default function EditBtn({ cardInfo }) {
   const columnsAmount = columnOptionsList.length;
 
   const handleMoveCard = selectedColumnTitle => {
-    if (selectedColumnTitle === columnOptionsList) {
-      return;
-    }
-
     const newColumnId = boardColumns.find(
       column => column.title === selectedColumnTitle
     )._id;
 
-    const body = {
-      newColumnId,
-      newOrderInColumn: 'last',
-    };
     const cardId = cardInfo._id;
     dispatch(moveCard({ cardId, newColumnId }));
     toggleCustomOptionList();

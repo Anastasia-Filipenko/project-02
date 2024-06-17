@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
@@ -36,7 +36,7 @@ export const Column = props => {
   const [IsOpen, setIsOpen] = useState(false);
   const cards = useSelector(state => selectCardsForColumn(state, column._id));
   const selectedFilter = useSelector(selectFilter);
-
+  const [filteredCards, setFilteredCards] = useState([]);
   function handleOpenModal() {
     setIsOpen(true);
   }
@@ -53,10 +53,14 @@ export const Column = props => {
     padding: 0,
   });
 
-  const filteredCards =
-    selectedFilter === 'show-all'
-      ? cards
-      : cards.filter(card => card.priority === selectedFilter);
+  useEffect(() => {
+    if (selectedFilter === 'show-all') {
+      setFilteredCards(cards);
+    } else {
+      const filtered = cards.filter(card => card.priority === selectedFilter);
+      setFilteredCards(filtered);
+    }
+  }, [cards, selectedFilter]);
 
   return (
     <Stack
