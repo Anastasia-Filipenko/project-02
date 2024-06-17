@@ -126,60 +126,266 @@
   gap: 8px;
   margin-bottom: 14px;
 }
+/* //////////////////////// */
 
-.prorityWrp {
-  position: relative;
+.filterOption {
+  margin-bottom: 10px;
+  color: var(--color-dark-text-secondary-50);
+  font-size: 12px;
 }
 
-.styledRadio {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-}
-
-.lowPriorityColor {
-    background-color: var(--color-label-low);
-}
-
-.mediumPriorityColor {
-    background-color: var(--color-label-medium); 
-}
-
-.highPriorityColor {
-    background-color: var(--color-label-high);
-}
-
-.withoutPriorityColor.dark {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-.withoutPriorityColor.light {
-  background-color: rgba(22, 22, 22, 0.3);
-}
-.withoutPriorityColor.violet {
-  background-color: rgba(22, 22, 22, 0.3);
-}
-
-
-.radioInput {
+.input[type='radio'] {
   opacity: 0;
-  width: 14px;
-  height: 14px;
+  position: absolute;
+  left: -9999px;
 }
 
-.radioInput:checked {
-  opacity: 1;
+.checkboxLabel.dark {
+  color: var(--color-dark-text-secondary-50);
+}
+.checkboxLabel.light {
+  color: var(--color-light-text-secondary-70);
+}
+.checkboxLabel.violet {
+  color: var(--color-light-text-secondary-70);
 }
 
-.radioInput:checked + .styledRadio {
-    display: none;
+.checkboxLabelWithout {
+  font-size: 14px;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
+
+.input[type='radio'] + .checkboxLabelWithout:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #4d4d4d;
+  border-radius: 50%;
+  background-color: #4d4d4d;
+}
+
+.input[type='radio']:checked + .checkboxLabelWithout:before {
+  background-color: var(--background-form-dark);
+  border-color: #4d4d4d;
+  color: red;
+}
+
+.input[type='radio']:checked + .checkboxLabelWithout:after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4d4d4d;
+}
+
+.input[type='radio']:checked + .checkboxLabelWithout {
+  color: white;
+  font-size: 12px;
+}
+.input[type='radio']:checked + .checkboxLabelWithout.dark {
+  color: var(--color-title-form-dark);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelWithout.light {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelWithout.violet {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+.checkboxLabelLow {
+  font-size: 14px;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.input[type='radio'] + .checkboxLabelLow:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-label-low);
+  border-radius: 50%;
+  background-color: var(--color-label-low);
+}
+
+.input[type='radio']:checked + .checkboxLabelLow:before {
+  background-color: var(--background-form-dark);
+  border-color: var(--color-label-low);
+}
+
+.input[type='radio']:checked + .checkboxLabelLow:after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-label-low);
+}
+
+.input[type='radio']:checked + .checkboxLabelLow {
+  color: white;
+  font-size: 12px;
+}
+.input[type='radio']:checked + .checkboxLabelLow.dark {
+  color: var(--color-title-form-dark);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelLow.light {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelLow.violet {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+.checkboxLabelMedium {
+  font-size: 14px;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.input[type='radio'] + .checkboxLabelMedium:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-label-medium);
+  border-radius: 50%;
+  background-color: var(--color-label-medium);
+}
+
+.input[type='radio']:checked + .checkboxLabelMedium:before {
+  background-color: var(--background-form-dark);
+  border-color: var(--color-label-medium);
+}
+
+.input[type='radio']:checked + .checkboxLabelMedium:after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-label-medium);
+}
+.input[type='radio']:checked + .checkboxLabelMedium {
+  color: white;
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelMedium.dark {
+  color: var(--color-title-form-dark);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelMedium.light {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelMedium.violet {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+.checkboxLabelHigh {
+  font-size: 14px;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.input[type='radio'] + .checkboxLabelHigh:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-label-high);
+  border-radius: 50%;
+  background-color: var(--color-label-high);
+}
+
+.input[type='radio']:checked + .checkboxLabelHigh:before {
+  background-color: var(--background-form-dark);
+  border-color: var(--color-label-high);
+}
+
+.input[type='radio']:checked + .checkboxLabelHigh:after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-label-high);
+}
+
+.input[type='radio']:checked + .checkboxLabelHigh {
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+}
+
+.input[type='radio']:checked + .checkboxLabelHigh.dark {
+  color: var(--color-title-form-dark);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelHigh.light {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+
+.input[type='radio']:checked + .checkboxLabelHigh.violet {
+  color: var(--color-dark-primary);
+  font-size: 12px;
+}
+
+/* //////////////////////// */
 
 .deadlineHeader {
     font-size: 12px;
@@ -283,6 +489,30 @@
 }
 
 @media screen and (min-width: 320px) {
+  .input[type='radio']:checked + .checkboxLabelWithout:after {
+    left: 3px;
+    top: 2px;
+    width: 10px;
+    height: 9px;
+  }
+  .input[type='radio']:checked + .checkboxLabelLow:after {
+    left: 3px;
+    top: 2px;
+    width: 10px;
+    height: 9px;
+  }
+  .input[type='radio']:checked + .checkboxLabelMedium:after {
+    left: 3px;
+    top: 2px;
+    width: 10px;
+    height: 9px;
+  }
+  .input[type='radio']:checked + .checkboxLabelHigh:after {
+    left: 3px;
+    top: 2px;
+    width: 10px;
+    height: 9px;
+  }
 }
 
 @media screen and (min-width: 375px) {

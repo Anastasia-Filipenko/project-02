@@ -80,24 +80,31 @@ export default function CreateCardModalWindow({
       onRequestClose={handleModalClose}
       ariaHideApp={false}
     >
-      <form className={clsx(css.modalWindow, css[selectedTheme])} onSubmit={handleSubmit(onSubmit)}>
-        <button className={clsx(css.modalWindowCloseBtn, css[selectedTheme])} onClick={handleModalClose}>
+      <form
+        className={clsx(css.modalWindow, css[selectedTheme])}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <button
+          className={clsx(css.modalWindowCloseBtn, css[selectedTheme])}
+          onClick={handleModalClose}
+        >
           <svg width="18" height="18" aria-label="close-btn">
             <use href={`${sprite}#icon-x-close`}></use>
           </svg>
         </button>
-        <p className={clsx(css.modalWindowHeader, css[selectedTheme])}>Add card</p>
+        <p className={clsx(css.modalWindowHeader, css[selectedTheme])}>
+          Add card
+        </p>
         <input
           className={clsx(css.taskTitleInput, css[selectedTheme])}
           {...register('title')}
           name="title"
           placeholder="Title"
-          
         />
-        <ErrorMessage 
-          name="title" 
-          errors={errors} 
-          render={({message}) => <p className={css.error}>{message}</p>}
+        <ErrorMessage
+          name="title"
+          errors={errors}
+          render={({ message }) => <p className={css.error}>{message}</p>}
         />
         <textarea
           className={clsx(css.taskDescriptionInput, css[selectedTheme])}
@@ -105,71 +112,108 @@ export default function CreateCardModalWindow({
           name="description"
           placeholder="Description"
         />
-        <ErrorMessage 
-          name="description" 
+        <ErrorMessage
+          name="description"
           errors={errors}
-          render={({message}) => <p className={css.error}>{message}</p>} 
+          render={({ message }) => <p className={css.error}>{message}</p>}
         />
-        <p className={clsx(css.taskPriorityHeader, css[selectedTheme])}>Label color</p>
+        <p className={clsx(css.taskPriorityHeader, css[selectedTheme])}>
+          Label color
+        </p>
         <div className={css.taskPriorityInputsWrp}>
-          <div className={css.prorityWrp}>
+          <div className={css.filterOption}>
             <input
-              className={css.radioInput}
               type="radio"
+              id="low"
               name="priority"
               value="Low"
-              id="low"
+              className={css.input}
               onChange={onPriorityChange}
             />
-            <div className={`${css.styledRadio} ${css.lowPriorityColor}`}></div>
+            <label
+              htmlFor="low"
+              className={clsx(
+                css.checkboxLabelLow,
+                css.checkboxLabel,
+                css[selectedTheme]
+              )}
+            >
+            </label>
           </div>
-          <div className={css.prorityWrp}>
+          <div className={css.filterOption}>
             <input
-              className={css.radioInput}
               type="radio"
+              id="medium"
               name="priority"
               value="Medium"
-              id="medium"
+              className={css.input}
               onChange={onPriorityChange}
             />
-            <div
-              className={`${css.styledRadio} ${css.mediumPriorityColor}`}
-            ></div>
+            <label
+              htmlFor="medium"
+              className={clsx(
+                css.checkboxLabelMedium,
+                css.checkboxLabel,
+                css[selectedTheme]
+              )}
+            >
+            </label>
           </div>
-          <div className={css.prorityWrp}>
+          <div className={css.filterOption}>
             <input
-              className={css.radioInput}
               type="radio"
+              id="high"
               name="priority"
               value="High"
-              id="high"
+              className={css.input}
               onChange={onPriorityChange}
             />
-            <div
-              className={`${css.styledRadio} ${css.highPriorityColor}`}
-            ></div>
+            <label
+              htmlFor="high"
+              className={clsx(
+                css.checkboxLabelHigh,
+                css.checkboxLabel,
+                css[selectedTheme]
+              )}
+            >
+            </label>
           </div>
-          <div className={css.prorityWrp}>
+          <div className={css.filterOption}>
             <input
-              className={css.radioInput}
               type="radio"
+              id="without"
               name="priority"
               value="Without priority"
-              id="without"
+              className={css.input}
               onChange={onPriorityChange}
+              checked={priority === "Without priority"}
             />
-            <div
-              className={clsx(css.styledRadio, css.withoutPriorityColor, css[selectedTheme])}
-            ></div>
+            <label
+              htmlFor="without"
+              className={clsx(
+                css.checkboxLabelWithout,
+                css.checkboxLabel,
+                css[selectedTheme]
+              )}
+            >
+            </label>
           </div>
         </div>
         <p className={clsx(css.deadlineHeader, css[selectedTheme])}>Deadline</p>
-        <button className={clsx(css.pickerBtn, css[selectedTheme])} onClick={handleClick}>
+        <button
+          className={clsx(css.pickerBtn, css[selectedTheme])}
+          onClick={handleClick}
+        >
           {startDate.toDateString() == newDate.toDateString() ? (
             <p>Today, </p>
           ) : null}
           {format(startDate, 'dd/MM/yyyy')}
-          <svg className={clsx(css.pickerSvg, css[selectedTheme])} width="18" height="18" aria-label="close-btn">
+          <svg
+            className={clsx(css.pickerSvg, css[selectedTheme])}
+            width="18"
+            height="18"
+            aria-label="close-btn"
+          >
             <use href={`${sprite}#icon-down`}></use>
           </svg>
         </button>
@@ -182,9 +226,18 @@ export default function CreateCardModalWindow({
             minDate={new Date()}
           />
         )}
-        <button className={clsx(css.submitBtn, css[selectedTheme])} type="submit">
+        <button
+          className={clsx(css.submitBtn, css[selectedTheme])}
+          type="submit"
+        >
           <span className={clsx(css.submitBtnSpan, css[selectedTheme])}>
-            <svg className={clsx(css.submitBtnSvg, css[selectedTheme])} stroke="white" width="14" height="14" aria-label="close-btn">
+            <svg
+              className={clsx(css.submitBtnSvg, css[selectedTheme])}
+              stroke="white"
+              width="14"
+              height="14"
+              aria-label="close-btn"
+            >
               <use href={`${sprite}#icon-plus`}></use>
             </svg>
           </span>
