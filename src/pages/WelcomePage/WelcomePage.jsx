@@ -19,12 +19,13 @@ export default function Welcome() {
               <h1 className={css.name}>Task Pro</h1>
             </div>
           </div>
-          <p className={css.welcome_text}>
-            Supercharge your productivity and take control of your tasks with
-            Task Pro - Don't wait, start achieving your goals now!
-          </p>
+          <div className={css.wrapper_text}>
+            <p className={css.welcome_text}>
+              Supercharge your productivity and take control of your tasks with
+              Task Pro - Don't wait, start achieving your goals now!
+            </p>
+          </div>
 
-          {/* authPage */}
           <div className={css.btn}>
             <NavLink to="/auth/register" className={css.btn_register}>
               Registration
