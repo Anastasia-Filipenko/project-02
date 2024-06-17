@@ -6,21 +6,20 @@ import { useSelector } from 'react-redux';
 import { selectTheme } from '../../../redux/theme/selectors';
 import EditBtn from '../../ControlBtnInCard/EditBtn/EditBtn';
 
-
 export default function TaskCard({ cardInfo }) {
   const date = cardInfo.deadline;
   const deadlineDate = format(date, 'dd/MM/yyyy');
-  console.log("deadlineDate: ", deadlineDate);
+  console.log('deadlineDate: ', deadlineDate);
 
   const dateNow = new Date();
   const dateToday = format(dateNow, 'dd/MM/yyyy');
-  console.log("dateToday: ", dateToday);
+  console.log('dateToday: ', dateToday);
 
   const isDeadlineToday = deadlineDate === dateToday;
-  console.log("isDeadlineToday: ", isDeadlineToday);
+  console.log('isDeadlineToday: ', isDeadlineToday);
 
   const isDeadlineTodayToString = isDeadlineToday.toString();
-  console.log("isDeadlineTodayToString: ", isDeadlineTodayToString);
+  console.log('isDeadlineTodayToString: ', isDeadlineTodayToString);
 
   const selectedTheme = useSelector(selectTheme);
   console.log(selectedTheme);
@@ -36,17 +35,27 @@ export default function TaskCard({ cardInfo }) {
   return (
     <li className={css.cardListItem}>
       <div
-        className={clsx(css.taskCard, css[formatPriority(cardInfo.priority)], css[selectedTheme])}
+        className={clsx(
+          css.taskCard,
+          css[formatPriority(cardInfo.priority)],
+          css[selectedTheme]
+        )}
       >
         <div className={clsx(css.taskCardHeader, css[selectedTheme])}>
-          <p className={clsx(css.cardTitle, css[selectedTheme])}>{cardInfo.title}</p>
+          <p className={clsx(css.cardTitle, css[selectedTheme])}>
+            {cardInfo.title}
+          </p>
           <div className={css.cardDescriptionWrp}>
-            <p className={clsx(css.cardDescription, css[selectedTheme])}>{cardInfo.description}</p>
+            <p className={clsx(css.cardDescription, css[selectedTheme])}>
+              {cardInfo.description}
+            </p>
           </div>
         </div>
         <div className={css.taskCardFooter}>
           <div className={css.priorityWrp}>
-            <p className={clsx(css.priorityHeader, css[selectedTheme])}>Priority</p>
+            <p className={clsx(css.priorityHeader, css[selectedTheme])}>
+              Priority
+            </p>
             <div className={css.priorityItems}>
               <div
                 className={clsx(
@@ -61,15 +70,31 @@ export default function TaskCard({ cardInfo }) {
             </div>
           </div>
           <div className={css.deadlineWrp}>
-            <p className={clsx(css.deadlineHeader, css[selectedTheme])}>Deadline</p>
-            <p className={clsx(css.deadlineDate, css[selectedTheme])}>{deadlineDate}</p>
+            <p className={clsx(css.deadlineHeader, css[selectedTheme])}>
+              Deadline
+            </p>
+            <p className={clsx(css.deadlineDate, css[selectedTheme])}>
+              {deadlineDate}
+            </p>
           </div>
-          <div className={clsx(css.deadlineBell, css[isDeadlineTodayToString])}>
-            <svg fill="#BEDBB0" width="16" height="16" aria-label="close-btn">
-              <use href={`${sprite}#icon-bell`}></use>
-            </svg>
-          </div>
-          <EditBtn cardInfo={cardInfo}/>
+          <ul className={css.iconContainer}>
+            <li>
+              <div
+                className={clsx(css.deadlineBell, css[isDeadlineTodayToString])}
+              >
+                <svg
+                  className={clsx(css.icon, css[selectedTheme])}
+                  width="16"
+                  height="16"
+                  aria-label="close-btn"
+                >
+                  <use href={`${sprite}#icon-bell`}></use>
+                </svg>
+              </div>
+            </li>
+
+            <EditBtn cardInfo={cardInfo} />
+          </ul>
         </div>
       </div>
     </li>

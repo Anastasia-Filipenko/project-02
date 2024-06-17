@@ -1,23 +1,32 @@
-.card {
-  display: flex;
-  position: relative;
-  background-color: rgb(18, 18, 18);
-  width: 354px;
-  height: 154px;
-  border-radius: 8px;
+.btn {
+  height: 13px;
+  width: 13px;
 }
-
-.icon {
+.list {
+  height: 16px;
+}
+.icon.dark {
   stroke: rgba(255, 255, 255, 50%);
 }
 
+.icon.light {
+  stroke: var(--color-light-text-secondary-50);
+  fill: white;
+}
+
+.icon.violet {
+  stroke: var(--color-light-text-secondary-50);
+  fill: white;
+}
+
 .container {
-  position: absolute;
-  bottom: 10px;
-  right: 14px;
+  list-style: none;
+  padding: 0;
+  align-items: flex-end;
   display: flex;
   gap: 8px;
 }
+
 button {
   background: none;
   border: none;
@@ -32,6 +41,17 @@ button {
   display: inline-block;
 }
 
+.btn.dark:hover .icon {
+  stroke: #bedbb0;
+}
+
+.btn.light:hover .icon {
+  stroke: #bedbb0;
+}
+
+.btn.violet:hover .icon {
+  stroke: var(--color-violet-btn);
+}
 .dropdownContent {
   display: none;
   position: absolute;

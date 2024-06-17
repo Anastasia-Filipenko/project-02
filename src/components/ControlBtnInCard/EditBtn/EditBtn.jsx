@@ -12,10 +12,13 @@ import { selectCurrentColumn } from '../../../redux/ControlBtnInCard/selectors.j
 import { selectColumn } from '../../../redux/columns/selectors';
 import { SelectColumn } from '../SelectColumn/SelectColumn';
 
-import EditCardModalWindow from "./EditCardModalWindow/EditCardModalWindow.jsx";
+import EditCardModalWindow from './EditCardModalWindow/EditCardModalWindow.jsx';
+import { selectTheme } from '../../../redux/theme/selectors.js';
+import clsx from 'clsx';
 
 export default function EditBtn({ cardInfo }) {
   const dispatch = useDispatch();
+  const selectedTheme = useSelector(selectTheme);
 
   const moveCardBtn = useRef(null);
   const [isButtonActive, setIsButtonActive] = useState(false);
@@ -87,73 +90,75 @@ export default function EditBtn({ cardInfo }) {
   // };
 
   return (
-    <div className={css.card}>
-      <ul className={css.container}>
-        <li>
+    <>
+      <li className={clsx(css.dropdown, css.list)}>
+        {columnsAmount > 1 && (
           <button
-            onClick={handleOpenModal}
-            className={isButtonActive ? css.buttonActive : ''}
-          >
-            <svg className={`${css.icon}`} width="16" height="16">
-              <use xlinkHref={`${sprite}#icon-bell`} />
-            </svg>
-          </button>
-          {/* <Modal show={showModal} onClose={handleCloseModal} /> */}
-          {/*вместо Modal вставить компонент с мональным окном */}
-        </li>
-
-        <li className={css.dropdown}>
-          {columnsAmount > 1 && (
-            <button
-              ref={moveCardBtn}
-              type="button"
-              onClick={openCustomOptionList}
-            >
-              <svg className={css.icon} width="16" height="16">
-                <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`} />
-              </svg>
-            </button>
-          )}
-          {isCustomOptionListOpen && (
-            <SelectColumn
-              title="Move to column"
-              options={columnOptionsList}
-              selectedOption={title}
-              isOpen={isCustomOptionListOpen}
-              onClose={toggleCustomOptionList}
-              handleOptionClick={handleMoveCard}
-              openBtnRef={moveCardBtn}
-              forCard
-            />
-          )}
-        </li>
-        <li>
-          <button onClick={() => handleOpenModal()}>
-            <svg className={css.icon} width="16" height="16">
-              <use xlinkHref={`${sprite}#icon-pen`} />
-            </svg>
-          </button>
-          {isOpen && (
-            <EditCardModalWindow
-              isOpen={isOpen}
-              handleModalClose={handleModalClose}
-              cardInfo={cardInfo}
-            />
-          )}
-        </li>
-        <li>
-          <button
+            className={clsx(css.btn, css[selectedTheme])}
+            ref={moveCardBtn}
             type="button"
-            onClick={() => {
-              handleDeleteCard();
-            }}
+            onClick={openCustomOptionList}
           >
-            <svg className={css.icon} width="16" height="16">
-              <use xlinkHref={`${sprite}#icon-trash`} />
+            <svg
+              className={clsx(css.icon, css[selectedTheme])}
+              width="16"
+              height="16"
+            >
+              <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`} />
             </svg>
           </button>
-        </li>
-      </ul>
-    </div>
+        )}
+        {isCustomOptionListOpen && (
+          <SelectColumn
+            title="Move to column"
+            options={columnOptionsList}
+            selectedOption={title}
+            isOpen={isCustomOptionListOpen}
+            onClose={toggleCustomOptionList}
+            handleOptionClick={handleMoveCard}
+            openBtnRef={moveCardBtn}
+            forCard
+          />
+        )}
+      </li>
+      <li className={css.list}>
+        <button
+          className={clsx(css.btn, css[selectedTheme])}
+          onClick={() => handleOpenModal()}
+        >
+          <svg
+            className={clsx(css.icon, css[selectedTheme])}
+            width="16"
+            height="16"
+          >
+            <use xlinkHref={`${sprite}#icon-pen`} />
+          </svg>
+        </button>
+        {isOpen && (
+          <EditCardModalWindow
+            isOpen={isOpen}
+            handleModalClose={handleModalClose}
+            cardInfo={cardInfo}
+          />
+        )}
+      </li>
+      <li className={css.list}>
+        <button
+          className={clsx(css.btn, css[selectedTheme])}
+          type="button"
+          onClick={() => {
+            handleDeleteCard();
+          }}
+        >
+          <svg
+            className={clsx(css.icon, css[selectedTheme])}
+            width="16"
+            height="16"
+          >
+            <use xlinkHref={`${sprite}#icon-trash`} />
+          </svg>
+        </button>
+      </li>
+    </>
   );
 }
