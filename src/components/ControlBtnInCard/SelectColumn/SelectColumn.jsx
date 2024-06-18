@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import css from './SelectColumn.module.css';
 import { useSelector } from 'react-redux';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 import clsx from 'clsx';
 import sprite from '../../../assets/sprite.svg';
+
 export const SelectColumn = ({
   title,
   options,
