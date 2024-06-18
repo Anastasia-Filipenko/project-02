@@ -12,6 +12,7 @@ import {
   selectUserEmail,
   selectUserId,
   selectUserAvatar,
+  selectUserPassword,
 } from '../../../redux/auth/selectors';
 import { useDispatch } from 'react-redux';
 import {
@@ -19,7 +20,6 @@ import {
   updateUserAvatar,
 } from '../../../redux/auth/operations';
 import { selectTheme } from '../../../redux/auth/selectors';
-// import { setUser } from '../../../redux/auth/authSlice';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -29,10 +29,6 @@ const schema = yup.object().shape({
     .matches(/^(?!\@*,)/)
     .required(),
   password: yup.string(),
-  // .min(8, 'Password is too short - should be 8 chars minimum.')
-  // .max(64, 'Password is too long - should be 64 chars maximum.')
-  // .matches(/^(?!.*\s).*$/, 'Password should not contain spaces.')
-  // .required(),
 });
 
 export default function UserInfo({ close }) {
@@ -51,6 +47,7 @@ export default function UserInfo({ close }) {
   const id = useSelector(selectUserId);
   const userAvatar = useSelector(selectUserAvatar);
   const selectedTheme = useSelector(selectTheme);
+  const userPassword = useSelector(selectUserPassword);
   const dispatch = useDispatch();
 
   const [avatarFile, setAvatarFile] = useState(null);
@@ -76,15 +73,14 @@ export default function UserInfo({ close }) {
   };
 
   const onSubmit = data => {
-    // console.log('Submitting data:', data);
-    // dispatch(setUser(data));
-    // const theme = selectedTheme;
-    const userData = data;
-    console.log(userData);
-    dispatch(updateUserInfo({ id, userData }));
+    if (data.password === '') {
+      data.password = userPassword;
+      dispatch(updateUserInfo({ id, data }));
+    } else {
+      dispatch(updateUserInfo({ id, data }));
+    }
 
     reset();
-
     close();
   };
 

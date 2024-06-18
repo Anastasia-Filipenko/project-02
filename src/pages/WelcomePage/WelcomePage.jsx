@@ -1,14 +1,53 @@
 import css from './WelcomePage.module.css';
-import user_desktop_2x from '../../images/user_desktop_2x.png';
 import { NavLink } from 'react-router-dom';
 import sprite from '../../assets/sprite.svg';
+import { useState, useEffect } from 'react';
+import UserPath from '../../images/UserWelcome';
+
+const ResponsiveImage = () => {
+  const [imageSrc, setImageSrc] = useState('');
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const pixelRatio = window.devicePixelRatio;
+      let selectedImage = '';
+
+      if (width >= 1200) {
+        selectedImage =
+          pixelRatio > 1 ? UserPath.userDesktop2x : UserPath.userDesktop;
+      } else if (width >= 768) {
+        selectedImage =
+          pixelRatio > 1 ? UserPath.userTablet2x : UserPath.userTablet2x;
+      } else {
+        selectedImage =
+          pixelRatio > 1 ? UserPath.userMobile2x : UserPath.userMobile;
+      }
+
+      setImageSrc(selectedImage);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <>
+      <img src={imageSrc} alt="User" className={css.image} />
+    </>
+  );
+};
 
 export default function Welcome() {
   return (
     <>
       <div className={css.container}>
         <div className={css.wrapper}>
-          <img src={user_desktop_2x} alt="user" className={css.image} />
+          <ResponsiveImage />
           <div className={css.wrapper_logo}>
             <div className={css.wrapper_logo_name}>
               <div className={css.logo}>
