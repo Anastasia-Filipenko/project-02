@@ -6,7 +6,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import sprite from '../../assets/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
-import { selectTheme } from '../../redux/theme/selectors';
+import { selectTheme } from '../../redux/auth/selectors';
 import { sendEmail } from '../../redux/needHelp/operations';
 
 const schema = yup.object().shape({

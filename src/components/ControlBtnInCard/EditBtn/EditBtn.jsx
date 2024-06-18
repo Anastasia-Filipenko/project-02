@@ -7,7 +7,7 @@ import { selectCards } from '../../../redux/task/selectors';
 import { SelectColumn } from '../SelectColumn/SelectColumn';
 
 import EditCardModalWindow from './EditCardModalWindow/EditCardModalWindow.jsx';
-import { selectTheme } from '../../../redux/theme/selectors.js';
+import { selectTheme } from '../../../redux/auth/selectors';
 import clsx from 'clsx';
 
 import { deleteCard, moveCard } from '../../../redux/task/operations.js';

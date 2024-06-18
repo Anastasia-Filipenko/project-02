@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 // import { selectTheme } from '../../../redux/theme/selectors';
 // import { selectTheme } from '../../redux/theme/selectors.js';
-import { selectTheme } from '../../../../redux/theme/selectors.js';
+import { selectTheme } from '../../../../redux/auth/selectors.js';
 // import css from './CreateCardModalWindow.module.css';
 import css from './EditCardModalWindow.module.css';
 import clsx from 'clsx';
@@ -194,6 +194,7 @@ export default function EditCardModalWindow({
               onChange={onPriorityChange}
               checked={priority === 'Without priority'}
             />
+<<<<<<< Updated upstream
             <label
               htmlFor="without"
               className={clsx(
@@ -202,6 +203,15 @@ export default function EditCardModalWindow({
                 css[selectedTheme]
               )}
             ></label>
+=======
+            <div
+              className={clsx(
+                css.styledRadio,
+                css.withoutPriorityColor,
+                css[selectedTheme]
+              )}
+            ></div>
+>>>>>>> Stashed changes
           </div>
         </div>
         <p className={clsx(css.deadlineHeader, css[selectedTheme])}>Deadline</p>

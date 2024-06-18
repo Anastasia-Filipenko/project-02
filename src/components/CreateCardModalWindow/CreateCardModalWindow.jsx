@@ -12,7 +12,7 @@ import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 // import { selectTheme } from '../../../redux/theme/selectors';
-import { selectTheme } from '../../redux/theme/selectors.js';
+import { selectTheme } from '../../redux/auth/selectors.js';
 import css from './CreateCardModalWindow.module.css';
 import clsx from 'clsx';
 
@@ -136,8 +136,7 @@ export default function CreateCardModalWindow({
                 css.customInput,
                 css.lowPriority,
               )}
-            >
-            </label>
+            ></label>
           </div>
           <div className={css.customInputWrp}>
             <input
@@ -154,8 +153,7 @@ export default function CreateCardModalWindow({
                 css.customInput,
                 css.mediumPriority,
               )}
-            >
-            </label>
+            ></label>
           </div>
           <div className={css.customInputWrp}>
             <input
@@ -172,8 +170,7 @@ export default function CreateCardModalWindow({
                 css.customInput,
                 css.highPriority,
               )}
-            >
-            </label>
+            ></label>
           </div>
           <div className={css.customInputWrp}>
             <input
@@ -183,7 +180,7 @@ export default function CreateCardModalWindow({
               value="Without priority"
               className={css.originalInput}
               onChange={onPriorityChange}
-              checked={priority === "Without priority"}
+              checked={priority === 'Without priority'}
             />
             <label
               htmlFor="without"
@@ -192,8 +189,7 @@ export default function CreateCardModalWindow({
                 css.withoutPriority,
                 css[selectedTheme]
               )}
-            >
-            </label>
+            ></label>
           </div>
         </div>
         <p className={clsx(css.deadlineHeader, css[selectedTheme])}>Deadline</p>

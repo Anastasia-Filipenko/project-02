@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { BoardModal } from '../../BoardModal/BoardModal';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 
 const CreateNewBoard = () => {
   const selectedTheme = useSelector(selectTheme);

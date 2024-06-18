@@ -2,7 +2,7 @@ import css from '../Logo/Logo.module.css';
 import sprite from '../../../assets/sprite.svg';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 
 const Logo = () => {
   const selectedTheme = useSelector(selectTheme);

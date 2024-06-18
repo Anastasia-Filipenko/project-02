@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectTheme } from '../../redux/theme/selectors';
+import { selectTheme } from '../../redux/auth/selectors';
 import css from './Header.module.css';
 //import { useState } from 'react';
 import clsx from 'clsx';

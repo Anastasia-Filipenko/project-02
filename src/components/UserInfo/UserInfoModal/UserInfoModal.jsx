@@ -17,7 +17,7 @@ import {
   updateUserInfo,
   updateUserAvatar,
 } from '../../../redux/auth/operations';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),

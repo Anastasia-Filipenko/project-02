@@ -17,7 +17,7 @@ import { commonReducer } from './common/slice';
 import { columnsReducer } from './columns/slice';
 // import { cardsReducer } from './ControlBtnInCard/slice';
 // import axios from 'axios';
-import themeReducer from './theme/themeSlice';
+// import themeReducer from './theme/themeSlice';
 import { cardsReducer } from './task/taskSlice';
 import storage from 'redux-persist/lib/storage';
 import needHelpReducer from './needHelp/slice';
@@ -34,17 +34,17 @@ import { filterReducer } from './filter/filterSlice';
 const authPersistConfig = {
   key: 'authSlice',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'user'],
 };
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['theme'], // you can add 'user' if you want to persist user state as well
-};
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+//   whitelist: ['theme'], // you can add 'user' if you want to persist user state as well
+// };
 
-const persistedReducer = persistReducer(persistConfig, themeReducer);
+// const persistedReducer = persistReducer(persistConfig, themeReducer);
 
 export const store = configureStore({
   reducer: {
@@ -53,7 +53,7 @@ export const store = configureStore({
     common: commonReducer,
     cards: cardsReducer,
     controlCards: cardsReducer,
-    theme: persistedReducer,
+    // theme: persistedAuthReducer,
     auth: persistedAuthReducer,
     needHelp: needHelpReducer,
     filter: filterReducer,

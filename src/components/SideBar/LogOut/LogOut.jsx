@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import sprite from '../../../assets/sprite.svg';
 import { logOut } from '../../../redux/auth/operations';
 import clsx from 'clsx';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 
 const LogOut = () => {
   const selectedTheme = useSelector(selectTheme);
