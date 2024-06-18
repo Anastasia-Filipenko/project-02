@@ -124,7 +124,7 @@ export const Column = props => {
       >
         <List>
           {filteredCards?.map((task, index) => (
-            <TaskCard key={index} cardInfo={task} />
+            <TaskCard key={index} cardInfo={{...task, columnTitle: column.title}} />
           ))}
         </List>
       </Box>
