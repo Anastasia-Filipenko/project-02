@@ -119,17 +119,19 @@ const BoardList = () => {
           );
         })}
       </ul>
-      <Modal open={isModalOpen} onClose={closeModal} disableAutoFocus={true}>
-        <BoardModal
-          ref={ref}
-          title={currentBoard.title}
-          boardId={currentBoard._id}
-          selectedIcon={currentBoard.icon}
-          selectedBackground={currentBoard.background}
-          closeModal={closeModal}
-          editMode={true}
-        />
-      </Modal>
+      {currentBoard && (
+        <Modal open={isModalOpen} onClose={closeModal} disableAutoFocus={true}>
+          <BoardModal
+            ref={ref}
+            title={currentBoard.title}
+            boardId={currentBoard._id}
+            selectedIcon={currentBoard.icon}
+            selectedBackground={currentBoard.background}
+            closeModal={closeModal}
+            editMode={true}
+          />
+        </Modal>
+      )}
     </div>
   );
 };

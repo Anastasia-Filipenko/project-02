@@ -92,6 +92,7 @@ const boardsSlice = createSlice({
         state.boards = state.boards.filter(
           board => board._id !== action.meta.arg
         );
+        state.currentBoard = state.boards[0];
       })
       .addCase(deleteBoards.rejected, handleRejected);
     // .addCase(logOut.fulfilled, state => {

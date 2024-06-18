@@ -41,7 +41,7 @@ export default function Board() {
   const dispatch = useDispatch();
   const { boardTitle } = useParams();
   const board = useSelector(selectCurrentBoard);
-  const columns = useSelector(state => selectAllColumns(state, board._id));
+  const columns = useSelector(state => selectAllColumns(state, board?._id));
   const currentScreen = useSelector(selectCurrentScreen);
   const [imgUrl, setImgUrl] = useState(null);
   const [openedBoardId, setOpenedBoardId] = useState();
