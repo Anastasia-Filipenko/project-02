@@ -67,7 +67,8 @@
 
 @media only screen and (min-width: 320px) {
   .bottomPart {
-    margin-top: 75px;
+    margin-top: 25px;
+
   }
 }
 
@@ -88,7 +89,8 @@
     display: block;
     position: fixed;
     width: 225px;
-    height: 100%;
+    max-height: 100%;
+    height: 100vh;
     top: 0;
     left: 0;
     background-color: #000;
@@ -106,7 +108,7 @@
   .sidebar {
     display: block;
     width: 260px;
-    height: 100vh;
+    height: 100%;
     position: relative;
     background-color: #000;
   }

@@ -131,7 +131,11 @@ export default function Board() {
                 },
               }}
             >
-              <Stack direction="row" gap="32px">
+              <Stack
+                direction="row"
+                gap="32px"
+                sx={{ height: 'calc(100vh - 200px)' }}
+              >
                 {columns?.map((column, index) => (
                   <Column
                     key={index}
