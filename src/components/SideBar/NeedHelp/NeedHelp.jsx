@@ -48,7 +48,7 @@ const NeedHelp = () => {
     <div className={clsx(css.container, css[selectedTheme])}>
       <svg className={clsx(css.logoIcon, css[selectedTheme])}></svg>
       <p className={clsx(css.infoText, css[selectedTheme])}>
-        If you need help width <br />
+        If you need help with <br />
         <a className={clsx(css.perfectTask, css[selectedTheme])}>Task Pro</a>
         , check out our support resources or <br />
         reach out to our <br />
