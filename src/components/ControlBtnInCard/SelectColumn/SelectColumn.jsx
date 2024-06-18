@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import css from './SelectColumn.module.css';
-
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../../redux/theme/selectors';
+import clsx from 'clsx';
+import sprite from '../../../assets/sprite.svg';
 export const SelectColumn = ({
   title,
   options,
@@ -12,6 +15,7 @@ export const SelectColumn = ({
   forCard,
 }) => {
   const customOptionListRef = useRef(null);
+  const selectedTheme = useSelector(selectTheme);
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -38,20 +42,19 @@ export const SelectColumn = ({
 
   return (
     <div
-      className={css.container}
+      className={clsx(css.container, css[selectedTheme])}
       ref={customOptionListRef}
       style={{
         '--max-height': forCard ? '145px' : '200px',
-        '--position-top': forCard ? '-112px' : '20px',
-        '--position-left': forCard ? '-110px' : '-135px',
-        '--font-size': forCard ? '12px' : '14px',
+        '--position-top': forCard ? '24px' : '20px',
+        '--position-left': forCard ? '-121px' : '-135px',
+        '--font-size': forCard ? '14px' : '14px',
       }}
     >
-      <h4 className={css.title}>{title}</h4>
-      <ul className={css.list}>
+      <ul className={clsx(css.list, css[selectedTheme])}>
         {options.map(option => (
           <li
-            className={css.select}
+            className={clsx(css.select, css[selectedTheme])}
             key={option}
             onClick={() => handleOptionClick(option)}
             selected={selectedOption === option ? true : false}
@@ -60,6 +63,13 @@ export const SelectColumn = ({
             {selectedOption === option && (
               <span className={css.current}>(current)</span>
             )}
+            <svg
+              className={clsx(css.icon, css[selectedTheme])}
+              width="16"
+              height="16"
+            >
+              <use xlinkHref={`${sprite}#icon-arrow-circle-broken-right`} />
+            </svg>
           </li>
         ))}
       </ul>

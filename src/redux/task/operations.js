@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   createCardApi,
   deleteCardApi,
+  editCardByIdApi,
   moveCardApi,
 } from '../../api/cardsApi/cardsApi.js';
 
@@ -47,6 +48,18 @@ export const moveCard = createAsyncThunk(
   async ({ cardId, newColumnId }, thunkAPI) => {
     try {
       const response = await moveCardApi(cardId, newColumnId);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changeCard = createAsyncThunk(
+  'controlCards/changeCard',
+  async ({ cardId, body }, thunkAPI) => {
+    try {
+      const response = await editCardByIdApi(cardId, body);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

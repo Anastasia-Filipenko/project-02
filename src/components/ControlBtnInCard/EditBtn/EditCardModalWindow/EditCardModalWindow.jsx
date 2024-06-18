@@ -20,7 +20,7 @@ import css from './EditCardModalWindow.module.css';
 import clsx from 'clsx';
 
 // import { createCard } from '../../redux/task/operations.js';
-import { createCard } from '../../../../redux/task/operations.js';
+import { changeCard, createCard } from '../../../../redux/task/operations.js';
 
 const schema = yup.object().shape({
   title: yup.string().min(2).required(),
@@ -32,7 +32,7 @@ export default function EditCardModalWindow({
   handleModalClose,
   cardInfo,
 }) {
-  console.log('cardInfoInModal: ', cardInfo);
+  // console.log('cardInfoInModal: ', cardInfo);
   const [priority, setPiority] = useState(cardInfo.priority);
   const [titleValue, setTitleChanges] = useState(cardInfo.title);
   const [descriptionValue, setDescriptionChanges] = useState(cardInfo.title);
@@ -41,13 +41,14 @@ export default function EditCardModalWindow({
   // console.log("cardDeadline: ", new Date(cardInfo.deadline));
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
-  console.log(selectedTheme);
+  // console.log(selectedTheme);
   const handleTitleChange = event => {
     setTitleChanges(event.target.value);
   };
   const handleDescriptionChange = event => {
     setDescriptionChanges(event.target.value);
   };
+
   const handleChange = e => {
     setDatePickerIsOpen(!isDatePickerOpen);
     setStartDate(e);
@@ -73,6 +74,7 @@ export default function EditCardModalWindow({
   });
 
   const onSubmit = data => {
+
     // dispatch();
     // createCard({
     //   title: data.title,
@@ -81,6 +83,16 @@ export default function EditCardModalWindow({
     //   columnId,
     //   deadline: startDate,
     // })
+
+    const cardId = cardInfo._id;
+    const body = {
+      title: data.title,
+      description: data.description,
+      priority,
+      deadline: startDate,
+    };
+    dispatch(changeCard({ cardId, body }));
+
     handleModalClose();
   };
 
