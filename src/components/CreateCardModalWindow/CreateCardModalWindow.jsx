@@ -121,78 +121,75 @@ export default function CreateCardModalWindow({
           Label color
         </p>
         <div className={css.taskPriorityInputsWrp}>
-          <div className={css.filterOption}>
+          <div className={css.customInputWrp}>
             <input
               type="radio"
               id="low"
               name="priority"
               value="Low"
-              className={css.input}
+              className={css.originalInput}
               onChange={onPriorityChange}
             />
             <label
               htmlFor="low"
               className={clsx(
-                css.checkboxLabelLow,
-                css.checkboxLabel,
-                css[selectedTheme]
+                css.customInput,
+                css.lowPriority,
               )}
             >
             </label>
           </div>
-          <div className={css.filterOption}>
+          <div className={css.customInputWrp}>
             <input
               type="radio"
               id="medium"
               name="priority"
               value="Medium"
-              className={css.input}
+              className={css.originalInput}
               onChange={onPriorityChange}
             />
             <label
               htmlFor="medium"
               className={clsx(
-                css.checkboxLabelMedium,
-                css.checkboxLabel,
-                css[selectedTheme]
+                css.customInput,
+                css.mediumPriority,
               )}
             >
             </label>
           </div>
-          <div className={css.filterOption}>
+          <div className={css.customInputWrp}>
             <input
               type="radio"
               id="high"
               name="priority"
               value="High"
-              className={css.input}
+              className={css.originalInput}
               onChange={onPriorityChange}
             />
             <label
               htmlFor="high"
               className={clsx(
-                css.checkboxLabelHigh,
-                css.checkboxLabel,
-                css[selectedTheme]
+                css.customInput,
+                css.highPriority,
               )}
             >
             </label>
           </div>
-          <div className={css.filterOption}>
+          <div className={css.customInputWrp}>
             <input
               type="radio"
               id="without"
               name="priority"
               value="Without priority"
-              className={css.input}
+              className={css.originalInput}
               onChange={onPriorityChange}
               checked={priority === "Without priority"}
             />
             <label
               htmlFor="without"
               className={clsx(
-                css.checkboxLabelWithout,
-                css.checkboxLabel,
+                css.customInput,
+                css.withoutPriority,
                 css[selectedTheme]
               )}
             >
