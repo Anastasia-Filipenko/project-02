@@ -2,7 +2,7 @@ import { authInstance } from '../axiosConfig';
 
 export const changeUserThemeApi = async (id, theme) => {
   try {
-    const response = await authInstance.put(`/${id}`, theme);
+    const response = await authInstance.patch(`/${id}`, theme);
     return response;
   } catch (error) {
     throw new Error(error.response.data.message);
