@@ -48,6 +48,7 @@ export const authSlice = createSlice({
         state.user.userId = action.payload.id;
         state.user.theme = action.payload.theme;
         state.user.avatar = action.payload.avatarURL;
+        state.user.password = action.payload.password;
         state.isLoggedIn = true;
       })
       .addCase(registered.rejected, (state, action) => {
@@ -62,6 +63,7 @@ export const authSlice = createSlice({
         state.user.userId = action.payload.id;
         state.user.avatar = action.payload.avatarURL;
         state.user.theme = action.payload.theme;
+        state.user.password = action.payload.password;
         (state.token = action.payload.token), (state.isLoggedIn = true);
         state.isLoading = false;
       })
@@ -81,6 +83,7 @@ export const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.userId = action.payload.id;
         state.user.avatar = action.payload.avatarURL;
+        state.user.password = action.payload.password;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -88,11 +91,12 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.userId = action.payload._id;
         state.user.avatar = action.payload.avatarURL;
+        state.user.password = action.payload.password;
         // state.user.theme = action.payload.theme;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {

@@ -11,8 +11,6 @@ import {
 } from '../../../redux/auth/selectors';
 import { selectTheme } from '../../../redux/auth/selectors';
 import userAvatarPath from './userAvatarPath';
-import { changeTheme } from '../../../redux/theme/operations';
-import { updateUserAvatar } from '../../../redux/auth/operations';
 import { setAvatar } from '../../../redux/auth/authSlice';
 
 const customStyles = {
