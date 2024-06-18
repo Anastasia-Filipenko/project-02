@@ -73,7 +73,7 @@ export default function EditCardModalWindow({
   });
 
   const onSubmit = data => {
-    dispatch();
+    // dispatch();
     // createCard({
     //   title: data.title,
     //   description: data.description,
@@ -194,7 +194,6 @@ export default function EditCardModalWindow({
               onChange={onPriorityChange}
               checked={priority === 'Without priority'}
             />
-<<<<<<< Updated upstream
             <label
               htmlFor="without"
               className={clsx(
@@ -203,15 +202,13 @@ export default function EditCardModalWindow({
                 css[selectedTheme]
               )}
             ></label>
-=======
-            <div
+            {/* <div
               className={clsx(
                 css.styledRadio,
                 css.withoutPriorityColor,
                 css[selectedTheme]
               )}
-            ></div>
->>>>>>> Stashed changes
+            ></div> */}
           </div>
         </div>
         <p className={clsx(css.deadlineHeader, css[selectedTheme])}>Deadline</p>
