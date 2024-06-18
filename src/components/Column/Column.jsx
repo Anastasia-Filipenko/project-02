@@ -62,9 +62,23 @@ export const Column = props => {
     }
   }, [cards, selectedFilter]);
 
+  const breakpoints = {
+    mobile: '96vh',  
+    modal: '80vh', 
+    desktop: '70vh'
+  };
+
   return (
     <Stack
-      sx={{ height: '80vh', width: '350px' }}
+    // sx={{ height: '100vh', width: '350px' }}
+    sx={{
+      height: {
+        xs: breakpoints.mobile, 
+        sm: breakpoints.modal,  
+        md: breakpoints.desktop
+      },
+      width: '350px'
+    }}
       gap={2}
       direction="column"
       justifyContent="space-between"
@@ -101,8 +115,8 @@ export const Column = props => {
       </Card>
       <Box
         sx={{
-          maxHeight: '60vh',
-          height: '100%',
+          // maxHeight: '60vh',
+          height: '100vh',
           overflowY: 'auto',
           overflowX: 'hidden',
           paddingRight: '14px',

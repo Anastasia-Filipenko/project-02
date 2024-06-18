@@ -20,6 +20,7 @@ import axios from 'axios';
 
 import { useToggle } from '../../hooks/useToggle';
 
+
 export default function Home() {
   const dispatch = useDispatch();
   const boards = useSelector(selectAllBoards);
@@ -53,7 +54,7 @@ export default function Home() {
   return (
     <Container maxWidth={false} disableGutters>
       <DetectScreen />
-      <Stack direction="row" height="100vh" onClick={handleContainerClick}>
+      <Stack direction="row" onClick={handleContainerClick}>
         <SideBar ref={sidebarRef} isOpen={isOpen} onClose={close} />
         <Stack
           justifyContent="flex-start"

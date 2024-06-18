@@ -50,7 +50,7 @@
 .cont {
   display: flex;
   width: 225px;
-  height: 100vh;
+  height: 100%;
   justify-content: space-between;
   flex-direction: column;
 }
@@ -65,12 +65,21 @@
   background-color: var(--background-sidebar-violet);
 }
 
+@media only screen and (min-width: 320px) {
+  .bottomPart {
+    margin-top: 75px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .cont {
     width: 260px;
   }
   .myBoardsTitle {
     margin-left: 24px;
+  }
+  .bottomPart {
+    margin: 0;
   }
 }
 

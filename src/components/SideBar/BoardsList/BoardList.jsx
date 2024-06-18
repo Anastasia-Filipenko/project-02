@@ -3,7 +3,6 @@ import { Modal } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../../assets/sprite.svg';
-// update current board
 import {
   selectAllBoards,
   selectCurrentBoard,
@@ -13,7 +12,6 @@ import {
   deleteBoards,
 } from '../../../redux/boards/operations';
 import css from './BoardList.module.css';
-// import { deleteBoards } from '../../../redux/boards/operations';
 import { BoardModal } from '../../BoardModal/BoardModal';
 import { setCurrentBoard } from '../../../redux/boards/slice';
 import clsx from 'clsx';
@@ -55,16 +53,25 @@ const BoardList = () => {
 
   return (
     <div className={css.cont}>
-      <ul className={css.list}>
+      <ul className={clsx(css.list, css[selectedTheme])}>
         {boards.map(board => {
           if (board._id === currentBoard?._id) {
             return (
-              <div key={board._id} className={clsx(css.itemActive, css[selectedTheme])}>
+              <div
+                key={board._id}
+                className={clsx(css.itemActive, css[selectedTheme])}
+              >
                 <div className={css.iconTitle}>
-                  <svg width="18" height="18" className={clsx(css.iconActive, css[selectedTheme])}>
+                  <svg
+                    width="18"
+                    height="18"
+                    className={clsx(css.iconActive, css[selectedTheme])}
+                  >
                     <use xlinkHref={`${sprite}#${board.icon}`}></use>
                   </svg>
-                  <p className={clsx(css.titleActive, css[selectedTheme])}>{board.title}</p>
+                  <p className={clsx(css.titleActive, css[selectedTheme])}>
+                    {board.title}
+                  </p>
                 </div>
                 <div className={css.buttons}>
                   <button
@@ -92,16 +99,22 @@ const BoardList = () => {
 
           return (
             <div
-              className={css.item}
+              className={clsx(css.item, css[selectedTheme])}
               key={board._id}
               onClick={() => {
                 handleOpenBoard(board._id, board.title);
               }}
             >
-              <svg width="18" height="18" className={clsx(css.icon, css[selectedTheme])}>
+              <svg
+                width="18"
+                height="18"
+                className={clsx(css.icon, css[selectedTheme])}
+              >
                 <use xlinkHref={`${sprite}#${board.icon}`}></use>
               </svg>
-              <p className={clsx(css.title, css[selectedTheme])}>{board.title}</p>
+              <p className={clsx(css.title, css[selectedTheme])}>
+                {board.title}
+              </p>
             </div>
           );
         })}
