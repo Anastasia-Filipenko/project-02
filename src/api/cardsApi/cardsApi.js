@@ -12,10 +12,10 @@ export const createCardApi = async data => {
   }
 };
 
-export const editCardByIdApi = async id => {
+export const editCardByIdApi = async (id, body) => {
   try {
-    const response = await cardsInstance.put(`/${id}`);
-    return response.data;
+    const response = await cardsInstance.put(`/${id}`, body);
+    return response;
   } catch (error) {
     throw new Error(error.response.data.message);
   }
