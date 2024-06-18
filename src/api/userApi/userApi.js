@@ -20,6 +20,7 @@ export const getUserBoardInfo = async () => {
 
 export const changeUserProfileApi = async (id, data) => {
   try {
+    console.log(data);
     const response = await authInstance.put(`/${id}`, data);
     return response;
   } catch (error) {

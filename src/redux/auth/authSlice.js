@@ -18,6 +18,7 @@ export const authSlice = createSlice({
       userId: null,
       avatar: null,
       theme: 'dark',
+      password: null,
     },
     token: null,
     isLoggedIn: false,
@@ -27,6 +28,13 @@ export const authSlice = createSlice({
   reducers: {
     setAvatar: (state, action) => {
       state.user.avatar = action.payload;
+      // console.log(action.payload);
+    },
+    setUser: (state, action) => {
+      // console.log(action.payload);
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
+      state.user.password = action.payload.password;
     },
   },
   extraReducers: builder =>
@@ -80,13 +88,16 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.userId = action.payload._id;
-        state.user.avatar = action.payload.avatarURL;
+        state.user.avatar = action.payload.avatar;
+        state.user.theme = action.payload.theme;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
-        state.user.avatar = action.payload.avatarURL;
+        // console.log(action.payload);
+        state.user.avatar = action.payload.avatar;
       })
       .addCase(changeTheme.fulfilled, (state, action) => {
         state.user.theme = action.payload.theme;
@@ -94,5 +105,5 @@ export const authSlice = createSlice({
       }),
 });
 
-export const { setTheme, setAvatar } = authSlice.actions;
+export const { setTheme, setAvatar, setUser } = authSlice.actions;
 export const authReducer = authSlice.reducer;

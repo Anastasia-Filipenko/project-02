@@ -11,6 +11,7 @@ import {
   selectUserName,
   selectUserEmail,
   selectUserId,
+  selectUserAvatar,
 } from '../../../redux/auth/selectors';
 import { useDispatch } from 'react-redux';
 import {
@@ -18,6 +19,7 @@ import {
   updateUserAvatar,
 } from '../../../redux/auth/operations';
 import { selectTheme } from '../../../redux/auth/selectors';
+// import { setUser } from '../../../redux/auth/authSlice';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -26,15 +28,14 @@ const schema = yup.object().shape({
     .email()
     .matches(/^(?!\@*,)/)
     .required(),
-  password: yup
-    .string()
-    .min(8, 'Password is too short - should be 8 chars minimum.')
-    .max(64, 'Password is too long - should be 64 chars maximum.')
-    .matches(/^(?!.*\s).*$/, 'Password should not contain spaces.')
-    .required(),
+  password: yup.string(),
+  // .min(8, 'Password is too short - should be 8 chars minimum.')
+  // .max(64, 'Password is too long - should be 64 chars maximum.')
+  // .matches(/^(?!.*\s).*$/, 'Password should not contain spaces.')
+  // .required(),
 });
 
-export default function UserInfo({ close, imgAvatar }) {
+export default function UserInfo({ close }) {
   const {
     register,
     handleSubmit,
@@ -48,7 +49,7 @@ export default function UserInfo({ close, imgAvatar }) {
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
   const id = useSelector(selectUserId);
-  // const userAvatar = useSelector(selectUserAvatar);
+  const userAvatar = useSelector(selectUserAvatar);
   const selectedTheme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
@@ -75,12 +76,18 @@ export default function UserInfo({ close, imgAvatar }) {
   };
 
   const onSubmit = data => {
-    dispatch(updateUserInfo({ id, data }));
+    // console.log('Submitting data:', data);
+    // dispatch(setUser(data));
+    const theme = selectedTheme;
+    const userData = { ...data, theme };
+    dispatch(updateUserInfo({ id, userData }));
+    console.log(userData);
     reset();
+
     close();
   };
 
-  const avatarSrc = avatarFile ? URL.createObjectURL(avatarFile) : imgAvatar;
+  const avatarSrc = avatarFile ? URL.createObjectURL(avatarFile) : userAvatar;
 
   return (
     <>

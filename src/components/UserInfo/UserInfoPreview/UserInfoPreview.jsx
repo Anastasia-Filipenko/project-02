@@ -100,10 +100,12 @@ const UserInfoPreview = () => {
         className={styles.ReactModal__Content}
         contentLabel="Example Modal"
       >
-        <UserInfoModal close={closeModal} imgAvatar={userAvatarDefault} />
+        <UserInfoModal close={closeModal} />
       </Modal>
     </>
   );
 };
 
 export default UserInfoPreview;
+
+// imgAvatar = { userAvatarDefault };
