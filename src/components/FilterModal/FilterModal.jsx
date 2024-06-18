@@ -1,7 +1,7 @@
 import css from './FilterModal.module.css';
 import clsx from 'clsx';
 import sprite from '../../assets/sprite.svg';
-import { selectTheme } from '../../redux/theme/selectors';
+import { selectTheme } from '../../redux/auth/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import { setFilter } from '../../redux/filter/filterSlice';

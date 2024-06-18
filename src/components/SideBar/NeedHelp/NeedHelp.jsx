@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import sprite from '../../../assets/sprite.svg';
 import clsx from 'clsx';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 
 const customStyles = {
   content: {

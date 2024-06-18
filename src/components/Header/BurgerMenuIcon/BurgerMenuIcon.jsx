@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import sprite from '../../../assets/sprite.svg';
 import css from './BurgerMenu.module.css';
 import { useSelector } from 'react-redux';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 
 const BurgerMenuIcon = () => {
   const selectedTheme = useSelector(selectTheme);

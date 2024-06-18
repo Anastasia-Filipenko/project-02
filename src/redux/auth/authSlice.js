@@ -7,6 +7,7 @@ import {
   updateUserAvatar,
 } from './operations';
 import { updateUserInfo } from '../../redux/auth/operations';
+import { changeTheme } from '../theme/operations';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -16,11 +17,25 @@ export const authSlice = createSlice({
       email: null,
       userId: null,
       avatar: null,
+      theme: 'dark',
+      password: null,
     },
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
     isLoading: false,
+  },
+  reducers: {
+    setAvatar: (state, action) => {
+      state.user.avatar = action.payload;
+      // console.log(action.payload);
+    },
+    setUser: (state, action) => {
+      // console.log(action.payload);
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
+      state.user.password = action.payload.password;
+    },
   },
   extraReducers: builder =>
     builder
@@ -31,7 +46,8 @@ export const authSlice = createSlice({
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.userId = action.payload.id;
-        // state.user.avatar = action.payload.avatarURL;
+        state.user.theme = action.payload.theme;
+        state.user.avatar = action.payload.avatarURL;
         state.isLoggedIn = true;
       })
       .addCase(registered.rejected, (state, action) => {
@@ -45,6 +61,7 @@ export const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.userId = action.payload.id;
         state.user.avatar = action.payload.avatarURL;
+        state.user.theme = action.payload.theme;
         (state.token = action.payload.token), (state.isLoggedIn = true);
         state.isLoading = false;
       })
@@ -52,7 +69,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(logOut.fulfilled, (state, action) => {
-        state.user = { name: null, email: null };
+        state.user = { name: null, email: null, theme: 'dark' };
         state.token = null;
         state.isLoggedIn = false;
       })
@@ -71,14 +88,22 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.userId = action.payload._id;
         state.user.avatar = action.payload.avatarURL;
+        // state.user.theme = action.payload.theme;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        // console.log(action.payload);
+        state.user.avatar = action.payload.avatar;
+      })
+      .addCase(changeTheme.fulfilled, (state, action) => {
+        state.user.theme = action.payload.theme;
         state.user.avatar = action.payload.avatarURL;
       }),
 });
 
+export const { setTheme, setAvatar, setUser } = authSlice.actions;
 export const authReducer = authSlice.reducer;

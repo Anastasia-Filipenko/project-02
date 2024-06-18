@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { selectTheme } from '../../redux//theme/selectors';
+import { selectTheme } from '../../redux/auth/selectors';
 import { getTheme, useTheme } from '../../themeContext';
 import {
   ThemeProvider as MuiThemeProvider,

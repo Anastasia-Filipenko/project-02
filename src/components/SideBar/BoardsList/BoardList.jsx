@@ -17,7 +17,7 @@ import css from './BoardList.module.css';
 import { BoardModal } from '../../BoardModal/BoardModal';
 import { setCurrentBoard } from '../../../redux/boards/slice';
 import clsx from 'clsx';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 
 const BoardList = () => {
   const [isModalOpen, setModalOpen] = useState(false);

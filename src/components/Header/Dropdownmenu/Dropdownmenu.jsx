@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 import css from './Dropdownmenu.module.css';
 import { changeTheme } from '../../../redux/theme/operations';
 import { selectUserId } from '../../../redux/auth/selectors';

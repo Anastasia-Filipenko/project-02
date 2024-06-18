@@ -10,7 +10,7 @@ import { useRef, forwardRef, useEffect } from 'react';
 import Loader from '../Loader/Loader';
 import { selectAllBoards } from '../../redux/boards/selectors';
 import clsx from 'clsx';
-import { selectTheme } from '../../redux/theme/selectors';
+import { selectTheme } from '../../redux/auth/selectors';
 
 const SideBar = forwardRef(({ viewPortWidth, isOpen, onClose }, ref) => {
   const sideBarRef = useRef();

@@ -3,14 +3,17 @@ import css from './UserInfoPreview.module.css';
 import UserInfoModal from '../UserInfoModal/UserInfoModal';
 import styles from '../UserInfoModal/UserInfoModal.module.css';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import clsx from 'clsx';
 import {
   selectUserName,
   selectUserAvatar,
 } from '../../../redux/auth/selectors';
-import clsx from 'clsx';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 import userAvatarPath from './userAvatarPath';
+import { changeTheme } from '../../../redux/theme/operations';
+import { updateUserAvatar } from '../../../redux/auth/operations';
+import { setAvatar } from '../../../redux/auth/authSlice';
 
 const customStyles = {
   content: {
@@ -34,16 +37,30 @@ const customStyles = {
 
 Modal.setAppElement('#modal');
 
-const UserInfoPreview = () => {
-  const userAvatarDark = userAvatarPath.userAvatarDark;
-  const userAvatarViolet = userAvatarPath.userAvatarViolet;
-  const userAvatarLight = userAvatarPath.userAvatarLight;
+const getDefaultAvatarForTheme = theme => {
+  switch (theme) {
+    case 'dark':
+      return userAvatarPath.userAvatarDark;
+    case 'light':
+      return userAvatarPath.userAvatarLight;
+    case 'violet':
+      return userAvatarPath.userAvatarViolet;
+    default:
+      return userAvatarPath.userAvatarDark;
+  }
+};
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+const UserInfoPreview = () => {
   const userName = useSelector(selectUserName);
   const userAvatar = useSelector(selectUserAvatar);
   const selectedTheme = useSelector(selectTheme);
-  const [userAvatarDefault, setUserAvatarDefault] = useState(userAvatarDark);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [userAvatarDefault, setUserAvatarDefault] = useState(
+    userAvatarPath.userAvatarDark
+  );
+
+  const dispatch = useDispatch();
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -53,38 +70,28 @@ const UserInfoPreview = () => {
     setModalIsOpen(false);
   };
 
-  const getDefaultAvatarForTheme = theme => {
-    let defaultAvatar;
-    switch (theme) {
-      case 'dark':
-        defaultAvatar = userAvatarDark;
-        break;
-      case 'light':
-        defaultAvatar = userAvatarLight;
-        break;
-      case 'violet':
-        defaultAvatar = userAvatarViolet;
-        break;
-      default:
-        defaultAvatar = userAvatarDark;
-    }
-    return defaultAvatar;
-  };
-
   useEffect(() => {
     const userTheme = getDefaultAvatarForTheme(selectedTheme);
-    setUserAvatarDefault(userTheme);
-
-    if (userAvatar) {
-      setUserAvatarDefault(userAvatar);
+    if (userAvatar === userAvatarPath.userAvatarDark) {
+      // console.log(1111);
+      dispatch(setAvatar(userTheme));
+      return setUserAvatarDefault(userTheme);
+    } else {
+      // console.log(22222);
+      dispatch(setAvatar(userAvatar));
+      return setUserAvatarDefault(userAvatar);
     }
-  }, [userAvatar, selectedTheme, getDefaultAvatarForTheme]);
+  }, [userAvatar, selectedTheme]);
 
   return (
     <>
       <div className={clsx(css.user, css[selectedTheme])} onClick={openModal}>
         <p className={clsx(css.user_name, css[selectedTheme])}>{userName}</p>
-        <img className={css.user_avatar} src={userAvatarDefault} alt="" />
+        <img
+          className={css.user_avatar}
+          src={userAvatarDefault}
+          alt="User Avatar"
+        />
       </div>
       <Modal
         isOpen={modalIsOpen}
@@ -93,10 +100,12 @@ const UserInfoPreview = () => {
         className={styles.ReactModal__Content}
         contentLabel="Example Modal"
       >
-        {<UserInfoModal close={closeModal} imgAvatar={userAvatarDefault} />}
+        <UserInfoModal close={closeModal} />
       </Modal>
     </>
   );
 };
 
 export default UserInfoPreview;
+
+// imgAvatar = { userAvatarDefault };

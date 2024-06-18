@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import sprite from '../../../assets/sprite.svg';
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
-import { selectTheme } from '../../../redux/theme/selectors';
+import { selectTheme } from '../../../redux/auth/selectors';
 import EditBtn from '../../ControlBtnInCard/EditBtn/EditBtn';
 
 export default function TaskCard({ cardInfo }) {

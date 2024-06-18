@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 // import { selectTheme } from '../../../redux/theme/selectors';
 // import { selectTheme } from '../../redux/theme/selectors.js';
-import { selectTheme } from '../../../../redux/theme/selectors.js';
+import { selectTheme } from '../../../../redux/auth/selectors.js';
 // import css from './CreateCardModalWindow.module.css';
 import css from './EditCardModalWindow.module.css';
 import clsx from 'clsx';
@@ -74,6 +74,16 @@ export default function EditCardModalWindow({
   });
 
   const onSubmit = data => {
+
+    // dispatch();
+    // createCard({
+    //   title: data.title,
+    //   description: data.description,
+    //   priority,
+    //   columnId,
+    //   deadline: startDate,
+    // })
+
     const cardId = cardInfo._id;
     const body = {
       title: data.title,
@@ -82,6 +92,7 @@ export default function EditCardModalWindow({
       deadline: startDate,
     };
     dispatch(changeCard({ cardId, body }));
+
     handleModalClose();
   };
 
@@ -203,6 +214,13 @@ export default function EditCardModalWindow({
                 css[selectedTheme]
               )}
             ></label>
+            {/* <div
+              className={clsx(
+                css.styledRadio,
+                css.withoutPriorityColor,
+                css[selectedTheme]
+              )}
+            ></div> */}
           </div>
         </div>
         <p className={clsx(css.deadlineHeader, css[selectedTheme])}>Deadline</p>
