@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 // import { selectTheme } from '../../../redux/theme/selectors';
 import { selectTheme } from '../../redux/auth/selectors.js';
 import css from './CreateCardModalWindow.module.css';
+// import './customStyles.css';
 import clsx from 'clsx';
 
 import { createCard } from '../../redux/task/operations.js';
@@ -217,6 +218,7 @@ export default function CreateCardModalWindow({
             onChange={handleChange}
             inline
             minDate={new Date()}
+            calendarClassName={clsx(css.customCalendar, css[selectedTheme])}
           />
         )}
         <button

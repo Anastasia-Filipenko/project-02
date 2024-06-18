@@ -248,6 +248,7 @@ export default function EditCardModalWindow({
             onChange={handleChange}
             inline
             minDate={new Date()}
+            calendarClassName={clsx(css.customCalendar, css[selectedTheme])}
           />
         )}
         <button

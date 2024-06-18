@@ -288,6 +288,24 @@
   fill: var(--color-violet-btn);
 }
 
+.customCalendar {
+  display: flex;
+  justify-content: center;
+  width: max-content;
+  margin: auto;
+  margin-top: -30px;
+  margin-bottom: 10px;
+}
+.customCalendar.dark {
+  border: 1px solid rgba(190, 219, 176, 1);
+}
+.customCalendar.light {
+  border: 1px solid rgba(190, 219, 176, 1);
+}
+.customCalendar.violet {
+  border: 1px solid rgba(82, 85, 188, 1);
+}
+
 .submitBtn {
     width: 100%;
     height: 49px;
