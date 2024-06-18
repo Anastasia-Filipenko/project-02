@@ -76,10 +76,10 @@ export const refreshUser = createAsyncThunk(
 
 export const updateUserInfo = createAsyncThunk(
   'auth/updateUserInfo',
-  async (id, { data }, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
       console.log(data);
-      const response = await changeUserProfileApi(id, data);
+      const response = await changeUserProfileApi(data.id, data.userData);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

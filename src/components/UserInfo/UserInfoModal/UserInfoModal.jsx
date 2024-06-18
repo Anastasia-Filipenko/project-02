@@ -78,10 +78,11 @@ export default function UserInfo({ close }) {
   const onSubmit = data => {
     // console.log('Submitting data:', data);
     // dispatch(setUser(data));
-    const theme = selectedTheme;
-    const userData = { ...data, theme };
-    dispatch(updateUserInfo({ id, userData }));
+    // const theme = selectedTheme;
+    const userData = data;
     console.log(userData);
+    dispatch(updateUserInfo({ id, userData }));
+
     reset();
 
     close();
