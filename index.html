@@ -5,6 +5,15 @@
     <link rel="icon" type="image/svg+xml" href="./src/assets/favicon.ico" />
     <meta name="description" content="TaskPro: your personal planner" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content=" default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' https: res.cloudinary.com data:image/svg+xml;
+  connect-src 'self' https://res.cloudinary.com https:;"
+      ;
+    />
     <title>Task Pro</title>
   </head>
 
