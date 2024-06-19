@@ -2,9 +2,11 @@ import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { Button, Typography } from '@mui/material';
 import ErrorIcon from '@mui/icons-material/Error';
+import { useTheme } from '@mui/material/styles';
 
 export default function ModalLogOut({ user, close, logout }) {
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const handleLogout = () => {
     dispatch(logout);
@@ -12,15 +14,17 @@ export default function ModalLogOut({ user, close, logout }) {
 
   return (
     <Box
+      value={theme.name}
       sx={{
-        backgroundColor: '#f2f1f0',
+        backgroundColor: `${theme.color.defaultBoardBackground}`,
+        borderRadius: '15px',
       }}
     >
       <Box
         sx={{
-          border: '1.5px solid #a2a3a3',
+          border: '1.5px solid',
           padding: '15px',
-          borderRadius: '8px',
+          borderRadius: '15px',
         }}
       >
         <Box
@@ -49,14 +53,13 @@ export default function ModalLogOut({ user, close, logout }) {
           <Typography
             sx={{
               fontSize: 18,
-              color: '#524f4e',
+              color: `${theme.color.colorTextBlack}`,
               textAlign: 'center',
-              fontWeight: '600',
+              fontWeight: '500',
             }}
           >
-            {user}
+            Are you sure you want to logout?
           </Typography>
-          are you sure you want to logout?
         </Box>
 
         <Box
@@ -71,6 +74,7 @@ export default function ModalLogOut({ user, close, logout }) {
             sx={{
               backgroundColor: '#e36f71',
               width: '100px',
+              fontWeight: '600',
               transition: 'transform 600ms',
               '&:hover': {
                 transform: 'scale(1.1)',
@@ -86,11 +90,13 @@ export default function ModalLogOut({ user, close, logout }) {
             variant="contained"
             sx={{
               paddingInline: '30px',
-              backgroundColor: 'primary.light',
+              backgroundColor: `${theme.color.btnColorHover}`,
               width: '100px',
+              fontWeight: '600',
               transition: 'transform 600ms',
               '&:hover': {
                 transform: 'scale(1.1)',
+                backgroundColor: `${theme.color.inputColorDefault}`,
               },
             }}
             onClick={close}
