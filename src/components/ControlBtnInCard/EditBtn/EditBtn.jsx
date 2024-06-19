@@ -54,7 +54,7 @@ export default function EditBtn({ cardInfo }) {
     .map(column => column.title)
     .filter(c => c !== cardInfo.columnTitle);
   const columnsAmount = columnOptionsList.length;
-
+  console.log(columnsAmount);
   const handleMoveCard = selectedColumnTitle => {
     const newColumnId = boardColumns.find(
       column => column.title === selectedColumnTitle
@@ -90,7 +90,7 @@ export default function EditBtn({ cardInfo }) {
   return (
     <>
       <li className={clsx(css.dropdown, css.list)}>
-        {columnsAmount > 1 && (
+        {columnsAmount > 0 && (
           <button
             className={clsx(css.btn, css[selectedTheme])}
             ref={moveCardBtn}

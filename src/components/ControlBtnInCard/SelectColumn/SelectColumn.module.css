@@ -7,7 +7,8 @@
   margin: 0;
   padding: 10px 0 10px 10px;
   width: 135px;
-  height: 90px;
+  height: max-content;
+  max-height: 90px;
   font-size: 14px;
   border: solid 1px var(--header-theme-select-border-color);
   border-radius: 8px;
@@ -51,7 +52,6 @@
   padding: 0;
   margin: 0;
   width: 115px;
-  height: 70px;
 }
 
 .list::-webkit-scrollbar {
