@@ -19,17 +19,17 @@
 
 .list::-webkit-scrollbar-track {
   /* background: #bedbb0; */
-  background: rgba(190, 219, 176, 0.5);
+  background: #000000;
 }
 
 .list::-webkit-scrollbar-thumb {
-  background-color: #1f1f1f;
-  border-radius: 10px;
-  border: 2px solid rgba(190, 219, 176, 0.5);
+  background-color: #bedbb0;
+  border-radius: 7px;
+  border: 2px solid #000000;
 }
 
 .list.light::-webkit-scrollbar-thumb {
-  background-color: rgba(190, 219, 176, 0.5);
+  background-color: #bedbb0;
   border-radius: 10px;
   border: 2px solid #ffffff;
 }
@@ -39,13 +39,13 @@
 }
 
 .list.violet::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
-  border: 2px solid #ffffff;
+  background-color: #ffffff;
+  border-radius: 7px;
+  border: 2px solid var(--color-violet-background-sidebar);
 }
 
 .list.violet::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.25);
+  background: none;
 }
 
 .item {
@@ -75,17 +75,18 @@
 .icon {
   stroke: rgba(255, 255, 255, 0.5);
   margin-left: 14px;
+  /* fill: #000000; */
 }
 
 .icon.light {
   stroke: rgba(22, 22, 22, 0.5);
-  background-color: var(--color-light-primary);
+  /* background-color: var(--color-light-primary); */
   fill: var(--color-light-primary);
 }
 
 .icon.violet {
   stroke: rgba(255, 255, 255, 0.5);
-  background-color: var(--color-violet-background-sidebar);
+  /* background-color: var(--color-violet-background-sidebar); */
   fill: var(--color-violet-background-sidebar);
 }
 
