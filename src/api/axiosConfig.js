@@ -44,7 +44,7 @@ const handleTokenRefresh = async error => {
       originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
       return axios(originalRequest);
     } catch (error) {
-      console.log('Not authorized');
+      throw new Error(error.response.data.message);
     }
   }
   throw error;
