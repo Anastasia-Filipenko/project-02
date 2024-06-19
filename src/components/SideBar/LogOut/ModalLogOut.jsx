@@ -22,7 +22,7 @@ export default function ModalLogOut({ user, close, logout }) {
     >
       <Box
         sx={{
-          border: '1.5px solid',
+          // border: '1.5px solid',
           padding: '15px',
           borderRadius: '15px',
         }}
