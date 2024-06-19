@@ -18,7 +18,9 @@ const themeDark = {
     iconStroke: 'var(--color-light-primary)',
     iconColumnBackgroundColor: 'var(--color-light-primary)',
     iconColumnStroke: 'var(--color-dark-primary)',
-    btnColumnBackround: 'var(--color-dark-btn-secondary)'
+    btnColumnBackround: 'var(--color-dark-btn-secondary)',
+    btnColorHover: 'var(--color-dark-btn-hover)',
+    btnColorLogOut: 'var(--color-label-medium)',
   },
 };
 const themeLight = {
@@ -39,7 +41,9 @@ const themeLight = {
     iconColumnStroke: 'var(--color-light-primary)',
     activeItem: 'var(--color-light-active-item)',
     btnActive: 'var(--color-btn-active-item)',
-    btnColumnBackround: 'var(--color-light-btn-secondary)'
+    btnColumnBackround: 'var(--color-light-btn-secondary)',
+    btnColorHover: 'var(--color-dark-btn-hover)',
+    btnColorLogOut: 'var(--color-label-medium)',
   },
 };
 
@@ -58,10 +62,10 @@ const themeViolet = {
     iconStroke: 'var(--color-dark-primary)',
     iconColumnBackgroundColor: 'var(--color-violet-btn)',
     iconColumnStroke: 'var(--color-light-primary)',
-    btnColumnBackround: 'var(--color-violet-btn-secondary)'
+    btnColumnBackround: 'var(--color-violet-btn-secondary)',
+    btnColorHover: 'var(--color-violet-btn-hover)',
   },
 };
-
 
 // const themeDark = {
 //   color: {
@@ -73,8 +77,6 @@ const themeViolet = {
 //     inputColorActive: 'var(--color-dark-input-active)',
 //   },
 // };
-
-
 
 export const getTheme = theme => {
   switch (theme) {
@@ -104,7 +106,6 @@ export const ThemeChangeProvider = ({ children }) => {
     </themeContext.Provider>
   );
 };
-
 
 export const useTheme = () => useContext(themeContext);
 export default themeContext;
