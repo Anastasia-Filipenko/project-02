@@ -78,7 +78,6 @@ export const updateUserInfo = createAsyncThunk(
   'auth/updateUserInfo',
   async ({ id, data }, thunkAPI) => {
     try {
-      console.log(data);
       const response = await changeUserProfileApi(id, data);
       return response.data;
     } catch (e) {
@@ -91,7 +90,6 @@ export const updateUserAvatar = createAsyncThunk(
   'auth/updateUserAvatar',
   async (data, thunkAPI) => {
     try {
-      console.log({ data });
       const response = await changeUserAvatar(data);
       return response.data;
     } catch (e) {

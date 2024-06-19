@@ -28,10 +28,8 @@ export const authSlice = createSlice({
   reducers: {
     setAvatar: (state, action) => {
       state.user.avatar = action.payload;
-      // console.log(action.payload);
     },
     setUser: (state, action) => {
-      // console.log(action.payload);
       state.user.name = action.payload.name;
       state.user.email = action.payload.email;
       state.user.password = action.payload.password;
@@ -50,6 +48,7 @@ export const authSlice = createSlice({
         state.user.avatar = action.payload.avatarURL;
         state.user.password = action.payload.password;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(registered.rejected, (state, action) => {
         state.isLoading = false;
@@ -71,7 +70,14 @@ export const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(logOut.fulfilled, (state, action) => {
-        state.user = { name: null, email: null, theme: 'dark' };
+        state.user = {
+          name: null,
+          email: null,
+          userId: null,
+          avatar: null,
+          theme: 'dark',
+          password: null,
+        };
         state.token = null;
         state.isLoggedIn = false;
       })
@@ -91,17 +97,18 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
-        // console.log(action.payload);
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.user.userId = action.payload._id;
         state.user.avatar = action.payload.avatarURL;
         state.user.password = action.payload.password;
-        // state.user.theme = action.payload.theme;
+      })
+      .addCase(updateUserAvatar.pending, (state, action) => {
+        state.isLoading = true;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
-        // console.log(action.payload);
-        state.user.avatar = action.payload.avatar;
+        state.user.avatar = action.payload.avatarURL;
+        state.isLoading = false;
       })
       .addCase(changeTheme.fulfilled, (state, action) => {
         state.user.theme = action.payload.theme;

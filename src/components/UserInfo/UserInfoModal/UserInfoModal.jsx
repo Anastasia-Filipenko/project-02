@@ -12,7 +12,6 @@ import {
   selectUserEmail,
   selectUserId,
   selectUserAvatar,
-  selectUserPassword,
 } from '../../../redux/auth/selectors';
 import { useDispatch } from 'react-redux';
 import {
@@ -20,6 +19,7 @@ import {
   updateUserAvatar,
 } from '../../../redux/auth/operations';
 import { selectTheme } from '../../../redux/auth/selectors';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -47,7 +47,6 @@ export default function UserInfo({ close }) {
   const id = useSelector(selectUserId);
   const userAvatar = useSelector(selectUserAvatar);
   const selectedTheme = useSelector(selectTheme);
-  const userPassword = useSelector(selectUserPassword);
   const dispatch = useDispatch();
 
   const [avatarFile, setAvatarFile] = useState(null);
@@ -73,13 +72,13 @@ export default function UserInfo({ close }) {
   };
 
   const onSubmit = data => {
-    if (data.password === '') {
-      data.password = userPassword;
+    if (data.password !== '') {
       dispatch(updateUserInfo({ id, data }));
+      toast.success('Your data updated successfully');
     } else {
-      dispatch(updateUserInfo({ id, data }));
+      dispatch(updateUserInfo({ id, email: data.email, name: data.name }));
+      toast.success('Your data updated successfully');
     }
-
     reset();
     close();
   };
@@ -158,7 +157,7 @@ export default function UserInfo({ close }) {
 
             <div className={css.inputWrapper}>
               <input
-                placeholder="Please, enter your old password or new password"
+                placeholder="Enter your password"
                 className={clsx(css.input, css[selectedTheme])}
                 {...register('password')}
                 type={showPassword ? 'text' : 'password'}

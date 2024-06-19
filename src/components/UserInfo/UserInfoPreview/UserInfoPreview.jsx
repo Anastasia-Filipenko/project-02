@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import {
   selectUserName,
   selectUserAvatar,
+  selectIsLoadingAuth,
 } from '../../../redux/auth/selectors';
 import { selectTheme } from '../../../redux/auth/selectors';
 import userAvatarPath from './userAvatarPath';
@@ -52,6 +53,7 @@ const UserInfoPreview = () => {
   const userName = useSelector(selectUserName);
   const userAvatar = useSelector(selectUserAvatar);
   const selectedTheme = useSelector(selectTheme);
+  const isLoading = useSelector(selectIsLoadingAuth);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [userAvatarDefault, setUserAvatarDefault] = useState(
@@ -71,11 +73,9 @@ const UserInfoPreview = () => {
   useEffect(() => {
     const userTheme = getDefaultAvatarForTheme(selectedTheme);
     if (userAvatar === userAvatarPath.userAvatarDark) {
-      // console.log(1111);
       dispatch(setAvatar(userTheme));
       return setUserAvatarDefault(userTheme);
     } else {
-      // console.log(22222);
       dispatch(setAvatar(userAvatar));
       return setUserAvatarDefault(userAvatar);
     }
@@ -83,14 +83,19 @@ const UserInfoPreview = () => {
 
   return (
     <>
-      <div className={clsx(css.user, css[selectedTheme])} onClick={openModal}>
-        <p className={clsx(css.user_name, css[selectedTheme])}>{userName}</p>
-        <img
-          className={css.user_avatar}
-          src={userAvatarDefault}
-          alt="User Avatar"
-        />
-      </div>
+      {isLoading ? (
+        <div className={clsx(css.loader, css[selectTheme])}>Loading....</div>
+      ) : (
+        <div className={clsx(css.user, css[selectedTheme])} onClick={openModal}>
+          <p className={clsx(css.user_name, css[selectedTheme])}>{userName}</p>
+          <img
+            className={css.user_avatar}
+            src={userAvatarDefault}
+            alt="User Avatar"
+          />
+        </div>
+      )}
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
