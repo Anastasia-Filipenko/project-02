@@ -11,7 +11,7 @@ import {
   selectIsLoadingAuth,
 } from '../../../redux/auth/selectors';
 import { selectTheme } from '../../../redux/auth/selectors';
-import userAvatarPath from './userAvatarPath';
+import userAvatarPath from '../../../imagesPath/userAvatarPath';
 import { setAvatar } from '../../../redux/auth/authSlice';
 
 const customStyles = {
@@ -89,7 +89,7 @@ const UserInfoPreview = () => {
         <div className={clsx(css.user, css[selectedTheme])} onClick={openModal}>
           <p className={clsx(css.user_name, css[selectedTheme])}>{userName}</p>
           <img
-            className={css.user_avatar}
+            className={clsx(css.user_avatar, css[selectedTheme])}
             src={userAvatarDefault}
             alt="User Avatar"
           />

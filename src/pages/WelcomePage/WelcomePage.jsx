@@ -2,7 +2,7 @@ import css from './WelcomePage.module.css';
 import { NavLink } from 'react-router-dom';
 import sprite from '../../assets/sprite.svg';
 import { useState, useEffect } from 'react';
-import UserPath from '../../images/UserWelcome';
+import UserPath from '../../imagesPath/UserWelcomePath';
 
 const ResponsiveImage = () => {
   const [imageSrc, setImageSrc] = useState('');

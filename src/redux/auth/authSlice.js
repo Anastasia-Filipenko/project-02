@@ -37,7 +37,7 @@ export const authSlice = createSlice({
   },
   extraReducers: builder =>
     builder
-      .addCase(registered.pending, (state, action) => {
+      .addCase(registered.pending, state => {
         state.isLoading = true;
       })
       .addCase(registered.fulfilled, (state, action) => {
@@ -50,10 +50,10 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(registered.rejected, (state, action) => {
+      .addCase(registered.rejected, state => {
         state.isLoading = false;
       })
-      .addCase(login.pending, (state, action) => {
+      .addCase(login.pending, state => {
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -66,10 +66,10 @@ export const authSlice = createSlice({
         (state.token = action.payload.token), (state.isLoggedIn = true);
         state.isLoading = false;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(login.rejected, state => {
         state.isLoading = false;
       })
-      .addCase(logOut.fulfilled, (state, action) => {
+      .addCase(logOut.fulfilled, state => {
         state.user = {
           name: null,
           email: null,
@@ -81,7 +81,7 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(refreshUser.pending, (state, action) => {
+      .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
@@ -93,8 +93,11 @@ export const authSlice = createSlice({
         state.user.avatar = action.payload.avatarURL;
         state.user.password = action.payload.password;
       })
-      .addCase(refreshUser.rejected, (state, action) => {
+      .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(updateUserInfo.pending, state => {
+        state.isLoading = false;
       })
       .addCase(updateUserInfo.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
@@ -103,11 +106,17 @@ export const authSlice = createSlice({
         state.user.avatar = action.payload.avatarURL;
         state.user.password = action.payload.password;
       })
-      .addCase(updateUserAvatar.pending, (state, action) => {
+      .addCase(updateUserInfo.rejected, state => {
+        state.isLoading = false;
+      })
+      .addCase(updateUserAvatar.pending, state => {
         state.isLoading = true;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
         state.user.avatar = action.payload.avatarURL;
+        state.isLoading = false;
+      })
+      .addCase(updateUserAvatar.rejected, state => {
         state.isLoading = false;
       })
       .addCase(changeTheme.fulfilled, (state, action) => {
