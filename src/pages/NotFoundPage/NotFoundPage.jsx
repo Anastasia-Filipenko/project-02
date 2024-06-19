@@ -23,11 +23,6 @@ export default function NotFound() {
       <NavLink to="/welcome" className={css.link}>
         Back to home
       </NavLink>
-      <button onClick={() => setIsFiltersModalOpened(true)}>OpenModal</button>
-      <FilterModal
-        isOpen={isFiltersModalOpened}
-        onClose={() => setIsFiltersModalOpened(false)}
-      />
     </div>
   );
 }
