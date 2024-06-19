@@ -90,7 +90,7 @@ export default function EditBtn({ cardInfo }) {
   return (
     <>
       <li className={clsx(css.dropdown, css.list)}>
-        {columnsAmount > 1 && (
+        {columnsAmount > 0 && (
           <button
             className={clsx(css.btn, css[selectedTheme])}
             ref={moveCardBtn}
