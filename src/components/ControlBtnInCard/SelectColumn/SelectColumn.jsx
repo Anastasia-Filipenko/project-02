@@ -48,7 +48,7 @@ export const SelectColumn = ({
       style={{
         '--max-height': forCard ? '145px' : '200px',
         '--position-top': forCard ? '24px' : '20px',
-        '--position-left': forCard ? '-121px' : '-135px',
+        '--position-left': forCard ? '-115px' : '-135px',
         '--font-size': forCard ? '14px' : '14px',
       }}
     >

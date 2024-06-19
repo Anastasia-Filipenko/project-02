@@ -33,7 +33,6 @@ export default function EditBtn({ cardInfo }) {
   const boardColumns = useSelector(state => state.columns.items);
   const cards = useSelector(selectCards);
   const { column, deadline, _id, title } = useSelector(selectCards);
-  
 
   useEffect(() => {
     const backendDate = new Date(deadline);
@@ -47,7 +46,13 @@ export default function EditBtn({ cardInfo }) {
     setIsButtonActive(isActive);
   }, [deadline]);
 
-  const columnOptionsList = boardColumns.map(column => column.title).filter(c => c !== cardInfo.columnTitle);
+  const getIconClass = () => {
+    return isCustomOptionListOpen ? css.iconMove : '';
+  };
+
+  const columnOptionsList = boardColumns
+    .map(column => column.title)
+    .filter(c => c !== cardInfo.columnTitle);
   const columnsAmount = columnOptionsList.length;
 
   const handleMoveCard = selectedColumnTitle => {
@@ -93,7 +98,7 @@ export default function EditBtn({ cardInfo }) {
             onClick={openCustomOptionList}
           >
             <svg
-              className={clsx(css.icon, css[selectedTheme])}
+              className={clsx(css.icon, getIconClass(), css[selectedTheme])}
               width="16"
               height="16"
             >

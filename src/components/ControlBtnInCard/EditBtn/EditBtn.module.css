@@ -5,6 +5,10 @@
 .list {
   height: 16px;
 }
+
+.icon {
+  transition: transform 0.3s ease-in-out;
+}
 .icon.dark {
   stroke: rgba(255, 255, 255, 50%);
 }
@@ -109,4 +113,19 @@ button {
 
 .buttonActive .icon {
   stroke: green;
+}
+
+.iconMove.dark {
+  transform: rotate(90deg);
+  stroke: #bedbb0;
+}
+
+.iconMove.light {
+  transform: rotate(90deg);
+  stroke: #bedbb0;
+}
+
+.iconMove.violet {
+  stroke: var(--color-violet-btn);
+  transform: rotate(90deg);
 }
