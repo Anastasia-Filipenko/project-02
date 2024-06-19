@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 // import { selectTheme } from '../../../redux/theme/selectors';
 import { selectTheme } from '../../redux/auth/selectors.js';
 import css from './CreateCardModalWindow.module.css';
-// import './customStyles.css';
+// import * as css2 from './customStyles.css';
 import clsx from 'clsx';
 
 import { createCard } from '../../redux/task/operations.js';
@@ -33,7 +33,18 @@ export default function CreateCardModalWindow({
   const [startDate, setStartDate] = useState(new Date());
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
-  console.log(selectedTheme);
+
+  if(selectedTheme === "dark") {
+    import("./darkCalendar.css")
+  }
+  if(selectedTheme === "light") {
+    import("./lightCalendar.css")
+  }
+  if(selectedTheme === "violet") {
+    import("./violetCalendar.css")
+  }
+
+
   const handleChange = e => {
     setDatePickerIsOpen(!isDatePickerOpen);
     setStartDate(e);
