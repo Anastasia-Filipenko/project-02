@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { selectTheme } from '../../redux/auth/selectors';
 import { sendEmail } from '../../redux/needHelp/operations';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   email: yup
@@ -39,6 +40,8 @@ export default function NeedHelpModal({ close }) {
       })
     );
     reset();
+    close();
+    toast.success('Email send successfully!');
   };
 
   return (
