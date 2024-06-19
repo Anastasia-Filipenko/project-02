@@ -33,3 +33,16 @@
   height: 32px;
   border-radius: 8px;
 }
+
+.loader.dark {
+  color: white;
+  padding: 3px;
+}
+.loader.light {
+  color: dark;
+  padding: 3px;
+}
+.loader.violet {
+  color: dark;
+  padding: 3px;
+}

@@ -9,8 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
 import Theme from './components/Theme/Theme';
-import  { ThemeChangeProvider} from './themeContext';
-
+import { ThemeChangeProvider } from './themeContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

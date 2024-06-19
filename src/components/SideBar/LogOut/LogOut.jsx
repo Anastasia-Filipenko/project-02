@@ -1,19 +1,55 @@
 import css from './LogOut.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import sprite from '../../../assets/sprite.svg';
-import { logOut } from '../../../redux/auth/operations';
 import clsx from 'clsx';
 import { selectTheme } from '../../../redux/auth/selectors';
+import Modal from 'react-modal';
+import ModalLogOut from './ModalLogOut';
+import { logOut } from '../../../redux/auth/operations';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+    width: '400px',
+    borderRadius: '15px',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: '100',
+  },
+};
+
+Modal.setAppElement('#modal');
 
 const LogOut = () => {
   const selectedTheme = useSelector(selectTheme);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const dispatch = useDispatch();
   const onLogOut = () => dispatch(logOut());
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <>
       <button
         className={clsx(css.buttonLogOut, css[selectedTheme])}
-        onClick={onLogOut}
+        onClick={openModal}
         type="button"
       >
         <div className={clsx(css.iconLogOut, css[selectedTheme])}>
@@ -27,6 +63,14 @@ const LogOut = () => {
         </div>
         Log Out
       </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <ModalLogOut close={closeModal} logout={onLogOut} />
+      </Modal>
     </>
   );
 };
