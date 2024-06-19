@@ -1,10 +1,9 @@
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import { Button, Typography } from '@mui/material';
-import ErrorIcon from '@mui/icons-material/Error';
 import { useTheme } from '@mui/material/styles';
 
-export default function ModalLogOut({ user, close, logout }) {
+export default function ModalLogOut({ close, logout }) {
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -22,7 +21,6 @@ export default function ModalLogOut({ user, close, logout }) {
     >
       <Box
         sx={{
-          // border: '1.5px solid',
           padding: '15px',
           borderRadius: '15px',
         }}
@@ -33,20 +31,13 @@ export default function ModalLogOut({ user, close, logout }) {
             justifyContent: 'center',
             color: 'red',
           }}
-        >
-          <ErrorIcon
-            sx={{ fontSize: '40px', color: '#e36f71', marginBottom: '20px' }}
-          />
-        </Box>
+        ></Box>
         <Box
           sx={{
             fontSize: 16,
             color: '#524f4e',
             textAlign: 'center',
-            border: '2px solid #e36f71',
-            borderRadius: '8px',
-            padding: '6px',
-            marginBottom: '30px',
+            marginBottom: '15px',
             fontFamily: '',
           }}
         >
