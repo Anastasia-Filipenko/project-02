@@ -1,20 +1,17 @@
 import { useForm } from 'react-hook-form';
 import ReactModal from 'react-modal';
 import { useState } from 'react';
-// import sprite from '../../../assets/sprite.svg';
 import sprite from '../../assets/sprite.svg';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import './calendar.css';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-// import { selectTheme } from '../../../redux/theme/selectors';
 import { selectTheme } from '../../redux/auth/selectors.js';
 import css from './CreateCardModalWindow.module.css';
-// import * as css2 from './customStyles.css';
 import clsx from 'clsx';
 
 import { createCard } from '../../redux/task/operations.js';
@@ -33,17 +30,6 @@ export default function CreateCardModalWindow({
   const [startDate, setStartDate] = useState(new Date());
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
-
-  if(selectedTheme === "dark") {
-    import("./darkCalendar.css")
-  }
-  if(selectedTheme === "light") {
-    import("./lightCalendar.css")
-  }
-  if(selectedTheme === "violet") {
-    import("./violetCalendar.css")
-  }
-
 
   const handleChange = e => {
     setDatePickerIsOpen(!isDatePickerOpen);
@@ -229,7 +215,7 @@ export default function CreateCardModalWindow({
             onChange={handleChange}
             inline
             minDate={new Date()}
-            calendarClassName={clsx(css.customCalendar, css[selectedTheme])}
+            calendarClassName={`${selectedTheme}`}
           />
         )}
         <button

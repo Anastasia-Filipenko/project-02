@@ -1,25 +1,18 @@
 import { useForm } from 'react-hook-form';
 import ReactModal from 'react-modal';
 import { useState } from 'react';
-// import sprite from '../../../assets/sprite.svg';
-// import sprite from '../../assets/sprite.svg';
 import sprite from '../../../../assets/sprite.svg';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-// import { selectTheme } from '../../../redux/theme/selectors';
-// import { selectTheme } from '../../redux/theme/selectors.js';
+import './calendar.css';
 import { selectTheme } from '../../../../redux/auth/selectors.js';
-// import css from './CreateCardModalWindow.module.css';
 import css from './EditCardModalWindow.module.css';
 import clsx from 'clsx';
-
-// import { createCard } from '../../redux/task/operations.js';
 import { changeCard } from '../../../../redux/task/operations.js';
 
 const schema = yup.object().shape({
@@ -32,23 +25,12 @@ export default function EditCardModalWindow({
   handleModalClose,
   cardInfo,
 }) {
-  // console.log('cardInfoInModal: ', cardInfo);
   const [priority, setPiority] = useState(cardInfo.priority);
   const [titleValue, setTitleChanges] = useState(cardInfo.title);
   const [descriptionValue, setDescriptionChanges] = useState(cardInfo.title);
   const [startDate, setStartDate] = useState(new Date(cardInfo.deadline));
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
-
-  if(selectedTheme === "dark") {
-    import("./darkCalendar.css")
-  }
-  if(selectedTheme === "light") {
-    import("./lightCalendar.css")
-  }
-  if(selectedTheme === "violet") {
-    import("./violetCalendar.css")
-  }
 
   const handleTitleChange = event => {
     setTitleChanges(event.target.value);
@@ -95,7 +77,7 @@ export default function EditCardModalWindow({
 
     handleModalClose();
   };
-
+  
   return (
     <ReactModal
       isOpen={isOpen}
@@ -248,7 +230,7 @@ export default function EditCardModalWindow({
             onChange={handleChange}
             inline
             minDate={new Date()}
-            calendarClassName={clsx(css.customCalendar, css[selectedTheme])}
+            calendarClassName={`${selectedTheme}`}
           />
         )}
         <button
