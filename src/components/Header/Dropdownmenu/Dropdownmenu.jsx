@@ -30,20 +30,44 @@ const DropdownMenu = () => {
       </button>
       {isDropdownOpen && (
         <div className={clsx(css.dropdownContent, css[selectedTheme])}>
-          <button
+          {/* <button
             className={clsx(css.dropdownContentButton, css.light)}
             onClick={() => handleSelectChange('light')}
           >
             Light
-          </button>
+          </button> */}
           <button
+            className={clsx(css.dropdownContentButton, css.light, {
+              [css.selected]: selectedTheme === 'light',
+            })}
+            onClick={() => handleSelectChange('light')}
+          >
+            Light
+          </button>
+          {/* <button
             className={clsx(css.dropdownContentButton, css.dark)}
             onClick={() => handleSelectChange('dark')}
           >
             Dark
-          </button>
+          </button> */}
           <button
+            className={clsx(css.dropdownContentButton, css.dark, {
+              [css.selected]: selectedTheme === 'dark',
+            })}
+            onClick={() => handleSelectChange('dark')}
+          >
+            Dark
+          </button>
+          {/* <button
             className={clsx(css.dropdownContentButton, css.violet)}
+            onClick={() => handleSelectChange('violet')}
+          >
+            Violet
+          </button> */}
+          <button
+            className={clsx(css.dropdownContentButton, css.violet, {
+              [css.selected]: selectedTheme === 'violet',
+            })}
             onClick={() => handleSelectChange('violet')}
           >
             Violet
