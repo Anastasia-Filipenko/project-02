@@ -9,7 +9,7 @@ import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import './calendar.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import { selectTheme } from '../../../../redux/auth/selectors.js';
 import css from './EditCardModalWindow.module.css';
 import clsx from 'clsx';
@@ -31,6 +31,16 @@ export default function EditCardModalWindow({
   const [startDate, setStartDate] = useState(new Date(cardInfo.deadline));
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
+
+  if (selectedTheme === 'dark') {
+    import('./darkCalendar.css');
+  }
+  if (selectedTheme === 'light') {
+    import('./lightCalendar.css');
+  }
+  if (selectedTheme === 'violet') {
+    import('./violetCalendar.css');
+  }
 
   const handleTitleChange = event => {
     setTitleChanges(event.target.value);
@@ -64,8 +74,6 @@ export default function EditCardModalWindow({
   });
 
   const onSubmit = data => {
-
-
     const cardId = cardInfo._id;
     const body = {
       title: data.title,
@@ -77,7 +85,7 @@ export default function EditCardModalWindow({
 
     handleModalClose();
   };
-  
+
   return (
     <ReactModal
       isOpen={isOpen}
@@ -230,7 +238,7 @@ export default function EditCardModalWindow({
             onChange={handleChange}
             inline
             minDate={new Date()}
-            calendarClassName={`${selectedTheme}`}
+            calendarClassName={clsx(css.customCalendar, css[selectedTheme])}
           />
         )}
         <button

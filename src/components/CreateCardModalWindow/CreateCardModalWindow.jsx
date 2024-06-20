@@ -1,3 +1,4 @@
+import 'react-datepicker/dist/react-datepicker.css';
 import { useForm } from 'react-hook-form';
 import ReactModal from 'react-modal';
 import { useState } from 'react';
@@ -6,7 +7,6 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
 import DatePicker from 'react-datepicker';
-import './calendar.css';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -30,6 +30,16 @@ export default function CreateCardModalWindow({
   const [startDate, setStartDate] = useState(new Date());
   const [isDatePickerOpen, setDatePickerIsOpen] = useState(false);
   const selectedTheme = useSelector(selectTheme);
+
+  if (selectedTheme === 'dark') {
+    import('./darkCalendar.css');
+  }
+  if (selectedTheme === 'light') {
+    import('./lightCalendar.css');
+  }
+  if (selectedTheme === 'violet') {
+    import('./violetCalendar.css');
+  }
 
   const handleChange = e => {
     setDatePickerIsOpen(!isDatePickerOpen);
@@ -130,10 +140,7 @@ export default function CreateCardModalWindow({
             />
             <label
               htmlFor="low"
-              className={clsx(
-                css.customInput,
-                css.lowPriority,
-              )}
+              className={clsx(css.customInput, css.lowPriority)}
             ></label>
           </div>
           <div className={css.customInputWrp}>
@@ -147,10 +154,7 @@ export default function CreateCardModalWindow({
             />
             <label
               htmlFor="medium"
-              className={clsx(
-                css.customInput,
-                css.mediumPriority,
-              )}
+              className={clsx(css.customInput, css.mediumPriority)}
             ></label>
           </div>
           <div className={css.customInputWrp}>
@@ -164,10 +168,7 @@ export default function CreateCardModalWindow({
             />
             <label
               htmlFor="high"
-              className={clsx(
-                css.customInput,
-                css.highPriority,
-              )}
+              className={clsx(css.customInput, css.highPriority)}
             ></label>
           </div>
           <div className={css.customInputWrp}>
@@ -215,7 +216,7 @@ export default function CreateCardModalWindow({
             onChange={handleChange}
             inline
             minDate={new Date()}
-            calendarClassName={`${selectedTheme}`}
+            calendarClassName={clsx(css.customCalendar, css[selectedTheme])}
           />
         )}
         <button
